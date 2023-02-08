@@ -19,9 +19,9 @@ class _OffersScreenState extends State<OffersScreen> {
         appBar: AppBar(
         toolbarHeight: 90,
         backgroundColor: Colors.white,
-        title: Text('Offers',style: TextStyle(color: Colors.black,fontSize: 22)),
+        title: const Text('Offers',style: TextStyle(color: Colors.black,fontSize: 22)),
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(10.0),
+            preferredSize: const Size.fromHeight(10.0),
             child:TabBar(
             //  padding: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
               isScrollable: true,
@@ -30,45 +30,45 @@ class _OffersScreenState extends State<OffersScreen> {
 
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                        minimumSize: Size(80,30),
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        shape: RoundedRectangleBorder(
+                        minimumSize: const Size(80,30),
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(14))
                         )
                     ),
                     onPressed: () {  },
-                    child: Text("Available Promos",style: TextStyle(color: Colors.black45),),
+                    child: const Text("Available Promos",style: TextStyle(color: Colors.black45),),
             ),
                 ),
                 Tab(
                   child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        minimumSize: Size(80,30),
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        shape: RoundedRectangleBorder(
+                        minimumSize: const Size(80,30),
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(14))
                         )
                       ),
                       onPressed: (){},
-                      child: Text("Point Deals",style: TextStyle(color: Colors.black45))),
+                      child: const Text("Point Deals",style: TextStyle(color: Colors.black45))),
                 ),
                 Tab(
                   child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                          minimumSize: Size(80,30),
-                          padding: EdgeInsets.symmetric(horizontal: 16),
-                          shape: RoundedRectangleBorder(
+                          minimumSize: const Size(80,30),
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(Radius.circular(14))
                           )
                       ),
                       onPressed: (){},
-                      child: Text("Ongoing Offers",style: TextStyle(color: Colors.black45))),
+                      child: const Text("Ongoing Offers",style: TextStyle(color: Colors.black45))),
                 ),
               ],
             ),
           ),
       ),
-        body: TabBarView(
+        body: const TabBarView(
           children: <Widget>[
             AvailablePromosView(),
             PointDealsView(),

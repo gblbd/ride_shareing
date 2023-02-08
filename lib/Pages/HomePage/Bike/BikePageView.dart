@@ -14,6 +14,9 @@ class _BikePageViewState extends State<BikePageView> {
   static final _code=TextEditingController();
 
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +94,7 @@ class _BikePageViewState extends State<BikePageView> {
                                          onPressed: (){
                                            Navigator.pop(context);
                                          },
-                                         child: Text('Got It',
+                                         child: const Text('Got It',
                                            style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w400),textAlign: TextAlign.center,),)
                                    )
                                  ],
@@ -103,7 +106,7 @@ class _BikePageViewState extends State<BikePageView> {
                    child: Icon(Icons.security,color: Colors.green.shade500,size: 20,),
                  ),
                ),
-               SizedBox(height: 10,),
+               const SizedBox(height: 10,),
                Container(
                  height: 35,width: 35,
                  child: FloatingActionButton(
@@ -118,25 +121,25 @@ class _BikePageViewState extends State<BikePageView> {
                          builder: (BuildContext context){
                            return Padding(
                                padding: EdgeInsets.only(
-                               top: 10,
-                               bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,
+                               top: 6,
+                              // bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,
                            ),
                              child: Container(
-                               height: 500,
+                               height: 403,
                                child: Column(
                                  crossAxisAlignment: CrossAxisAlignment.center,
                                  children: [
-                                   const SizedBox(height: 10,),
+                                   const SizedBox(height: 4,),
                                    Row(
                                      //crossAxisAlignment: CrossAxisAlignment.start,
                                      children: [
-                                       const SizedBox(width: 13,),
+                                       const SizedBox(width: 10,),
                                        const Text('Add Promo',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),Spacer(),
                                        TextButton(
                                            onPressed: (){
                                              Navigator.pop(context);
                                            },
-                                           child: Icon(Icons.close,color: Colors.black,))
+                                           child: const Icon(Icons.close,color: Colors.black,))
                                      ],
                                    ),
                                    const SizedBox(height: 3,),
@@ -163,9 +166,9 @@ class _BikePageViewState extends State<BikePageView> {
                                        },
                                      ),
                                    ),
-                                   const Divider(),
+                                  // const Divider(),
                                    Container(
-                                     height: 300,
+                                     height: 280,
                                      color: Colors.blueGrey.shade50,
                                       child: Column(
                                         children: [
@@ -174,7 +177,7 @@ class _BikePageViewState extends State<BikePageView> {
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               Container(
-                                                height: 35,width: 160,
+                                                height: 33,width: 160,
                                                 decoration: BoxDecoration(
                                                     border: Border.all(color: Colors.red.shade50,width: 1),
                                                     borderRadius: BorderRadius.circular(10.0),
@@ -188,7 +191,7 @@ class _BikePageViewState extends State<BikePageView> {
                                                       style: TextStyle(color: Colors.red),)),
                                               ),
                                               Container(
-                                                height: 35,width: 160,
+                                                height: 33,width: 160,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(color: Colors.red.shade50,width: 1),
                                                   borderRadius: BorderRadius.circular(10.0),
@@ -198,10 +201,112 @@ class _BikePageViewState extends State<BikePageView> {
                                                     backgroundColor: Colors.red.shade50
                                                   ),
                                                     onPressed: (){},
-                                                    child: const Text('Point Deals',
-                                                        style: TextStyle(color: Colors.red))),
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children:  [
+                                                        const Text('Point Deals', style: TextStyle(color: Colors.red)),
+                                                        const SizedBox(width: 5,),
+                                                        Container(
+                                                          height: 15,width: 30,
+                                                          decoration: BoxDecoration(
+                                                            border: Border.all(color: Colors.red,width: 1),
+                                                            borderRadius: BorderRadius.circular(6.0),
+                                                            color: Colors.red
+                                                          ),
+                                                          child: const Text('New',style: TextStyle(color: Colors.white,fontSize: 10),textAlign: TextAlign.center,),
+                                                        ),
+                                                      ],
+                                                    )),
                                               ),
                                             ],
+                                          ),
+                                          const SizedBox(height: 8,),
+                                          Card(
+                                            color: Colors.white,
+                                            elevation: 2,
+                                            margin: const EdgeInsets.all(8),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(Radius.circular(10))
+                                            ),
+                                            child: Container(
+                                              height: 80,width: 320,
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  SizedBox(height: 10,),
+                                                  Row(
+                                                    children: [
+                                                      SizedBox(width: 10,),
+                                                      Icon(Icons.circle_outlined,size: 12,color: Colors.grey,),
+                                                      SizedBox(width: 10,),
+                                                      Text('RUN10',style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w600)),
+                                                      Spacer(),
+                                                      Container(
+                                                        height: 16,width: 38,
+                                                        decoration: BoxDecoration(
+                                                            border: Border.all(color: Colors.red,width: 1),
+                                                            borderRadius: BorderRadius.circular(6.0),
+                                                            color: Colors.red
+                                                        ),
+                                                        child: const Text('BIKE',style: TextStyle(color: Colors.white,fontSize: 10),textAlign: TextAlign.center,),
+                                                      ),
+                                                      SizedBox(width: 10,),
+                                                    ],
+                                                  ),
+                                                  //SizedBox(height: 10,),
+                                                  SizedBox(height: 7,),
+                                                  Text('    25% off on your next ride (Up to 100BDT)',
+                                                      style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.normal)),
+                                                  SizedBox(height: 7,),
+                                                  Text('    Valid till March 31, 2023',style: TextStyle(color: Colors.grey,fontSize: 13,fontWeight: FontWeight.normal)),
+                                                ],
+                                              ),
+                                            ),
+
+                                          ),
+                                          const SizedBox(height: 4,),
+                                          Card(
+                                            color: Colors.white,
+                                            elevation: 2,
+                                            margin: const EdgeInsets.all(8),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(Radius.circular(10))
+                                            ),
+                                            child: Container(
+                                              height: 100,width: 320,
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  SizedBox(height: 14,),
+                                                  Row(
+                                                    children: [
+                                                      SizedBox(width: 10,),
+                                                      Icon(Icons.circle_outlined,size: 12,color: Colors.grey,),
+                                                      SizedBox(width: 10,),
+                                                      Text('START100',style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w600)),
+                                                      Spacer(),
+                                                      Container(
+                                                        height: 15,width: 60,
+                                                        decoration: BoxDecoration(
+                                                            border: Border.all(color: Colors.deepOrange.shade500,width: 1),
+                                                            borderRadius: BorderRadius.circular(6.0),
+                                                            color: Colors.deepOrange.shade500
+                                                        ),
+                                                        child: const Text('CAR PLUS',style: TextStyle(color: Colors.white,fontSize: 10),textAlign: TextAlign.center,),
+                                                      ),
+                                                      SizedBox(width: 10,),
+                                                    ],
+                                                  ),
+                                                  //SizedBox(height: 10,),
+                                                  SizedBox(height: 7,),
+                                                  Text('    20% off on your next ride in Dhaka! (Up to 100BDT.\n    minimum ride fare: 120BDT)',
+                                                      style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.normal)),
+                                                  SizedBox(height: 7,),
+                                                  Text('    Valid till March 31, 2023',style: TextStyle(color: Colors.grey,fontSize: 13,fontWeight: FontWeight.normal)),
+                                                ],
+                                              ),
+                                            ),
+
                                           ),
                                         ],
                                       ),
@@ -252,13 +357,13 @@ class _BikePageViewState extends State<BikePageView> {
                                   height: 300,
                                   child: Column(
                                     children: [
-                                      Image.asset('assets/images/Fares.png'),SizedBox(height: 15,),
-                                      Text('Fares are comparatively lower now',
+                                      Image.asset('assets/images/Fares.png'),const SizedBox(height: 15,),
+                                      const Text('Fares are comparatively lower now',
                                           style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),textAlign: TextAlign.center,),
                                       SizedBox(height: 15,),
-                                      Text('  Fares are lower at this moment Request your rides as soon as possible.',
+                                      const Text('  Fares are lower at this moment Request your rides as soon as possible.',
                                         style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
-                                      SizedBox(height: 15,),
+                                      const SizedBox(height: 15,),
                                       Container(
                                         height: 50,width: 320,
                                           decoration: BoxDecoration(
@@ -270,7 +375,7 @@ class _BikePageViewState extends State<BikePageView> {
                                             onPressed: (){
                                               Navigator.pop(context);
                                             },
-                                            child: Text('Awesome!',
+                                            child: const Text('Awesome!',
                                               style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w400),textAlign: TextAlign.center,),)
                                       )
                                     ],
