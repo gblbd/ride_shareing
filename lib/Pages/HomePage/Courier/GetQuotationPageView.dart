@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'SelectCityList.dart';
+
 class GetQuotationPageView extends StatefulWidget {
   const GetQuotationPageView({Key? key}) : super(key: key);
 
@@ -39,12 +41,12 @@ class _GetQuotationPageViewState extends State<GetQuotationPageView> {
             ),
             child: TextButton(
               onPressed: (){
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(builder: (context) {
-                //       return const UpdateLocationView();
-                //     })
-                // );
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return const SelectCityListPage();
+                    })
+                );
               },
               child:
               Row(
@@ -70,12 +72,12 @@ class _GetQuotationPageViewState extends State<GetQuotationPageView> {
             ),
             child: TextButton(
               onPressed: (){
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(builder: (context) {
-                //       return const UpdateLocationView();
-                //     })
-                // );
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return const SelectCityListPage();
+                    })
+                );
               },
               child:
               Row(
@@ -92,7 +94,6 @@ class _GetQuotationPageViewState extends State<GetQuotationPageView> {
             padding: EdgeInsets.only(left: 16,top: 14),
             child: Text('Item Weight',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: Colors.black)),
           ),
-
           Container(
             width: 350,
             child: Slider(
@@ -119,7 +120,26 @@ class _GetQuotationPageViewState extends State<GetQuotationPageView> {
               Text('5 kg'), SizedBox(width: 15,),
             ],
           ),
-
+          SizedBox(height: 185,),
+          Divider(),
+          Padding(
+            padding: const EdgeInsets.only(top: 2),
+            child: Container(
+              height: 80,
+              color: Colors.white,
+              child: Center(
+                child: SizedBox(height: 50,width: 320,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
+                    onPressed: (){},
+                    child: Text('Get Quotation',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
+                  ),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

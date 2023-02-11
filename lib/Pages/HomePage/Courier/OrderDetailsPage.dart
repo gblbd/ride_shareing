@@ -163,9 +163,119 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 Text('5 kg'), SizedBox(width: 15,),
               ],
             ),
-            Divider(thickness: 1,indent: 8,endIndent: 9,),
+            Divider(thickness: 1,indent: 6,endIndent: 10,),
             TextButton(
-                onPressed: (){},
+                onPressed: (){
+                  showModalBottomSheet(
+                    isScrollControlled: false,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
+                    isDismissible: false,
+                    enableDrag: false,
+                    context: context,
+                    builder: (BuildContext context)
+                    {
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          left: 6,
+                          top: 10,
+                          bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,
+                        ),
+                        child: Container(
+                          height: 230,
+                          child: SingleChildScrollView( 
+                            child: Column(
+                              children: [
+                               Padding(padding: EdgeInsets.all(2.0),
+                               child: Row(
+                                 children: [
+                                   Text('Select Courier Type',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 22),),Spacer(),
+                                   TextButton(
+                                       onPressed: (){
+                                         Navigator.pop(context);
+                                       },
+                                       child: Icon(Icons.close,color: Colors.black,)),
+                                 ],
+                               ),
+                               ),
+                                TextButton(onPressed: () {
+                                  showModalBottomSheet(
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
+                                      context: context,
+                                    builder: (BuildContext context){
+                                      return Padding(
+                                          padding: EdgeInsets.only(
+                                            left: 6,
+                                            top: 10,
+                                            bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,
+                                          ),
+                                        child: Container(
+                                          height: 240,
+                                          child: Column(
+                                            children: [
+                                              Padding(padding: EdgeInsets.all(2.0),
+                                                child: Row(
+                                                  children: [
+                                                    Text('Item Type',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 22),),Spacer(),
+                                                    TextButton(
+                                                        onPressed: (){
+                                                          Navigator.pop(context);
+                                                        },
+                                                        child: Icon(Icons.close,color: Colors.black,)),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+
+                                      );
+                                    }
+                                  );
+                                },
+                                  child: ListTile(
+                                    leading: CircleAvatar(
+                                      radius: 15,
+                                      backgroundColor: Colors.orange.shade800,
+                                        child: Icon(Icons.shopping_bag,size: 18,color: Colors.white,),
+                                    ),
+                                    title: Text('Parcel',
+                                      style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,),
+                                    ),
+                                    subtitle: Text('Non-perishable goods, no fragile,no food items',
+                                      style: TextStyle(fontWeight: FontWeight.normal,fontSize: 12,),
+                                    ),
+                                    trailing: Icon(Icons.arrow_forward_ios,color: Colors.grey.shade800,size: 16,),
+                                  ),
+
+                                ),
+                                Divider(indent: 6,endIndent: 10,),
+                                TextButton(onPressed: () {  },
+                                  child: ListTile(
+                                    leading: CircleAvatar(
+                                      radius: 15,
+                                      backgroundColor: Colors.green.shade800,
+                                      child: Icon(Icons.my_library_books_sharp,size: 18,color: Colors.white,),
+                                    ),
+                                    title: Text('Document',
+                                      style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,),
+                                    ),
+                                    subtitle: Text('No passport or bank cheques',
+                                      style: TextStyle(fontWeight: FontWeight.normal,fontSize: 12,),
+                                    ),
+                                    trailing: Icon(Icons.arrow_forward_ios,color: Colors.grey.shade800,size: 16,),
+                                  ),
+
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+
+                  );
+                },
                 child: Row(
                   children: [
                     SizedBox(width: 7,),
