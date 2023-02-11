@@ -182,7 +182,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                         ),
                         child: Container(
                           height: 230,
-                          child: SingleChildScrollView( 
+                          child: SingleChildScrollView(
                             child: Column(
                               children: [
                                Padding(padding: EdgeInsets.all(2.0),
