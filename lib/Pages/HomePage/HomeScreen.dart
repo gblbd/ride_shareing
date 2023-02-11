@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ride_sharing/Pages/HomePage/Car/CarPageView.dart';
 import 'Bike/BikePageView.dart';
+import 'Courier/PathaoCourierPage.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -120,7 +122,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           border: Border.all(color: Colors.grey.shade200,width: 1),
                             borderRadius: BorderRadius.circular(10.0),),
                         child: TextButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return CarPageView();
+                                },
+                              ),
+                            );
+                          },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -139,7 +150,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: TextButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return PathaoCourierPage();
+                                },
+                              ),
+                            );
+
+                          },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

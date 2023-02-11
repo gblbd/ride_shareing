@@ -1,20 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/AvailablePromos.dart';
-import 'AddMissingPlace.dart';
-import 'PointDeals.dart';
-import 'YourTripPage.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 
+import '../Bike/AddMissingPlace.dart';
+import '../Bike/YourTripPage.dart';
 
-class BikePageView extends StatefulWidget {
-  const BikePageView({Key? key}) : super(key: key);
+
+class CarPageView extends StatefulWidget {
+  const CarPageView({Key? key}) : super(key: key);
 
   @override
-  State<BikePageView> createState() => _BikePageViewState();
+  State<CarPageView> createState() => _CarPageViewState();
 }
 
-class _BikePageViewState extends State<BikePageView> {
+class _CarPageViewState extends State<CarPageView> {
   static final _code=TextEditingController();
 
 
@@ -28,7 +28,7 @@ class _BikePageViewState extends State<BikePageView> {
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/bike_map.jpg'),
+              image: AssetImage('assets/images/CarBackGround.jpg'),
               fit: BoxFit.cover),
         ),
         child: Column(

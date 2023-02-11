@@ -115,7 +115,6 @@ class _AddMissingPlacePageState extends State<AddMissingPlacePage> {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) => const UpdateLocationView()));
                 }
-
               ),
             ),
             SizedBox(height: 7,),
@@ -166,7 +165,6 @@ class _AddMissingPlacePageState extends State<AddMissingPlacePage> {
                                       itemCount: categoryItems.length,
                                       itemBuilder: (context , index){
                                         return ListTile(
-                                         // dense: true,
                                           visualDensity:VisualDensity(horizontal: 0, vertical: -4),
                                           title: Text(categoryItems[index]),
                                         );
@@ -176,12 +174,7 @@ class _AddMissingPlacePageState extends State<AddMissingPlacePage> {
                             ),
                           );
                     });
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(builder: (context) {
-                  //       return const UpdateLocationView();
-                  //     })
-                  // );
+
                 },
                 child: Row(
                   children: const [
