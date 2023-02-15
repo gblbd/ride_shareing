@@ -64,7 +64,7 @@ class _SelectCityListPageState extends State<SelectCityListPage> {
                         visualDensity:VisualDensity(horizontal: 0, vertical: -4),
                         title: Text(CityItems[index]),
                       ),
-                      Divider(),
+                      const Divider(indent: 15,endIndent: 20,),
                     ],
                   );
                 }),

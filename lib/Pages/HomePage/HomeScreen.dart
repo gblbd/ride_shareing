@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ride_sharing/Pages/HomePage/Car/CarPageView.dart';
+import 'Account&Settings/Account&SettingsPage.dart';
 import 'Bike/BikePageView.dart';
 import 'Courier/PathaoCourierPage.dart';
 
@@ -48,11 +49,22 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Padding(padding: const EdgeInsets.only(right: 20.0),
             child: GestureDetector(
-              onTap: (){},
+              onTap: (){
+
+              },
               child: Row(
                 children: [
                   IconButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const AccountAndSettingsPage();
+                            },
+                          ),
+                        );
+                      },
                       icon: Icon(Icons.account_circle_rounded,color: Colors.grey.shade400,size: 34,))
                 ],
               ),

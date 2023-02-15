@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'GetQuotationPageView.dart';
+import 'SelectCityList.dart';
 
 class OrderDetailsPage extends StatefulWidget {
   const OrderDetailsPage({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
   static final _phone =TextEditingController();
   static final _name =TextEditingController();
   static final _address =TextEditingController();
+  static final _itemsValue =TextEditingController();
  double _value = 0.5;
  double min=0.5;
  double max=5.0;
@@ -25,7 +27,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.black),
-        title: Text('Courier Order Details',style: TextStyle(color: Colors.black),),
+        title: const Text('Courier Order Details',style: TextStyle(color: Colors.black),),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -47,16 +49,16 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 child: ListTile(
                   leading: CircleAvatar(
                       backgroundColor: Colors.blueGrey.shade50,
-                      child: Icon(Icons.point_of_sale, size: 20,color: Colors.red,)
+                      child: const Icon(Icons.point_of_sale, size: 20,color: Colors.red,)
                   ),
-                  title: Text('Get Quotation'),
+                  title: const Text('Get Quotation'),
                   trailing: const Icon(Icons.arrow_forward_ios_sharp,size: 14,),
                 ),
               ),
             ),
             Divider(color: Colors.blueGrey.shade50,thickness: 4,),
-            SizedBox(height: 5,),
-            Text('    Receiver Details',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
+            const SizedBox(height: 5,),
+            const Text('    Receiver Details',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
             //SizedBox(height: 3,),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -68,7 +70,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   labelText: 'Receivers Phone Number ',
                   labelStyle: TextStyle(fontSize: 15,fontWeight: FontWeight.normal, color: Colors.grey
                   ),
-                  suffixIcon: Icon(Icons.contact_phone_rounded,color: Colors.grey,size: 26,),
+                  suffixIcon: Icon(Icons.perm_contact_cal,color: Colors.grey,size: 26,),
                 ),
                 controller: _phone,
                 onSubmitted: (String value) {
@@ -94,20 +96,27 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
               ),
             ),
             Divider(color: Colors.blueGrey.shade50,thickness: 4,),
-            SizedBox(height: 5,),
-            Text('    Delivery Address',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
+            const SizedBox(height: 5,),
+            const Text('    Delivery Address',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
             Container(
               height: 58,width: 420,
-              margin: EdgeInsets.all(16),
+              margin: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey,width: 1),
                   borderRadius: BorderRadius.circular(5.0),
                   color: Colors.white
               ),
               child: TextButton(
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return const SelectCityListPage();
+                      })
+                  );
+                },
                 child: Row(
-                  children: [
+                  children: const [
                     Text('City > Zone > Area',
                       style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey),
                       textAlign: TextAlign.start,),
@@ -134,8 +143,8 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
               ),
             ),
             Divider(color: Colors.blueGrey.shade50,thickness: 4,),
-            SizedBox(height: 5,),
-            Text('    Courier Weight',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
+            const SizedBox(height: 5,),
+            const Text('    Courier Weight',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
             Container(
               width: 350,
               child: Slider(
@@ -147,7 +156,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 activeColor: Colors.red,
                 inactiveColor: Colors.grey.shade300,
                 thumbColor: Colors.red,
-               label: '${_value.toStringAsFixed(1)}',
+               label: _value.toStringAsFixed(1),
                 // label: _value.round().toString(),
                 onChanged: (  value){
                   setState(() {
@@ -157,13 +166,13 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
               ),
             ),
             Row(
-              children: [
+              children: const [
                 SizedBox(width: 15,),
                 Text('0.5 kg'),Spacer(),
                 Text('5 kg'), SizedBox(width: 15,),
               ],
             ),
-            Divider(thickness: 1,indent: 6,endIndent: 10,),
+            const Divider(thickness: 1,indent: 6,endIndent: 10,),
             TextButton(
                 onPressed: (){
                   showModalBottomSheet(
@@ -185,20 +194,21 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
-                               Padding(padding: EdgeInsets.all(2.0),
+                               Padding(padding: const EdgeInsets.all(2.0),
                                child: Row(
                                  children: [
-                                   Text('Select Courier Type',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 22),),Spacer(),
+                                   const Text('Select Courier Type',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 22),),Spacer(),
                                    TextButton(
                                        onPressed: (){
                                          Navigator.pop(context);
                                        },
-                                       child: Icon(Icons.close,color: Colors.black,)),
+                                       child: const Icon(Icons.close,color: Colors.black,)),
                                  ],
                                ),
                                ),
                                 TextButton(onPressed: () {
                                   showModalBottomSheet(
+                                    isScrollControlled: true,
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
                                       context: context,
                                     builder: (BuildContext context){
@@ -209,26 +219,91 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                             bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,
                                           ),
                                         child: Container(
-                                          height: 240,
+                                          height: 280,
                                           child: Column(
                                             children: [
-                                              Padding(padding: EdgeInsets.all(2.0),
+                                              Padding(padding: const EdgeInsets.all(2.0),
                                                 child: Row(
                                                   children: [
-                                                    Text('Item Type',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 22),),Spacer(),
+                                                    const Text('   Item Type',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 22),),Spacer(),
                                                     TextButton(
                                                         onPressed: (){
                                                           Navigator.pop(context);
+
+                                                          // Navigator.push(
+                                                          //   context,
+                                                          //   MaterialPageRoute(
+                                                          //     builder: (context) {
+                                                          //       return const OrderDetailsPage();
+                                                          //     },
+                                                          //   ),
+                                                          // );
                                                         },
-                                                        child: Icon(Icons.close,color: Colors.black,)),
+                                                        child: const Icon(Icons.close,color: Colors.black,)),
                                                   ],
                                                 ),
                                               ),
+                                               Padding(
+                                                   padding: EdgeInsets.all(2.0),
+                                               child: TextButton(
+                                                 onPressed: (){},
+                                                 child: Container(
+                                                   height: 60,width: 320,
+                                                   decoration: BoxDecoration(
+                                                     border: Border.all(color: Colors.grey.shade400,width: 1.2),
+                                                     borderRadius: BorderRadius.circular(5.0),
+                                                   ),
+                                                   child: Row(
+                                                     children: [
+                                                       Column(
+                                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                                         children: [
+                                                           SizedBox(height: 9,),
+                                                           Text('  Item Type',style: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.normal),),
+                                                           Text('  Parcel',style: TextStyle(fontSize: 17,color: Colors.black,fontWeight: FontWeight.normal),),
+                                                         ],
+                                                       ),
+                                                       Spacer(),
+                                                       Icon(Icons.arrow_forward_ios,size: 10,color: Colors.grey.shade600,),
+                                                       SizedBox(width: 10,)
+                                                     ],
+                                                   ),
+                                                 ),
+                                               ),
+                                               ),
+                                              Padding(padding: EdgeInsets.all(16.0),
+                                              child: TextField(
+                                                  cursorColor: Colors.red,
+                                                  decoration: const InputDecoration(
+                                                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 1.0),),
+                                                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 1.0),),
+                                                    labelText: 'Items Value(Optional)',
+                                                    labelStyle: TextStyle(fontSize: 15,fontWeight: FontWeight.normal, color: Colors.grey
+                                                    ),
+                                                  ),
+                                                  controller: _itemsValue,
+                                                  onSubmitted: (String value) {
+                                                    debugPrint(value);
+                                                  },
+                                              ),
+                                              ),
+                                              Center(
+                                                child: SizedBox(height: 50,width: 320,
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                      primary: Colors.red,
+                                                    ),
+                                                    onPressed: (){},
+                                                    child: const Text('Confirm',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
+                                                  ),
+                                                ),
+                                              ),
+
                                             ],
                                           ),
                                         ),
-
                                       );
+
                                     }
                                   );
                                 },
@@ -236,48 +311,44 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                     leading: CircleAvatar(
                                       radius: 15,
                                       backgroundColor: Colors.orange.shade800,
-                                        child: Icon(Icons.shopping_bag,size: 18,color: Colors.white,),
+                                        child: const Icon(Icons.shopping_bag,size: 18,color: Colors.white,),
                                     ),
-                                    title: Text('Parcel',
+                                    title: const Text('Parcel',
                                       style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,),
                                     ),
-                                    subtitle: Text('Non-perishable goods, no fragile,no food items',
+                                    subtitle: const Text('Non-perishable goods, no fragile,no food items',
                                       style: TextStyle(fontWeight: FontWeight.normal,fontSize: 12,),
                                     ),
                                     trailing: Icon(Icons.arrow_forward_ios,color: Colors.grey.shade800,size: 16,),
                                   ),
-
                                 ),
-                                Divider(indent: 6,endIndent: 10,),
+                                const Divider(indent: 6,endIndent: 10,),
                                 TextButton(onPressed: () {  },
                                   child: ListTile(
                                     leading: CircleAvatar(
                                       radius: 15,
                                       backgroundColor: Colors.green.shade800,
-                                      child: Icon(Icons.my_library_books_sharp,size: 18,color: Colors.white,),
+                                      child: const Icon(Icons.my_library_books_sharp,size: 18,color: Colors.white,),
                                     ),
-                                    title: Text('Document',
+                                    title: const Text('Document',
                                       style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,),
                                     ),
-                                    subtitle: Text('No passport or bank cheques',
+                                    subtitle: const Text('No passport or bank cheques',
                                       style: TextStyle(fontWeight: FontWeight.normal,fontSize: 12,),
                                     ),
                                     trailing: Icon(Icons.arrow_forward_ios,color: Colors.grey.shade800,size: 16,),
                                   ),
-
                                 ),
-
                               ],
                             ),
                           ),
                         ),
                       );
                     },
-
                   );
                 },
                 child: Row(
-                  children: [
+                  children: const [
                     SizedBox(width: 7,),
                     Icon(Icons.add_circle_outline_sharp,size: 18,color: Colors.red,),SizedBox(width: 9,),
                     Text('Select Courier Type',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 12,color: Colors.black)),Spacer(),
@@ -285,8 +356,8 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   ],
                 ),
             ),
-            Divider(thickness: 1,indent: 8,endIndent: 9,),
-            SizedBox(height: 8,),
+            const Divider(thickness: 1,indent: 8,endIndent: 9,),
+            const SizedBox(height: 8,),
             Center(
               child: SizedBox(height: 50,width: 320,
                 child: ElevatedButton(
@@ -294,11 +365,11 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     primary: Colors.red,
                   ),
                   onPressed: (){},
-                  child: Text('Confirm',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
+                  child: const Text('Confirm',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
                 ),
               ),
             ),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
           ],
         ),
       ),

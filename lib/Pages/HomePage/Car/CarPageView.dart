@@ -38,6 +38,8 @@ class _CarPageViewState extends State<CarPageView> {
             Container(
               height: 40,width: 40,
               child: FloatingActionButton(
+                heroTag: "btn${4}",
+
                 backgroundColor: Colors.white,
                   onPressed: (){
                     Navigator.pop(context);
@@ -52,6 +54,8 @@ class _CarPageViewState extends State<CarPageView> {
                Container(
                  height: 35,width: 35,
                  child: FloatingActionButton(
+                   heroTag: "btn${5}",
+
                    backgroundColor: Colors.white,
                    onPressed: (){
                      showModalBottomSheet(
@@ -112,6 +116,8 @@ class _CarPageViewState extends State<CarPageView> {
                Container(
                  height: 35,width: 35,
                  child: FloatingActionButton(
+                   heroTag: "btn${6}",
+
                    backgroundColor: Colors.white,
                    onPressed: (){
                      showModalBottomSheet(

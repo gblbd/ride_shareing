@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.10.0"
+  babstrap_settings_screen:
+    dependency: "direct main"
+    description:
+      name: babstrap_settings_screen
+      sha256: b35c572e362a93203dc68775d38388b69039f0d33fd37bc61fabbd54e5ec691a
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.4"
   boolean_selector:
     dependency: transitive
     description:
@@ -155,6 +163,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.2"
+  settings_ui:
+    dependency: "direct main"
+    description:
+      name: settings_ui
+      sha256: d9838037cb554b24b4218b2d07666fbada3478882edefae375ee892b6c820ef3
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -218,4 +234,4 @@ packages:
     version: "2.1.4"
 sdks:
   dart: ">=2.19.0 <4.0.0"
-  flutter: ">=1.17.0"
+  flutter: ">=1.20.0"

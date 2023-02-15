@@ -37,9 +37,14 @@ class _PathaoCourierPageState extends State<PathaoCourierPage> {
                     ),
                     SizedBox(width: 70,),
                     Container(
-                      height: 46,width: 150,
-                        child: Image.asset('assets/images/Pathao Courier.png',fit: BoxFit.cover,)),
-                  ],
+                      height: 60,width: 220,
+                        child: Row(
+                          children: [
+                            Image.asset('assets/images/My_Road_Logo.png',height: 60,width: 50,),
+                            Image.asset('assets/images/courier_my_road.png',height: 20,width: 60,),
+                          ],
+                        )),
+                  ]
                 ),
                 const Divider(),
                 const SizedBox(height: 18,),

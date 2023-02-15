@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Ride Sharing',
       home: AnimatedSplashScreen(
-        splash: 'assets/images/SplashScreen.png',
-        splashIconSize: 80,
+        splash: 'assets/images/My_Road_Logo.png',
+        splashIconSize: 190,
         nextScreen: const MainScreen(),
         duration: 5000,
         backgroundColor: Colors.white,
