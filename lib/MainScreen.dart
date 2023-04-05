@@ -13,8 +13,9 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _index=0;
   List<Widget> pages=[
-    OffersScreen(),
+
     HomeScreen(),
+    OffersScreen(),
     OrdersScreen(),
   ];
   @override
@@ -38,8 +39,8 @@ class _MainScreenState extends State<MainScreen> {
         }),
         currentIndex: _index,
         items: [
-          FloatingNavbarItem(icon: Icons.percent, title: 'Offers',),
           FloatingNavbarItem(icon: Icons.home, title: 'Home'),
+          FloatingNavbarItem(icon: Icons.percent, title: 'Offers',),
           FloatingNavbarItem(icon: Icons.article_outlined, title: 'Orders')
         ],
       ),

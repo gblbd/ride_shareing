@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/AvailablePromos.dart';
@@ -14,10 +15,17 @@ class BikePageView extends StatefulWidget {
   State<BikePageView> createState() => _BikePageViewState();
 }
 
-class _BikePageViewState extends State<BikePageView> {
+class _BikePageViewState extends State<BikePageView>with TickerProviderStateMixin {
   static final _code=TextEditingController();
 
+late TabController _promoController;
+@override
+void initState(){
+  _promoController=TabController(length: 2, vsync: this);
+  super.initState();
+}
 
+bool selected=true;
 
   @override
   Widget build(BuildContext context) {
@@ -120,261 +128,221 @@ class _BikePageViewState extends State<BikePageView> {
                    backgroundColor: Colors.white,
                    onPressed: (){
                      showModalBottomSheet(
+                       backgroundColor: Colors.blueGrey.shade50,
                          context: context,
                          isScrollControlled: true,
                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
                          isDismissible: false,
-                         enableDrag: false,
+                         enableDrag: true,
                          useSafeArea:true,
                          builder: (BuildContext context){
                            return Padding(
                                padding: EdgeInsets.only(
                                top: 6,
-                              // bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,
+                               bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,
                            ),
                              child: Container(
-                               height: 403,
-                               child: Column(
-                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                 children: [
-                                   const SizedBox(height: 4,),
-                                   Row(
-                                     //crossAxisAlignment: CrossAxisAlignment.start,
-                                     children: [
-                                       const SizedBox(width: 10,),
-                                       const Text('Add Promo',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),Spacer(),
-                                       TextButton(
-                                           onPressed: (){
-                                             Navigator.pop(context);
-                                           },
-                                           child: const Icon(Icons.close,color: Colors.black,))
-                                     ],
-                                   ),
-                                   const SizedBox(height: 3,),
-                                   Container(
-                                     height: 50,width: 330,
-                                     margin: const EdgeInsets.all(8),
-                                     decoration: BoxDecoration(
-                                         border: Border.all(color: Colors.grey.shade200,width: 1),
-                                         borderRadius: BorderRadius.circular(10.0),
-                                         color: Colors.white
+                               height: 580,
+                               child: SingleChildScrollView(
+                                 child: Column(
+                                   crossAxisAlignment: CrossAxisAlignment.center,
+                                   children: [
+                                     const SizedBox(height: 4,),
+                                     Row(
+                                       //crossAxisAlignment: CrossAxisAlignment.start,
+                                       children: [
+                                         const SizedBox(width: 10,),
+                                         const Text('Add Promo',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),Spacer(),
+                                         TextButton(
+                                             onPressed: (){
+                                               Navigator.pop(context);
+                                             },
+                                             child: const Icon(Icons.close,color: Colors.black,))
+                                       ],
                                      ),
-                                     child: TextField(
-                                       cursorColor: Colors.red,
-                                       decoration: const InputDecoration(
-                                         focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 1.0),),
-                                         enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 1.0),),
-                                         labelText: 'Enter Promo Code',
-                                         labelStyle: TextStyle(fontSize: 15,fontWeight: FontWeight.normal, color: Color(0xFF1C1C25)
+                                     const SizedBox(height: 3,),
+                                     Container(
+                                       height: 50,width: 330,
+                                       margin: const EdgeInsets.all(8),
+                                       decoration: BoxDecoration(
+                                           border: Border.all(color: Colors.grey.shade200,width: 1),
+                                           borderRadius: BorderRadius.circular(10.0),
+                                           color: Colors.white
+                                       ),
+                                       child: TextField(
+                                         cursorColor: Colors.red,
+                                         decoration: const InputDecoration(
+                                           focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 1.0),),
+                                           enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 1.0),),
+                                           labelText: 'Enter Promo Code',
+                                           labelStyle: TextStyle(fontSize: 15,fontWeight: FontWeight.normal, color: Color(0xFF1C1C25)
+                                           ),
+                                         ),
+                                         controller: _code,
+                                         onSubmitted: (String value) {
+                                           debugPrint(value);
+                                         },
+                                       ),
+                                     ),
+
+
+
+
+                                     Divider(),
+
+
+                                     SafeArea(
+                                       child: Padding(
+                                         padding: const EdgeInsets.all(12.0),
+                                         child: Container(
+                                           decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.circular(10),
+                                               color:  Colors.white
+                                           ),
+                                           child: TabBar(
+                                             controller: _promoController,
+                                             indicator: BoxDecoration(
+                                                 borderRadius: BorderRadius.circular(10), // Creates border
+                                                 color: Colors.red.shade50),
+                                             labelColor: Colors.red,
+                                             unselectedLabelColor: Colors.black,
+                                            // overlayColor: Color(0xFFFAFAFA),
+                                             tabs: <Widget>[
+                                               Container(
+                                                 height: 35,
+                                                 width: 210,
+                                                 //color: Colors.white,
+
+                                                 child: const Padding(
+                                                   padding: EdgeInsets.all(9.0),
+                                                   child: Text('Available Promos',),
+                                                 ),
+                                               ),
+                                               Container(
+                                                 height: 35,
+                                                 width: 210,
+                                                 child: Row(
+                                                   mainAxisAlignment: MainAxisAlignment.center,
+                                                   children: const [
+                                                     Text('Point Deals   '),
+                                                     Icon(Icons.fiber_new,color: Colors.red,)
+                                                   ],
+                                                 ),
+                                               )
+                                             ],
+                                           ),
                                          ),
                                        ),
-                                       controller: _code,
-                                       onSubmitted: (String value) {
-                                         debugPrint(value);
-                                       },
+
                                      ),
-                                   ),
-                                  // const Divider(),
-                                  //  Container(
-                                  //    height: 280,
-                                  //    color: Colors.blueGrey.shade50,
-                                  //     child: Column(
-                                  //       children: [
-                                  //         const SizedBox(height: 8,),
-                                  //         Row(
-                                  //           mainAxisAlignment: MainAxisAlignment.center,
-                                  //           children: [
-                                  //             Container(
-                                  //               height: 33,width: 160,
-                                  //               decoration: BoxDecoration(
-                                  //                   border: Border.all(color: Colors.red.shade50,width: 1),
-                                  //                   borderRadius: BorderRadius.circular(10.0),
-                                  //               ),
-                                  //               child: TextButton(
-                                  //                 style: TextButton.styleFrom(
-                                  //                   backgroundColor: Colors.red.shade50
-                                  //                 ),
-                                  //                   onPressed: (){},
-                                  //                   child: const Text('Available Promos',
-                                  //                     style: TextStyle(color: Colors.red),)),
-                                  //             ),
-                                  //             Container(
-                                  //               height: 33,width: 160,
-                                  //               decoration: BoxDecoration(
-                                  //                 border: Border.all(color: Colors.red.shade50,width: 1),
-                                  //                 borderRadius: BorderRadius.circular(10.0),
-                                  //               ),
-                                  //               child: TextButton(
-                                  //                 style: TextButton.styleFrom(
-                                  //                   backgroundColor: Colors.red.shade50
-                                  //                 ),
-                                  //                   onPressed: (){
-                                  //                   },
-                                  //                   child: Row(
-                                  //                     mainAxisAlignment: MainAxisAlignment.center,
-                                  //                     children:  [
-                                  //                       const Text('Point Deals', style: TextStyle(color: Colors.red)),
-                                  //                       const SizedBox(width: 5,),
-                                  //                       Container(
-                                  //                         height: 15,width: 30,
-                                  //                         decoration: BoxDecoration(
-                                  //                           border: Border.all(color: Colors.red,width: 1),
-                                  //                           borderRadius: BorderRadius.circular(6.0),
-                                  //                           color: Colors.red
-                                  //                         ),
-                                  //                         child: const Text('New',style: TextStyle(color: Colors.white,fontSize: 10),textAlign: TextAlign.center,),
-                                  //                       ),
-                                  //                     ],
-                                  //                   )),
-                                  //             ),
-                                  //           ],
-                                  //         ),
-                                  //         const SizedBox(height: 8,),
-                                  //         Card(
-                                  //           color: Colors.white,
-                                  //           elevation: 2,
-                                  //           margin: const EdgeInsets.all(8),
-                                  //           shape: RoundedRectangleBorder(
-                                  //               borderRadius: BorderRadius.all(Radius.circular(10))
-                                  //           ),
-                                  //           child: Container(
-                                  //             height: 80,width: 320,
-                                  //             child: Column(
-                                  //               crossAxisAlignment: CrossAxisAlignment.start,
-                                  //               children: [
-                                  //                 SizedBox(height: 10,),
-                                  //                 Row(
-                                  //                   children: [
-                                  //                     SizedBox(width: 10,),
-                                  //                     Icon(Icons.circle_outlined,size: 14,color: Colors.grey,),
-                                  //                     SizedBox(width: 10,),
-                                  //                     Text('RUN10',style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w600)),
-                                  //                     Spacer(),
-                                  //                     Container(
-                                  //                       height: 16,width: 38,
-                                  //                       decoration: BoxDecoration(
-                                  //                           border: Border.all(color: Colors.red,width: 1),
-                                  //                           borderRadius: BorderRadius.circular(6.0),
-                                  //                           color: Colors.red
-                                  //                       ),
-                                  //                       child: const Text('BIKE',style: TextStyle(color: Colors.white,fontSize: 10),textAlign: TextAlign.center,),
-                                  //                     ),
-                                  //                     SizedBox(width: 10,),
-                                  //                   ],
-                                  //                 ),
-                                  //                 //SizedBox(height: 10,),
-                                  //                 SizedBox(height: 7,),
-                                  //                 Text('    25% off on your next ride (Up to 100BDT)',
-                                  //                     style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.normal)),
-                                  //                 SizedBox(height: 7,),
-                                  //                 Text('    Valid till March 31, 2023',style: TextStyle(color: Colors.grey,fontSize: 13,fontWeight: FontWeight.normal)),
-                                  //               ],
-                                  //             ),
-                                  //           ),
-                                  //         ),
-                                  //         const SizedBox(height: 4,),
-                                  //         Card(
-                                  //           color: Colors.white,
-                                  //           elevation: 2,
-                                  //           margin: const EdgeInsets.all(8),
-                                  //           shape: RoundedRectangleBorder(
-                                  //               borderRadius: BorderRadius.all(Radius.circular(10))
-                                  //           ),
-                                  //           child: Container(
-                                  //             height: 100,width: 320,
-                                  //             child: Column(
-                                  //               crossAxisAlignment: CrossAxisAlignment.start,
-                                  //               children: [
-                                  //                 SizedBox(height: 14,),
-                                  //                 Row(
-                                  //                   children: [
-                                  //                     SizedBox(width: 10,),
-                                  //                     Icon(Icons.circle_outlined,size: 14,color: Colors.grey,),
-                                  //                     SizedBox(width: 10,),
-                                  //                     Text('START100',style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w600)),
-                                  //                     Spacer(),
-                                  //                     Container(
-                                  //                       height: 15,width: 60,
-                                  //                       decoration: BoxDecoration(
-                                  //                           border: Border.all(color: Colors.deepOrange.shade500,width: 1),
-                                  //                           borderRadius: BorderRadius.circular(6.0),
-                                  //                           color: Colors.deepOrange.shade500
-                                  //                       ),
-                                  //                       child: const Text('CAR PLUS',style: TextStyle(color: Colors.white,fontSize: 10),textAlign: TextAlign.center,),
-                                  //                     ),
-                                  //                     SizedBox(width: 10,),
-                                  //                   ],
-                                  //                 ),
-                                  //                 //SizedBox(height: 10,),
-                                  //                 SizedBox(height: 7,),
-                                  //                 Text('    20% off on your next ride in Dhaka! (Up to 100BDT.\n    minimum ride fare: 120BDT)',
-                                  //                     style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.normal)),
-                                  //                 SizedBox(height: 7,),
-                                  //                 Text('    Valid till March 31, 2023',style: TextStyle(color: Colors.grey,fontSize: 13,fontWeight: FontWeight.normal)),
-                                  //               ],
-                                  //             ),
-                                  //           ),
-                                  //
-                                  //         ),
-                                  //       ],
-                                  //     ),
-                                  //  ),
-                                   SafeArea(
-                                     child: DefaultTabController(
-                                       length: 2,
-                                       child: Column(
-                                         crossAxisAlignment: CrossAxisAlignment.center,
+                                     Container(
+                                       height: 400,
+                                       child: TabBarView(
+                                         physics: NeverScrollableScrollPhysics(),
+                                         controller: _promoController,
                                          children: [
-                                           Container(
-                                             height: 50,width: 320,
-                                             child: Row(
-                                               children: [
-                                                 SizedBox(width: 35,),
-                                                 ButtonsTabBar(
-                                                   buttonMargin: EdgeInsets.all(8),
-                                                   backgroundColor: Colors.red.shade50,
-                                                     unselectedBackgroundColor: Colors.white,
-                                                     unselectedLabelStyle: TextStyle(color: Colors.black),
-                                                     labelStyle: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
-                                                     tabs: [
-                                                       Tab(
-                                                         child: GestureDetector(
-                                                           child: Row(
-                                                             mainAxisSize: MainAxisSize.min,
-                                                             children: const [
-                                                               Text('Available Promos',style: TextStyle(color: Colors.red),)
-                                                             ],
-                                                           ),
-                                                           onTap: (){
-
-                                                           },
+                                           ListView.builder(
+                                             itemCount: 10,
+                                               itemBuilder: (BuildContext context, int index){
+                                                 return Padding(
+                                                   padding: const EdgeInsets.all(4.0),
+                                                   child: Card(
+                                                     color: Colors.white,
+                                                     elevation: 0.0,
+                                                     child: Padding(
+                                                       padding: const EdgeInsets.all(8.0),
+                                                       child: ListTile(
+                                                         title: Row(
+                                                           children: [
+                                                             Text('SPRINT120'),Spacer(),
+                                                             Container(
+                                                               height: 16,width: 30,
+                                                                 decoration: BoxDecoration(
+                                                                     borderRadius: BorderRadius.circular(5),
+                                                                     color: Colors.red
+                                                                 ),
+                                                                 child: Padding(
+                                                                   padding: const EdgeInsets.only(left: 5,top: 3,bottom: 3),
+                                                                   child: Text('BIKE',style: TextStyle(color: Colors.white,fontSize: 10),),
+                                                                 ))
+                                                           ],
+                                                         ),
+                                                         subtitle: Column(
+                                                           children: [
+                                                             SizedBox(height: 10,),
+                                                             Text('25% off on your next ride in Dhaka! (Up to 120BDT. minimum ride fare: 45BDT)'),
+                                                             SizedBox(height: 10,),
+                                                             Row(
+                                                               children: [
+                                                                 Container(
+                                                                   height: 32,
+                                                                   child: TextButton(
+                                                                     onPressed: (){}, child: Text('Apply Promo',style: TextStyle(color: Colors.white),),),
+                                                                   decoration: BoxDecoration(
+                                                                     borderRadius: BorderRadius.circular(5),
+                                                                     color: Colors.red
+                                                                   ),
+                                                                 ),
+                                                                 SizedBox(width: 10,),
+                                                                 Text('Valid till April 30, 2023'),
+                                                               ],
+                                                             )
+                                                           ],
                                                          ),
                                                        ),
-                                                       Tab(
-                                                         child: GestureDetector(
-                                                           child: Row(
-                                                             mainAxisSize: MainAxisSize.min,
-                                                             children: const [
-                                                               Text('Point Deals',style: TextStyle(color: Colors.red)),
-                                                               SizedBox(width: 8),
-                                                               Icon(Icons.fiber_new,size: 18,color: Colors.red,),
-                                                             ],
-                                                           ),
-                                                           onTap: (){
-
-                                                           },
-                                                         ),
-                                                       ),
-                                                     ]
-                                                 ),
-                                               ],
-                                             ),
+                                                     ),
+                                                   ),
+                                                 ) ;
+                                               }
                                            ),
+
+                                           ListView.builder(
+                                             itemCount: 10,
+                                               itemBuilder: (BuildContext context, int index){
+                                               return Padding(
+                                                 padding: const EdgeInsets.all(4.0),
+                                                 child: Card(
+                                                   elevation: 0.0,
+                                                   color: Colors.white,
+                                                   child: Padding(
+                                                     padding: const EdgeInsets.all(8.0),
+                                                     child: ListTile(
+                                                       title: Column(
+                                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                                         children: [
+                                                           Text('BRONZE BUNDLE DEAL ON BIKE & CAR',style: TextStyle(color: Colors.brown.shade300,fontSize: 14)),
+                                                           SizedBox(height: 10,),
+                                                           Text('Up to TK 80 Discount on Rides',style: TextStyle(fontSize: 17,fontWeight: FontWeight.w400)),
+                                                           SizedBox(height: 20,),
+                                                         ],
+                                                       ),
+                                                       subtitle: Row(
+                                                         children: [
+                                                           Text('Valid till April 15, 2023'),Spacer(),
+                                                           Container(
+                                                             height: 30,width: 90,
+                                                             decoration: BoxDecoration(
+                                                                 borderRadius: BorderRadius.circular(4),
+                                                                 color: Colors.red
+                                                             ),
+                                                             child: TextButton(
+                                                               onPressed: (){},
+                                                               child: Text('600 Points',style: TextStyle(color: Colors.white)),
+                                                             ),
+                                                           )
+                                                         ],
+                                                       ),
+                                                     ),
+                                                   ),
+                                                 ),
+                                               );
+                                               }
+                                           )
                                          ],
                                        ),
-                                     ),
-                                   ),
-                                 ],
+                                     )
+                                   ],
+                                 ),
                                ),
                              ),
                            );
@@ -423,7 +391,7 @@ class _BikePageViewState extends State<BikePageView> {
                                       Image.asset('assets/images/Fares.png'),const SizedBox(height: 15,),
                                       const Text('Fares are comparatively lower now',
                                           style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),textAlign: TextAlign.center,),
-                                      SizedBox(height: 15,),
+                                      const SizedBox(height: 15,),
                                       const Text('  Fares are lower at this moment Request your rides as soon as possible.',
                                         style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                                       const SizedBox(height: 15,),
@@ -728,3 +696,219 @@ class _BikePageViewState extends State<BikePageView> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const Divider(),
+//  Container(
+//    height: 280,
+//    color: Colors.blueGrey.shade50,
+//     child: Column(
+//       children: [
+//         const SizedBox(height: 8,),
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             Container(
+//               height: 33,width: 160,
+//               decoration: BoxDecoration(
+//                   border: Border.all(color: Colors.red.shade50,width: 1),
+//                   borderRadius: BorderRadius.circular(10.0),
+//               ),
+//               child: TextButton(
+//                 style: TextButton.styleFrom(
+//                   backgroundColor: Colors.red.shade50
+//                 ),
+//                   onPressed: (){},
+//                   child: const Text('Available Promos',
+//                     style: TextStyle(color: Colors.red),)),
+//             ),
+//             Container(
+//               height: 33,width: 160,
+//               decoration: BoxDecoration(
+//                 border: Border.all(color: Colors.red.shade50,width: 1),
+//                 borderRadius: BorderRadius.circular(10.0),
+//               ),
+//               child: TextButton(
+//                 style: TextButton.styleFrom(
+//                   backgroundColor: Colors.red.shade50
+//                 ),
+//                   onPressed: (){
+//                   },
+//                   child: Row(
+//                     mainAxisAlignment: MainAxisAlignment.center,
+//                     children:  [
+//                       const Text('Point Deals', style: TextStyle(color: Colors.red)),
+//                       const SizedBox(width: 5,),
+//                       Container(
+//                         height: 15,width: 30,
+//                         decoration: BoxDecoration(
+//                           border: Border.all(color: Colors.red,width: 1),
+//                           borderRadius: BorderRadius.circular(6.0),
+//                           color: Colors.red
+//                         ),
+//                         child: const Text('New',style: TextStyle(color: Colors.white,fontSize: 10),textAlign: TextAlign.center,),
+//                       ),
+//                     ],
+//                   )),
+//             ),
+//           ],
+//         ),
+//         const SizedBox(height: 8,),
+//         Card(
+//           color: Colors.white,
+//           elevation: 2,
+//           margin: const EdgeInsets.all(8),
+//           shape: RoundedRectangleBorder(
+//               borderRadius: BorderRadius.all(Radius.circular(10))
+//           ),
+//           child: Container(
+//             height: 80,width: 320,
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 SizedBox(height: 10,),
+//                 Row(
+//                   children: [
+//                     SizedBox(width: 10,),
+//                     Icon(Icons.circle_outlined,size: 14,color: Colors.grey,),
+//                     SizedBox(width: 10,),
+//                     Text('RUN10',style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w600)),
+//                     Spacer(),
+//                     Container(
+//                       height: 16,width: 38,
+//                       decoration: BoxDecoration(
+//                           border: Border.all(color: Colors.red,width: 1),
+//                           borderRadius: BorderRadius.circular(6.0),
+//                           color: Colors.red
+//                       ),
+//                       child: const Text('BIKE',style: TextStyle(color: Colors.white,fontSize: 10),textAlign: TextAlign.center,),
+//                     ),
+//                     SizedBox(width: 10,),
+//                   ],
+//                 ),
+//                 //SizedBox(height: 10,),
+//                 SizedBox(height: 7,),
+//                 Text('    25% off on your next ride (Up to 100BDT)',
+//                     style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.normal)),
+//                 SizedBox(height: 7,),
+//                 Text('    Valid till March 31, 2023',style: TextStyle(color: Colors.grey,fontSize: 13,fontWeight: FontWeight.normal)),
+//               ],
+//             ),
+//           ),
+//         ),
+//         const SizedBox(height: 4,),
+//         Card(
+//           color: Colors.white,
+//           elevation: 2,
+//           margin: const EdgeInsets.all(8),
+//           shape: RoundedRectangleBorder(
+//               borderRadius: BorderRadius.all(Radius.circular(10))
+//           ),
+//           child: Container(
+//             height: 100,width: 320,
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 SizedBox(height: 14,),
+//                 Row(
+//                   children: [
+//                     SizedBox(width: 10,),
+//                     Icon(Icons.circle_outlined,size: 14,color: Colors.grey,),
+//                     SizedBox(width: 10,),
+//                     Text('START100',style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w600)),
+//                     Spacer(),
+//                     Container(
+//                       height: 15,width: 60,
+//                       decoration: BoxDecoration(
+//                           border: Border.all(color: Colors.deepOrange.shade500,width: 1),
+//                           borderRadius: BorderRadius.circular(6.0),
+//                           color: Colors.deepOrange.shade500
+//                       ),
+//                       child: const Text('CAR PLUS',style: TextStyle(color: Colors.white,fontSize: 10),textAlign: TextAlign.center,),
+//                     ),
+//                     SizedBox(width: 10,),
+//                   ],
+//                 ),
+//                 //SizedBox(height: 10,),
+//                 SizedBox(height: 7,),
+//                 Text('    20% off on your next ride in Dhaka! (Up to 100BDT.\n    minimum ride fare: 120BDT)',
+//                     style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.normal)),
+//                 SizedBox(height: 7,),
+//                 Text('    Valid till March 31, 2023',style: TextStyle(color: Colors.grey,fontSize: 13,fontWeight: FontWeight.normal)),
+//               ],
+//             ),
+//           ),
+//
+//         ),
+//       ],
+//     ),
+//  ),
+
+
+// child: DefaultTabController(
+//   length: 2,
+//   child: Column(
+//     crossAxisAlignment: CrossAxisAlignment.center,
+//     children: [
+//       Container(
+//         height: 50,width: 320,
+//         child: Row(
+//           children: [
+//             SizedBox(width: 35,),
+//             ButtonsTabBar(
+//               buttonMargin: EdgeInsets.all(8),
+//               backgroundColor: Colors.red.shade50,
+//                 unselectedBackgroundColor: Colors.white,
+//                 unselectedLabelStyle: TextStyle(color: Colors.black),
+//                 labelStyle: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+//                 tabs: [
+//                   Tab(
+//                     child: GestureDetector(
+//                       child: Row(
+//                         mainAxisSize: MainAxisSize.min,
+//                         children: const [
+//                           Text('Available Promos',style: TextStyle(color: Colors.red),)
+//                         ],
+//                       ),
+//                       onTap: (){
+//
+//                       },
+//                     ),
+//                   ),
+//                   Tab(
+//                     child: GestureDetector(
+//                       child: Row(
+//                         mainAxisSize: MainAxisSize.min,
+//                         children: const [
+//                           Text('Point Deals',style: TextStyle(color: Colors.red)),
+//                           SizedBox(width: 8),
+//                           Icon(Icons.fiber_new,size: 18,color: Colors.red,),
+//                         ],
+//                       ),
+//                       onTap: (){
+//
+//                       },
+//                     ),
+//                   ),
+//                 ]
+//             ),
+//           ],
+//         ),
+//       ),
+//     ],
+//   ),
+// ),

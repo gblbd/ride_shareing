@@ -23,12 +23,14 @@ class _OngoingOffersViewState extends State<OngoingOffersView> {
                   Image.asset('assets/images/blaster.png',height: 42,width: 42,),
                   Text('Ongoing Offers',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,),),
                   Spacer(),
-                  GestureDetector(
-                    onTap: (){},
-                    child: Text('See All >',style: TextStyle(fontSize: 14,color: Colors.red,fontWeight: FontWeight.w500),),
-                  )
+
+                  // GestureDetector(
+                  //   onTap: (){},
+                  //   child: Text('See All >',style: TextStyle(fontSize: 14,color: Colors.red,fontWeight: FontWeight.w500),),
+                  // )
                 ],
               ),
+              Image.asset('assets/images/offer_ongoing.jpg')
 
             ],
           ),

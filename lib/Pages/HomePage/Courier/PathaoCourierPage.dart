@@ -1,5 +1,9 @@
+
+import 'package:another_stepper/dto/stepper_data.dart';
+import 'package:another_stepper/widgets/another_stepper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:timelines/timelines.dart';
 
 import 'OrderDetailsPage.dart';
 
@@ -11,6 +15,46 @@ class PathaoCourierPage extends StatefulWidget {
 }
 
 class _PathaoCourierPageState extends State<PathaoCourierPage> {
+
+
+  List<StepperData> stepperData = [
+    StepperData(
+        title: StepperText(
+          "Input Order Details",
+        ),
+        subtitle: StepperText("Input Receiver Details, Delivery Address and Product Details."),
+        iconWidget: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
+              color: Color(0xFFEEEDED),
+              borderRadius: BorderRadius.all(Radius.circular(30))),
+          child: Center(child: const Text('1')),
+        )
+    ),
+    StepperData(
+        title: StepperText("Add Pickup Location"),
+        subtitle: StepperText("Add pickup location and guide the pickup agent. add pickup location guide the pickup agent."),
+        iconWidget: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
+              color: Color(0xFFEEEDED),
+              borderRadius: BorderRadius.all(Radius.circular(30))),
+          child: Center(child: const Text('2')),
+        )),
+    StepperData(
+        title: StepperText("Select Courier Method"),
+        subtitle: StepperText(
+            "Select Home Pickup or Kiosk Drop as your courier method."),
+        iconWidget: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
+              color: Color(0xFFEEEDED),
+              borderRadius: BorderRadius.all(Radius.circular(30))),
+          child: Center(child: Text('3')),
+        )),
+  ];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,51 +92,173 @@ class _PathaoCourierPageState extends State<PathaoCourierPage> {
                 ),
                 const Divider(),
                 const SizedBox(height: 18,),
+
+
+                Container(
+                  height: 33,width: 280,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    color: Colors.red.shade50
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.maps_home_work_outlined,size: 16,color: Colors.grey,),
+                      SizedBox(width: 4,),
+                      Text('Own a Business'),
+                      TextButton(
+                          style: ButtonStyle(
+                            shadowColor: MaterialStateProperty.all(Colors.transparent),
+                            overlayColor: MaterialStateProperty.all(Colors.transparent),
+                          ),
+                          onPressed: (){},
+                          child: Text('Register here',
+
+                          style: TextStyle(
+                            color: Colors.red
+                          ),
+                          )),
+                      Icon(Icons.arrow_forward_ios_sharp,size: 10,color: Colors.red,)
+                    ],
+                  ),
+                ),
                 Container(
                   height: 170,
                   width: 400,
-                  //color: Colors.grey,
-                  child: Image.asset('assets/images/Courier logo.png',fit: BoxFit.fill,),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/images/courier_service.png',fit: BoxFit.fill,),
+                  ),
                 ),
-                const SizedBox(height: 8,),
-                const Text('Create Courier Order Instantly',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),textAlign: TextAlign.center,),
-                const SizedBox(height: 8,),
-                const Text('   Order and get your product picked up from your doorstep',
-                  style: TextStyle(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.grey),
-                  textAlign: TextAlign.center,),
-                const SizedBox(height: 50,),
+               // const SizedBox(height: 8,),
+               // const Text('Create Courier Order Instantly',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),textAlign: TextAlign.center,),
+                //const SizedBox(height: 8,),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const Text('Send anything anywhere within the country and have your package picked up from your doorstep.',
+                    style: TextStyle(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.grey),
+                    textAlign: TextAlign.center,),
+                ),
+               // const SizedBox(height: 50,),
               ],
             ),
-            const Text('    Where are you sending?',
-              style: TextStyle(fontWeight: FontWeight.w500,fontSize: 21,color: Colors.black),),
-            const SizedBox(height: 10,),
+            // const Text('    Where are you sending?',
+            //   style: TextStyle(fontWeight: FontWeight.w500,fontSize: 21,color: Colors.black),),
+            // const SizedBox(height: 10,),
             Container(
               margin: const EdgeInsets.all(8),
               child: Center(
-                child: Card(
-                  child: TextButton(
-                    onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return const OrderDetailsPage();
-                          },
-                        ),
-                      );
-                    },
-                    child: ListTile(
-                      leading: Image.asset('assets/images/order.png',),
-                      title: const Text('Create Order',
-                          style: TextStyle(color: Colors.black,fontSize: 16,)),
-                      subtitle: const Text('Send anything you want',
-                          style: TextStyle(color: Colors.grey,fontSize: 13,)),
-                      trailing: const Icon(Icons.arrow_forward_ios_sharp,size: 14,),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    child: TextButton(
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const OrderDetailsPage();
+                            },
+                          ),
+                        );
+                      },
+                      child: ListTile(
+                        leading: Image.asset('assets/images/order.png',),
+                        title: const Text('Create Order',
+                            style: TextStyle(color: Colors.black,fontSize: 16,)),
+                        subtitle: const Text('Send anything you want',
+                            style: TextStyle(color: Colors.grey,fontSize: 13,)),
+                        trailing: const Icon(Icons.arrow_forward_ios_sharp,size: 14,),
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
+
+
+            Divider(thickness: 6,color: Colors.blueGrey.shade50,),
+
+            ExpansionTile(
+              controlAffinity: ListTileControlAffinity.trailing,
+              maintainState: true,
+              textColor: Colors.black,
+              title: Text('What is My Road Courier ?',
+                style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600),),
+              children: <Widget>[
+                ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.blueGrey.shade50,
+                      child: Icon(Icons.location_on,size: 14,color: Colors.red,)),
+                  title: Text('100% nationwide home delivery.'),
+                ),
+                ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.blueGrey.shade50,
+                      child: Icon(Icons.card_giftcard,size: 14,color: Colors.red,)),
+                  title: Text('Create your order and send anything to your destination.'),
+                ),
+                ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.blueGrey.shade50,
+                      child: Icon(Icons.directions_bus_filled_sharp,size: 14,color: Colors.red,)),
+                  title: Text('Stay worry free by using nations fastest delivery network.'),
+                ),
+              ],
+            ),
+            Divider(thickness: 6,color: Colors.blueGrey.shade50,),
+            ExpansionTile(
+              controlAffinity: ListTileControlAffinity.trailing,
+              maintainState: true,
+              textColor: Colors.black,
+              title: Text('How It Works ?',
+                style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600),),
+              children: <Widget>[
+
+                Container(
+                  height: 320,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 12,right: 12),
+                    child: AnotherStepper(
+                      stepperList: stepperData,
+                      stepperDirection: Axis.vertical,
+                      iconWidth: 40,
+                      iconHeight: 40,
+                      activeBarColor: Colors.black,
+                      inActiveBarColor: Colors.grey.shade300,
+                      inverted: false,
+                      verticalGap: 30,
+                      activeIndex: 0,
+                      barThickness: 2,
+                    ),
+                  ),
+
+                ),
+
+              ],
+            ),
+            Divider(thickness: 6,color: Colors.blueGrey.shade50,),
+            Container(
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextButton(
+                  style: ButtonStyle(
+                    shadowColor: MaterialStateProperty.all(Colors.transparent),
+                    overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  ),
+
+                  onPressed: (){},
+                  child: Row(
+                    children: [
+                      Text('Frequently Asked Questions',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,fontSize: 16),),Spacer(),
+                      Icon(Icons.arrow_forward_ios_sharp,size: 16,color: Colors.black54,)
+                    ],
+                  ),
+                ),
+              ),
+            )
+
           ],
         ),
       ),

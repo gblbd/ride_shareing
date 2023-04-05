@@ -11,6 +11,7 @@ class OffersScreen extends StatefulWidget {
   State<OffersScreen> createState() => _OffersScreenState();
 }
 class _OffersScreenState extends State<OffersScreen> {
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -23,47 +24,68 @@ class _OffersScreenState extends State<OffersScreen> {
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(10.0),
             child:TabBar(
-            //  padding: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+              indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50), // Creates border
+                  color: Colors.red),
+              indicatorPadding: EdgeInsets.all(8.0),
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.grey,
+              indicatorColor: Colors.transparent,
               isScrollable: true,
               tabs: [
                 Tab(
-
-                  child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                        minimumSize: const Size(80,30),
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(14))
-                        )
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          border: Border.all(color: Colors.redAccent.shade400, width: 1)),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10,right: 10),
+                          child: Text("Available Promos"),
+                        ),
+                      ),
                     ),
-                    onPressed: () {  },
-                    child: const Text("Available Promos",style: TextStyle(color: Colors.black45),),
-            ),
+                  ),
+                ),
+
+                Tab(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          border: Border.all(color: Colors.redAccent.shade400, width: 1)),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10,right: 10),
+                          child: Text("Point Deals"),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 Tab(
-                  child: OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                        minimumSize: const Size(80,30),
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(14))
-                        )
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          border: Border.all(color: Colors.redAccent.shade400, width: 1)),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10,right: 10),
+                          child: Text("Ongoing Offers"),
+                        ),
                       ),
-                      onPressed: (){},
-                      child: const Text("Point Deals",style: TextStyle(color: Colors.black45))),
+                    ),
+                  ),
                 ),
-                Tab(
-                  child: OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                          minimumSize: const Size(80,30),
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(14))
-                          )
-                      ),
-                      onPressed: (){},
-                      child: const Text("Ongoing Offers",style: TextStyle(color: Colors.black45))),
-                ),
+
               ],
             ),
           ),

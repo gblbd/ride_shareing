@@ -24,6 +24,7 @@ class _AccountAndSettingsPageState extends State<AccountAndSettingsPage> {
         child: Column(
           children: [
             Divider(thickness: 8,color: Colors.blueGrey.shade50,),
+
             Container(
               height: 120,width: 320,
               child: Row(
