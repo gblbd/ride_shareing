@@ -6,6 +6,7 @@ import '../OffersPage/views/PaymentAllView.dart';
 import '../OffersPage/views/PointDealsView.dart';
 import 'Account&Settings/Account&SettingsPage.dart';
 import 'Bike/BikePageView.dart';
+import 'Bike/searchAndPickupDestinationPage.dart';
 import 'Courier/PathaoCourierPage.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -298,7 +299,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       shadowColor: MaterialStateProperty.all(Colors.transparent),
                       overlayColor: MaterialStateProperty.all(Colors.transparent),
                     ),
-                    onPressed: (){},
+                    onPressed: (){
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return SearchAndPickupDestinationPage();
+                          },
+                        ),
+                      );
+
+                    },
                     child: Row(
                       children: [
                         Icon(Icons.location_on,color: Colors.red,),
@@ -314,95 +326,105 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
 
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 60,
-                  width: 330,
-                  decoration: BoxDecoration(
-                     borderRadius: BorderRadius.circular(10.0),
-                    color: Color(0xFFF5F7F8)
-                  ),
-                  child: Row(
-                    children: [
-                      TextButton(
-                        style: ButtonStyle(
-                          shadowColor: MaterialStateProperty.all(Colors.transparent),
-                          overlayColor: MaterialStateProperty.all(Colors.transparent),
-                        ),
-
-                        onPressed: (){},
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            CircleAvatar(
-                              radius: 15,
-                              backgroundColor: Colors.white,
-                                child: Icon(Icons.home,
-                                color: Colors.grey,
-                                  size: 20,
-                                )
-                            ),
-                            SizedBox(width: 6,),
-
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: 6,),
-                                Text('Home',style: TextStyle(
-                                    color: Colors.black,fontSize: 14,fontWeight: FontWeight.bold)),
-                                Text('Set Address',
-                                    style: TextStyle(
-                                        color: Colors.grey,fontSize: 12,)
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(width: 40,),
-                      SizedBox(
-                        width: 40,
-                        child: Text('|',style: TextStyle(color: Colors.grey.shade300,fontSize: 30),),
-                      ),
-
-                      TextButton(
-                        style: ButtonStyle(
-                          shadowColor: MaterialStateProperty.all(Colors.transparent),
-                          overlayColor: MaterialStateProperty.all(Colors.transparent),
-                        ),
-
-                        onPressed: (){},
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 15,
-                              backgroundColor: Colors.white,
-                                child: Icon(Icons.work_rounded,
-                                color: Colors.grey,
-                                  size: 20,
-                                )
-                            ),
-                            SizedBox(width: 6,),
-
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: 6,),
-                                Text('Work',style: TextStyle(
-                                    color: Colors.black,fontSize: 14,fontWeight: FontWeight.bold)),
-                                Text('Set Address',style: TextStyle(
-                                    color: Colors.grey,fontSize: 12,)),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Container(
+              //     height: 60,
+              //     width: 330,
+              //     decoration: BoxDecoration(
+              //        borderRadius: BorderRadius.circular(10.0),
+              //       color: Color(0xFFF5F7F8)
+              //     ),
+              //     child: Row(
+              //       children: [
+              //         TextButton(
+              //           style: ButtonStyle(
+              //             shadowColor: MaterialStateProperty.all(Colors.transparent),
+              //             overlayColor: MaterialStateProperty.all(Colors.transparent),
+              //           ),
+              //
+              //           onPressed: (){
+              //
+              //             Navigator.push(
+              //               context,
+              //               MaterialPageRoute(
+              //                 builder: (context) {
+              //                   return MyScreen();
+              //                 },
+              //               ),
+              //             );
+              //           },
+              //           child: Row(
+              //             crossAxisAlignment: CrossAxisAlignment.center,
+              //             children: [
+              //               CircleAvatar(
+              //                 radius: 15,
+              //                 backgroundColor: Colors.white,
+              //                   child: Icon(Icons.home,
+              //                   color: Colors.grey,
+              //                     size: 20,
+              //                   )
+              //               ),
+              //               SizedBox(width: 6,),
+              //
+              //               Column(
+              //                 crossAxisAlignment: CrossAxisAlignment.start,
+              //                 children: [
+              //                   SizedBox(height: 6,),
+              //                   Text('Home',style: TextStyle(
+              //                       color: Colors.black,fontSize: 14,fontWeight: FontWeight.bold)),
+              //                   Text('Set Address',
+              //                       style: TextStyle(
+              //                           color: Colors.grey,fontSize: 12,)
+              //                   ),
+              //                 ],
+              //               )
+              //             ],
+              //           ),
+              //         ),
+              //         SizedBox(width: 40,),
+              //         SizedBox(
+              //           width: 40,
+              //           child: Text('|',style: TextStyle(color: Colors.grey.shade300,fontSize: 30),),
+              //         ),
+              //
+              //         TextButton(
+              //           style: ButtonStyle(
+              //             shadowColor: MaterialStateProperty.all(Colors.transparent),
+              //             overlayColor: MaterialStateProperty.all(Colors.transparent),
+              //           ),
+              //
+              //           onPressed: (){},
+              //           child: Row(
+              //             children: [
+              //               CircleAvatar(
+              //                 radius: 15,
+              //                 backgroundColor: Colors.white,
+              //                   child: Icon(Icons.work_rounded,
+              //                   color: Colors.grey,
+              //                     size: 20,
+              //                   )
+              //               ),
+              //               SizedBox(width: 6,),
+              //
+              //               Column(
+              //                 crossAxisAlignment: CrossAxisAlignment.start,
+              //                 children: [
+              //                   SizedBox(height: 6,),
+              //                   Text('Work',style: TextStyle(
+              //                       color: Colors.black,fontSize: 14,fontWeight: FontWeight.bold)),
+              //                   Text('Set Address',style: TextStyle(
+              //                       color: Colors.grey,fontSize: 12,)),
+              //                 ],
+              //               )
+              //             ],
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              SizedBox(height: 10,),
               Divider(thickness: 8,color: Colors.blueGrey.shade50,),
 
               SizedBox(height: 10,),

@@ -429,6 +429,8 @@ class _CarPageViewState extends State<CarPageView> with SingleTickerProviderStat
                       ),
                     ),
                   ),
+
+
                   Container(
                     height: 70,
                     child: Row(

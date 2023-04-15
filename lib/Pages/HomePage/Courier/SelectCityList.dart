@@ -10,7 +10,7 @@ class SelectCityListPage extends StatefulWidget {
 }
 
 class _SelectCityListPageState extends State<SelectCityListPage> {
-  final TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchCityController = TextEditingController();
   final FocusNode _textFocusNode = FocusNode();
 
 
@@ -34,9 +34,13 @@ class _SelectCityListPageState extends State<SelectCityListPage> {
         children: [
           Padding(padding: EdgeInsets.all(16.0),
           child: SizedBox(height: 46,
+
+
+
+
             child: TextField(
               cursorColor: Colors.red,
-              controller: _searchController,
+              controller: _searchCityController,
               focusNode: _textFocusNode,
               decoration: const InputDecoration(
                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 1.0),),
@@ -47,6 +51,7 @@ class _SelectCityListPageState extends State<SelectCityListPage> {
               onSubmitted: (String value) {
                 debugPrint(value);
               },
+              onTap: (){},
             ),
           ),
           ),
@@ -63,6 +68,7 @@ class _SelectCityListPageState extends State<SelectCityListPage> {
                       ListTile(
                         visualDensity:VisualDensity(horizontal: 0, vertical: -4),
                         title: Text(CityItems[index]),
+                        onTap: (){},
                       ),
                       const Divider(indent: 15,endIndent: 20,),
                     ],

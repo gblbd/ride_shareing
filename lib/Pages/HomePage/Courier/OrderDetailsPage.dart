@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'AddPickUpPage.dart';
 import 'GetQuotationPageView.dart';
 import 'SelectCityList.dart';
+import 'SelectZoneList.dart';
 
 class OrderDetailsPage extends StatefulWidget {
   const OrderDetailsPage({Key? key}) : super(key: key);
@@ -15,6 +17,9 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
   static final _phone =TextEditingController();
   static final _name =TextEditingController();
   static final _address =TextEditingController();
+  static final _area =TextEditingController();
+  static final _zone =TextEditingController();
+  static final _city =TextEditingController();
   static final _itemsValue =TextEditingController();
  double _value = 0.5;
  double min=0.5;
@@ -98,6 +103,110 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             Divider(color: Colors.blueGrey.shade50,thickness: 4,),
             const SizedBox(height: 5,),
             const Text('    Delivery Address',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  Container(
+                    height: 58,width: 160,
+                    //margin: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey,width: 1),
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: Colors.white
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: _city,
+                        cursorColor: Colors.red.shade900,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Enter City*',
+                            hintStyle: TextStyle(fontSize: 17,color: Colors.grey)
+                        ),
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return const SelectCityListPage();
+                              })
+                          );
+                        },
+                        readOnly: true,
+                      ),
+                    ),
+                    // TextButton(
+                    //   onPressed: (){
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(builder: (context) {
+                    //           return const SelectCityListPage();
+                    //         })
+                    //     );
+                    //   },
+                    //   child: Row(
+                    //     children: const [
+                    //       Text(' Enter City',
+                    //         style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey),
+                    //         textAlign: TextAlign.start,),
+                    //     ],
+                    //   ),
+                    // ),
+
+                  ),
+                  Spacer(),
+                  Container(
+                    height: 58,width: 160,
+                    //margin: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey,width: 1),
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: Colors.white
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: _zone,
+                        cursorColor: Colors.red.shade900,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Enter Zone*',
+                            hintStyle: TextStyle(fontSize: 17,color: Colors.grey)
+                        ),
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return const SelectZoneList();
+                              })
+                          );
+                        },
+                        readOnly: true,
+                      ),
+                    ),
+                    // TextButton(
+                    //   onPressed: (){
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(builder: (context) {
+                    //           return const SelectCityListPage();
+                    //         })
+                    //     );
+                    //   },
+                    //   child: Row(
+                    //     children: const [
+                    //       Text(' Enter Zone',
+                    //         style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey),
+                    //         textAlign: TextAlign.start,),
+                    //     ],
+                    //   ),
+                    // ),
+
+                  ),
+                ],
+              ),
+            ),
             Container(
               height: 58,width: 420,
               margin: const EdgeInsets.all(16),
@@ -106,25 +215,48 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   borderRadius: BorderRadius.circular(5.0),
                   color: Colors.white
               ),
-              child: TextButton(
-                onPressed: (){
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return const SelectCityListPage();
-                      })
-                  );
-                },
-                child: Row(
-                  children: const [
-                    Text('City > Zone > Area',
-                      style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey),
-                      textAlign: TextAlign.start,),
-                  ],
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: TextField(
+                  controller: _area,
+                  cursorColor: Colors.red.shade900,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Enter Area*',
+                    hintStyle: TextStyle(fontSize: 17,color: Colors.grey)
+                  ),
+                  onTap: (){
+                    Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) {
+                                  return const SelectCityListPage();
+                                })
+                            );
+                  },
+                  readOnly: false,
                 ),
               ),
 
+              // TextButton(
+              //   onPressed: (){
+              //     Navigator.push(
+              //         context,
+              //         MaterialPageRoute(builder: (context) {
+              //           return const SelectCityListPage();
+              //         })
+              //     );
+              //   },
+              //   child: Row(
+              //     children: const [
+              //       Text(' Enter Area',
+              //         style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey),
+              //         textAlign: TextAlign.start,),
+              //     ],
+              //   ),
+              // ),
+
             ),
+
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
@@ -208,6 +340,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                ),
                                 TextButton(onPressed: () {
                                   showModalBottomSheet(
+
                                     isScrollControlled: true,
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
                                       context: context,
@@ -304,7 +437,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                         ),
                                       );
 
-                                    }
+                                    },
                                   );
                                 },
                                   child: ListTile(
@@ -364,7 +497,17 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.red,
                   ),
-                  onPressed: (){},
+                  onPressed: (){
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const AddPickUpPage();
+                        },
+                      ),
+                    );
+                  },
                   child: const Text('Confirm',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
                 ),
               ),
