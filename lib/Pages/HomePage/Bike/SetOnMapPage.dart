@@ -245,255 +245,128 @@ class _SetOnMapState extends State<SetOnMap> {
 
                                      Padding(
                                        padding: const EdgeInsets.all(8.0),
-                                       child: Row(
-                                         children: [
-                                           GestureDetector(
-                                             onTap: (){
+                                       child: GestureDetector(
+                                         onTap: (){
 
-                                               showModalBottomSheet(
-                                               isScrollControlled: false,
-                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
-                                               isDismissible: false,
-                                               enableDrag: false,
-                                               context: context,
-                                               builder: (BuildContext context){
-                                                 return Padding(
-                                                   padding: EdgeInsets.only(
-                                                     left: 8,right: 8,
-                                                     top: 10,
-                                                     bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,),
-                                                   child: Container(
-                                                     height: 410,
-                                                     child: Padding(
-                                                       padding: const EdgeInsets.all(8.0),
-                                                       child: Column(
-                                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                           showModalBottomSheet(
+                                           isScrollControlled: false,
+                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
+                                           isDismissible: false,
+                                           enableDrag: false,
+                                           context: context,
+                                           builder: (BuildContext context){
+                                             return Padding(
+                                               padding: EdgeInsets.only(
+                                                 left: 8,right: 8,
+                                                 top: 10,
+                                                 bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,),
+                                               child: Container(
+                                                 height: 410,
+                                                 child: Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Column(
+                                                     crossAxisAlignment: CrossAxisAlignment.start,
+                                                     children: [
+                                                       Center(child: Image.asset('assets/images/motor_bike.png',height: 70,width: 80,)),
+                                                       Text('Bike',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+                                                       SizedBox(height: 10,),
+                                                       Text('Quickest way of individual commute and our most affordable option. Wear a mask, stay safe.',
+                                                         style: TextStyle(fontSize: 12,color: Colors.grey.shade400),),
+                                                       SizedBox(height: 10,),
+                                                       Row(
                                                          children: [
-                                                           Center(child: Image.asset('assets/images/motor_bike.png',height: 70,width: 80,)),
-                                                           Text('Bike',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
-                                                           SizedBox(height: 10,),
-                                                           Text('Quickest way of individual commute and our most affordable option. Wear a mask, stay safe.',
-                                                             style: TextStyle(fontSize: 12,color: Colors.grey.shade400),),
-                                                           SizedBox(height: 10,),
-                                                           Row(
-                                                             children: [
-                                                               Text('Base fare'),Spacer(),
-                                                               Text('৳25.00'),
-                                                             ],
-                                                           ),
-                                                           SizedBox(height: 5,),
-
-                                                           Row(
-                                                             children: [
-                                                               Text('Per Kilometer'),Spacer(),
-                                                               Text('৳15.00'),
-                                                             ],
-                                                           ),
-                                                           SizedBox(height: 5,),
-
-                                                           Row(
-                                                             children: [
-                                                               Text('Per Minute'),Spacer(),
-                                                               Text('৳0.50'),
-                                                             ],
-                                                           ),
-                                                           SizedBox(height: 5,),
-
-                                                           Row(
-                                                             children: [
-                                                               Text('Safety Coverage Fee'),Spacer(),
-                                                               Text('৳2.00'),
-                                                             ],
-                                                           ),
-                                                           SizedBox(height: 5,),
-
-                                                           Row(
-                                                             children: [
-                                                               Text('Minimum Fare'),Spacer(),
-                                                               Text('৳50.00'),
-                                                             ],
-                                                           ),
-                                                           SizedBox(height: 10,),
-
-                                                           RichText(
-                                                             text: TextSpan(
-                                                             text: 'Your fare will be the price presented before the trip or based on rates above and other applicable surcharges and adjustments.',
-                                                                 style: TextStyle(color: Colors.grey)),
-
-                                                           ),
-                                                           SizedBox(height: 10,),
-
-                                                           Padding(
-                                                             padding: const EdgeInsets.all(8),
-                                                             child: Container(
-                                                               height: 45,width: 320,
-                                                               color: Colors.white,
-                                                               child: ElevatedButton(
-                                                                 style: ElevatedButton.styleFrom(
-                                                                   primary: Colors.red.shade600,
-                                                                 ),
-                                                                 onPressed: () async{
-
-                                                                   Navigator.pop(context);
-
-                                                                   // Navigator.push(
-                                                                   //     context,
-                                                                   //     MaterialPageRoute(builder: (context) {
-                                                                   //       return KioskOrderConfirmationPage();
-                                                                   //     })
-                                                                   // );
-                                                                 },
-                                                                 child: Text('I Understand',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
-                                                               ),
-                                                             ),
-                                                           ),
-
+                                                           Text('Base fare'),Spacer(),
+                                                           Text('৳25.00'),
                                                          ],
                                                        ),
-                                                     ),
-                                                   ),
-                                                 );
-                                               }
-                                               );
+                                                       SizedBox(height: 5,),
 
-                                             },
-                                             child: Container(
-                                               height: 120,width: 140,
-                                               child: Card(
-                                                 child: Column(
-                                                   children: [
-                                                     Image.asset('assets/images/motor_bike.png',height: 70,width: 80,),
-                                                     Text('BIKE'),SizedBox(height: 5,),
-                                                     Text('৳52'),
-                                                   ],
-                                                 ),
-                                               ),
-                                             ),
-                                           ),
+                                                       Row(
+                                                         children: [
+                                                           Text('Per Kilometer'),Spacer(),
+                                                           Text('৳15.00'),
+                                                         ],
+                                                       ),
+                                                       SizedBox(height: 5,),
 
-                                           Spacer(),
+                                                       Row(
+                                                         children: [
+                                                           Text('Per Minute'),Spacer(),
+                                                           Text('৳0.50'),
+                                                         ],
+                                                       ),
+                                                       SizedBox(height: 5,),
 
-                                           GestureDetector(
-                                             onTap: (){
-                                               setState(() {
-                                                 _showBox=true;
-                                               });
+                                                       Row(
+                                                         children: [
+                                                           Text('Safety Coverage Fee'),Spacer(),
+                                                           Text('৳2.00'),
+                                                         ],
+                                                       ),
+                                                       SizedBox(height: 5,),
 
-                                               showModalBottomSheet(
-                                                   isScrollControlled: false,
-                                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
-                                                   isDismissible: false,
-                                                   enableDrag: false,
-                                                   context: context,
-                                                   builder: (BuildContext context){
-                                                     return Padding(
-                                                       padding: EdgeInsets.only(
-                                                         left: 8,right: 8,
-                                                         top: 10,
-                                                         bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,),
-                                                       child: Container(
-                                                         height: 410,
-                                                         child: Padding(
-                                                           padding: const EdgeInsets.all(8.0),
-                                                           child: Column(
-                                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                                             children: [
-                                                               Center(child: Image.asset('assets/images/Carr.png',height: 70,width: 80,)),
-                                                               Text('Car Plus',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
-                                                               SizedBox(height: 10,),
-                                                               Text('Our comfortable AC cars can host up to 4 people and is perfect for your family commute.',
-                                                                 style: TextStyle(fontSize: 12,color: Colors.grey.shade400),),
-                                                               SizedBox(height: 10,),
-                                                               Row(
-                                                                 children: [
-                                                                   Text('Base fare'),Spacer(),
-                                                                   Text('৳40.00'),
-                                                                 ],
-                                                               ),
-                                                               SizedBox(height: 5,),
+                                                       Row(
+                                                         children: [
+                                                           Text('Minimum Fare'),Spacer(),
+                                                           Text('৳50.00'),
+                                                         ],
+                                                       ),
+                                                       SizedBox(height: 10,),
 
-                                                               Row(
-                                                                 children: [
-                                                                   Text('Per Kilometer'),Spacer(),
-                                                                   Text('৳22.50'),
-                                                                 ],
-                                                               ),
-                                                               SizedBox(height: 5,),
+                                                       RichText(
+                                                         text: TextSpan(
+                                                         text: 'Your fare will be the price presented before the trip or based on rates above and other applicable surcharges and adjustments.',
+                                                             style: TextStyle(color: Colors.grey)),
 
-                                                               Row(
-                                                                 children: [
-                                                                   Text('Per Minute'),Spacer(),
-                                                                   Text('৳3.50'),
-                                                                 ],
-                                                               ),
-                                                               SizedBox(height: 5,),
+                                                       ),
+                                                       SizedBox(height: 10,),
 
-                                                               Row(
-                                                                 children: [
-                                                                   Text('Safety Coverage Fee'),Spacer(),
-                                                                   Text('৳2.00'),
-                                                                 ],
-                                                               ),
-                                                               SizedBox(height: 5,),
+                                                       Padding(
+                                                         padding: const EdgeInsets.all(8),
+                                                         child: Container(
+                                                           height: 45,width: 320,
+                                                           color: Colors.white,
+                                                           child: ElevatedButton(
+                                                             style: ElevatedButton.styleFrom(
+                                                               primary: Colors.red.shade600,
+                                                             ),
+                                                             onPressed: () async{
 
-                                                               Row(
-                                                                 children: [
-                                                                   Text('Minimum Fare'),Spacer(),
-                                                                   Text('৳100.00'),
-                                                                 ],
-                                                               ),
-                                                               SizedBox(height: 10,),
+                                                               Navigator.pop(context);
 
-                                                               RichText(
-                                                                 text: TextSpan(
-                                                                     text: 'This is the fare breakdown of the suggested fare. You can offer your own fare before requesting a ride.',
-                                                                     style: TextStyle(color: Colors.grey)),
-
-                                                               ),
-                                                               SizedBox(height: 10,),
-
-                                                               Padding(
-                                                                 padding: const EdgeInsets.all(8),
-                                                                 child: Container(
-                                                                   height: 45,width: 320,
-                                                                   color: Colors.white,
-                                                                   child: ElevatedButton(
-                                                                     style: ElevatedButton.styleFrom(
-                                                                       primary: Colors.red.shade600,
-                                                                     ),
-                                                                     onPressed: () async{
-
-                                                                       Navigator.pop(context);
-
-                                                                     },
-                                                                     child: Text('I Understand',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
-                                                                   ),
-                                                                 ),
-                                                               ),
-
-                                                             ],
+                                                               // Navigator.push(
+                                                               //     context,
+                                                               //     MaterialPageRoute(builder: (context) {
+                                                               //       return KioskOrderConfirmationPage();
+                                                               //     })
+                                                               // );
+                                                             },
+                                                             child: Text('I Understand',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
                                                            ),
                                                          ),
                                                        ),
-                                                     );
-                                                   }
-                                               );
 
-                                             },
-                                             child: Container(
-                                               height: 120,width: 140,
-                                               child: Card(
-                                                 child: Column(
-                                                   children: [
-                                                     Image.asset('assets/images/Carr.png',height: 70,width: 80,),
-                                                     Text('CAR PLUS'),SizedBox(height: 5,),
-                                                     Text('~৳98'),
-                                                   ],
+                                                     ],
+                                                   ),
                                                  ),
                                                ),
+                                             );
+                                           }
+                                           );
+
+                                         },
+                                         child: Container(
+                                           height: 140,width: 160,
+                                           child: Card(
+                                             child: Column(
+                                               children: [
+                                                 Image.asset('assets/images/motor_bike.png',height: 70,width: 80,),
+                                                 Text('BIKE'),SizedBox(height: 5,),
+                                                 Text('৳52'),
+                                               ],
                                              ),
                                            ),
-                                         ],
+                                         ),
                                        ),
                                      ),
                                      SizedBox(height: 10,),
@@ -1006,12 +879,6 @@ class _SetOnMapState extends State<SetOnMap> {
                                              }
                                              );
 
-                                             // Navigator.push(
-                                             //     context,
-                                             //     MaterialPageRoute(builder: (context) {
-                                             //       return KioskOrderConfirmationPage();
-                                             //     })
-                                             // );
                                            },
                                            child: Text('Find a Ride',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
                                          ),

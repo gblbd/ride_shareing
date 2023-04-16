@@ -199,7 +199,89 @@ class _AddMissingPlacePageState extends State<AddMissingPlacePage> {
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xFFF59191),
                       ),
-                      onPressed: (){},
+                      onPressed: (){
+
+
+
+                        showModalBottomSheet(
+                            isScrollControlled: true,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
+                            isDismissible: false,
+                            enableDrag: false,
+                            context: context,
+                            builder: (BuildContext context) {
+
+
+                              return Padding(
+                                padding: EdgeInsets.only(
+                                  left: 8,right: 8,
+                                  top: 10,
+                                  bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,),
+                                child: Container(
+                                  height: 150,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text('Thank You For Your Contribution!',style: TextStyle(
+                                        color: Colors.black,fontSize: 20,fontWeight: FontWeight.w500
+                                      ),),
+                                      RichText(text: TextSpan(
+                                          text: "We've received your request.Thank you for your contribution to the My Road Map! We'll let you know once the suggested place is approved.",
+                                        style: TextStyle(
+                                          color: Colors.grey.shade500,
+                                        ),
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      ),
+
+                                      Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              height: 45,width: 150,
+                                              color: Colors.white,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  primary: Colors.grey.shade100,
+                                                ),
+                                                onPressed: (){
+                                                  Navigator.pop(context);
+
+                                                },
+                                                child: Text('Add a New Place',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.black54)),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              height: 45,width: 150,
+                                              color: Colors.white,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  primary: Colors.red.shade600,
+                                                ),
+                                                onPressed: () async{
+                                                  Navigator.pop(context);
+                                                  Navigator.pop(context);
+
+                                                },
+                                                child: Text('Done',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }
+                        );
+
+
+                      },
                       child: Text('SUBMIT PLACE',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
                     ),
                   ),
