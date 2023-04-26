@@ -61,10 +61,10 @@ class _AddMissingPlacePageState extends State<AddMissingPlacePage> {
                 },
               ),
             ),
-            const Text('        e.g. Pathao HQ, 3A, Rd 49, Gulshan 2',style: TextStyle(fontSize: 12,color: Colors.grey)),
+            const Text('        e.g. My Road HQ, 3A, Rd 49, Gulshan 2',style: TextStyle(fontSize: 12,color: Colors.grey)),
             Container(
               height: 60,
-              width: 350,
+              //width: 350,
               margin: EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey.shade400,width: 1.2),
@@ -84,7 +84,8 @@ class _AddMissingPlacePageState extends State<AddMissingPlacePage> {
                   children: const [
                     Icon(Icons.location_on, size: 26,color: Color(0xFF1C1C25)),
                     Text('   Select Closet Pin on Map',style: TextStyle(fontSize: 14,color: Colors.black),),
-                     SizedBox(width: 80,),
+                     // SizedBox(width: 80,),
+                    Spacer(),
                     Icon(Icons.arrow_forward_ios,size: 20,color: Color(0xFF1C1C25),),
                   ],
                 ),
@@ -120,7 +121,7 @@ class _AddMissingPlacePageState extends State<AddMissingPlacePage> {
             SizedBox(height: 7,),
             Container(
               height: 60,
-              width: 350,
+             // width: 350,
               margin: EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey.shade400,width: 1.2),

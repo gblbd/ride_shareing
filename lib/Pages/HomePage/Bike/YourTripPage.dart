@@ -78,7 +78,8 @@ class _YourTripPageState extends State<YourTripPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
                 Container(
-                  height: 40,width: 260,
+                  height: 40,
+                  //width: 260,
                   margin: EdgeInsets.all(8),
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey.shade400,width: 1),
@@ -108,7 +109,8 @@ class _YourTripPageState extends State<YourTripPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          height: 40,width: 260,
+                          height: 40,
+                          width: 260,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey.shade400,width: 1.0),
                             borderRadius: BorderRadius.circular(8.0),
@@ -139,7 +141,8 @@ class _YourTripPageState extends State<YourTripPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    height: 40,width: 260,
+                    height: 40,
+                    width: 260,
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey.shade400,width: 1),
                         borderRadius: BorderRadius.circular(8.0),
@@ -207,7 +210,8 @@ class _YourTripPageState extends State<YourTripPage> {
                 Container(
                   height: 60,color: Colors.blueGrey.shade50,
                   child: Center(
-                    child: SizedBox(height: 45,width: 300,
+                    child: SizedBox(height: 45,
+                      width: 300,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFFF59191),

@@ -208,7 +208,8 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
               ),
             ),
             Container(
-              height: 58,width: 420,
+              height: 58,
+              //width: 420,
               margin: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey,width: 1),
@@ -278,7 +279,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             const SizedBox(height: 5,),
             const Text('    Courier Weight',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
             Container(
-              width: 350,
+              //width: 350,
               child: Slider(
                 value: _value.toDouble(),
                 autofocus: false,
@@ -377,11 +378,12 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                                 ),
                                               ),
                                                Padding(
-                                                   padding: EdgeInsets.all(2.0),
+                                                   padding: EdgeInsets.all(8.0),
                                                child: TextButton(
                                                  onPressed: (){},
                                                  child: Container(
-                                                   height: 60,width: 320,
+                                                   height: 60,
+                                                   //width: 320,
                                                    decoration: BoxDecoration(
                                                      border: Border.all(color: Colors.grey.shade400,width: 1.2),
                                                      borderRadius: BorderRadius.circular(5.0),

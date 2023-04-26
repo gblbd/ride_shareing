@@ -47,7 +47,8 @@ class _SaveAddressPageState extends State<SaveAddressPage> {
             Padding(
                padding: const EdgeInsets.all(8.0),
                child: Container(
-                 height: 60,width: 322,
+                 height: 60,
+                 //width: 322,
                  margin: const EdgeInsets.all(8),
                  decoration: BoxDecoration(
                      border: Border.all(color: Colors.grey.shade400,width: 1),
@@ -171,7 +172,8 @@ class _SaveAddressPageState extends State<SaveAddressPage> {
              Padding(
               padding: const EdgeInsets.all(8.0),
               child: onClick ? Container(
-                height: 60,width: 322,
+                height: 60,
+                //width: 322,
                 margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey.shade400,width: 1),
@@ -212,7 +214,8 @@ class _SaveAddressPageState extends State<SaveAddressPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    height: 60,width: 322,
+                    height: 60,
+                    //width: 322,
                     margin: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey.shade400,width: 1),

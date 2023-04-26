@@ -253,7 +253,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  height: 80,width: 350,
+                  height: 80,
+                  //width: 350,
                   //color: Colors.pinkAccent.shade100,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
@@ -285,7 +286,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 8,left: 8,right: 8),
                 child: Container(
-                  height: 40,width: 330,
+                  height: 40,
+                  //width: 330,
                   decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
@@ -294,31 +296,33 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(6.0),
                       color: Colors.white
                   ),
-                  child: TextButton(
-                    style: ButtonStyle(
-                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                      overlayColor: MaterialStateProperty.all(Colors.transparent),
-                    ),
-                    onPressed: (){
+                  child: Center(
+                    child: TextButton(
+                      style: ButtonStyle(
+                        shadowColor: MaterialStateProperty.all(Colors.transparent),
+                        overlayColor: MaterialStateProperty.all(Colors.transparent),
+                      ),
+                      onPressed: (){
 
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return SearchAndPickupDestinationPage();
-                          },
-                        ),
-                      );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return SearchAndPickupDestinationPage();
+                            },
+                          ),
+                        );
 
-                    },
-                    child: Row(
-                      children: [
-                        Icon(Icons.location_on,color: Colors.red,),
-                        SizedBox(width: 4,),
-                        Text('Search Destination',style: TextStyle(color: Colors.grey),),
-                        Spacer(),
-                        Icon(Icons.search,color: Colors.black,),
-                      ],
+                      },
+                      child: Row(
+                        children: [
+                          Icon(Icons.location_on,color: Colors.red,),
+                          SizedBox(width: 4,),
+                          Text('Search Destination',style: TextStyle(color: Colors.grey),),
+                          Spacer(),
+                          Icon(Icons.search,color: Colors.black,),
+                        ],
+                      ),
                     ),
                   ),
 

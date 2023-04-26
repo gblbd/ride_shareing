@@ -112,6 +112,11 @@ flutter:
     - assets/images/coo.jpg
     - assets/images/package.png
     - assets/images/destination.png
+    - assets/images/ongoing_order.PNG
+    - assets/images/oorder.png
+    - assets/images/bbike.png
+    - assets/images/ccar.png
+    - assets/images/ccourier.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
