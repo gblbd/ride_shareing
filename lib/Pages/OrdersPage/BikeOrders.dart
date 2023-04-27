@@ -142,7 +142,7 @@ class _BikeOrderPageState extends State<BikeOrderPage> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(child: Image.asset('assets/images/bbike.png',height: 150,width: 300,)),
+                    child: Center(child: Image.asset('assets/images/orderbike.png',height: 150,width: 300,)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -155,7 +155,7 @@ class _BikeOrderPageState extends State<BikeOrderPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: RichText(
                       text: TextSpan(
-                        text: "Its seems we don't have history together.Lets make some!",
+                        text: "It's seems we don't have history together.Let's make some!",
                       ),
                       textAlign: TextAlign.center,
                     ),

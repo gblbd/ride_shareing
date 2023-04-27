@@ -117,6 +117,9 @@ flutter:
     - assets/images/bbike.png
     - assets/images/ccar.png
     - assets/images/ccourier.png
+    - assets/images/orderbike.png
+    - assets/images/carRide.png
+    - assets/images/courierOrder.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

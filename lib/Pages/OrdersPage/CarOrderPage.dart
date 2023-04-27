@@ -141,7 +141,7 @@ class _CarOrderPageState extends State<CarOrderPage> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(child: Image.asset('assets/images/ccar.png',height: 150,width: 300,)),
+                    child: Center(child: Image.asset('assets/images/carRide.png',height: 150,width: 300,)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
