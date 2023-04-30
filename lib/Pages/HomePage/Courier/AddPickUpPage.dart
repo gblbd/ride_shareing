@@ -370,15 +370,19 @@ class _AddPickUpPageState extends State<AddPickUpPage> {
                                                   //     }
                                                   // );
                                                 },
-                                                child: Container(
-                                                  height: 160,width: 320,
-                                                  child: Card(
-                                                    child: Column(
-                                                      children: [
-                                                        Image.asset('assets/images/coo.jpg',height: 100,width: 100,),
-                                                        Text('Home Pickup'),
-                                                        Text('৳80'),
-                                                      ],
+                                                child: Padding(
+                                                  padding: const EdgeInsets.only(right: 70,left: 70),
+                                                  child: Container(
+                                                    height: 160,
+                                                    width: 320,
+                                                    child: Card(
+                                                      child: Column(
+                                                        children: [
+                                                          Image.asset('assets/images/coo.jpg',height: 100,width: 100,),
+                                                          Text('Home Pickup'),
+                                                          Text('৳80'),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),

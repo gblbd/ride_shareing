@@ -232,7 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Image.asset('assets/images/courier.png'),
+                                Image.asset('assets/images/CourierIcon.png'),
                                 Text('Courier',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.black),)
                               ],
                             ),

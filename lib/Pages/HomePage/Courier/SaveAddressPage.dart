@@ -251,6 +251,7 @@ class _SaveAddressPageState extends State<SaveAddressPage> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
