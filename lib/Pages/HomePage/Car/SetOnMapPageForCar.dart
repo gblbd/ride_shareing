@@ -264,86 +264,90 @@ class _SetOnMapForCarState extends State<SetOnMapForCar> {
                                                         top: 10,
                                                         bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,),
                                                       child: Container(
-                                                        height: 410,
+                                                        height: 500,
                                                         child: Padding(
                                                           padding: const EdgeInsets.all(8.0),
-                                                          child: Column(
-                                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                                            children: [
-                                                              Center(child: Image.asset('assets/images/Carr.png',height: 70,width: 80,)),
-                                                              Text('Car Plus',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
-                                                              SizedBox(height: 10,),
-                                                              Text('Our comfortable AC cars can host up to 4 people and is perfect for your family commute.',
-                                                                style: TextStyle(fontSize: 12,color: Colors.grey.shade400),),
-                                                              SizedBox(height: 10,),
-                                                              Row(
-                                                                children: [
-                                                                  Text('Base fare'),Spacer(),
-                                                                  Text('৳40.00'),
-                                                                ],
-                                                              ),
-                                                              SizedBox(height: 5,),
+                                                          child: SingleChildScrollView(
+                                                            child: Column(
+                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                              children: [
+                                                                Center(child: Image.asset('assets/images/Carr.png',height: 70,width: 80,)),
+                                                                Text('Car Plus',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+                                                                SizedBox(height: 10,),
+                                                                Text('Our comfortable AC cars can host up to 4 people and is perfect for your family commute.',
+                                                                  style: TextStyle(fontSize: 12,color: Colors.grey.shade400),),
+                                                                SizedBox(height: 10,),
+                                                                Row(
+                                                                  children: [
+                                                                    Text('Base fare'),Spacer(),
+                                                                    Text('৳40.00'),
+                                                                  ],
+                                                                ),
+                                                                SizedBox(height: 5,),
 
-                                                              Row(
-                                                                children: [
-                                                                  Text('Per Kilometer'),Spacer(),
-                                                                  Text('৳22.50'),
-                                                                ],
-                                                              ),
-                                                              SizedBox(height: 5,),
+                                                                Row(
+                                                                  children: [
+                                                                    Text('Per Kilometer'),Spacer(),
+                                                                    Text('৳22.50'),
+                                                                  ],
+                                                                ),
+                                                                SizedBox(height: 5,),
 
-                                                              Row(
-                                                                children: [
-                                                                  Text('Per Minute'),Spacer(),
-                                                                  Text('৳3.50'),
-                                                                ],
-                                                              ),
-                                                              SizedBox(height: 5,),
+                                                                Row(
+                                                                  children: [
+                                                                    Text('Per Minute'),Spacer(),
+                                                                    Text('৳3.50'),
+                                                                  ],
+                                                                ),
+                                                                SizedBox(height: 5,),
 
-                                                              Row(
-                                                                children: [
-                                                                  Text('Safety Coverage Fee'),Spacer(),
-                                                                  Text('৳2.00'),
-                                                                ],
-                                                              ),
-                                                              SizedBox(height: 5,),
+                                                                Row(
+                                                                  children: [
+                                                                    Text('Safety Coverage Fee'),Spacer(),
+                                                                    Text('৳2.00'),
+                                                                  ],
+                                                                ),
+                                                                SizedBox(height: 5,),
 
-                                                              Row(
-                                                                children: [
-                                                                  Text('Minimum Fare'),Spacer(),
-                                                                  Text('৳100.00'),
-                                                                ],
-                                                              ),
-                                                              SizedBox(height: 10,),
+                                                                Row(
+                                                                  children: [
+                                                                    Text('Minimum Fare'),Spacer(),
+                                                                    Text('৳100.00'),
+                                                                  ],
+                                                                ),
+                                                                SizedBox(height: 10,),
 
-                                                              RichText(
-                                                                text: TextSpan(
-                                                                    text: 'This is the fare breakdown of the suggested fare. You can offer your own fare before requesting a ride.',
-                                                                    style: TextStyle(color: Colors.grey)),
+                                                                RichText(
+                                                                  text: TextSpan(
+                                                                      text: 'This is the fare breakdown of the suggested fare. You can offer your own fare before requesting a ride.',
+                                                                      style: TextStyle(color: Colors.grey)),
 
-                                                              ),
-                                                              SizedBox(height: 10,),
+                                                                ),
+                                                                SizedBox(height: 10,),
 
-                                                              Padding(
-                                                                padding: const EdgeInsets.all(8),
-                                                                child: Container(
-                                                                  height: 45,width: 320,
-                                                                  color: Colors.white,
-                                                                  child: ElevatedButton(
-                                                                    style: ElevatedButton.styleFrom(
-                                                                      primary: Colors.red.shade600,
+                                                                Padding(
+                                                                  padding: const EdgeInsets.all(8),
+                                                                  child: Center(
+                                                                    child: Container(
+                                                                      height: 45,width: 320,
+                                                                      color: Colors.white,
+                                                                      child: ElevatedButton(
+                                                                        style: ElevatedButton.styleFrom(
+                                                                          primary: Colors.red.shade600,
+                                                                        ),
+                                                                        onPressed: () async{
+
+                                                                          Navigator.pop(context);
+
+                                                                        },
+                                                                        child: Text('I Understand',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
+                                                                      ),
                                                                     ),
-                                                                    onPressed: () async{
-
-                                                                      Navigator.pop(context);
-
-                                                                    },
-                                                                    child: Text('I Understand',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
                                                                   ),
                                                                 ),
-                                                              ),
 
-                                                            ],
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
                                                       ),

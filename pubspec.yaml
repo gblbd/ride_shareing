@@ -48,6 +48,8 @@ dependencies:
   permission_handler: ^10.2.0
   fluttertoast: ^8.2.1
   dotted_border: ^2.0.0+3
+  getwidget: ^3.0.1
+
 
 
 
@@ -121,6 +123,7 @@ flutter:
     - assets/images/carRide.png
     - assets/images/courierOrder.png
     - assets/images/CourierIcon.png
+    - assets/images/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

@@ -261,92 +261,97 @@ class _SetOnMapState extends State<SetOnMap> {
                                                  top: 10,
                                                  bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,),
                                                child: Container(
-                                                 height: 410,
+                                                 height: 420,
                                                  child: Padding(
                                                    padding: const EdgeInsets.all(8.0),
-                                                   child: Column(
-                                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                                     children: [
-                                                       Center(child: Image.asset('assets/images/motor_bike.png',height: 70,width: 80,)),
-                                                       Text('Bike',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
-                                                       SizedBox(height: 10,),
-                                                       Text('Quickest way of individual commute and our most affordable option. Wear a mask, stay safe.',
-                                                         style: TextStyle(fontSize: 12,color: Colors.grey.shade400),),
-                                                       SizedBox(height: 10,),
-                                                       Row(
-                                                         children: [
-                                                           Text('Base fare'),Spacer(),
-                                                           Text('৳25.00'),
-                                                         ],
-                                                       ),
-                                                       SizedBox(height: 5,),
+                                                   child: SingleChildScrollView(
+                                                     child: Column(
+                                                       crossAxisAlignment: CrossAxisAlignment.start,
+                                                       children: [
+                                                         Center(child: Image.asset('assets/images/motor_bike.png',height: 70,width: 80,)),
+                                                         Text('Bike',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+                                                         SizedBox(height: 10,),
+                                                         Text('Quickest way of individual commute and our most affordable option. Wear a mask, stay safe.',
+                                                           style: TextStyle(fontSize: 12,color: Colors.grey.shade400),),
+                                                         SizedBox(height: 10,),
+                                                         Row(
+                                                           children: [
+                                                             Text('Base fare'),Spacer(),
+                                                             Text('৳25.00'),
+                                                           ],
+                                                         ),
+                                                         SizedBox(height: 5,),
 
-                                                       Row(
-                                                         children: [
-                                                           Text('Per Kilometer'),Spacer(),
-                                                           Text('৳15.00'),
-                                                         ],
-                                                       ),
-                                                       SizedBox(height: 5,),
+                                                         Row(
+                                                           children: [
+                                                             Text('Per Kilometer'),Spacer(),
+                                                             Text('৳15.00'),
+                                                           ],
+                                                         ),
+                                                         SizedBox(height: 5,),
 
-                                                       Row(
-                                                         children: [
-                                                           Text('Per Minute'),Spacer(),
-                                                           Text('৳0.50'),
-                                                         ],
-                                                       ),
-                                                       SizedBox(height: 5,),
+                                                         Row(
+                                                           children: [
+                                                             Text('Per Minute'),Spacer(),
+                                                             Text('৳0.50'),
+                                                           ],
+                                                         ),
+                                                         SizedBox(height: 5,),
 
-                                                       Row(
-                                                         children: [
-                                                           Text('Safety Coverage Fee'),Spacer(),
-                                                           Text('৳2.00'),
-                                                         ],
-                                                       ),
-                                                       SizedBox(height: 5,),
+                                                         Row(
+                                                           children: [
+                                                             Text('Safety Coverage Fee'),Spacer(),
+                                                             Text('৳2.00'),
+                                                           ],
+                                                         ),
+                                                         SizedBox(height: 5,),
 
-                                                       Row(
-                                                         children: [
-                                                           Text('Minimum Fare'),Spacer(),
-                                                           Text('৳50.00'),
-                                                         ],
-                                                       ),
-                                                       SizedBox(height: 10,),
+                                                         Row(
+                                                           children: [
+                                                             Text('Minimum Fare'),Spacer(),
+                                                             Text('৳50.00'),
+                                                           ],
+                                                         ),
+                                                         SizedBox(height: 10,),
 
-                                                       RichText(
-                                                         text: TextSpan(
-                                                         text: 'Your fare will be the price presented before the trip or based on rates above and other applicable surcharges and adjustments.',
-                                                             style: TextStyle(color: Colors.grey)),
+                                                         RichText(
+                                                           text: TextSpan(
+                                                           text: 'Your fare will be the price presented before the trip or based on rates above and other applicable surcharges and adjustments.',
+                                                               style: TextStyle(color: Colors.grey)),
 
-                                                       ),
-                                                       SizedBox(height: 10,),
+                                                         ),
+                                                         SizedBox(height: 10,),
 
-                                                       Padding(
-                                                         padding: const EdgeInsets.all(8),
-                                                         child: Container(
-                                                           height: 45,width: 320,
-                                                           color: Colors.white,
-                                                           child: ElevatedButton(
-                                                             style: ElevatedButton.styleFrom(
-                                                               primary: Colors.red.shade600,
+                                                         Padding(
+                                                           padding: const EdgeInsets.all(8),
+                                                           child: Center(
+                                                             child: Container(
+                                                               height: 45,
+                                                               width: 320,
+                                                               color: Colors.white,
+                                                               child: ElevatedButton(
+                                                                 style: ElevatedButton.styleFrom(
+                                                                   primary: Colors.red.shade600,
+                                                                 ),
+                                                                 onPressed: () async{
+
+                                                                   Navigator.pop(context);
+
+                                                                   // Navigator.push(
+                                                                   //     context,
+                                                                   //     MaterialPageRoute(builder: (context) {
+                                                                   //       return KioskOrderConfirmationPage();
+                                                                   //     })
+                                                                   // );
+                                                                 },
+                                                                 child: Text('I Understand',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
+                                                               ),
                                                              ),
-                                                             onPressed: () async{
-
-                                                               Navigator.pop(context);
-
-                                                               // Navigator.push(
-                                                               //     context,
-                                                               //     MaterialPageRoute(builder: (context) {
-                                                               //       return KioskOrderConfirmationPage();
-                                                               //     })
-                                                               // );
-                                                             },
-                                                             child: Text('I Understand',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
                                                            ),
                                                          ),
-                                                       ),
 
-                                                     ],
+                                                       ],
+                                                     ),
                                                    ),
                                                  ),
                                                ),

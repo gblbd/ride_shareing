@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:ride_sharing/Others/SelectLanguage.dart';
 
 import 'MainScreen.dart';
 
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
       home: AnimatedSplashScreen(
         splash: 'assets/images/My_Road_Logo.png',
         splashIconSize: 190,
-        nextScreen: const MainScreen(),
+        //nextScreen: const MainScreen(),
+        nextScreen: const SelectLanguage(),
         duration: 5000,
         backgroundColor: Colors.white,
         splashTransition: SplashTransition.sizeTransition,

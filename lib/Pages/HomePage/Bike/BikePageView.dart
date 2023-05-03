@@ -564,7 +564,7 @@ bool Expand=false;
                               bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,
                             ),
                             child: Container(
-                              height: 300,
+                              height: 400,
                               child: Column(
                                 children: [
                                   Image.asset('assets/images/Fares.png'),const SizedBox(height: 15,),

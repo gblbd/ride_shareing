@@ -90,50 +90,52 @@ class _PaymentsAllViewState extends State<PaymentsAllView> {
                         bottomRight: Radius.circular(10),
                       ),
                 ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(40),
-                        child: Center(child: Text('Payments All',style: TextStyle(
-                          fontSize: 24,
-                          color: Colors.indigo
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(40),
+                          child: Center(child: Text('Payments All',style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.indigo
+                          ),
+                          )
+                          ),
                         ),
-                        )
-                        ),
-                      ),
 
 
-                      ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.indigo.shade50,
-                          radius: 20,
-                          child: Icon(Icons.car_rental_sharp),
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.indigo.shade50,
+                            radius: 20,
+                            child: Icon(Icons.car_rental_sharp),
+                          ),
+                          title: Text('Enjoy first, Payments All'),
+                          subtitle: Text('You will get 30 days to pay the bill'),
                         ),
-                        title: Text('Enjoy first, Payments All'),
-                        subtitle: Text('You will get 30 days to pay the bill'),
-                      ),
-                      Divider(endIndent: 20,indent: 16,),
-                      ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.indigo.shade50,
-                          radius: 20,
-                          child: Icon(Icons.verified_sharp),
+                        Divider(endIndent: 20,indent: 16,),
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.indigo.shade50,
+                            radius: 20,
+                            child: Icon(Icons.verified_sharp),
+                          ),
+                          title: Text('Pay in one tap'),
+                          subtitle: Text('Say goodbye to panicking at checkout.'),
                         ),
-                        title: Text('Pay in one tap'),
-                        subtitle: Text('Say goodbye to panicking at checkout.'),
-                      ),
-                      Divider(endIndent: 20,indent: 16,),
-                      ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.indigo.shade50,
-                          radius: 20,
-                          child: Icon(Icons.visibility_off),
+                        Divider(endIndent: 20,indent: 16,),
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.indigo.shade50,
+                            radius: 20,
+                            child: Icon(Icons.visibility_off),
+                          ),
+                          title: Text('No hidden charges'),
+                          subtitle: Text('We are upfront about charges when you pay.'),
                         ),
-                        title: Text('No hidden charges'),
-                        subtitle: Text('We are upfront about charges when you pay.'),
-                      ),
 
-                    ],
+                      ],
+                    ),
                   ),
 
                 )
