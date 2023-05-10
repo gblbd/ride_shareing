@@ -33,22 +33,20 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
     zoom: 10,
   );
 
-  final List<Marker> _markers = <Marker>[
-    Marker(
-        markerId: MarkerId('1'),
-        position: LatLng(23.8103, 90.4125),
-        infoWindow: InfoWindow(
-          title: 'My Position',
-        )
-    ),
-    Marker(
-        markerId: MarkerId('2'),
-        position: LatLng(27.7099116, 85.3132343),
-        infoWindow: InfoWindow(
-          title: 'My current Position',
-        )
-    ),
-  ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -67,6 +65,25 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
     });
     return await Geolocator.getCurrentPosition();
   }
+
+
+  final List<Marker> _markers = <Marker>[
+    Marker(
+        markerId: MarkerId('1'),
+        position: LatLng(23.8103, 90.4125),
+        infoWindow: InfoWindow(
+          title: 'My Position',
+        )
+    ),
+    Marker(
+        markerId: MarkerId('2'),
+        position: LatLng(27.7099116, 85.3132343),
+        infoWindow: InfoWindow(
+          title: 'My current Position',
+        )
+    ),
+
+  ];
 
 
 
@@ -90,6 +107,13 @@ bool _isExpand=false;
   bool expand = true;
 
 
+
+
+
+
+
+
+
 @override
 void initState(){
   _promoController=TabController(length: 2, vsync: this);
@@ -102,6 +126,10 @@ void initState(){
      // begin: 0.0,
       //end: 1.0
   ).animate(_animationController) ;
+
+
+
+
 
 
 
@@ -134,16 +162,18 @@ bool Expand=false;
             child: SafeArea(
               child: Stack(
                 children: [
-                  GoogleMap(
-                    initialCameraPosition: _kGoogle,
-                    markers: Set<Marker>.of(_markers),
-                    mapType: MapType.hybrid,
-                    myLocationEnabled: true,
-                    compassEnabled: true,
-                    onMapCreated: (GoogleMapController controller){
-                      _controller.complete(controller);
-                    },
-                  ),
+
+
+
+
+
+
+
+
+
+
+
+
                   Positioned(
                       left: 10.0,
                       child: CircleAvatar(
@@ -167,15 +197,26 @@ bool Expand=false;
                         getUserCurrentLocation().then((value) async {
                           print(value.latitude.toString() +" "+value.longitude.toString());
 
-                          _markers.add(
-                              Marker(
-                                markerId: MarkerId("1"),
-                                position: LatLng(value.latitude, value.longitude),
+
+
+                            _markers.add(
+                                Marker(
+                                  markerId: MarkerId('2'),
+                                  position: LatLng(value.latitude, value.longitude),
+                                  infoWindow: InfoWindow(
+                                    title: 'My Current Location',
+                                  ),
+                                )
+                            );
+                            _markers.add(Marker(
+                                markerId: MarkerId('3'),
+                                position: LatLng(22.8103, 90.4125),
                                 infoWindow: InfoWindow(
-                                  title: 'My Current Location',
-                                ),
-                              )
-                          );
+                                  title: 'My Position',
+                                )
+                            ),);
+
+
 
                           CameraPosition cameraPosition = new CameraPosition(
                             target: LatLng(value.latitude, value.longitude),
@@ -229,6 +270,33 @@ bool Expand=false;
                     ),
 
                   ),
+
+
+
+
+
+
+
+                  GoogleMap(
+                    initialCameraPosition: _kGoogle,
+                    markers: Set<Marker>.of(_markers),
+                    mapType: MapType.hybrid,
+                    myLocationEnabled: true,
+                    compassEnabled: true,
+                    onMapCreated: (GoogleMapController controller){
+                      _controller.complete(controller);
+                    },
+                  ),
+
+
+
+
+
+
+
+
+
+
                   Positioned(
                       right: 10.0,
                       top: 300,

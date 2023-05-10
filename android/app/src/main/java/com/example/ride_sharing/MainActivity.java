@@ -1,4 +1,4 @@
-package com.example.ride_sharing;
+package com.myroad.app;
 
 import io.flutter.embedding.android.FlutterActivity;
 
