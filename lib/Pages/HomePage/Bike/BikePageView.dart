@@ -41,6 +41,13 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
           title: 'My Position',
         )
     ),
+    Marker(
+        markerId: MarkerId('2'),
+        position: LatLng(27.7099116, 85.3132343),
+        infoWindow: InfoWindow(
+          title: 'My current Position',
+        )
+    ),
   ];
 
   Future<Position> getUserCurrentLocation() async {
@@ -163,6 +170,43 @@ bool Expand=false;
                         });
                       },
                       child: Icon(Icons.local_activity,size: 16,color: Colors.green,),
+                    ),
+
+                  ),
+                  Positioned(
+                    right: 8,
+                    top: 400,
+                    child: FloatingActionButton(
+                      mini: true,
+                      backgroundColor: Colors.white,
+
+                      onPressed: () async{
+                        getUserCurrentLocation().then((value) async {
+                          print(value.latitude.toString() +" "+value.longitude.toString());
+
+                          _markers.add(
+                              Marker(
+                                markerId: MarkerId("2"),
+                                position: LatLng(value.latitude, value.longitude),
+                                infoWindow: InfoWindow(
+                                  title: 'My Currenttttt Location',
+                                ),
+                              )
+                          );
+
+
+                          CameraPosition cameraPosition = new CameraPosition(
+                            target: LatLng(value.latitude, value.longitude),
+                            zoom: 10,
+                          );
+
+                          final GoogleMapController controller = await _controller.future;
+                          controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+                          setState(() {
+                          });
+                        });
+                      },
+                      child: Icon(Icons.safety_check_outlined,size: 16,color: Colors.green,),
                     ),
 
                   ),

@@ -1132,13 +1132,29 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                                            Divider(),
                                            TextButton(onPressed: (){
 
+                                             showModalBottomSheet(
+                                                 isScrollControlled: false,
+                                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
+                                                 isDismissible: false,
+                                                 enableDrag: false,
+                                                 context: context,
+                                                 builder: (BuildContext context){
+                                                   return Padding(
+                                                       padding: EdgeInsets.only(
+                                                       left: 8,
+                                                       right: 8,
+                                                       top: 10,
+                                                       bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,),
+                                                     child: Container(
+                                                      // height: ,
+                                                     ),
+                                                   );
+                                                 }
+                                             );
+
                                            },
 
 
-                                           //   showModalBottomSheet(
-                                           //       context: context,z
-                                           //       builder: builder
-                                               
                                                child: Row(
                                                  children: [
                                                    Text('Cancel this Ride?'),
