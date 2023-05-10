@@ -29,7 +29,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Container(
-                height: 120,
+                height: 130,
                 //width: 330,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black38,width: 0.2),
@@ -104,8 +104,11 @@ class _SelectLanguageState extends State<SelectLanguage> {
                 ),
               ),
             ),
-            Text('You can change Language later from settings'),
-            Image.asset('assets/images/language.jpg'),
+            SizedBox(height: 20,),
+            Text('You can change Language later from settings',style: TextStyle(
+              fontSize: 16,fontWeight: FontWeight.w400
+            ),),
+            Image.asset('assets/images/language.jpg',height: 300,),
 
 
 

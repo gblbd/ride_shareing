@@ -15,7 +15,8 @@ import 'package:buttons_tabbar/buttons_tabbar.dart';
 
 
 class BikePageView extends StatefulWidget {
-  const BikePageView({Key? key}) : super(key: key);
+  final String SearchDestination;
+  const BikePageView({Key? key, required this.SearchDestination}) : super(key: key);
 
   @override
   State<BikePageView> createState() => _BikePageViewState();
@@ -627,12 +628,17 @@ bool Expand=false;
                           border: InputBorder.none,
                           hintText: 'Search Destination',
                           hintStyle: TextStyle(fontSize: 17,color: Colors.black87),
-                        prefixIcon: InkWell(
-                            child: Icon(Icons.location_on,color: Colors.red,),
-                          onTap: (){
-
+                        prefixIcon: Icon(Icons.location_on,color: Colors.red,),
+                        suffixIcon: IconButton(
+                          onPressed: (){
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) {
+                                  return SetOnMap(SearchDestinations: _destination.text.toString(),);
+                                })
+                            );
                           },
-                        )
+                          icon: Icon(Icons.arrow_forward_ios_sharp,size: 14,color: Colors.red,),)
                       ),
 
                     ),
@@ -685,7 +691,7 @@ bool Expand=false;
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) {
-                                  return const SetOnMap();
+                                  return SetOnMap(SearchDestinations: _destination.text.toString(),);
                                 })
                             );
 
@@ -728,7 +734,7 @@ bool Expand=false;
                         Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) {
-                              return const SetOnMap();
+                              return  SetOnMap(SearchDestinations: '',);
                             })
                         );
 

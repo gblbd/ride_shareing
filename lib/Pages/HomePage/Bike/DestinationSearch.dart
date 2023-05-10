@@ -4,8 +4,8 @@ import 'AddMissingPlace.dart';
 import 'SetOnMapPage.dart';
 
 class DestinationSeachPage extends StatelessWidget {
-  const DestinationSeachPage({Key? key}) : super(key: key);
 
+  DestinationSeachPage({Key? key}) : super(key: key);
 
   static final _destination=TextEditingController();
 
@@ -44,7 +44,8 @@ class DestinationSeachPage extends StatelessWidget {
                           onTap: (){
 
                           },
-                        )
+                        ),
+
                     ),
 
                   ),
@@ -91,7 +92,7 @@ class DestinationSeachPage extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) {
-                        return const SetOnMap();
+                        return SetOnMap(SearchDestinations: '',);
                       })
                   );
 

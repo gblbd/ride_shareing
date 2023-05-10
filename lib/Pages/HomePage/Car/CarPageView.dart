@@ -714,7 +714,7 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                           Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return const SetOnMap();
+                                return const SetOnMapForCar();
                               })
                           );
 

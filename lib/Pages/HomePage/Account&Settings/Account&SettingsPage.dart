@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
 
+import 'BusinessProfile.dart';
+import 'ProfilePage.dart';
+import '../../OffersPage/views/MyRoadPoints.dart';
+
 
 class AccountAndSettingsPage extends StatefulWidget {
   const AccountAndSettingsPage({Key? key}) : super(key: key);
@@ -67,7 +71,17 @@ class _AccountAndSettingsPageState extends State<AccountAndSettingsPage> {
                   shadowColor: MaterialStateProperty.all(Colors.transparent),
                   overlayColor: MaterialStateProperty.all(Colors.transparent),
                 ),
-                onPressed: (){},
+                onPressed: (){
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return MyRoadPointsPage();
+                      },
+                    ),
+                  );
+                },
                 child: Container(
                   height: 30,width: 350,
                   child: Row(
@@ -119,7 +133,16 @@ class _AccountAndSettingsPageState extends State<AccountAndSettingsPage> {
                   Text('    ACCOUNT',style: TextStyle(color: Colors.grey.shade700,fontSize: 12)),
                   SizedBox(height: 5,),
                   TextButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return ProfilePage();
+                            },
+                          ),
+                        );
+                      },
                       child: Row(
                         children: [
                           Icon(Icons.account_circle_rounded,color: Colors.grey.shade700,size: 25,),SizedBox(width: 15,),
@@ -128,7 +151,17 @@ class _AccountAndSettingsPageState extends State<AccountAndSettingsPage> {
                       )),
                   Divider(indent: 10,endIndent: 16,),
                   TextButton(
-                      onPressed: (){},
+                      onPressed: (){
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return MyMapWidget();
+                            },
+                          ),
+                        );
+                      },
                       child: Row(
                         children: [
                           Icon(Icons.card_travel,color: Colors.grey.shade700,size: 25,),SizedBox(width: 15,),

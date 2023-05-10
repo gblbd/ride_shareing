@@ -463,7 +463,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(height: 10,),
             SafeArea(
               child: GFIntroScreen(
-                height: 460,
+                height: 550,
                 slides: slides(),
                 border: Border.all(color: Colors.white),
                 pageController: _pageController,
@@ -489,9 +489,9 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(40.0),
+              padding: const EdgeInsets.all(50.0),
               child: Container(
-                height: 50,
+                height: 60,
                 width: 400,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4.0),
@@ -507,8 +507,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return LoginWithPhoneNum
-                            ();
+                          return LoginWithPhoneNum();
                         },
                       ),
                     );
@@ -551,14 +550,23 @@ class _SplashScreenState extends State<SplashScreen> {
   List<Widget>slides(){
     slideList=[
       Container(
-        height: 350,
+        height: 400,
         child: Padding(
           padding: const EdgeInsets.all(2),
           child: Column(
             children: [
-              Image.asset('assets/images/AllInOne.png',height: 310,width: 320,),
-              Text('One app fo all services.'),
-              Text('Get a ride, courier and much more, at your fingertips..'),
+              Image.asset('assets/images/AllInOne.png',height: 360,width: 320,),
+              Text('One app fo all services.',
+                style: TextStyle(
+                    fontSize: 20,fontWeight: FontWeight.w600
+                ),
+              ),
+              Text('Get a ride, courier and much more, at your fingertips.',
+                style: TextStyle(
+                    fontSize: 16,fontWeight: FontWeight.w400
+                ),
+                textAlign: TextAlign.center,
+              ),
 
             ],
           ),
@@ -571,9 +579,16 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             children: [
 
-              Image.asset('assets/images/ride.png',height: 310,width: 320,),
-              Text('Get there, on time.'),
-              Text('Beat the traffic and reach your destination fast, every time')
+              Image.asset('assets/images/ride.png',height: 360,width: 320,),
+              Text('Get there, on time.',style: TextStyle(
+                  fontSize: 20,fontWeight: FontWeight.w600
+              ),),
+              Text('Beat the traffic and reach your destination fast, every time',
+                style: TextStyle(
+                    fontSize: 16,fontWeight: FontWeight.w400
+                ),
+                textAlign: TextAlign.center,
+              )
             ],
           ),
         ),
@@ -584,9 +599,15 @@ class _SplashScreenState extends State<SplashScreen> {
           padding: const EdgeInsets.all(2),
           child: Column(
             children: [
-              Image.asset('assets/images/Payment.png',height: 310,width: 320,),
-              Text('Pay, as you want.'),
-              Text("Cash? Card? Wallet? We accept it all.Let's get started.")
+              Image.asset('assets/images/Payment.png',height: 360,width: 320,),
+              Text('Pay, as you want.',style: TextStyle(
+    fontSize: 20,fontWeight: FontWeight.w600
+    ),),
+              Text("Cash? Card? Wallet? We accept it all.Let's get started.",style: TextStyle(
+    fontSize: 16,fontWeight: FontWeight.w400
+    ),
+                textAlign: TextAlign.center,
+              )
             ],
           ),
         ),

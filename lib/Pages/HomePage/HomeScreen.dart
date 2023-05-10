@@ -18,7 +18,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
+
+
  static List offers=[
    Image.asset('assets/images/offer.PNG'),
    Image.asset('assets/images/offers.PNG'),
@@ -117,131 +118,143 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    TextButton(
-                      style: TextButton.styleFrom(
-                      backgroundColor: Color(0xFF162DA9),
+
+                    Container(
+                      height: 50,width: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+
+                      ),
+                      child: Image.asset("assets/images/My_Road_Logo.png",fit: BoxFit.cover,),
                     ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return PaymentsAllView();
-                            },
-                          ),
-                        );
-                      },
-
-
-
-
-
-
-
+                    // TextButton(
+                    //   style: TextButton.styleFrom(
+                    //   //backgroundColor: Color(0xFFA7B4F6),
+                    //   backgroundColor: Colors.red.shade100,
+                    // ),
+                    //   onPressed: () {
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //         builder: (context) {
+                    //           return PaymentsAllView();
+                    //         },
+                    //       ),
+                    //     );
+                    //   },
+                    //
+                    //
+                    //   child: Container(
+                    //     height: 40,
+                    //     child: Row(
+                    //       children:  [
+                    //         Image.asset("assets/images/My_Road_Logo.png",height: 50,width: 60,),
+                    //         Text('Payments All',style: TextStyle(
+                    //           color: Colors.white,
+                    //           fontStyle: FontStyle.italic
+                    //         ),
+                    //         ),
+                    //         Spacer(),
+                    //         Text('Pay Smarter, Pay Later >',style: TextStyle(
+                    //             color: Colors.white),)
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
+                     SizedBox(height: 8,),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
                       child: Row(
-                        children: const [
-                          Text('Payments All',style: TextStyle(
-                            color: Colors.white,
-                            fontStyle: FontStyle.italic
+                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.all(3),
+                            height: 100,width: 104,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey.shade200,width: 1),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: TextButton(
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return BikePageView(SearchDestination: '',);
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset('assets/images/motor_bike.png',height: 58,),
+                                  const Text('Bike',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black),)
+                                ],
+                              ),
+
+                            ),
                           ),
+                          Container(
+                            margin: EdgeInsets.all(3),
+                            height: 100,width: 104,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey.shade200,width: 1),
+                                borderRadius: BorderRadius.circular(10.0),),
+                            child: TextButton(
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return CarPageView();
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset('assets/images/Carr.png',height: 58,),
+                                  const Text('Car',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black))
+                                ],
+                              ),
+
+                            ),
                           ),
-                          Spacer(),
-                          Text('Pay Smarter, Pay Later >',style: TextStyle(
-                              color: Colors.white),)
+                          Container(
+                            margin: EdgeInsets.all(3),
+                            height: 100,width: 104,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey.shade200,width: 1),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: TextButton(
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return PathaoCourierPage();
+                                    },
+                                  ),
+                                );
+
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset('assets/images/CourierIcon.png',height: 58,),
+                                  Text('Courier',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black),)
+                                ],
+                              ),
+
+                            ),
+                          ),
+
+
                         ],
                       ),
-                    ),
-                    // SizedBox(height: 10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.all(8),
-                          height: 100,width: 80,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey.shade200,width: 1),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: TextButton(
-                            onPressed: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return BikePageView();
-                                  },
-                                ),
-                              );
-                            },
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset('assets/images/motor_bike.png'),
-                                const Text('Bike',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.black),)
-                              ],
-                            ),
-
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(8),
-                          height: 100,width: 80,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey.shade200,width: 1),
-                              borderRadius: BorderRadius.circular(10.0),),
-                          child: TextButton(
-                            onPressed: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return CarPageView();
-                                  },
-                                ),
-                              );
-                            },
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset('assets/images/Carr.png',),
-                                const Text('Car',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.black))
-                              ],
-                            ),
-
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(8),
-                          height: 100,width: 80,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey.shade200,width: 1),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: TextButton(
-                            onPressed: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return PathaoCourierPage();
-                                  },
-                                ),
-                              );
-
-                            },
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset('assets/images/CourierIcon.png'),
-                                Text('Courier',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.black),)
-                              ],
-                            ),
-
-                          ),
-                        ),
-
-
-                      ],
                     ),
                   ],
                 ),
@@ -769,13 +782,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
                   ],
                 ),
               ),
+              SizedBox(height: 50,)
             ],
           ),
         ),

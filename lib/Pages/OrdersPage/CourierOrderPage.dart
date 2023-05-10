@@ -44,14 +44,14 @@ class _CourierOrderPageState extends State<CourierOrderPage> {
               padding: const EdgeInsets.all(8.0),
               child: _showImage
                   ? Container(
-                  height: 400,
+                  height: 550,
                   child:
                   ListView.builder(
                       itemCount: 10,
                       itemBuilder: (BuildContext context, int index){
                         return InkWell(
                           child: Container(
-                            height: 200,
+                            height: 240,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -109,7 +109,7 @@ class _CourierOrderPageState extends State<CourierOrderPage> {
                                         child: Row(
                                           children: [
                                             Icon(CupertinoIcons.cube_box_fill,size: 14,color: Colors.grey,),SizedBox(width: 10,),
-                                            Text("Parcel (Non-perishable goods, no fragile, no food item)"),
+                                            Text("Parcel (Non-perishable goods, no fragile, no\nfood item)"),
                                           ],
                                         ),
                                       ),

@@ -261,7 +261,7 @@ class _AddPickUpPageState extends State<AddPickUpPage> {
                                     bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,
                                   ),
                                 child: Container(
-                                  height: 230,
+                                  height: 240,
                                   child: SingleChildScrollView(
                                     child: Column(
                                       children: [
@@ -371,10 +371,10 @@ class _AddPickUpPageState extends State<AddPickUpPage> {
                                                   // );
                                                 },
                                                 child: Padding(
-                                                  padding: const EdgeInsets.only(right: 70,left: 70),
+                                                  padding: const EdgeInsets.only(right: 10,left: 15),
                                                   child: Container(
                                                     height: 160,
-                                                    width: 320,
+                                                    width: 300,
                                                     child: Card(
                                                       child: Column(
                                                         children: [

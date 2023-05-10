@@ -45,14 +45,14 @@ class _CarOrderPageState extends State<CarOrderPage> {
               padding: const EdgeInsets.all(8.0),
               child: _showImage
                   ? Container(
-                  height: 400,
+                  height: 550,
                   child:
                   ListView.builder(
                       itemCount: 10,
                       itemBuilder: (BuildContext context, int index){
                         return GestureDetector(
                           child: Container(
-                            height: 170,
+                            height: 190,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -121,7 +121,7 @@ class _CarOrderPageState extends State<CarOrderPage> {
                                           child: Text('REQUEST AGAIN',style: TextStyle(color: Colors.red),)),
                                       Spacer(),
                                       Container(
-                                        height: 24,
+                                        height: 35,
                                         decoration: BoxDecoration(
                                             border: Border.all(color: Colors.grey.shade700,width: 1)
                                         ),

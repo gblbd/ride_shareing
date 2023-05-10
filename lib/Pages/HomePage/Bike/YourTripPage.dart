@@ -154,7 +154,7 @@ class _YourTripPageState extends State<YourTripPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) {
-                              return const DestinationSeachPage();
+                              return  DestinationSeachPage();
                             })
                         );
 

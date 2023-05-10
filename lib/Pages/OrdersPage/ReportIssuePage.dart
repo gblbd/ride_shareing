@@ -83,7 +83,7 @@ class ReportIssuePage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  height: 40,
+                  height: 47,
                   decoration: BoxDecoration(
                       border: Border(
                           bottom: BorderSide(
@@ -98,7 +98,7 @@ class ReportIssuePage extends StatelessWidget {
                     onPressed: (){},
                     child: Row(
                       children: [
-                        Text('Pickup/Delivery agent unprofessional related issue',
+                        Text('Pickup/Delivery agent unprofessional related\nissue',
                           style: TextStyle(
                             color: Colors.black,
                           ),

@@ -23,27 +23,53 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: pages[_index],
 
-      bottomNavigationBar: FloatingNavbar(
-        padding: const EdgeInsets.symmetric(horizontal: 4,vertical: 7),
-        margin: const EdgeInsets.only(bottom: 24,right: 16,left: 16),
-        backgroundColor: Colors.white70,
-        unselectedItemColor: Colors.black87,
-        selectedItemColor: Colors.red,
-        selectedBackgroundColor: Colors.red.shade50,
-        borderRadius: 30,
-        itemBorderRadius: 30,
-        iconSize: 14,
-        fontSize: 12,
-        onTap: (val)=> setState(() {
-          _index=val;
-        }),
-        currentIndex: _index,
-        items: [
-          FloatingNavbarItem(icon: Icons.home, title: 'Home'),
-          FloatingNavbarItem(icon: Icons.percent, title: 'Offers',),
-          FloatingNavbarItem(icon: Icons.article_outlined, title: 'Orders')
-        ],
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left: 30),
+        child: FloatingNavbar(
+         // padding: const EdgeInsets.symmetric(horizontal: 4,vertical: 7),
+        //  margin: const EdgeInsets.only(bottom: 24,right: 16,left: 16),
+          margin: const EdgeInsets.all(8),
+          backgroundColor: Colors.blueGrey.shade50,
+          unselectedItemColor: Colors.black87,
+          selectedItemColor: Colors.red,
+          selectedBackgroundColor: Colors.red.shade50,
+          borderRadius: 30,
+          itemBorderRadius: 30,
+          iconSize: 16,
+          fontSize: 14,
+          onTap: (val)=> setState(() {
+            _index=val;
+          }),
+          currentIndex: _index,
+          items: [
+            FloatingNavbarItem(icon: Icons.home, title: 'Home'),
+            FloatingNavbarItem(icon: Icons.percent, title: 'Offers',),
+            FloatingNavbarItem(icon: Icons.article_outlined, title: 'Orders')
+          ],
+        ),
       ),
+
+      // bottomNavigationBar: FloatingNavbar(
+      //   padding: const EdgeInsets.symmetric(horizontal: 4,vertical: 7),
+      //   margin: const EdgeInsets.only(bottom: 24,right: 16,left: 16),
+      //   backgroundColor: Colors.white70,
+      //   unselectedItemColor: Colors.black87,
+      //   selectedItemColor: Colors.red,
+      //   selectedBackgroundColor: Colors.red.shade50,
+      //   borderRadius: 30,
+      //   itemBorderRadius: 30,
+      //   iconSize: 14,
+      //   fontSize: 12,
+      //   onTap: (val)=> setState(() {
+      //     _index=val;
+      //   }),
+      //   currentIndex: _index,
+      //   items: [
+      //     FloatingNavbarItem(icon: Icons.home, title: 'Home'),
+      //     FloatingNavbarItem(icon: Icons.percent, title: 'Offers',),
+      //     FloatingNavbarItem(icon: Icons.article_outlined, title: 'Orders')
+      //   ],
+      // ),
     );
   }
 }

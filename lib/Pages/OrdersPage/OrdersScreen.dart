@@ -20,6 +20,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
+          titleSpacing: 36,
+
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           elevation: 0.0,
           toolbarHeight: 50,
