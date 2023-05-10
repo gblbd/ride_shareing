@@ -50,14 +50,33 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
     ),
   ];
 
+
+
+
+
+
+
+
   Future<Position> getUserCurrentLocation() async {
     await Geolocator.requestPermission().then((value){
+
+
     }).onError((error, stackTrace) async {
       await Geolocator.requestPermission();
       print("ERROR"+error.toString());
     });
     return await Geolocator.getCurrentPosition();
   }
+
+
+
+
+
+
+
+
+
+
 
   static final _code=TextEditingController();
   static final _destination=TextEditingController();
