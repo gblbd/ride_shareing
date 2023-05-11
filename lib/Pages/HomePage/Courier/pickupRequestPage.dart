@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:ride_sharing/Pages/HomePage/Courier/couriar_status.dart';
 
 class PickupRequestPage extends StatefulWidget {
   const PickupRequestPage({Key? key}) : super(key: key);
@@ -352,6 +353,8 @@ class _PickupRequestPageState extends State<PickupRequestPage> {
                                     Navigator.pop(context);
                                     Navigator.pop(context);
 
+
+
                                   },
                                   child: Text('Submit',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
                                 ),
@@ -393,6 +396,13 @@ class _PickupRequestPageState extends State<PickupRequestPage> {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
+
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return CourierStatus();
+                  })
+              );
               // Navigator.push(
               //     context,
               //     MaterialPageRoute(builder: (context) {

@@ -6,6 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:ride_sharing/Others/SelectLanguage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 
 import 'MainScreen.dart';
 
@@ -38,19 +39,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Ride Sharing',
-      home: AnimatedSplashScreen(
-        splash: 'assets/images/My_Road_Logo.png',
-        splashIconSize: 190,
-        //nextScreen: const MainScreen(),
-        nextScreen: const SelectLanguage(),
-        duration: 5000,
-        backgroundColor: Colors.white,
-        splashTransition: SplashTransition.sizeTransition,
-        pageTransitionType: PageTransitionType.leftToRight,
-      ),
+    return Sizer(
+      builder:(context, orientation, deviceType){
+       return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Ride Sharing',
+          home: AnimatedSplashScreen(
+            splash: 'assets/images/My_Road_Logo.png',
+            splashIconSize: 190,
+            //nextScreen: const MainScreen(),
+            nextScreen: const SelectLanguage(),
+            duration: 5000,
+            backgroundColor: Colors.white,
+            splashTransition: SplashTransition.sizeTransition,
+            pageTransitionType: PageTransitionType.leftToRight,
+          ),
+        );
+      }
     );
   }
 }

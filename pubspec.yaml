@@ -33,6 +33,7 @@ dependencies:
   firebase_auth: ^4.2.10
   shared_preferences: ^2.0.18
   provider: ^6.0.5
+  sizer: ^2.0.15
   flutter:
     sdk: flutter
 
@@ -60,6 +61,7 @@ dependencies:
   geocoding: ^2.1.0
   location: ^4.4.0
   geocoder2: ^1.4.0
+  google_fonts: ^4.0.4
 
 
 
