@@ -10,7 +10,11 @@ import 'SignUpPage.dart';
 
 class OTPsendPage extends StatefulWidget {
 
-  const OTPsendPage({Key? key}) : super(key: key);
+  final String phoneNumber;
+
+  const OTPsendPage({super.key, required this.phoneNumber});
+
+  //const OTPsendPage({Key? key}) : super(key: key);
 
   @override
   State<OTPsendPage> createState() => _OTPsendPageState();
@@ -89,7 +93,10 @@ class _OTPsendPageState extends State<OTPsendPage> {
 
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) =>  SignUpPage()),
+                        MaterialPageRoute(builder: (context) =>  SignUpPage(
+
+                          phoneNumber: widget.phoneNumber,
+                        )),
                       );
 
 

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1040697300790",
+    "firebase_url": "https://my-road-2-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "my-road-2",
+    "storage_bucket": "my-road-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040697300790:android:e0e5aef459aba10b4b8597",
+        "android_client_info": {
+          "package_name": "com.nalamgroup.myroad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040697300790-gbbmd75one2n9tsc5fqjj28rb3i982ug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXRDNPTCiX8muvyCecAKx-VZkO9aVYYM0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040697300790-gbbmd75one2n9tsc5fqjj28rb3i982ug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

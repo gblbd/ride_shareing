@@ -4,7 +4,9 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'OTPPage.dart';
 
 class LoginWithPhoneNum extends StatelessWidget {
-  const LoginWithPhoneNum({Key? key}) : super(key: key);
+   LoginWithPhoneNum({Key? key}) : super(key: key);
+
+  TextEditingController phoneNumbController=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class LoginWithPhoneNum extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: IntlPhoneField(
+              controller: phoneNumbController,
               decoration: InputDecoration(
                 //   labelText: 'Phone Number',
                 hintText: '1XXXXXXXXX',
@@ -67,7 +70,9 @@ class LoginWithPhoneNum extends StatelessWidget {
 
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) =>  OTPsendPage()),
+                      MaterialPageRoute(builder: (context) =>  OTPsendPage(
+                        phoneNumber: phoneNumbController.text,
+                          )),
                     );
 
 

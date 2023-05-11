@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -5,13 +6,24 @@ import 'TermsAndConditions.dart';
 
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+
+  final String phoneNumber;
+
+  const SignUpPage({super.key, required this.phoneNumber});
+ // const SignUpPage({Key? key}) : super(key: key);
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+
+  FirebaseDatabase database = FirebaseDatabase.instance;
+  DatabaseReference ref = FirebaseDatabase.instance.ref("User_profile");
+
+  TextEditingController fullnameContriller=TextEditingController();
+  TextEditingController emailAddressController=TextEditingController();
+
 
   DateTime selectedDate = DateTime.now();
 
@@ -55,6 +67,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8,right: 8),
                   child: TextField(
+
+                    controller: fullnameContriller,
+
                     decoration: InputDecoration(
                         label: Text('Full Legal Name'),
                         labelStyle: TextStyle(
@@ -82,6 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8,right: 8),
                   child: TextField(
+                    controller: emailAddressController,
                     decoration: InputDecoration(
                         label: Text("Email Address"),
                         labelStyle: TextStyle(
@@ -238,12 +254,41 @@ class _SignUpPageState extends State<SignUpPage> {
                       color: Colors.red.shade300
                   ),
                   child: TextButton(
-                    onPressed: (){
+                    onPressed: ()async{
 
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) =>  TermsAndConditions()),
-                      );
+
+
+                      await ref.child("${widget.phoneNumber}").child("profile").set({
+                        "full_name": "${fullnameContriller.text.toString()}",
+                        //"last_name": "_lastName",
+                        "Date_of_Birth": "${_dob.text.toString()}",
+                        "gender": "$GenderType",
+                        "email": "${emailAddressController.text.toString()}",
+                        "mobile_no": "${widget.phoneNumber}",
+
+
+
+
+                        // "address": {
+                        //   "line1": "100 Mountain View"
+                        // }
+                      }).then((value) {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return TermsAndConditions();
+                            },
+                          ),
+                        );
+                      });
+
+
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) =>  TermsAndConditions()),
+                      // );
 
 
                     },
@@ -263,4 +308,14 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
+
+
+
+
+
+
+
+
+
+
 }

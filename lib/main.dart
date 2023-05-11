@@ -1,12 +1,35 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:ride_sharing/Others/SelectLanguage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'MainScreen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]).then((_) {
+    SharedPreferences.getInstance().then((prefs) {
+      var darkModeOn = prefs.getBool('darkMode') ?? true;
+      runApp(
+        // ChangeNotifierProvider<ThemeNotifier>(
+        //   create: (_) => ThemeNotifier(darkModeOn ? darkTheme : lightTheme),
+            MyApp(),
+        // ),
+      );
+    });
+  });
+
+
+
+  //runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,6 +37,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Ride Sharing',
