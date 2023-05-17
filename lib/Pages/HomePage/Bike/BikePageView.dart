@@ -68,6 +68,8 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
 
 
   final List<Marker> _markers = <Marker>[
+
+
     Marker(
         markerId: MarkerId('1'),
         position: LatLng(23.8103, 90.4125),
@@ -235,7 +237,7 @@ bool Expand=false;
                   ),
                   Positioned(
                     right: 8,
-                    top: 400,
+                    top: 450,
                     child: FloatingActionButton(
                       mini: true,
                       backgroundColor: Colors.white,
