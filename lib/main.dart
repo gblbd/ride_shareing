@@ -42,6 +42,11 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder:(context, orientation, deviceType){
        return MaterialApp(
+
+         theme: ThemeData(
+           primarySwatch: Colors.red
+         ),
+
           debugShowCheckedModeBanner: false,
           title: 'Ride Sharing',
           home: AnimatedSplashScreen(

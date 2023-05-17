@@ -37,6 +37,37 @@ class _SearchAndPickupDestinationPageState extends State<SearchAndPickupDestinat
       await Geolocator.requestPermission();
       print("ERROR"+error.toString());
     });
+
+    // await ref.child("${widget.phoneNumber}").child("profile").set({
+    //   "full_name": "${fullnameContriller.text.toString()}",
+    //   //"last_name": "_lastName",
+    //   "Date_of_Birth": "${_dob.text.toString()}",
+    //   "gender": "$GenderType",
+    //   "email": "${emailAddressController.text.toString()}",
+    //   "mobile_no": "${widget.phoneNumber}",
+    //
+    //
+    //
+    //
+    //   // "address": {
+    //   //   "line1": "100 Mountain View"
+    //   // }
+    // }).then((value) {
+    //   Navigator.pop(context);
+    //   Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) {
+    //         return TermsAndConditions();
+    //       },
+    //     ),
+    //   );
+    // });
+
+
+
+
+
     return await Geolocator.getCurrentPosition();
   }
 
