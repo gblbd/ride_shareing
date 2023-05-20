@@ -74,11 +74,14 @@ class TermsAndConditions extends StatelessWidget {
                   ),
                   child: TextButton(
                     onPressed: (){
+                      Navigator.pop(context);
+                     // Navigator.pop(context);
 
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) =>  MainScreen()),
-                      );
+
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) =>  MainScreen()),
+                      // );
 
 
                     },

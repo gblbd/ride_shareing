@@ -10,8 +10,17 @@ import 'Bike/searchAndPickupDestinationPage.dart';
 import 'Courier/PathaoCourierPage.dart';
 
 class HomeScreen extends StatefulWidget {
+  final String phoneNumber;
+  final String fullname;
+  final String pin;
+  final String email;
+  final String gender;
+  final String dateOfBirth;
 
-  const HomeScreen({Key? key}) : super(key: key);
+
+
+
+  const HomeScreen({Key? key, required this.phoneNumber, required this.fullname, required this.pin, required this.email, required this.gender, required this.dateOfBirth}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -92,7 +101,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const AccountAndSettingsPage();
+                              return AccountAndSettingsPage(
+                                fullname1: widget.fullname,
+                                email1: widget.email,
+                                phoneNumber1: widget.phoneNumber,
+                                gender1: widget.gender,
+                                dateOfBirth1: widget.dateOfBirth,);
                             },
                           ),
                         );
@@ -235,7 +249,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return PathaoCourierPage();
+                                      return PathaoCourierPage(
+                                        phoneNumbers: widget.phoneNumber,
+                                        pin: widget.pin,
+                                        fullname: widget.fullname,
+                                      );
                                     },
                                   ),
                                 );

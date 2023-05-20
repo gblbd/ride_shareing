@@ -8,7 +8,12 @@ import '../../OffersPage/views/MyRoadPoints.dart';
 
 
 class AccountAndSettingsPage extends StatefulWidget {
-  const AccountAndSettingsPage({Key? key}) : super(key: key);
+  final String fullname1;
+  final String email1;
+  final String phoneNumber1;
+  final String gender1;
+  final String dateOfBirth1;
+  const AccountAndSettingsPage({Key? key, required this.fullname1, required this.email1, required this.phoneNumber1, required this.gender1, required this.dateOfBirth1}) : super(key: key);
 
   @override
   State<AccountAndSettingsPage> createState() => _AccountAndSettingsPageState();
@@ -38,8 +43,8 @@ class _AccountAndSettingsPageState extends State<AccountAndSettingsPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 23,),
-                      const Text('User Name',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w900,fontSize: 20)), SizedBox(height: 5,),
-                      const Text('Phone Number',style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w500)),SizedBox(height: 5,),
+                       Text(widget.fullname1,style: TextStyle(color: Colors.black,fontWeight: FontWeight.w900,fontSize: 20)), SizedBox(height: 5,),
+                       Text("+880${widget.phoneNumber1}",style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w500)),SizedBox(height: 5,),
                       Container(
                         height: 29,width: 100,
                           decoration: BoxDecoration(
@@ -138,7 +143,12 @@ class _AccountAndSettingsPageState extends State<AccountAndSettingsPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return ProfilePage();
+                              return ProfilePage(
+                                fullname: widget.fullname1,
+                                email: widget.email1,
+                                phoneNumber: widget.phoneNumber1,
+                                gender: widget.gender1,
+                                dateOfBirth: widget.dateOfBirth1,);
                             },
                           ),
                         );

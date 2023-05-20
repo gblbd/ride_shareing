@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,9 @@ import 'SelectCityList.dart';
 import 'SelectZoneList.dart';
 
 class OrderDetailsPage extends StatefulWidget {
-  const OrderDetailsPage({Key? key}) : super(key: key);
+  final String phoneNumber;
+
+  const OrderDetailsPage({Key? key, required this.phoneNumber}) : super(key: key);
 
   @override
   State<OrderDetailsPage> createState() => _OrderDetailsPageState();
@@ -24,6 +27,28 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
  double _value = 0.5;
  double min=0.5;
  double max=5.0;
+
+
+
+  List<String> list_District = <String>['Select District','Barguna','Barishal','Bhola','Jhalokati','Patuakhali','Pirojpur','Bandarban','Brahmanbaria','Chandpur','Chattogram','Cumilla',"Cox's Bazar",'Fenni','Khagrachhari','Lakshmipur','Noakhali','Rangamati','Dhaka','Faridpur','Gazipur','Gopalganj','Kishoreganj','Madaripur','Manikganj','Munshiganj','Narayanganj','Narsingdi','Rajbari','Shariatpur','Tangail','Bagerhat','Chuadanga','Jashore','Jhenaidah','Khulna','Kushtia','Magura','Meherpur','Narail','Jamalpur','Mymensingh','Natore',];
+  String dropdownValue_District = 'Select District' ;
+
+  List<String> list_Thana = <String>['Select Thana','Adabar','Badda','Bangsal','Bimanbandar','Cantonment','Chowkbazar','Darus Salam','Demra','Dhakshinkhan','Dhanmondi','Gendaria',"Gulshan",'Hazaribag','Jatrabari','Kadamtali','Kafrul','Kalabagan','Kamrangirchar','Khilgon','Khilkhet','Kotwali','Lalbagh','Mirpur','Mohammadpur','New Market','Pallabi','Rampura','Uttar Khan',];
+  String dropdownValue_Thana = 'Select Thana';
+  List<String> list_Area = <String>['Select Area','Adarsha Para','Atipara','Balur Math','Chamurkhan','Chanpara','Chapan','Dobadiya','Helal Market','Jamtola','Jiyabagh','Kalabagan',"Kanchkura",'Kuripara','Madarbari','Maosaid','Master Para','Mazar Chowrasta','Moinar Tek','Munda','Termukh','UttarKhan',];
+  String dropdownValue_Area = 'Select Area';
+
+
+  FirebaseDatabase database = FirebaseDatabase.instance;
+  DatabaseReference ref = FirebaseDatabase.instance.ref("User_profile");
+
+  // DatabaseReference courierRef= FirebaseDatabase.instance.ref("User_profile").child("Profile").child("User").push();
+ //  void addCourierToDatabase(String userId) {
+ //    DatabaseReference courierRef=rf.child('profile').child(userId).child('user').child('courier').push();
+ //  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +127,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             ),
             Divider(color: Colors.blueGrey.shade50,thickness: 4,),
             const SizedBox(height: 5,),
-            const Text('    Delivery Address',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
+            const Text('    Delivery Address*',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
@@ -117,42 +142,95 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: TextField(
-                        controller: _city,
-                        cursorColor: Colors.red.shade900,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Enter City*',
-                            hintStyle: TextStyle(fontSize: 17,color: Colors.grey)
+                      child: Container(
+                        child: DropdownButtonHideUnderline(
+                          child: ButtonTheme(
+                            //alignedDropdown: true,
+                            child: DropdownButton<String>(
+                              value: dropdownValue_District,
+                              icon: const Icon(Icons.arrow_drop_down,size: 20,),
+                              //elevation: 16,
+                              style: const TextStyle(color: Colors.black),
+                              onChanged: (String? value) {
+                                setState(() {
+                                  dropdownValue_District = value!;
+                                });
+                              },
+                              items: list_District.map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          ),
                         ),
-                        onTap: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return const SelectCityListPage();
-                              })
-                          );
-                        },
-                        readOnly: true,
                       ),
+                      // TextField(
+                      //   controller: _city,
+                      //   cursorColor: Colors.red.shade900,
+                      //   decoration: InputDecoration(
+                      //       border: InputBorder.none,
+                      //       hintText: 'Enter District*',
+                      //       hintStyle: TextStyle(fontSize: 17,color: Colors.grey)
+                      //   ),
+                      //   onTap: () async{
+                      //
+                      //     DropdownButtonHideUnderline(
+                      //       child: ButtonTheme(
+                      //         alignedDropdown: true,
+                      //         child: DropdownButton<String>(
+                      //           value: dropdownValue_District,
+                      //           icon: const Icon(Icons.arrow_drop_down,size: 20,),
+                      //           //elevation: 16,
+                      //           style: const TextStyle(color: Colors.black),
+                      //           onChanged: (String? value) {
+                      //             setState(() {
+                      //               dropdownValue_District = value!;
+                      //             });
+                      //           },
+                      //           items: list_District.map<DropdownMenuItem<String>>((String value) {
+                      //             return DropdownMenuItem<String>(
+                      //               value: value,
+                      //               child: Text(value,
+                      //                 style: TextStyle(
+                      //                     fontSize: 16,
+                      //                     fontWeight: FontWeight.w400
+                      //                 ),
+                      //               ),
+                      //             );
+                      //           }).toList(),
+                      //         ),
+                      //       ),
+                      //     );
+                      //
+                      //
+                      //
+                      //
+                      //
+                      //
+                      //
+                      //
+                      //
+                      //
+                      //
+                      //
+                      //
+                      //     // Navigator.push(
+                      //     //     context,
+                      //     //     MaterialPageRoute(builder: (context) {
+                      //     //       return const SelectCityListPage();
+                      //     //     })
+                      //     // );
+                      //   },
+                      //   readOnly: true,
+                      // ),
                     ),
-                    // TextButton(
-                    //   onPressed: (){
-                    //     Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(builder: (context) {
-                    //           return const SelectCityListPage();
-                    //         })
-                    //     );
-                    //   },
-                    //   child: Row(
-                    //     children: const [
-                    //       Text(' Enter City',
-                    //         style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey),
-                    //         textAlign: TextAlign.start,),
-                    //     ],
-                    //   ),
-                    // ),
 
                   ),
                   Spacer(),
@@ -166,42 +244,54 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: TextField(
-                        controller: _zone,
-                        cursorColor: Colors.red.shade900,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Enter Zone*',
-                            hintStyle: TextStyle(fontSize: 17,color: Colors.grey)
+                      child:   Container(
+                        child: DropdownButtonHideUnderline(
+                          child: ButtonTheme(
+                            //alignedDropdown: true,
+                            child: DropdownButton<String>(
+                              value: dropdownValue_Thana,
+                              icon: const Icon(Icons.arrow_drop_down,size: 20,),
+                              //elevation: 16,
+                              style: const TextStyle(color: Colors.black),
+                              onChanged: (String? value) {
+                                setState(() {
+                                  dropdownValue_Thana = value!;
+                                });
+                              },
+                              items: list_Thana.map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          ),
                         ),
-                        onTap: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return const SelectZoneList();
-                              })
-                          );
-                        },
-                        readOnly: true,
                       ),
+                      // TextField(
+                      //   controller: _zone,
+                      //   cursorColor: Colors.red.shade900,
+                      //   decoration: InputDecoration(
+                      //       border: InputBorder.none,
+                      //       hintText: 'Enter Thana*',
+                      //       hintStyle: TextStyle(fontSize: 17,color: Colors.grey)
+                      //   ),
+                      //   onTap: (){
+                      //     Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(builder: (context) {
+                      //           return const SelectZoneList();
+                      //         })
+                      //     );
+                      //   },
+                      //   readOnly: true,
+                      // ),
                     ),
-                    // TextButton(
-                    //   onPressed: (){
-                    //     Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(builder: (context) {
-                    //           return const SelectCityListPage();
-                    //         })
-                    //     );
-                    //   },
-                    //   child: Row(
-                    //     children: const [
-                    //       Text(' Enter Zone',
-                    //         style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey),
-                    //         textAlign: TextAlign.start,),
-                    //     ],
-                    //   ),
-                    // ),
 
                   ),
                 ],
@@ -209,7 +299,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             ),
             Container(
               height: 58,
-              //width: 420,
+              width: 420,
               margin: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey,width: 1),
@@ -218,43 +308,37 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: TextField(
-                  controller: _area,
-                  cursorColor: Colors.red.shade900,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Enter Area*',
-                    hintStyle: TextStyle(fontSize: 17,color: Colors.grey)
+                child: Container(
+                  child: DropdownButtonHideUnderline(
+                    child: ButtonTheme(
+                      //alignedDropdown: true,
+                      child: DropdownButton<String>(
+                        value: dropdownValue_Area,
+                        icon: const Icon(Icons.arrow_drop_down,size: 20,),
+                        //elevation: 16,
+                        style: const TextStyle(color: Colors.black),
+                        onChanged: (String? value) {
+                          setState(() {
+                            dropdownValue_Area = value!;
+                          });
+                        },
+                        items: list_Area.map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value,
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
                   ),
-                  onTap: (){
-                    Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) {
-                                  return const SelectCityListPage();
-                                })
-                            );
-                  },
-                  readOnly: false,
                 ),
               ),
 
-              // TextButton(
-              //   onPressed: (){
-              //     Navigator.push(
-              //         context,
-              //         MaterialPageRoute(builder: (context) {
-              //           return const SelectCityListPage();
-              //         })
-              //     );
-              //   },
-              //   child: Row(
-              //     children: const [
-              //       Text(' Enter Area',
-              //         style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey),
-              //         textAlign: TextAlign.start,),
-              //     ],
-              //   ),
-              // ),
 
             ),
 
@@ -281,13 +365,13 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             Container(
               //width: 350,
               child: Slider(
-                value: _value.toDouble(),
+                value: _value,
                 autofocus: false,
                 min: min,
                 max: max,
-                divisions: 10,
+                divisions: 9,
                 activeColor: Colors.red,
-                inactiveColor: Colors.grey.shade300,
+                inactiveColor: Colors.red.shade300,
                 thumbColor: Colors.red,
                label: _value.toStringAsFixed(1),
                 // label: _value.round().toString(),
@@ -353,7 +437,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                             bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,
                                           ),
                                         child: Container(
-                                          height: 280,
+                                          height: 300,
                                           child: Column(
                                             children: [
                                               Padding(padding: const EdgeInsets.all(2.0),
@@ -499,16 +583,27 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.red,
                   ),
-                  onPressed: (){
+                  onPressed: ()async{
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const AddPickUpPage();
-                        },
-                      ),
-                    );
+                    await ref.child(widget.phoneNumber).child('user').child("Courier").push().set({
+                      "Receiver_Phone_Number": _phone.text,
+                      "Receiver_Name": _name.text,
+                      "District": dropdownValue_District.toString(),
+                      "Thana": dropdownValue_Thana.toString(),
+                      "Area":dropdownValue_Area.toString(),
+                      "Full_Address": _address.text,
+                      "Courier_Weight": _value.toDouble(),
+                    }).then((value) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const AddPickUpPage();
+                          },
+                        ),
+                      );
+                    });
+
                   },
                   child: const Text('Confirm',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
                 ),

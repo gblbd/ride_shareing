@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  final String fullname;
+  final String email;
+  final String phoneNumber;
+  final String gender;
+  final String dateOfBirth;
+
+  const ProfilePage({Key? key, required this.fullname, required this.email, required this.phoneNumber, required this.gender, required this.dateOfBirth}) : super(key: key);
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -34,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
             ),
             SizedBox(height: 5,),
-            Text('Farha Faeja Emu',
+            Text(widget.fullname,
               style: TextStyle(fontSize: 16),
 
             ),
@@ -49,7 +55,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             SizedBox(height: 5,),
 
-            Text('farhafaija592@gmail.com',
+            Text(widget.email,
               style: TextStyle(fontSize: 16),
 
             ),
@@ -64,7 +70,8 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             SizedBox(height: 5,),
 
-            Text('01778112915',
+            Text(
+              "+880${widget.phoneNumber}",
               style: TextStyle(fontSize: 16),
 
             ),
@@ -85,7 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     SizedBox(height: 5,),
 
-                    Text('Female',
+                    Text(widget.gender,
                       style: TextStyle(fontSize: 16),
 
                     ),
@@ -101,7 +108,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     SizedBox(height: 5,),
 
-                    Text('09-09-1999',
+                    Text(widget.dateOfBirth,
                       style: TextStyle(fontSize: 16),
 
                     ),

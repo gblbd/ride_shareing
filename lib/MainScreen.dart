@@ -6,21 +6,34 @@ import 'Pages/OffersPage/OffersScreen.dart';
 import 'Pages/OrdersPage/OrdersScreen.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+
+
+  final String phoneNumber;
+  final String fullName;
+  final String email;
+  final String gender;
+  final String dateOfBirth;
+  final String pin;
+
+
+
+   MainScreen({super.key, required this.phoneNumber, required this.fullName, required this.email, required this.gender, required this.dateOfBirth, required this.pin,});
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 class _MainScreenState extends State<MainScreen> {
   int _index=0;
-  List<Widget> pages=[
 
-    HomeScreen(),
-    OffersScreen(),
-    OrdersScreen(),
-  ];
   @override
   Widget build(BuildContext context) {
+    List<Widget> pages=[
+
+      HomeScreen(phoneNumber: widget.phoneNumber, fullname: widget.fullName, pin: widget.pin, email: widget.email, gender: widget.gender, dateOfBirth: widget.dateOfBirth,),
+      OffersScreen(),
+      OrdersScreen(),
+    ];
     return Scaffold(
+
       body: pages[_index],
 
       floatingActionButton: Padding(

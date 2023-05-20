@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 import 'TermsAndConditions.dart';
 
@@ -23,6 +24,10 @@ class _SignUpPageState extends State<SignUpPage> {
 
   TextEditingController fullnameContriller=TextEditingController();
   TextEditingController emailAddressController=TextEditingController();
+  TextEditingController phoneNumb=TextEditingController();
+  TextEditingController PIN=TextEditingController();
+
+  bool _isObscure=true;
 
 
   DateTime selectedDate = DateTime.now();
@@ -234,6 +239,83 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
 
+
+Padding(
+  padding: const EdgeInsets.only(left: 16,right: 16),
+  child:   Text('Phone Number',style: TextStyle(
+      fontSize: 18
+  ),),
+),
+
+            Padding(
+              padding: const EdgeInsets.only(left: 16,right: 16,top: 16),
+              child: IntlPhoneField(
+                controller: phoneNumb,
+                decoration: InputDecoration(
+                  //   labelText: 'Phone Number',
+                  hintText: '1XXXXXXXXX',
+                  hintStyle: TextStyle(color: Colors.grey.shade400),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.black12
+                    ),
+                  ),
+                ),
+                initialCountryCode: 'BD',
+                keyboardType: TextInputType.phone,
+                //onChanged: (_) =>_validatePhoneNumber(),
+
+
+                onCountryChanged: (country) {
+                  print('Country changed to: ' + country.name);
+                },
+              ),
+            ),
+
+
+
+
+
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16,vertical: 16),
+              child: TextField(
+
+                controller: PIN,
+                obscureText: _isObscure,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.red.shade900,
+                decoration: InputDecoration(
+                    //prefixIcon: Icon(Icons.vpn_key_sharp,size: 30,color: Colors.grey,),
+                    suffixIcon: IconButton(
+                      icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
+                      onPressed: (){
+                        setState(() {
+                          _isObscure= !_isObscure;
+                        });
+                      },
+                    ),
+                    suffixIconColor: Colors.red.shade700,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4),
+                        borderSide: BorderSide(width: 1,color: Colors.grey)
+
+                    ),
+
+
+                    hintText: "PIN Number",
+
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4),
+                        borderSide: BorderSide(
+                            color: Colors.grey,
+                            width: 1.0
+                        )
+                    )
+                ),
+              ),
+            ),
+
+
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: RichText(text: TextSpan(
@@ -258,13 +340,13 @@ class _SignUpPageState extends State<SignUpPage> {
 
 
 
-                      await ref.child("${widget.phoneNumber}").child("profile").set({
+                      await ref.child("${phoneNumb.text.toString()}").child("profile").set({
                         "full_name": "${fullnameContriller.text.toString()}",
-                        //"last_name": "_lastName",
                         "Date_of_Birth": "${_dob.text.toString()}",
                         "gender": "$GenderType",
                         "email": "${emailAddressController.text.toString()}",
-                        "mobile_no": "${widget.phoneNumber}",
+                        "mobile_no": "${phoneNumb.text.toString()}",
+                        "PIN Number":"${PIN.text.toString()}"
 
 
 

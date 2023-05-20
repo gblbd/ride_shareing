@@ -8,7 +8,11 @@ import 'package:timelines/timelines.dart';
 import 'OrderDetailsPage.dart';
 
 class PathaoCourierPage extends StatefulWidget {
-  const PathaoCourierPage({Key? key}) : super(key: key);
+  final String phoneNumbers;
+  final String pin;
+  final String fullname;
+
+  const PathaoCourierPage({Key? key, required this.phoneNumbers, required this.pin, required this.fullname}) : super(key: key);
 
   @override
   State<PathaoCourierPage> createState() => _PathaoCourierPageState();
@@ -157,7 +161,7 @@ class _PathaoCourierPageState extends State<PathaoCourierPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const OrderDetailsPage();
+                              return OrderDetailsPage(phoneNumber: widget.phoneNumbers,);
                             },
                           ),
                         );
