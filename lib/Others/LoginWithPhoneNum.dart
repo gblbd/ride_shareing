@@ -111,7 +111,7 @@ class _LoginWithPhoneNumState extends State<LoginWithPhoneNum> {
                         });
                       },
                     ),
-                    suffixIconColor: Color(0xFFFCDEDE),
+                    suffixIconColor: Colors.red,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
                         borderSide: BorderSide(width: 1,color: Colors.grey)
@@ -190,7 +190,7 @@ class _LoginWithPhoneNumState extends State<LoginWithPhoneNum> {
                         Fluttertoast.showToast(
                             msg: "No Account found",
                             toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
+                            gravity: ToastGravity.TOP,
                             timeInSecForIosWeb: 1,
                             backgroundColor: Colors.red,
                             textColor: Colors.white,
@@ -224,7 +224,7 @@ class _LoginWithPhoneNumState extends State<LoginWithPhoneNum> {
                   width: 350,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6.0),
-                      color: Colors.red.shade700,
+                      color: Colors.red,
                   ),
                   child: TextButton(
                     onPressed: (){

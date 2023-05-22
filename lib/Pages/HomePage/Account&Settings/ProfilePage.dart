@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'EditProfilePage.dart';
+
 class ProfilePage extends StatefulWidget {
   final String fullname;
   final String email;
@@ -120,7 +122,19 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
       bottomNavigationBar: TextButton(
-        onPressed: (){},
+        onPressed: (){
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return EditProfilePage(phoneNumber: widget.phoneNumber,);
+              },
+            ),
+          );
+
+
+        },
         child: Text('EDIT PROFILE',
           style: TextStyle(fontSize: 18,color: Colors.black),
 

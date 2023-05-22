@@ -322,12 +322,13 @@ Padding(
                   text: "By signing up you are accepting all our Terms and Privacy policy",
                   style: TextStyle(color: Colors.black,fontSize: 17)
               ),
+                textAlign: TextAlign.center,
               ),
             ),
 
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(left: 16,right: 16),
+                padding: const EdgeInsets.only(left: 16,right: 16,bottom: 8.0),
                 child: Container(
                   height: 50,
                   width: 350,
