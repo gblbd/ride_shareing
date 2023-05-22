@@ -202,7 +202,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Image.asset('assets/images/motor_bike.png',height: 58,),
+                                  Icon(Icons.directions_bike,
+                                  size: 60,
+                                  ),
+                                  //Image.asset('assets/images/motor_bike.png',height: 58,),
                                   const Text('Bike',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black),)
                                 ],
                               ),
@@ -229,7 +232,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Image.asset('assets/images/Carr.png',height: 58,),
+                                  Icon(Icons.airport_shuttle,
+                                    size: 60,
+                                  ),
+                                 // Image.asset('assets/images/Carr.png',height: 58,),
                                   const Text('Car',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black))
                                 ],
                               ),
@@ -262,8 +268,182 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Image.asset('assets/images/CourierIcon.png',height: 58,),
+
+                                  Icon(Icons.local_shipping,
+
+                                    size: 60,
+
+                                  ),
+                                  //Image.asset('assets/images/CourierIcon.png',height: 58,),
                                   Text('Courier',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black),)
+                                ],
+                              ),
+
+                            ),
+                          ),
+
+
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+
+                    // Container(
+                    //   height: 50,width: 200,
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(6),
+                    //
+                    //   ),
+                    //   child: Image.asset("assets/images/My_Road_Logo.png",fit: BoxFit.cover,),
+                    // ),
+
+
+
+
+
+
+
+                    // TextButton(
+                    //   style: TextButton.styleFrom(
+                    //   //backgroundColor: Color(0xFFA7B4F6),
+                    //   backgroundColor: Colors.red.shade100,
+                    // ),
+                    //   onPressed: () {
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //         builder: (context) {
+                    //           return PaymentsAllView();
+                    //         },
+                    //       ),
+                    //     );
+                    //   },
+                    //
+                    //
+                    //   child: Container(
+                    //     height: 40,
+                    //     child: Row(
+                    //       children:  [
+                    //         Image.asset("assets/images/My_Road_Logo.png",height: 50,width: 60,),
+                    //         Text('Payments All',style: TextStyle(
+                    //           color: Colors.white,
+                    //           fontStyle: FontStyle.italic
+                    //         ),
+                    //         ),
+                    //         Spacer(),
+                    //         Text('Pay Smarter, Pay Later >',style: TextStyle(
+                    //             color: Colors.white),)
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
+                    SizedBox(height: 8,),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Row(
+                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.all(3),
+                            height: 100,width: 104,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey.shade200,width: 1),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: TextButton(
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return BikePageView(SearchDestination: '',);
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.airplane_ticket,
+
+                                    size: 60,
+
+                                  ),
+                                 // Image.asset('assets/images/motor_bike.png',height: 58,),
+                                  const Text('Air Ticket',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black),)
+                                ],
+                              ),
+
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.all(3),
+                            height: 100,width: 104,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey.shade200,width: 1),
+                              borderRadius: BorderRadius.circular(10.0),),
+                            child: TextButton(
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return CarPageView();
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.hotel,
+                                    size: 60,
+                                  ),
+                                  //Image.asset('assets/images/Carr.png',height: 58,),
+                                  const Text('Hotel Booking',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black))
+                                ],
+                              ),
+
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.all(3),
+                            height: 100,width: 104,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey.shade200,width: 1),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: TextButton(
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return PathaoCourierPage(
+                                        phoneNumbers: widget.phoneNumber,
+                                        pin: widget.pin,
+                                        fullname: widget.fullname,
+                                      );
+                                    },
+                                  ),
+                                );
+
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.fastfood,
+                                    size: 60,
+                                  ),
+                                  //Image.asset('assets/images/CourierIcon.png',height: 58,),
+                                  Text('Food',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black),)
                                 ],
                               ),
 

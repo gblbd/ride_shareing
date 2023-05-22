@@ -156,7 +156,9 @@ bool Expand=false;
   Widget build(BuildContext context) {
     _panelHeightOpen = MediaQuery.of(context).size.height * .99;
 
-    return Scaffold(
+    return
+
+      Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
@@ -291,6 +293,8 @@ bool Expand=false;
                   ),
 
 
+
+                  ////////////////////////////////////////////////////////////
 
 
 
@@ -599,6 +603,10 @@ bool Expand=false;
               ),
             ),
           ),
+
+
+
+
           SlidingUpPanel(
             controller: panelController,
             maxHeight: _panelHeightOpen,
@@ -728,6 +736,9 @@ bool Expand=false;
                           );
                         });
                   },
+
+
+
                   child: Row(
                     children: [
                       CircleAvatar(
