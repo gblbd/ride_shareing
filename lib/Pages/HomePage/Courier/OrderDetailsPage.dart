@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'AddPickUpPage.dart';
 import 'GetQuotationPageView.dart';
+import 'OrderConfirmationHomePickup.dart';
 import 'SelectCityList.dart';
 import 'SelectZoneList.dart';
 
@@ -501,7 +502,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return const AddPickUpPage();
+                            return OrderConfirmation();//const AddPickUpPage();
                           },
                         ),
                       );
