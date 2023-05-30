@@ -33,10 +33,13 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
   List<String> list_District = <String>['Select District','Barguna','Barishal','Bhola','Jhalokati','Patuakhali','Pirojpur','Bandarban','Brahmanbaria','Chandpur','Chattogram','Cumilla',"Cox's Bazar",'Fenni','Khagrachhari','Lakshmipur','Noakhali','Rangamati','Dhaka','Faridpur','Gazipur','Gopalganj','Kishoreganj','Madaripur','Manikganj','Munshiganj','Narayanganj','Narsingdi','Rajbari','Shariatpur','Tangail','Bagerhat','Chuadanga','Jashore','Jhenaidah','Khulna','Kushtia','Magura','Meherpur','Narail','Jamalpur','Mymensingh','Natore',];
   String dropdownValue_District = 'Select District' ;
 
-  List<String> list_Thana = <String>['Select Thana','Adabar','Badda','Bangsal','Bimanbandar','Cantonment','Chowkbazar','Darus Salam','Demra','Dhakshinkhan','Dhanmondi','Gendaria',"Gulshan",'Hazaribag','Jatrabari','Kadamtali','Kafrul','Kalabagan','Kamrangirchar','Khilgon','Khilkhet','Kotwali','Lalbagh','Mirpur','Mohammadpur','New Market','Pallabi','Rampura','Uttar Khan',];
-  String dropdownValue_Thana = 'Select Thana';
-  List<String> list_Area = <String>['Select Area','Adarsha Para','Atipara','Balur Math','Chamurkhan','Chanpara','Chapan','Dobadiya','Helal Market','Jamtola','Jiyabagh','Kalabagan',"Kanchkura",'Kuripara','Madarbari','Maosaid','Master Para','Mazar Chowrasta','Moinar Tek','Munda','Termukh','UttarKhan',];
-  String dropdownValue_Area = 'Select Area';
+  List<String> list_Thana = <String>['Select Thana/locality','Adabar','Badda','Bangsal','Bimanbandar','Cantonment','Chowkbazar','Darus Salam','Demra','Dhakshinkhan','Dhanmondi','Gendaria',"Gulshan",'Hazaribag','Jatrabari','Kadamtali','Kafrul','Kalabagan','Kamrangirchar','Khilgon','Khilkhet','Kotwali','Lalbagh','Mirpur','Mohammadpur','New Market','Pallabi','Rampura','Uttar Khan',];
+  String dropdownValue_Thana = 'Select Thana/locality';
+  List<String> list_Area = <String>['Select Country','Bangladesh', 'India','Pakistan','Iran','Egypt',
+    'Singapore','Myanmar','Philipine','Thailand','China','Japan','South Korea','North Korea','Uganda',
+    'Russia',"Italy",'Germany','Canada','Peru','Bolivia','Mexico',
+    'Australia','Austria','UKrain','Finland',];
+  String dropdownValue_Area = 'Select Country';
 
 
   FirebaseDatabase database = FirebaseDatabase.instance;
@@ -195,10 +198,10 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             const Text('    Delivery Address*',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Row(
+              child: Column(
                 children: [
                   Container(
-                    height: 58,width: 160,
+                    height: 58,//width: 160,
                     //margin: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey,width: 1),
@@ -298,9 +301,15 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     ),
 
                   ),
-                  Spacer(),
+
+
+
+
+
+
+
                   Container(
-                    height: 58,width: 160,
+                    height: 58,//width: 160,
                     //margin: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey,width: 1),
