@@ -47,11 +47,75 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
  //    DatabaseReference courierRef=rf.child('profile').child(userId).child('user').child('courier').push();
  //  }
 
+  String _selectedItem ='Percel';
 
+  List<DropdownMenuItem<String>> _dropdownItems = [
+    // DropdownMenuItem(
+    //   value: 'item1',
+    //   child: Row(
+    //     children: [
+    //       Icon(Icons.add_circle_outline_sharp,color: Colors.red,size: 14,),
+    //       SizedBox(width: 8.0),
+    //       Text('Select Courier Type'),
+    //     ],
+    //   ),
+    // ),
+    DropdownMenuItem(
+      value: 'Percel',
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleAvatar(child: Icon(Icons.shopping_bag_sharp,color: Colors.white,size: 12,),
+            backgroundColor: Colors.orange,
+            radius: 12,
+          ),
+          SizedBox(width: 8.0),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Percel'),
+              Text('Non-perishable goods, no fragile, no food items',
+                style: TextStyle(fontSize: 10),
+
+              ),
+              Divider(thickness: 1,color: Colors.grey,),
+            ],
+          ),
+        ],
+      ),
+    ),
+    DropdownMenuItem(
+      value: 'Document',
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleAvatar(
+              child: Icon(Icons.library_books_sharp,color: Colors.white,size: 10,),
+            backgroundColor: Colors.green.shade900,
+
+            radius: 12,
+          ),
+          SizedBox(width: 8.0),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+
+            children: [
+              Text('Document'),
+              Text('No passport or bank cheques',
+              style: TextStyle(fontSize: 10),
+              ),
+
+            ],
+          ),
+        ],
+      ),
+    ),
+  ];
 
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -71,7 +135,8 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const GetQuotationPageView();
+                        return GetQuotationPageView(phoneNumber: widget.phoneNumber, 
+                          receiverPhoneNum: _phone.text.toString(),);
                       },
                     ),
                   );
@@ -273,24 +338,6 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                           ),
                         ),
                       ),
-                      // TextField(
-                      //   controller: _zone,
-                      //   cursorColor: Colors.red.shade900,
-                      //   decoration: InputDecoration(
-                      //       border: InputBorder.none,
-                      //       hintText: 'Enter Thana*',
-                      //       hintStyle: TextStyle(fontSize: 17,color: Colors.grey)
-                      //   ),
-                      //   onTap: (){
-                      //     Navigator.push(
-                      //         context,
-                      //         MaterialPageRoute(builder: (context) {
-                      //           return const SelectZoneList();
-                      //         })
-                      //     );
-                      //   },
-                      //   readOnly: true,
-                      // ),
                     ),
 
                   ),
@@ -390,191 +437,33 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
               ],
             ),
             const Divider(thickness: 1,indent: 6,endIndent: 10,),
-            TextButton(
-                onPressed: (){
-                  showModalBottomSheet(
-                    isScrollControlled: false,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
-                    isDismissible: false,
-                    enableDrag: false,
-                    context: context,
-                    builder: (BuildContext context)
-                    {
-                      return Padding(
-                        padding: EdgeInsets.only(
-                          left: 6,
-                          top: 10,
-                          bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,
-                        ),
-                        child: Container(
-                          height: 230,
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                               Padding(padding: const EdgeInsets.all(2.0),
-                               child: Row(
-                                 children: [
-                                   const Text('Select Courier Type',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 22),),Spacer(),
-                                   TextButton(
-                                       onPressed: (){
-                                         Navigator.pop(context);
-                                       },
-                                       child: const Icon(Icons.close,color: Colors.black,)),
-                                 ],
-                               ),
-                               ),
-                                TextButton(onPressed: () {
-                                  showModalBottomSheet(
 
-                                    isScrollControlled: true,
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
-                                      context: context,
-                                    builder: (BuildContext context){
-                                      return Padding(
-                                          padding: EdgeInsets.only(
-                                            left: 6,
-                                            top: 10,
-                                            bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,
-                                          ),
-                                        child: Container(
-                                          height: 300,
-                                          child: Column(
-                                            children: [
-                                              Padding(padding: const EdgeInsets.all(2.0),
-                                                child: Row(
-                                                  children: [
-                                                    const Text('   Item Type',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 22),),Spacer(),
-                                                    TextButton(
-                                                        onPressed: (){
-                                                          Navigator.pop(context);
-
-                                                          // Navigator.push(
-                                                          //   context,
-                                                          //   MaterialPageRoute(
-                                                          //     builder: (context) {
-                                                          //       return const OrderDetailsPage();
-                                                          //     },
-                                                          //   ),
-                                                          // );
-                                                        },
-                                                        child: const Icon(Icons.close,color: Colors.black,)),
-                                                  ],
-                                                ),
-                                              ),
-                                               Padding(
-                                                   padding: EdgeInsets.all(8.0),
-                                               child: TextButton(
-                                                 onPressed: (){},
-                                                 child: Container(
-                                                   height: 60,
-                                                   //width: 320,
-                                                   decoration: BoxDecoration(
-                                                     border: Border.all(color: Colors.grey.shade400,width: 1.2),
-                                                     borderRadius: BorderRadius.circular(5.0),
-                                                   ),
-                                                   child: Row(
-                                                     children: [
-                                                       Column(
-                                                         crossAxisAlignment: CrossAxisAlignment.start,
-                                                         children: [
-                                                           SizedBox(height: 9,),
-                                                           Text('  Item Type',style: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.normal),),
-                                                           Text('  Parcel',style: TextStyle(fontSize: 17,color: Colors.black,fontWeight: FontWeight.normal),),
-                                                         ],
-                                                       ),
-                                                       Spacer(),
-                                                       Icon(Icons.arrow_forward_ios,size: 10,color: Colors.grey.shade600,),
-                                                       SizedBox(width: 10,)
-                                                     ],
-                                                   ),
-                                                 ),
-                                               ),
-                                               ),
-                                              Padding(padding: EdgeInsets.all(16.0),
-                                              child: TextField(
-                                                  cursorColor: Colors.red,
-                                                  decoration: const InputDecoration(
-                                                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 1.0),),
-                                                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 1.0),),
-                                                    labelText: 'Items Value(Optional)',
-                                                    labelStyle: TextStyle(fontSize: 15,fontWeight: FontWeight.normal, color: Colors.grey
-                                                    ),
-                                                  ),
-                                                  controller: _itemsValue,
-                                                  onSubmitted: (String value) {
-                                                    debugPrint(value);
-                                                  },
-                                              ),
-                                              ),
-                                              Center(
-                                                child: SizedBox(height: 50,width: 320,
-                                                  child: ElevatedButton(
-                                                    style: ElevatedButton.styleFrom(
-                                                      primary: Colors.red,
-                                                    ),
-                                                    onPressed: (){},
-                                                    child: const Text('Confirm',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
-                                                  ),
-                                                ),
-                                              ),
-
-                                            ],
-                                          ),
-                                        ),
-                                      );
-
-                                    },
-                                  );
-                                },
-                                  child: ListTile(
-                                    leading: CircleAvatar(
-                                      radius: 15,
-                                      backgroundColor: Colors.orange.shade800,
-                                        child: const Icon(Icons.shopping_bag,size: 18,color: Colors.white,),
-                                    ),
-                                    title: const Text('Parcel',
-                                      style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,),
-                                    ),
-                                    subtitle: const Text('Non-perishable goods, no fragile,no food items',
-                                      style: TextStyle(fontWeight: FontWeight.normal,fontSize: 12,),
-                                    ),
-                                    trailing: Icon(Icons.arrow_forward_ios,color: Colors.grey.shade800,size: 16,),
-                                  ),
-                                ),
-                                const Divider(indent: 6,endIndent: 10,),
-                                TextButton(onPressed: () {  },
-                                  child: ListTile(
-                                    leading: CircleAvatar(
-                                      radius: 15,
-                                      backgroundColor: Colors.green.shade800,
-                                      child: const Icon(Icons.my_library_books_sharp,size: 18,color: Colors.white,),
-                                    ),
-                                    title: const Text('Document',
-                                      style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,),
-                                    ),
-                                    subtitle: const Text('No passport or bank cheques',
-                                      style: TextStyle(fontWeight: FontWeight.normal,fontSize: 12,),
-                                    ),
-                                    trailing: Icon(Icons.arrow_forward_ios,color: Colors.grey.shade800,size: 16,),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-                child: Row(
-                  children: const [
-                    SizedBox(width: 7,),
-                    Icon(Icons.add_circle_outline_sharp,size: 18,color: Colors.red,),SizedBox(width: 9,),
-                    Text('Select Courier Type',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 12,color: Colors.black)),Spacer(),
-                    Text('Change Item Type',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 12,color: Colors.red)),SizedBox(width: 9,),
-                  ],
+        Container(
+          width: 380,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16.0,right: 16.0,top: 12),
+            child: DropdownButtonHideUnderline(
+              child: ButtonTheme(
+                alignedDropdown: false,
+                child: DropdownButton<String>(
+                  iconDisabledColor: Colors.transparent,
+                  value: _selectedItem,
+                  items: _dropdownItems,
+                  onChanged: (String? selectedItem) {
+                    setState(() {
+                      _selectedItem = selectedItem!;
+                    });
+                  },
+                  hint: Text('Select an item'),
                 ),
+              ),
             ),
+          ),
+        ),
+
+
+
+
             const Divider(thickness: 1,indent: 8,endIndent: 9,),
             const SizedBox(height: 8,),
             Center(
@@ -585,7 +474,11 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   ),
                   onPressed: ()async{
 
-                    await ref.child(widget.phoneNumber).child('user').child("Courier").push().set({
+
+                    DatabaseReference rf= ref.child(widget.phoneNumber).child("user").child("Courier").push();
+                    DatabaseReference orderRef=ref.child(widget.phoneNumber).child("user").child("Courier").child(_phone.text.toString());
+
+                    await orderRef.update({
                       "Receiver_Phone_Number": _phone.text,
                       "Receiver_Name": _name.text,
                       "District": dropdownValue_District.toString(),
@@ -593,6 +486,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                       "Area":dropdownValue_Area.toString(),
                       "Full_Address": _address.text,
                       "Courier_Weight": _value.toDouble(),
+                      "Courier_Type":_selectedItem.toString(),
                     }).then((value) {
                       Navigator.push(
                         context,

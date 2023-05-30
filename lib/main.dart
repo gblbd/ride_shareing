@@ -13,13 +13,13 @@ import 'MainScreen.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    // options: FirebaseOptions(
-    //     apiKey: 'AIzaSyCF0LZO-fTg0fCatsPWqVBw_FW78nm6EAA',
-    //     appId: '1:1040697300790:android:e0e5aef459aba10b4b8597',
-    //     messagingSenderId: 'messagingSenderId',
-    //     projectId: 'my-road-2',
-    //     databaseURL: 'https://my-road-2-default-rtdb.asia-southeast1.firebasedatabase.app'
-    // )
+    options: FirebaseOptions(
+        apiKey: 'AIzaSyB4SGuMQqzQ64tod8zKEzMl1jd2VtJDr7g',
+        appId: '1:1040697300790:android:e0e5aef459aba10b4b8597',
+        messagingSenderId: 'messagingSenderId',
+        projectId: 'my-road-2',
+        databaseURL: 'https://my-road-2-default-rtdb.asia-southeast1.firebasedatabase.app'
+    )
   );
 
 
