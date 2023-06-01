@@ -1,8 +1,36 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:ride_sharing/Pages/HomePage/Courier/pickupRequestPage.dart';
 
 class OrderConfirmation extends StatelessWidget {
-  const OrderConfirmation({Key? key}) : super(key: key);
+
+  final String receiversPhoneNo;
+  final String receiversName;
+  final String district;
+  final String thana;
+  final String country;
+  final String fullAddress;
+  final double courierWaight;
+  final String courierType;
+
+  final String senderPhoneNumber;
+  final String SenderName;
+  final String SendrDistrict;
+  final String SenderThana;
+  final String SenderfullAddress;
+
+
+   OrderConfirmation({super.key, required this.receiversPhoneNo, required this.receiversName, required this.district, required this.thana, required this.country, required this.fullAddress, required this.courierWaight, required this.courierType, required this.senderPhoneNumber, required this.SenderName, required this.SendrDistrict, required this.SenderThana, required this.SenderfullAddress});
+
+
+  FirebaseDatabase database = FirebaseDatabase.instance;
+  DatabaseReference ref = FirebaseDatabase.instance.ref("User_profile");
+
+  // const OrderConfirmation({super.key, required this.receiversPhoneNo, required this.receiversName, required this.district, required this.thana, required this.country, required this.fullAddress, required this.courierWaight, required this.courierType});
+
+
+
+  //const OrderConfirmation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,15 +79,15 @@ class OrderConfirmation extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60,bottom: 6),
-                    child: Text('Farha Faeja Emu',style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500),),
+                    child: Text('${SenderName}',style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500),),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60,bottom: 6),
-                    child: Text('29, Shah Magdum Avenue, Sector 12',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
+                    child: Text('${SenderfullAddress}',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60,bottom: 10),
-                    child: Text('01771393745',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
+                    child: Text('${senderPhoneNumber}',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
                   ),
                   Divider(thickness: 9,color: Colors.blueGrey.shade50,),
                 ],
@@ -88,7 +116,7 @@ class OrderConfirmation extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 60,bottom: 6,right: 30),
                     child: Row(
                       children: [
-                        Text('Farha',style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500),),
+                        Text('${receiversName}',style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500),),
                         Spacer(),
                         GestureDetector(
                             onTap: (){},
@@ -98,11 +126,11 @@ class OrderConfirmation extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60,bottom: 6),
-                    child: Text('Uttara, Sector 9, Road 7',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
+                    child: Text('${fullAddress}',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60,bottom: 10),
-                    child: Text('01790151245',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
+                    child: Text('${receiversPhoneNo}',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
                   ),
                   Divider(thickness: 9,color: Colors.blueGrey.shade50,),
                 ],
@@ -131,7 +159,7 @@ class OrderConfirmation extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 60,bottom: 6,right: 30),
                     child: Row(
                       children: [
-                        Text('1.5 Kg',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
+                        Text('${courierWaight} Kg',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
                         Spacer(),
                         GestureDetector(
                             onTap: (){},
@@ -280,12 +308,45 @@ class OrderConfirmation extends StatelessWidget {
                                     primary: Colors.red.shade600,
                                   ),
                                   onPressed: () async{
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) {
-                                          return PickupRequestPage();
-                                        })
-                                    );
+
+
+                                    DatabaseReference rf= ref.child(senderPhoneNumber).child("user").child("Courier").push();
+                                    //DatabaseReference orderRef=ref.child(widget.phoneNumber).child("user").child("Courier").child(_phone.text.toString());
+
+                                    await rf.set({
+                                      "Receiver_Phone_Number": "${receiversPhoneNo}",
+                                      "Receiver_Name": "${receiversName}",
+                                      "District": "${district}",
+                                      "Thana": "${thana}",
+                                      "country":"${country}",
+                                      "Full_Address": "${fullAddress}",
+                                      "Courier_Weight": courierWaight,
+                                      "Courier_Type":"${courierType}",
+                                    }).then((value){
+
+                                      //senderPostRef.key.toString()
+
+
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) {
+                                            return PickupRequestPage(
+                                              ID: rf.key.toString(),
+                                            );
+                                          })
+                                      );
+
+
+
+                                    });
+
+
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(builder: (context) {
+                                    //       return PickupRequestPage();
+                                    //     })
+                                    // );
 
                                   },
                                   child: Text('I Understand',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),

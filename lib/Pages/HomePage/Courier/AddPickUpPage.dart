@@ -286,11 +286,13 @@ class _AddPickUpPageState extends State<AddPickUpPage> {
                                             children: [
                                               GestureDetector(
                                                 onTap: (){
-                                                  Navigator.push(context,
-                                                      MaterialPageRoute(builder: (context) {
-                                                        return OrderConfirmation();
-                                                      })
-                                                  );
+                                                  // Navigator.push(context,
+                                                  //     MaterialPageRoute(builder: (context) {
+                                                  //       return OrderConfirmation(
+                                                  //
+                                                  //       );
+                                                  //     })
+                                                  //);
 
                                                   // showModalBottomSheet(
                                                   //     isScrollControlled: false,

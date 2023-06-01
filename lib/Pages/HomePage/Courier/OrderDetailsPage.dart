@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ride_sharing/Pages/HomePage/Courier/pickup_point_manual.dart';
 
 import 'AddPickUpPage.dart';
 import 'GetQuotationPageView.dart';
@@ -18,9 +19,9 @@ class OrderDetailsPage extends StatefulWidget {
 }
 
 class _OrderDetailsPageState extends State<OrderDetailsPage> {
-  static final _phone =TextEditingController();
-  static final _name =TextEditingController();
-  static final _address =TextEditingController();
+  TextEditingController _phone =TextEditingController();
+  TextEditingController _name =TextEditingController();
+  TextEditingController _address =TextEditingController();
   static final _area =TextEditingController();
   static final _zone =TextEditingController();
   static final _city =TextEditingController();
@@ -177,6 +178,10 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 },
               ),
             ),
+
+
+
+
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
@@ -197,6 +202,9 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             Divider(color: Colors.blueGrey.shade50,thickness: 4,),
             const SizedBox(height: 5,),
             const Text('    Delivery Address*',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
+
+
+
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -416,6 +424,10 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 },
               ),
             ),
+
+
+
+
             Divider(color: Colors.blueGrey.shade50,thickness: 4,),
             const SizedBox(height: 5,),
             const Text('    Courier Weight',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
@@ -485,28 +497,44 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   onPressed: ()async{
 
 
-                    DatabaseReference rf= ref.child(widget.phoneNumber).child("user").child("Courier").push();
-                    DatabaseReference orderRef=ref.child(widget.phoneNumber).child("user").child("Courier").child(_phone.text.toString());
+                    // DatabaseReference rf= ref.child(widget.phoneNumber).child("user").child("Courier").push();
+                    // DatabaseReference orderRef=ref.child(widget.phoneNumber).child("user").child("Courier").child(_phone.text.toString());
+                    //
+                    // await orderRef.update({
+                    //   "Receiver_Phone_Number": _phone.text,
+                    //   "Receiver_Name": _name.text,
+                    //   "District": dropdownValue_District.toString(),
+                    //   "Thana": dropdownValue_Thana.toString(),
+                    //   "Area":dropdownValue_Area.toString(),
+                    //   "Full_Address": _address.text,
+                    //   "Courier_Weight": _value.toDouble(),
+                    //   "Courier_Type":_selectedItem.toString(),
+                    // }).then((value) {
+                    //
 
-                    await orderRef.update({
-                      "Receiver_Phone_Number": _phone.text,
-                      "Receiver_Name": _name.text,
-                      "District": dropdownValue_District.toString(),
-                      "Thana": dropdownValue_Thana.toString(),
-                      "Area":dropdownValue_Area.toString(),
-                      "Full_Address": _address.text,
-                      "Courier_Weight": _value.toDouble(),
-                      "Courier_Type":_selectedItem.toString(),
-                    }).then((value) {
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return OrderConfirmation();//const AddPickUpPage();
+                            return PickUpPointManual(
+                              receiversPhoneNo: _phone.text,
+                              receiversName: _name.text,
+                              district: dropdownValue_District.toString(),
+                              thana: dropdownValue_Thana.toString(),
+                              country: dropdownValue_Area.toString(),
+                              fullAddress: _address.text,
+                              courierWaight: _value.toDouble(),
+                              courierType: _selectedItem.toString(),
+                            );//const AddPickUpPage();
                           },
                         ),
                       );
-                    });
+
+
+
+
+                   // });
 
                   },
                   child: const Text('Confirm',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),

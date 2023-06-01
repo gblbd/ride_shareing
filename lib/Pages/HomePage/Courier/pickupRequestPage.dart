@@ -3,7 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:ride_sharing/Pages/HomePage/Courier/couriar_status.dart';
 
 class PickupRequestPage extends StatefulWidget {
-  const PickupRequestPage({Key? key}) : super(key: key);
+
+
+  final String ID;
+
+  const PickupRequestPage({super.key, required this.ID});
+
+
+
+  //const PickupRequestPage({Key? key}) : super(key: key);
 
   @override
   State<PickupRequestPage> createState() => _PickupRequestPageState();
@@ -135,7 +143,7 @@ class _PickupRequestPageState extends State<PickupRequestPage> {
                   padding: const EdgeInsets.only(top: 8,left: 16,right: 16,bottom: 8),
                   child: Row(
                     children: [
-                      Text('DC100423PA3UVN',style: TextStyle(color: Colors.black,fontSize: 18)),
+                      Text('${widget.ID}',style: TextStyle(color: Colors.black,fontSize: 18)),
                       Spacer(),
                       InkWell(
                           onTap: (){},
