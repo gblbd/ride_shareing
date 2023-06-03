@@ -10,13 +10,29 @@ import 'package:timelines/timelines.dart';
 class CourierStatus extends StatelessWidget
 {
 
+  final String senderName;
+  final String SenderPhoneNumber;
+  final String senderAddress;
+  final String Receivername;
+  final String ReceiverPhoneNumber;
+  final String ReceiverAddress;
+  final double ParcelWaight;
+  final String ID;
+  final int CourierStat;
+
+
+
+
   List<String> _processes=['Send Request','Package received','Sorting','Depart from sender area','Arrived in receivers area','sorting','Ready to collect'];
 
-  int complete=2;
+  int complete=0;
+
+   CourierStatus({super.key, required this.senderName, required this.SenderPhoneNumber, required this.senderAddress, required this.Receivername, required this.ReceiverPhoneNumber, required this.ReceiverAddress, required this.ParcelWaight, required this.ID, required this.CourierStat});
 
 
   @override
   Widget build(BuildContext context) {
+    complete=CourierStat;
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
@@ -29,7 +45,7 @@ class CourierStatus extends StatelessWidget
 
               ListTile(
                 title: Text("Order ID : "),
-                subtitle: Text("DC100423PA3UVN"),
+                subtitle: Text("${ID}"),
               ),
 
 
@@ -38,8 +54,8 @@ class CourierStatus extends StatelessWidget
                     children: [
                       Text("Sender :"),
                       ListTile(
-                        title: Text("Farha Faeja Emu"),
-                        subtitle: Text("29 Shah mokhdum avenue, Uttara, Dhaka\n01771393745"),
+                        title: Text("${senderName}"),
+                        subtitle: Text("${senderAddress}\n${SenderPhoneNumber}"),
                       ),
 
 
@@ -53,8 +69,8 @@ class CourierStatus extends StatelessWidget
 
                     Text("Receiver :"),
                     ListTile(
-                      title: Text("Farha"),
-                      subtitle: Text("Road 7, Sector 9, Uttara, Dhaka\n01771393745"),
+                      title: Text("${Receivername}"),
+                      subtitle: Text("${ReceiverAddress}\n${ReceiverPhoneNumber}"),
                     ),
 
 

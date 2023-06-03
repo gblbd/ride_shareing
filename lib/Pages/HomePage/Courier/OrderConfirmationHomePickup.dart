@@ -332,6 +332,13 @@ class OrderConfirmation extends StatelessWidget {
                                           MaterialPageRoute(builder: (context) {
                                             return PickupRequestPage(
                                               ID: rf.key.toString(),
+                                              SenderPhoneNumber: senderPhoneNumber,
+                                              Sendername: SenderName,
+                                              SenderAddress: SenderfullAddress,
+                                              ReceiverName: receiversName,
+                                              ReceiverPhoneNumber: receiversPhoneNo,
+                                              ReceiversAddress: fullAddress,
+                                              ParcelWaight: courierWaight,
                                             );
                                           })
                                       );

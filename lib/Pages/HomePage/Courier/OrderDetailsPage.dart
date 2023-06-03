@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ride_sharing/Pages/HomePage/Courier/pickup_point_manual.dart';
+import 'package:sizer/sizer.dart';
 
 import 'AddPickUpPage.dart';
 import 'GetQuotationPageView.dart';
@@ -11,8 +12,10 @@ import 'SelectZoneList.dart';
 
 class OrderDetailsPage extends StatefulWidget {
   final String phoneNumber;
+  final String senderName;
 
-  const OrderDetailsPage({Key? key, required this.phoneNumber}) : super(key: key);
+
+  const OrderDetailsPage({Key? key, required this.phoneNumber, required this.senderName}) : super(key: key);
 
   @override
   State<OrderDetailsPage> createState() => _OrderDetailsPageState();
@@ -132,30 +135,36 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 60,
-              child: TextButton(
-                onPressed: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return GetQuotationPageView(phoneNumber: widget.phoneNumber, 
-                          receiverPhoneNum: _phone.text.toString(),);
-                      },
-                    ),
-                  );
-                },
-                child: ListTile(
-                  leading: CircleAvatar(
-                      backgroundColor: Colors.blueGrey.shade50,
-                      child: const Icon(Icons.point_of_sale, size: 20,color: Colors.red,)
-                  ),
-                  title: const Text('Get Quotation'),
-                  trailing: const Icon(Icons.arrow_forward_ios_sharp,size: 14,),
-                ),
-              ),
-            ),
+
+
+            // Container(
+            //   height: 60,
+            //   child: TextButton(
+            //     onPressed: (){
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) {
+            //             return GetQuotationPageView(phoneNumber: widget.phoneNumber,
+            //               receiverPhoneNum: _phone.text.toString(),);
+            //           },
+            //         ),
+            //       );
+            //     },
+            //     child: ListTile(
+            //       leading: CircleAvatar(
+            //           backgroundColor: Colors.blueGrey.shade50,
+            //           child: const Icon(Icons.point_of_sale, size: 20,color: Colors.red,)
+            //       ),
+            //       title: const Text('Get Quotation'),
+            //       trailing: const Icon(Icons.arrow_forward_ios_sharp,size: 14,),
+            //     ),
+            //   ),
+            // ),
+            //
+
+
+
             Divider(color: Colors.blueGrey.shade50,thickness: 4,),
             const SizedBox(height: 5,),
             const Text('    Receiver Details',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
@@ -210,7 +219,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
               child: Column(
                 children: [
                   Container(
-                    height: 58,//width: 160,
+                    height: 58,width: 90.w,
                     //margin: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey,width: 1),
@@ -313,12 +322,15 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
 
 
 
+                  SizedBox(
+                    height: 20,
+                  ),
 
 
 
 
                   Container(
-                    height: 58,//width: 160,
+                    height: 58,width: 90.w,
                     //margin: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey,width: 1),
@@ -364,7 +376,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             ),
             Container(
               height: 58,
-              width: 420,
+              width: 90.w,
               margin: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey,width: 1),
@@ -526,6 +538,9 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                               fullAddress: _address.text,
                               courierWaight: _value.toDouble(),
                               courierType: _selectedItem.toString(),
+
+                              senderName: widget.senderName,
+                              senderPhoneNumber: widget.phoneNumber,
                             );//const AddPickUpPage();
                           },
                         ),

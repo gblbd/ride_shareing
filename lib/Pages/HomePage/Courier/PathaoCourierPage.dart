@@ -161,7 +161,11 @@ class _PathaoCourierPageState extends State<PathaoCourierPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return OrderDetailsPage(phoneNumber: widget.phoneNumbers,);
+                              return OrderDetailsPage(
+                                phoneNumber: widget.phoneNumbers,
+                                senderName: widget.fullname,
+
+                              );
                             },
                           ),
                         );

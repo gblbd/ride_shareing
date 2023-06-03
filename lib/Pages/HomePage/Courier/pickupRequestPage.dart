@@ -7,7 +7,16 @@ class PickupRequestPage extends StatefulWidget {
 
   final String ID;
 
-  const PickupRequestPage({super.key, required this.ID});
+  final String SenderPhoneNumber;
+  final String SenderAddress;
+  final String Sendername;
+  final String ReceiverName;
+  final String ReceiverPhoneNumber;
+  final String ReceiversAddress;
+  final double ParcelWaight;
+
+
+  const PickupRequestPage({super.key, required this.ID, required this.SenderPhoneNumber, required this.SenderAddress, required this.Sendername, required this.ReceiverName, required this.ReceiverPhoneNumber, required this.ReceiversAddress, required this.ParcelWaight});
 
 
 
@@ -175,15 +184,15 @@ class _PickupRequestPageState extends State<PickupRequestPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60,bottom: 6),
-                    child: Text('Farha Faeja Emu',style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500),),
+                    child: Text('${widget.Sendername}',style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500),),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60,bottom: 6),
-                    child: Text('29, Shah Magdum Avenue, Sector 12',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
+                    child: Text('${widget.SenderAddress}',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60,bottom: 10),
-                    child: Text('01771393745',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
+                    child: Text('${widget.SenderPhoneNumber}',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
                   ),
                   Divider(thickness: 9,color: Colors.blueGrey.shade50,),
                 ],
@@ -210,15 +219,15 @@ class _PickupRequestPageState extends State<PickupRequestPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60,bottom: 6,right: 30),
-                    child: Text('Farha',style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500),),
+                    child: Text('${widget.ReceiverName}',style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500),),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60,bottom: 6),
-                    child: Text('Uttara, Sector 9, Road 7',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
+                    child: Text('${widget.ReceiversAddress}',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60,bottom: 10),
-                    child: Text('01790151245',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
+                    child: Text('${widget.ReceiverPhoneNumber}',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
                   ),
                   Divider(thickness: 9,color: Colors.blueGrey.shade50,),
                 ],
@@ -245,7 +254,7 @@ class _PickupRequestPageState extends State<PickupRequestPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60,bottom: 6,right: 30),
-                    child: Text('1.5 Kg',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
+                    child: Text('${widget.ParcelWaight}',style: TextStyle(color: Colors.grey.shade600,fontSize: 13),),
                   ),
 
                   Divider(thickness: 9,color: Colors.blueGrey.shade50,),
@@ -261,130 +270,141 @@ class _PickupRequestPageState extends State<PickupRequestPage> {
               ),
             ),
             Divider(thickness: 9,color: Colors.blueGrey.shade50,),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: InkWell(
-                onTap: (){
-
-                  showModalBottomSheet(
-                  isScrollControlled: false,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
-                  isDismissible: false,
-                  enableDrag: false,
-                  context: context,
-                  builder: (BuildContext context){
-                    return Container(
-                      height: 420,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Text('Select a cancellation reason',
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              child: Column(
-                                children: <Widget>[
-                                  RadioListTile(
-                                    title: Text("I don't need to send courier right now"),
-                                      value: "I don't need to send courier right now",
-                                      groupValue: reason,
-                                      onChanged: (value){
-                                        setState(() {
-                                          reason = value.toString();
-                                        });
-                                      }
-                                  ),
-                                  RadioListTile(
-                                    title: Text("Pickup/Destination location was incorrect"),
-                                      value: "Pickup/Destination location was incorrect",
-                                      groupValue: reason,
-                                      onChanged: (value){
-                                        setState(() {
-                                          reason=value.toString();
-                                        });
-                                      }
-                                  ),
-                                  RadioListTile(
-                                    title: Text("I waited too long"),
-                                      value: "I waited too long",
-                                      groupValue: reason,
-                                      onChanged: (value){
-                                        setState(() {
-                                          reason=value.toString();
-                                        });
-                                      }
-                                  ),
-                                  RadioListTile(
-                                    title: Text("I think the charge is too much"),
-                                      value: "I think the charge is too much",
-                                      groupValue: reason,
-                                      onChanged: (value){
-                                        setState(() {
-                                          reason=value.toString();
-                                        });
-                                      }
-                                  ),
-                                  RadioListTile(
-                                    title: Text("None of the above"),
-                                      value: "None of the above",
-                                      groupValue: reason,
-                                      onChanged: (value){
-                                        setState(() {
-                                          reason=value.toString();
-                                        });
-                                      }
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8,left: 8,right: 8),
-                            child: Center(
-                              child: Container(
-                                height: 45,width: 320,
-                                color: Colors.white,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Color(0xFFF59191),
-                                  ),
-                                  onPressed: () async{
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
 
 
 
-                                  },
-                                  child: Text('Submit',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }
-                  );
 
-                },
-                child: Row(
-                  children: [
-                    Icon(Icons.close,size: 20,color: Colors.red,),
-                    SizedBox(width: 10,),
-                    Text('Cancel Order',style: TextStyle(color: Colors.red.shade600,fontSize: 16)),
-                  ],
-                ),
-              ),
-            )
+            // Padding(
+            //   padding: const EdgeInsets.all(16.0),
+            //   child: InkWell(
+            //     onTap: (){
+            //
+            //       showModalBottomSheet(
+            //       isScrollControlled: false,
+            //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
+            //       isDismissible: false,
+            //       enableDrag: false,
+            //       context: context,
+            //       builder: (BuildContext context){
+            //         return Container(
+            //           height: 420,
+            //           child: Column(
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             children: [
+            //               Padding(
+            //                 padding: const EdgeInsets.all(16.0),
+            //                 child: Text('Select a cancellation reason',
+            //                   style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w500),
+            //                 ),
+            //               ),
+            //               Padding(
+            //                 padding: const EdgeInsets.all(8.0),
+            //                 child: Container(
+            //                   child: Column(
+            //                     children: <Widget>[
+            //                       RadioListTile(
+            //                         title: Text("I don't need to send courier right now"),
+            //                           value: "I don't need to send courier right now",
+            //                           groupValue: reason,
+            //                           onChanged: (value){
+            //                             setState(() {
+            //                               reason = value.toString();
+            //                             });
+            //                           }
+            //                       ),
+            //                       RadioListTile(
+            //                         title: Text("Pickup/Destination location was incorrect"),
+            //                           value: "Pickup/Destination location was incorrect",
+            //                           groupValue: reason,
+            //                           onChanged: (value){
+            //                             setState(() {
+            //                               reason=value.toString();
+            //                             });
+            //                           }
+            //                       ),
+            //                       RadioListTile(
+            //                         title: Text("I waited too long"),
+            //                           value: "I waited too long",
+            //                           groupValue: reason,
+            //                           onChanged: (value){
+            //                             setState(() {
+            //                               reason=value.toString();
+            //                             });
+            //                           }
+            //                       ),
+            //                       RadioListTile(
+            //                         title: Text("I think the charge is too much"),
+            //                           value: "I think the charge is too much",
+            //                           groupValue: reason,
+            //                           onChanged: (value){
+            //                             setState(() {
+            //                               reason=value.toString();
+            //                             });
+            //                           }
+            //                       ),
+            //                       RadioListTile(
+            //                         title: Text("None of the above"),
+            //                           value: "None of the above",
+            //                           groupValue: reason,
+            //                           onChanged: (value){
+            //                             setState(() {
+            //                               reason=value.toString();
+            //                             });
+            //                           }
+            //                       ),
+            //                     ],
+            //                   ),
+            //                 ),
+            //               ),
+            //               Padding(
+            //                 padding: const EdgeInsets.only(top: 8,left: 8,right: 8),
+            //                 child: Center(
+            //                   child: Container(
+            //                     height: 45,width: 320,
+            //                     color: Colors.white,
+            //                     child: ElevatedButton(
+            //                       style: ElevatedButton.styleFrom(
+            //                         primary: Color(0xFFF59191),
+            //                       ),
+            //                       onPressed: () async{
+            //                         Navigator.pop(context);
+            //                         Navigator.pop(context);
+            //                         Navigator.pop(context);
+            //                         Navigator.pop(context);
+            //                         Navigator.pop(context);
+            //                         Navigator.pop(context);
+            //
+            //
+            //
+            //                       },
+            //                       child: Text('Submit',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //         );
+            //       }
+            //       );
+            //
+            //     },
+            //     child: Row(
+            //       children: [
+            //         Icon(Icons.close,size: 20,color: Colors.red,),
+            //         SizedBox(width: 10,),
+            //         Text('Cancel Order',style: TextStyle(color: Colors.red.shade600,fontSize: 16)),
+            //       ],
+            //     ),
+            //
+            //   ),
+            //
+            // )
+
+
+
+
+
 
           ],
         ),
@@ -408,7 +428,19 @@ class _PickupRequestPageState extends State<PickupRequestPage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) {
-                    return CourierStatus();
+                    return CourierStatus(
+
+                      senderName: widget.Sendername,
+                      senderAddress: widget.SenderAddress,
+                      SenderPhoneNumber: widget.SenderPhoneNumber,
+                      ReceiverPhoneNumber: widget.ReceiverPhoneNumber,
+                      ReceiverAddress: widget.ReceiversAddress,
+                      Receivername: widget.ReceiverName,
+                      CourierStat: 0,
+                      ParcelWaight: widget.ParcelWaight,
+                      ID: widget.ID,
+
+                    );
                   })
               );
               // Navigator.push(
