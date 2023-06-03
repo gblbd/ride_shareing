@@ -6,11 +6,13 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/AvailablePromos.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
+//import 'package:ride_sharing/Pages/HomePage/Car/searchAndPickupPoint.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import '../Bike/AddMissingPlace.dart';
 import '../Bike/SetOnMapPage.dart';
 import '../Bike/YourTripPage.dart';
+import 'SetOnMapPage2.dart';
 import 'SetOnMapPageForCar.dart';
 
 
@@ -632,7 +634,21 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                             onTap: (){
 
                             },
-                          )
+                          ),
+                        suffixIcon: InkWell(
+                            child: Icon(Icons.arrow_forward_ios),
+                          onTap: (){
+
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) {
+                                  return SetOnMap2(SearchDestinations: "SearchDestinations");
+                                })
+                            );
+
+                          },
+
+                        )
                       ),
 
                     ),
