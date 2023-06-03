@@ -5,6 +5,7 @@ import 'package:geocoder2/geocoder2.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ride_sharing/Pages/HomePage/Bike/pickup_confirm_code.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:timelines/timelines.dart';
 
@@ -239,6 +240,7 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
          context: context,
          removeTop: true,
          child: ListView(
+           shrinkWrap: true,
            controller: sc,
            children: [
              Padding(
@@ -1085,12 +1087,29 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                                              LinearProgressIndicator(color: Colors.red,
                                                backgroundColor: Colors.red.shade50,
                                              ),
-                                             
+
+
+
                                            ListTile(
                                              leading: Icon(Icons.account_circle,size: 50,color: Colors.grey,),
                                              title: Text("Osman Goni"),
                                              subtitle: Text("⭐ 4.73 | 224 Trips"),
+
+                                             onTap: (){
+                                               Navigator.push(
+                                                   context,
+                                                   MaterialPageRoute(builder: (context) {
+                                                     return PickupConfirmPage();
+                                                   })
+                                               );
+                                             },
+
                                            ),
+
+
+
+
+
                                              Text("Your Trip"),
                                              SizedBox(height: 20,),
 
@@ -1131,10 +1150,9 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
 
                                              ),
                                              Divider(),
-                                             TextButton(
-                                               onPressed: (){
+                                             TextButton(onPressed: (){
 
-                                                 showModalBottomSheet(
+                                               showModalBottomSheet(
                                                    isScrollControlled: false,
                                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
                                                    isDismissible: false,
