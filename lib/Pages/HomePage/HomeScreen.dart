@@ -141,40 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       child: Image.asset("assets/images/My_Road_Logo.png",fit: BoxFit.cover,),
                     ),
-                    // TextButton(
-                    //   style: TextButton.styleFrom(
-                    //   //backgroundColor: Color(0xFFA7B4F6),
-                    //   backgroundColor: Colors.red.shade100,
-                    // ),
-                    //   onPressed: () {
-                    //     Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //         builder: (context) {
-                    //           return PaymentsAllView();
-                    //         },
-                    //       ),
-                    //     );
-                    //   },
-                    //
-                    //
-                    //   child: Container(
-                    //     height: 40,
-                    //     child: Row(
-                    //       children:  [
-                    //         Image.asset("assets/images/My_Road_Logo.png",height: 50,width: 60,),
-                    //         Text('Payments All',style: TextStyle(
-                    //           color: Colors.white,
-                    //           fontStyle: FontStyle.italic
-                    //         ),
-                    //         ),
-                    //         Spacer(),
-                    //         Text('Pay Smarter, Pay Later >',style: TextStyle(
-                    //             color: Colors.white),)
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
+
                      SizedBox(height: 8,),
                     SingleChildScrollView(
                       scrollDirection: Axis.vertical,
@@ -202,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.directions_bike,
+                                  Icon(Icons.directions_bike,color: Colors.red.shade900,
                                   size: 60,
                                   ),
                                   //Image.asset('assets/images/motor_bike.png',height: 58,),
@@ -232,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.airport_shuttle,
+                                  Icon(Icons.airport_shuttle,color: Colors.red.shade900,
                                     size: 60,
                                   ),
                                  // Image.asset('assets/images/Carr.png',height: 58,),
@@ -269,7 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
 
-                                  Icon(Icons.local_shipping,
+                                  Icon(Icons.local_shipping,color: Colors.red.shade900,
 
                                     size: 60,
 
@@ -295,55 +262,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
 
-                    // Container(
-                    //   height: 50,width: 200,
-                    //   decoration: BoxDecoration(
-                    //     borderRadius: BorderRadius.circular(6),
-                    //
-                    //   ),
-                    //   child: Image.asset("assets/images/My_Road_Logo.png",fit: BoxFit.cover,),
-                    // ),
 
-
-
-
-
-
-
-                    // TextButton(
-                    //   style: TextButton.styleFrom(
-                    //   //backgroundColor: Color(0xFFA7B4F6),
-                    //   backgroundColor: Colors.red.shade100,
-                    // ),
-                    //   onPressed: () {
-                    //     Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //         builder: (context) {
-                    //           return PaymentsAllView();
-                    //         },
-                    //       ),
-                    //     );
-                    //   },
-                    //
-                    //
-                    //   child: Container(
-                    //     height: 40,
-                    //     child: Row(
-                    //       children:  [
-                    //         Image.asset("assets/images/My_Road_Logo.png",height: 50,width: 60,),
-                    //         Text('Payments All',style: TextStyle(
-                    //           color: Colors.white,
-                    //           fontStyle: FontStyle.italic
-                    //         ),
-                    //         ),
-                    //         Spacer(),
-                    //         Text('Pay Smarter, Pay Later >',style: TextStyle(
-                    //             color: Colors.white),)
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
                     SizedBox(height: 8,),
                     SingleChildScrollView(
                       scrollDirection: Axis.vertical,
@@ -371,7 +290,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.airplane_ticket,
+                                  Icon(Icons.airplane_ticket,color: Colors.red.shade900,
 
                                     size: 60,
 
@@ -403,7 +322,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.hotel,
+                                  Icon(Icons.hotel,color: Colors.red.shade900,
                                     size: 60,
                                   ),
                                   //Image.asset('assets/images/Carr.png',height: 58,),
@@ -439,7 +358,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.fastfood,
+                                  Icon(Icons.fastfood,color: Colors.red.shade900,
                                     size: 60,
                                   ),
                                   //Image.asset('assets/images/CourierIcon.png',height: 58,),

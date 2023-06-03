@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 import 'BusinessProfile.dart';
+import 'NotificationScreen.dart';
 import 'ProfilePage.dart';
 import '../../OffersPage/views/MyRoadPoints.dart';
 
@@ -111,7 +112,16 @@ class _AccountAndSettingsPageState extends State<AccountAndSettingsPage> {
                 shadowColor: MaterialStateProperty.all(Colors.transparent),
                 overlayColor: MaterialStateProperty.all(Colors.transparent),
               ),
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return NotificationScreen();
+                    },
+                  ),
+                );
+              },
               child: Container(
                 height: 30,width: 350,
                 child: Row(

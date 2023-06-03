@@ -1062,109 +1062,112 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                                      height: 450,
                                      child: Padding(
                                        padding: const EdgeInsets.all(8.0),
-                                       child: Column(
-                                         crossAxisAlignment: CrossAxisAlignment.start,
-                                         children: [
-                                           SizedBox(height: 20,),
+                                       child: SingleChildScrollView(
+                                         child: Column(
+                                           crossAxisAlignment: CrossAxisAlignment.start,
+                                           children: [
+                                             SizedBox(height: 20,),
 
-                                           Text('Finding nearby rides..',
-                                               style: TextStyle(
-                                                 color: Colors.black,fontSize: 18,
-                                               )
-                                           ),
-                                           SizedBox(height: 10,),
-
-                                           RichText(text: TextSpan(text: 'We have sent your ride request to the nearby riders',
-                                               style: TextStyle(
-                                                 color: Colors.grey,fontSize: 12,
-                                               )),
-
-                                           ),
-                                           SizedBox(height: 20,),
-                                           LinearProgressIndicator(color: Colors.red,
-                                             backgroundColor: Colors.red.shade50,
-                                           ),
-                                           
-                                         ListTile(
-                                           leading: Icon(Icons.account_circle,size: 50,color: Colors.grey,),
-                                           title: Text("Osman Goni"),
-                                           subtitle: Text("⭐ 4.73 | 224 Trips"),
-                                         ),
-                                           Text("Your Trip"),
-                                           SizedBox(height: 20,),
-
-                                           Row(
-                                             children: [
-                                               Icon(Icons.man,size: 30,color: Colors.grey.shade600,),
-                                               Text(_address ?? " set your pickup destination"),
-                                             ],
-                                           ),
-                                           SizedBox(
-                                             height: 20.0,width: 30,
-                                             child: TimelineNode(
-                                               startConnector: SolidLineConnector(color: Colors.grey.shade300,thickness: 1,),
-                                               endConnector: SolidLineConnector(color: Colors.grey.shade300,thickness: 1,),
+                                             Text('Finding nearby rides..',
+                                                 style: TextStyle(
+                                                   color: Colors.black,fontSize: 18,
+                                                 )
                                              ),
+                                             SizedBox(height: 10,),
+
+                                             RichText(text: TextSpan(text: 'We have sent your ride request to the nearby riders',
+                                                 style: TextStyle(
+                                                   color: Colors.grey,fontSize: 12,
+                                                 )),
+
+                                             ),
+                                             SizedBox(height: 20,),
+                                             LinearProgressIndicator(color: Colors.red,
+                                               backgroundColor: Colors.red.shade50,
+                                             ),
+                                             
+                                           ListTile(
+                                             leading: Icon(Icons.account_circle,size: 50,color: Colors.grey,),
+                                             title: Text("Osman Goni"),
+                                             subtitle: Text("⭐ 4.73 | 224 Trips"),
                                            ),
-                                           Row(
-                                             children: [
-                                               Icon(Icons.location_on,size: 28,color: Colors.red.shade600,),
-                                               SizedBox(width: 5,),
-                                               Text(widget.SearchDestinations ),
-                                             ],
-                                           ),
+                                             Text("Your Trip"),
+                                             SizedBox(height: 20,),
 
-                                           Divider(),
-
-                                           Text('Pay via Cash',
-                                               style: TextStyle(
-                                                 color: Colors.black,fontSize: 14,
-                                               )
-                                           ),
-                                           SizedBox(height: 10,),
-
-                                           RichText(text: TextSpan(text: 'This is the estimated fare. This may vary.',
-                                               style: TextStyle(
-                                                 color: Colors.grey.shade400,fontSize: 12,
-                                               )),
-
-                                           ),
-                                           Divider(),
-                                           TextButton(onPressed: (){
-
-                                             showModalBottomSheet(
-                                                 isScrollControlled: false,
-                                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
-                                                 isDismissible: false,
-                                                 enableDrag: false,
-                                                 context: context,
-                                                 builder: (BuildContext context){
-                                                   return Padding(
-                                                       padding: EdgeInsets.only(
-                                                       left: 8,
-                                                       right: 8,
-                                                       top: 10,
-                                                       bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,),
-                                                     child: Container(
-                                                      // height: ,
-                                                     ),
-                                                   );
-                                                 }
-                                             );
-
-                                           },
-
-
-                                               child: Row(
-                                                 children: [
-                                                   Text('Cancel this Ride?'),
-                                                   Spacer(),
-                                                   Text('Cancel now ×')
-                                                 ],
+                                             Row(
+                                               children: [
+                                                 Icon(Icons.man,size: 30,color: Colors.grey.shade600,),
+                                                 Text(_address ?? " set your pickup destination"),
+                                               ],
+                                             ),
+                                             SizedBox(
+                                               height: 20.0,width: 30,
+                                               child: TimelineNode(
+                                                 startConnector: SolidLineConnector(color: Colors.grey.shade300,thickness: 1,),
+                                                 endConnector: SolidLineConnector(color: Colors.grey.shade300,thickness: 1,),
                                                ),
-                                           )
+                                             ),
+                                             Row(
+                                               children: [
+                                                 Icon(Icons.location_on,size: 28,color: Colors.red.shade600,),
+                                                 SizedBox(width: 5,),
+                                                 Text(widget.SearchDestinations ),
+                                               ],
+                                             ),
 
-                                         ],
+                                             Divider(),
+
+                                             Text('Pay via Cash',
+                                                 style: TextStyle(
+                                                   color: Colors.black,fontSize: 14,
+                                                 )
+                                             ),
+                                             SizedBox(height: 10,),
+
+                                             RichText(text: TextSpan(text: 'This is the estimated fare. This may vary.',
+                                                 style: TextStyle(
+                                                   color: Colors.grey.shade400,fontSize: 12,
+                                                 )),
+
+                                             ),
+                                             Divider(),
+                                             TextButton(
+                                               onPressed: (){
+
+                                                 showModalBottomSheet(
+                                                   isScrollControlled: false,
+                                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
+                                                   isDismissible: false,
+                                                   enableDrag: false,
+                                                   context: context,
+                                                   builder: (BuildContext context){
+                                                     return Padding(
+                                                         padding: EdgeInsets.only(
+                                                         left: 8,
+                                                         right: 8,
+                                                         top: 10,
+                                                         bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,),
+                                                       child: Container(
+                                                        // height: ,
+                                                       ),
+                                                     );
+                                                   }
+                                               );
+
+                                             },
+
+
+                                                 child: Row(
+                                                   children: [
+                                                     Text('Cancel this Ride?'),
+                                                     Spacer(),
+                                                     Text('Cancel now ×')
+                                                   ],
+                                                 ),
+                                             )
+
+                                           ],
+                                         ),
                                        ),
                                      ),
                                    ),
