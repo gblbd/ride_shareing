@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'SelectCityList.dart';
 
@@ -259,15 +260,25 @@ String dropdownValue_DestinationDistrict = 'Select District' ;
                         primary: Colors.red,
                       ),
                       onPressed: () async{
-                       // DatabaseReference rf= ref.child(widget.phoneNumber).child("user").child("Courier").push();
-                        //await ref.child(widget.phoneNumber).child('user').child('Courier').child('Get_Quotation').push().
-                        DatabaseReference quotationRef=ref.child(widget.phoneNumber).child("user").child("Courier").child(widget.receiverPhoneNum).child("Get_Quotation");
-                            //.child(rf.key.toString());
-                        await quotationRef.update({
-                          "Pickup_District":dropdownValue_PickupDistrict.toString(),
-                          "Destination_District":dropdownValue_DestinationDistrict.toString(),
-                          "Courier_Weight":_value.toDouble(),
-                        });
+                       if(widget.receiverPhoneNum.isNotEmpty){
+                         DatabaseReference quotationRef=ref.child(widget.phoneNumber).child("user").child("Courier").child(widget.receiverPhoneNum).child("Get_Quotation");
+                         quotationRef.update({
+                           "Pickup_District":dropdownValue_PickupDistrict.toString(),
+                           "Destination_District":dropdownValue_DestinationDistrict.toString(),
+                           "Courier_Weight":_value.toDouble(),
+                         });
+                       }
+                       else{
+                         Fluttertoast.showToast(
+                             msg: "Please provide information correctly.",
+                             toastLength: Toast.LENGTH_SHORT,
+                             gravity: ToastGravity.TOP,
+                             timeInSecForIosWeb: 1,
+                             backgroundColor: Colors.red,
+                             textColor: Colors.white,
+                             fontSize: 16.0
+                         );
+                       }
 
                       },
                       child: Text('Get Quotation',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
