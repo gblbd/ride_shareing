@@ -33,6 +33,7 @@ dependencies:
   firebase_auth: ^4.2.10
   shared_preferences: ^2.0.18
   provider: ^6.0.5
+  url_launcher: ^6.1.11
   sizer: ^2.0.15
   flutter:
     sdk: flutter

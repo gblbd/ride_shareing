@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
 
+import '../../../Others/support_page.dart';
 import 'OrderDetailsPage.dart';
 
 class PathaoCourierPage extends StatefulWidget {
@@ -183,6 +184,53 @@ class _PathaoCourierPageState extends State<PathaoCourierPage> {
                 ),
               ),
             ),
+
+
+
+
+
+
+
+
+            Container(
+              margin: const EdgeInsets.all(8),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    child: TextButton(
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Support();
+                            },
+                          ),
+                        );
+                      },
+                      child: ListTile(
+                        leading: Icon(Icons.help_outline_outlined),//Image.asset('assets/images/order.png',),
+                        title: const Text('Help And Support',
+                            style: TextStyle(color: Colors.black,fontSize: 16,)),
+                        subtitle: const Text('Ask any Support, Question and queries',
+                            style: TextStyle(color: Colors.grey,fontSize: 13,)),
+                        trailing: const Icon(Icons.arrow_forward_ios_sharp,size: 14,),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+
+
+
+
+
+
+
+
 
 
             Divider(thickness: 6,color: Colors.blueGrey.shade50,),
