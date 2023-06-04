@@ -154,7 +154,7 @@ class _PathaoCourierPageState extends State<PathaoCourierPage> {
             //   style: TextStyle(fontWeight: FontWeight.w500,fontSize: 21,color: Colors.black),),
             // const SizedBox(height: 10,),
             Container(
-              margin: const EdgeInsets.all(8),
+              margin: const EdgeInsets.only(left: 8,right: 8,top: 8),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -188,7 +188,7 @@ class _PathaoCourierPageState extends State<PathaoCourierPage> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.all(8),
+              margin: const EdgeInsets.only(left: 8,right: 8,),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -208,13 +208,13 @@ class _PathaoCourierPageState extends State<PathaoCourierPage> {
                       },
                       child: ListTile(
                         leading: CircleAvatar(
-                          backgroundColor: Color(0xFFDFE2F1),
+                          backgroundColor: Color(0xFFF3F5FD),
                             radius: 22,
                             child: Icon(Icons.history,size: 30,color: Colors.orange.shade400,)),
-                        title: const Text('Previous History',
+                        title: const Text('History',
                             style: TextStyle(color: Colors.black,fontSize: 16,)),
-                        // subtitle: const Text('',
-                        //     style: TextStyle(color: Colors.grey,fontSize: 13,)),
+                        subtitle: const Text('Check-in your Previous History',
+                            style: TextStyle(color: Colors.grey,fontSize: 13,)),
                         trailing: const Icon(Icons.arrow_forward_ios_sharp,size: 14,),
                       ),
                     ),
@@ -231,7 +231,7 @@ class _PathaoCourierPageState extends State<PathaoCourierPage> {
 
 
             Container(
-              margin: const EdgeInsets.all(8),
+              margin: const EdgeInsets.only(left: 8,right: 8,bottom: 8),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -248,7 +248,10 @@ class _PathaoCourierPageState extends State<PathaoCourierPage> {
                         );
                       },
                       child: ListTile(
-                        leading: Icon(Icons.help_outline_outlined),//Image.asset('assets/images/order.png',),
+                        leading: CircleAvatar(
+                            backgroundColor: Color(0xFFF3F5FD),
+                            radius: 23,
+                            child: Icon(Icons.help_outline_outlined,size: 30,color: Color(0xFFB6C3F6),)),//Image.asset('assets/images/order.png',),
                         title: const Text('Help And Support',
                             style: TextStyle(color: Colors.black,fontSize: 16,)),
                         subtitle: const Text('Ask any Support, Question and queries',

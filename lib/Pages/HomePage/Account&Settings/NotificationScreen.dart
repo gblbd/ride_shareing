@@ -46,10 +46,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
               query: dbref,
               reverse: true,
               itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index){
-                dbref.onValue.listen((event) {
-                  String key = snapshot.key.toString();
-                  triggerNotification(key);
-                });
+                // dbref.onValue.listen((event) {
+                //   String key = snapshot.key.toString();
+                //   triggerNotification(key);
+                // });
 
 
                 return Card(
@@ -65,7 +65,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       style: TextStyle(color: Colors.black)
                     ),
                     ),
-                    subtitle: Text('${DateTime.now()}'),
+                    subtitle: Text('${snapshot.child('time').value.toString()}'),
                   ),
 
                 );
@@ -78,43 +78,43 @@ class _NotificationScreenState extends State<NotificationScreen> {
   }
 
 
-  triggerNotification(String key)
-  {
-    AwesomeNotifications().createNotification(
-        content: NotificationContent(
-            id: 10,
-            channelKey: 'basic_channel',
-            title: 'Thanks for your courier order $key',
-            body: 'We have received your courier order $key. In the next few hours, we will collect your package from your given address.',
-
-        )
-    );
-  }
-  @override
-  void initState() {
-
-
-    AwesomeNotifications().isNotificationAllowed().then((isAllowed){
-
-      if(!isAllowed)
-      {
-        AwesomeNotifications().requestPermissionToSendNotifications();
-      }
-
-    });
-    super.initState();
-
-    //
-    // rf.child("notification").onChildAdded.listen((event) {
-    //   showNotification(event.snapshot.value);
-    // });
-  }
-
-  Future<void>onSelectNotification(String payload)async{
-
-  }
-
-  Future<void>showNotification(String data)async{
-
-  }
+  // triggerNotification(String key)
+  // {
+  //   AwesomeNotifications().createNotification(
+  //       content: NotificationContent(
+  //           id: 10,
+  //           channelKey: 'basic_channel',
+  //           title: 'Thanks for your courier order $key',
+  //           body: 'We have received your courier order $key. In the next few hours, we will collect your package from your given address.',
+  //
+  //       )
+  //   );
+  // }
+  // @override
+  // void initState() {
+  //
+  //
+  //   AwesomeNotifications().isNotificationAllowed().then((isAllowed){
+  //
+  //     if(!isAllowed)
+  //     {
+  //       AwesomeNotifications().requestPermissionToSendNotifications();
+  //     }
+  //
+  //   });
+  //   super.initState();
+  //
+  //   //
+  //   // rf.child("notification").onChildAdded.listen((event) {
+  //   //   showNotification(event.snapshot.value);
+  //   // });
+  // }
+  //
+  // Future<void>onSelectNotification(String payload)async{
+  //
+  // }
+  //
+  // Future<void>showNotification(String data)async{
+  //
+  // }
 }
