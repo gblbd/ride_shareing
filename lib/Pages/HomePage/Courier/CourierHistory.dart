@@ -68,16 +68,36 @@ class _CourierHistoryPageState extends State<CourierHistoryPage> {
                   );
                 },
                 leading: CircleAvatar(
-                    backgroundColor: Colors.green.shade50,
-                    radius: 26,
-                    child: int.parse(snapshot.child('parcelStatus').value.toString())<6?Icon(Icons.browse_gallery,
-
-                      size: 40,
-
-                    ):Icon(Icons.check_circle,
+                  backgroundColor: Colors.green.shade50,
+                  radius: 26,
+                  child: int.tryParse(snapshot.child('parcelStatus').value.toString()) != null
+                      ? int.parse(snapshot.child('parcelStatus').value.toString()) < 6
+                      ? Icon(
+                    Icons.browse_gallery,
+                    size: 40,
+                  )
+                      : Icon(
+                    Icons.check_circle,
                     color: Colors.green,
-                      size: 40,
-                    ),),//Image.asset('assets/images/My_Road_Logo.png'),),
+                    size: 40,
+                  )
+                      : Icon(
+                    Icons.error,
+                    color: Colors.red,
+                    size: 40,
+                  ),
+                ),
+                // CircleAvatar(
+                //     backgroundColor: Colors.green.shade50,
+                //     radius: 26,
+                //     child: int.parse(snapshot.child('parcelStatus').value.toString())<6?Icon(Icons.browse_gallery,
+                //
+                //       size: 40,
+                //
+                //     ):Icon(Icons.check_circle,
+                //     color: Colors.green,
+                //       size: 40,
+                //     ),),//Image.asset('assets/images/My_Road_Logo.png'),),
                 title: RichText(text: TextSpan(
                     text: 'Order Id: ${snapshot.key.toString()}\nReceiver Number : ${snapshot.child('Receiver_Phone_Number').value.toString()}',
                     style: TextStyle(color: Colors.black)
