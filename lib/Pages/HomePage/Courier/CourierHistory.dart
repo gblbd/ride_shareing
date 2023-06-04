@@ -32,55 +32,66 @@ class _CourierHistoryPageState extends State<CourierHistoryPage> {
         iconTheme: IconThemeData(color: Colors.black),
       ),
       backgroundColor: Colors.blueGrey.shade50,
-      body: Column(
-        children: [
-      Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: FirebaseAnimatedList(
-        physics: ScrollPhysics(),
-        shrinkWrap: true,
-        query: dbref,
-        reverse: true,
-        itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index){
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+        Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FirebaseAnimatedList(
+          physics: ScrollPhysics(),
+          shrinkWrap: true,
+          query: dbref,
+          reverse: true,
+          itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index){
 
-          return Card(
-            child: ListTile(
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return CourierStatus(
-                        senderName: '',
-                        SenderPhoneNumber: '',
-                        senderAddress: '',
-                        Receivername: snapshot.child('Receiver_Name').value.toString(),
-                        ReceiverPhoneNumber: snapshot.child('Receiver_Phone_Number').value.toString(),
-                        ReceiverAddress: snapshot.child('Full_Address').value.toString(),
-                        ParcelWaight:  double.parse(snapshot.child('Courier_Weight').value.toString()),
-                        ID: snapshot.key.toString(),
-                        CourierStat: 0,);
-                    },
-                  ),
-                );
-              },
-              leading: CircleAvatar(
-                  backgroundColor: Colors.green.shade50,
-                  radius: 26,
-                  child: Image.asset('assets/images/My_Road_Logo.png'),),
-              title: RichText(text: TextSpan(
-                  text: 'Order Id: ${snapshot.key.toString()}\nReceiver Number : ${snapshot.child('Receiver_Phone_Number').value.toString()}',
-                  style: TextStyle(color: Colors.black)
-              ),
-              ),
-              subtitle: Text('${snapshot.child('Full_Address').value.toString()}'),
-            ),
+            return Card(
+              child: ListTile(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return CourierStatus(
+                          senderName: snapshot.child('senderName').value.toString(),
+                          SenderPhoneNumber: snapshot.child('senderPhoneNumber').value.toString(),
+                          senderAddress: snapshot.child('senderAddress').value.toString(),
+                          Receivername: snapshot.child('Receiver_Name').value.toString(),
+                          ReceiverPhoneNumber: snapshot.child('Receiver_Phone_Number').value.toString(),
+                          ReceiverAddress: snapshot.child('Full_Address').value.toString(),
+                          ParcelWaight: double.parse(snapshot.child('Courier_Weight').value.toString()),
+                          ID: snapshot.key.toString(),
+                          CourierStat: int.parse(snapshot.child('parcelStatus').value.toString()),
 
-          );
-        },
-      ),
-      )
-        ],
+                        );
+                      },
+                    ),
+                  );
+                },
+                leading: CircleAvatar(
+                    backgroundColor: Colors.green.shade50,
+                    radius: 26,
+                    child: int.parse(snapshot.child('parcelStatus').value.toString())<6?Icon(Icons.browse_gallery,
+
+                      size: 40,
+
+                    ):Icon(Icons.check_circle,
+                    color: Colors.green,
+                      size: 40,
+                    ),),//Image.asset('assets/images/My_Road_Logo.png'),),
+                title: RichText(text: TextSpan(
+                    text: 'Order Id: ${snapshot.key.toString()}\nReceiver Number : ${snapshot.child('Receiver_Phone_Number').value.toString()}',
+                    style: TextStyle(color: Colors.black)
+                ),
+                ),
+                subtitle: Text('${snapshot.child('Full_Address').value.toString()}'),
+              ),
+
+            );
+          },
+        ),
+        )
+          ],
+        ),
       ),
     );
   }
