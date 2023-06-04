@@ -14,7 +14,9 @@ class PathaoCourierPage extends StatefulWidget {
   final String pin;
   final String fullname;
 
-  const PathaoCourierPage({Key? key, required this.phoneNumbers, required this.pin, required this.fullname}) : super(key: key);
+
+
+  const PathaoCourierPage({Key? key, required this.phoneNumbers, required this.pin, required this.fullname,}) : super(key: key);
 
   @override
   State<PathaoCourierPage> createState() => _PathaoCourierPageState();
@@ -197,13 +199,18 @@ class _PathaoCourierPageState extends State<PathaoCourierPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return CourierHistoryPage();
+                              return CourierHistoryPage(
+                                 senderPhoneNumber: widget.phoneNumbers,
+                               );
                             },
                           ),
                         );
                       },
                       child: ListTile(
-                        leading: Icon(Icons.history,size: 30,color: Colors.red.shade900,),
+                        leading: CircleAvatar(
+                          backgroundColor: Color(0xFFDFE2F1),
+                            radius: 22,
+                            child: Icon(Icons.history,size: 30,color: Colors.orange.shade400,)),
                         title: const Text('Previous History',
                             style: TextStyle(color: Colors.black,fontSize: 16,)),
                         // subtitle: const Text('',

@@ -1,7 +1,17 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 
+import 'CourierHistoryStatus.dart';
+import 'couriar_status.dart';
+
 class CourierHistoryPage extends StatefulWidget {
-  const CourierHistoryPage({Key? key}) : super(key: key);
+  final String senderPhoneNumber;
+
+
+
+  const CourierHistoryPage({Key? key, required this.senderPhoneNumber,}) : super(key: key);
 
   @override
   State<CourierHistoryPage> createState() => _CourierHistoryPageState();
@@ -10,6 +20,67 @@ class CourierHistoryPage extends StatefulWidget {
 class _CourierHistoryPageState extends State<CourierHistoryPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    Query dbref=FirebaseDatabase.instance.ref("User_profile").child(widget.senderPhoneNumber).child("user").child("Courier");
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 1.0,
+        backgroundColor: Colors.white,
+        title: Text('History',
+          style: TextStyle(color: Colors.black),
+        ),
+        iconTheme: IconThemeData(color: Colors.black),
+      ),
+      backgroundColor: Colors.blueGrey.shade50,
+      body: Column(
+        children: [
+      Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: FirebaseAnimatedList(
+        physics: ScrollPhysics(),
+        shrinkWrap: true,
+        query: dbref,
+        reverse: true,
+        itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index){
+
+          return Card(
+            child: ListTile(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CourierStatus(
+                        senderName: '',
+                        SenderPhoneNumber: '',
+                        senderAddress: '',
+                        Receivername: snapshot.child('Receiver_Name').value.toString(),
+                        ReceiverPhoneNumber: snapshot.child('Receiver_Phone_Number').value.toString(),
+                        ReceiverAddress: snapshot.child('Full_Address').value.toString(),
+                        ParcelWaight:  double.parse(snapshot.child('Courier_Weight').value.toString()),
+                        ID: snapshot.key.toString(),
+                        CourierStat: 0,);
+                    },
+                  ),
+                );
+              },
+              leading: CircleAvatar(
+                  backgroundColor: Colors.green.shade50,
+                  radius: 26,
+                  child: Image.asset('assets/images/My_Road_Logo.png'),),
+              title: RichText(text: TextSpan(
+                  text: 'Order Id: ${snapshot.key.toString()}\nReceiver Number : ${snapshot.child('Receiver_Phone_Number').value.toString()}',
+                  style: TextStyle(color: Colors.black)
+              ),
+              ),
+              subtitle: Text('${snapshot.child('Full_Address').value.toString()}'),
+            ),
+
+          );
+        },
+      ),
+      )
+        ],
+      ),
+    );
   }
 }

@@ -29,6 +29,7 @@ class CourierStatus extends StatelessWidget
 
    CourierStatus({super.key, required this.senderName, required this.SenderPhoneNumber, required this.senderAddress, required this.Receivername, required this.ReceiverPhoneNumber, required this.ReceiverAddress, required this.ParcelWaight, required this.ID, required this.CourierStat});
 
+   bool Parcel=true;
 
   @override
   Widget build(BuildContext context) {
@@ -43,19 +44,32 @@ class CourierStatus extends StatelessWidget
           child: Column(
             children: [
 
-              ListTile(
-                title: Text("Order ID : "),
-                subtitle: Text("${ID}"),
+              Padding(
+                padding: const EdgeInsets.only(left: 14.0),
+                child: ListTile(
+                  title: Text("Order ID :"),
+                  subtitle: Text("${ID}",
+                    style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400,color: Colors.black),
+
+                  ),
+                ),
               ),
 
 
               Container(
+                padding: EdgeInsets.all(14),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Sender :"),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 14.0),
+                        child: Text("Sender :",
+                          style: TextStyle(fontSize: 18,color: Colors.red.shade900,fontWeight: FontWeight.w400),
+                        ),
+                      ),
                       ListTile(
-                        title: Text("${senderName}"),
-                        subtitle: Text("${senderAddress}\n${SenderPhoneNumber}"),
+                        title: Text("Name: ${senderName}"),
+                        subtitle: Text("Address : ${senderAddress}\nPhone No : ${SenderPhoneNumber}"),
                       ),
 
 
@@ -64,13 +78,20 @@ class CourierStatus extends StatelessWidget
               ),
 
               Container(
+                padding: EdgeInsets.all(14),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
-                    Text("Receiver :"),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 14.0),
+                      child: Text("Receiver :",
+                      style: TextStyle(fontSize: 18,color: Colors.red.shade900,fontWeight: FontWeight.w400),
+                      ),
+                    ),
                     ListTile(
-                      title: Text("${Receivername}"),
-                      subtitle: Text("${ReceiverAddress}\n${ReceiverPhoneNumber}"),
+                      title: Text("Name : ${Receivername}"),
+                      subtitle: Text("Address : ${ReceiverAddress}\nPhone No : ${ReceiverPhoneNumber}"),
                     ),
 
 
@@ -78,42 +99,49 @@ class CourierStatus extends StatelessWidget
                 ),
               ),
 
-              ListTile(
-                title: Text("Persel"),
-                subtitle: Text("1.5 KG"),
+              Padding(
+                padding: const EdgeInsets.only(left: 14.0),
+                child: Parcel ? ListTile(
+                  minLeadingWidth: 0.0,
+                  minVerticalPadding: 0.0,
+                  leading: CircleAvatar(child: Icon(Icons.shopping_bag_sharp,color: Colors.white,size: 12,),
+                    backgroundColor: Colors.orange,
+                    radius: 14,
+                  ),
+                  title: Text("Parcel"),
+                  subtitle: Text("${ParcelWaight} Kg"),
+                ):ListTile(
+                  minLeadingWidth: 0.0,
+                  minVerticalPadding: 0.0,
+                  leading:    CircleAvatar(
+                    child: Icon(Icons.library_books_sharp,color: Colors.white,size: 10,),
+                    backgroundColor: Colors.green.shade900,
+                    radius: 14,
+                  ),
+                  title: Text("Document"),
+                  subtitle: Text("${ParcelWaight} Kg"),
+                ) ,
               ),
 
-              ListTile(
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Charge : "),
-                    Text("95 BDT")
-                  ],
-                ),
+              Padding(
+                padding: const EdgeInsets.only(left: 14.0,right: 14.0),
+                child: ListTile(
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Charge : "),
+                      Text("95 BDT")
+                    ],
+                  ),
 
-                subtitle: Text("Payment : Due"),
+                  subtitle: Text("Payment : Due"),
+                ),
               ),
 
 
               Text("Couriar Status :"),
 
 
-              // Timeline.tileBuilder(
-              //   shrinkWrap: true,
-              //   builder: TimelineTileBuilder.fromStyle(
-              //     contentsAlign: ContentsAlign.alternating,
-              //
-              //     contentsBuilder: (context, index) => Padding(
-              //       padding: const EdgeInsets.all(24.0),
-              //       child: Text('${_processes[index]}'),
-              //     ),
-              //
-              //
-              //     itemCount: _processes.length,
-              //   ),
-              //
-              // ),
 
 
 

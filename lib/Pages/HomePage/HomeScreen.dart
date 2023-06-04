@@ -226,6 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         phoneNumbers: widget.phoneNumber,
                                         pin: widget.pin,
                                         fullname: widget.fullname,
+
                                       );
                                     },
                                   ),
@@ -349,6 +350,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         phoneNumbers: widget.phoneNumber,
                                         pin: widget.pin,
                                         fullname: widget.fullname,
+
                                       );
                                     },
                                   ),
