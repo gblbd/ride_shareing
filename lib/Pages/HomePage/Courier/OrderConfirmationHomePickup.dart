@@ -322,6 +322,12 @@ class OrderConfirmation extends StatelessWidget {
                                       "Full_Address": "${fullAddress}",
                                       "Courier_Weight": courierWaight,
                                       "Courier_Type":"${courierType}",
+                                      "senderName":"${SenderName}",
+                                      "senderPhoneNumber":"${senderPhoneNumber}",
+                                      "senderThana":"${SenderThana}",
+                                      "senderDistrict":"${SendrDistrict}",
+                                      "senderAddress":"${SenderfullAddress}",
+                                      "parcelStatus":0
                                     }).then((value){
 
                                       //senderPostRef.key.toString()
