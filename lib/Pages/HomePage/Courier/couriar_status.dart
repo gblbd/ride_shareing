@@ -37,8 +37,16 @@ class CourierStatus extends StatelessWidget
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("Courier Status"),
+        elevation: 1.0,
+        backgroundColor: Colors.white,
+        title: Text('Courier Status',
+          style: TextStyle(color: Colors.black),
+        ),
+        iconTheme: IconThemeData(color: Colors.black),
       ),
+      // appBar: AppBar(
+      //   title: Text("Courier Status"),
+      // ),
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -55,7 +63,7 @@ class CourierStatus extends StatelessWidget
                 ),
               ),
 
-
+              Divider(thickness: 4.0,),
               Container(
                 padding: EdgeInsets.all(14),
                   child: Column(
@@ -63,7 +71,7 @@ class CourierStatus extends StatelessWidget
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 14.0),
-                        child: Text("Sender :",
+                        child: Text("Sender Details:",
                           style: TextStyle(fontSize: 18,color: Colors.red.shade900,fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -76,6 +84,7 @@ class CourierStatus extends StatelessWidget
                     ],
                   )
               ),
+              Divider(thickness: 4.0,),
 
               Container(
                 padding: EdgeInsets.all(14),
@@ -85,7 +94,7 @@ class CourierStatus extends StatelessWidget
 
                     Padding(
                       padding: const EdgeInsets.only(left: 14.0),
-                      child: Text("Receiver :",
+                      child: Text("Receiver Details:",
                       style: TextStyle(fontSize: 18,color: Colors.red.shade900,fontWeight: FontWeight.w400),
                       ),
                     ),
@@ -98,6 +107,8 @@ class CourierStatus extends StatelessWidget
                   ],
                 ),
               ),
+
+              Divider(thickness: 4.0,),
 
               Padding(
                 padding: const EdgeInsets.only(left: 14.0),
@@ -122,6 +133,7 @@ class CourierStatus extends StatelessWidget
                   subtitle: Text("${ParcelWaight} Kg"),
                 ) ,
               ),
+              Divider(thickness: 4.0,),
 
               Padding(
                 padding: const EdgeInsets.only(left: 14.0,right: 14.0),
@@ -138,8 +150,12 @@ class CourierStatus extends StatelessWidget
                 ),
               ),
 
+              Divider(thickness: 4.0,),
 
-              Text("Couriar Status :"),
+              Text("Couriar Status :",
+                style: TextStyle(fontSize: 22,color: Colors.red.shade900,fontWeight: FontWeight.w500),
+
+              ),
 
 
 
