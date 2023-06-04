@@ -137,37 +137,10 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
           children: [
 
 
-            // Container(
-            //   height: 60,
-            //   child: TextButton(
-            //     onPressed: (){
-            //       Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //           builder: (context) {
-            //             return GetQuotationPageView(phoneNumber: widget.phoneNumber,
-            //               receiverPhoneNum: _phone.text.toString(),);
-            //           },
-            //         ),
-            //       );
-            //     },
-            //     child: ListTile(
-            //       leading: CircleAvatar(
-            //           backgroundColor: Colors.blueGrey.shade50,
-            //           child: const Icon(Icons.point_of_sale, size: 20,color: Colors.red,)
-            //       ),
-            //       title: const Text('Get Quotation'),
-            //       trailing: const Icon(Icons.arrow_forward_ios_sharp,size: 14,),
-            //     ),
-            //   ),
-            // ),
-            //
-
-
 
             Divider(color: Colors.blueGrey.shade50,thickness: 4,),
             const SizedBox(height: 5,),
-            const Text('    Receiver Details',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
+            const Text('    Receiver Details*',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
             //SizedBox(height: 3,),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -442,7 +415,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
 
             Divider(color: Colors.blueGrey.shade50,thickness: 4,),
             const SizedBox(height: 5,),
-            const Text('    Courier Weight',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
+            const Text('    Courier Weight*',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
             Container(
               //width: 350,
               child: Slider(
