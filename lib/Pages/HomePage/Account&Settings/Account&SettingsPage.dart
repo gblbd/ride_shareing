@@ -117,7 +117,7 @@ class _AccountAndSettingsPageState extends State<AccountAndSettingsPage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return NotificationScreen();
+                      return NotificationScreen(senderPhoneNumber: widget.phoneNumber1,);
                     },
                   ),
                 );

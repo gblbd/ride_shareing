@@ -3,6 +3,7 @@ import 'package:another_stepper/dto/stepper_data.dart';
 import 'package:another_stepper/widgets/another_stepper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ride_sharing/Pages/HomePage/Courier/CourierHistory.dart';
 import 'package:timelines/timelines.dart';
 
 import '../../../Others/support_page.dart';
@@ -177,6 +178,36 @@ class _PathaoCourierPageState extends State<PathaoCourierPage> {
                             style: TextStyle(color: Colors.black,fontSize: 16,)),
                         subtitle: const Text('Send anything you want',
                             style: TextStyle(color: Colors.grey,fontSize: 13,)),
+                        trailing: const Icon(Icons.arrow_forward_ios_sharp,size: 14,),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(8),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    child: TextButton(
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return CourierHistoryPage();
+                            },
+                          ),
+                        );
+                      },
+                      child: ListTile(
+                        leading: Icon(Icons.history,size: 30,color: Colors.red.shade900,),
+                        title: const Text('Previous History',
+                            style: TextStyle(color: Colors.black,fontSize: 16,)),
+                        // subtitle: const Text('',
+                        //     style: TextStyle(color: Colors.grey,fontSize: 13,)),
                         trailing: const Icon(Icons.arrow_forward_ios_sharp,size: 14,),
                       ),
                     ),
