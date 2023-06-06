@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_places_flutter/google_places_flutter.dart';
+import 'package:google_places_flutter/model/prediction.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/AvailablePromos.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
+import 'package:ride_sharing/Pages/HomePage/Car/search_place.dart';
 //import 'package:ride_sharing/Pages/HomePage/Car/searchAndPickupPoint.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -162,6 +165,24 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
             child: SafeArea(
               child: Stack(
                 children: [
+
+
+                  // GooglePlaceAutoCompleteTextField(
+                  //     textEditingController: _destination,
+                  //     googleAPIKey: "AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ",
+                  //     inputDecoration: InputDecoration(),
+                  //     //debounceTime: 800 // default 600 ms,
+                  //     //countries: ["in","bn"],// optional by default null is set
+                  //     isLatLngRequired:true,// if you required coordinates from place detail
+                  //     getPlaceDetailWithLatLng: (Prediction prediction) {
+                  //       // this method will return latlng with place detail
+                  //       print("placeDetails" + prediction.lng.toString());
+                  //     }, // this callback is called when isLatLngRequired is true
+                  //     itmClick: (Prediction prediction) {
+                  //       _destination.text=prediction.description!;
+                  //       _destination.selection = TextSelection.fromPosition(TextPosition(offset: prediction.description!.length));
+                  //     }
+                  // ),
 
 
                   GoogleMap(
@@ -732,7 +753,7 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) {
-                                  return SetOnMap2(SearchDestinations: "SearchDestinations");
+                                  return SearchPage();//SetOnMap2(SearchDestinations: "SearchDestinations");
                                 })
                             );
 
