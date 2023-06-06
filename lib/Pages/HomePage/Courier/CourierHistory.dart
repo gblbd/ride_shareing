@@ -52,6 +52,7 @@ class _CourierHistoryPageState extends State<CourierHistoryPage> {
                     MaterialPageRoute(
                       builder: (context) {
                         return CourierStatus(
+
                           senderName: snapshot.child('senderName').value.toString(),
                           SenderPhoneNumber: snapshot.child('senderPhoneNumber').value.toString(),
                           senderAddress: snapshot.child('senderAddress').value.toString(),

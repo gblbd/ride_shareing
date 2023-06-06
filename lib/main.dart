@@ -13,8 +13,11 @@ import 'MainScreen.dart';
 
 void main() async{
 
-
-
+  // final GoogleMapsFlutterPlatform mapsImplementation =
+  //     GoogleMapsFlutterPlatform.instance;
+  // if (mapsImplementation is GoogleMapsFlutterAndroid) {
+  //   mapsImplementation.useAndroidViewSurface = true;
+  // }
 
   AwesomeNotifications().initialize(
     null,

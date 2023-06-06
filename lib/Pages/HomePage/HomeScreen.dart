@@ -161,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return BikePageView(SearchDestination: '',);
+                                      return BikePageView();
                                     },
                                   ),
                                 );
@@ -283,7 +283,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return BikePageView(SearchDestination: '',);
+                                      return BikePageView();
                                     },
                                   ),
                                 );
