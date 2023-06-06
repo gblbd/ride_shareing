@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:ride_sharing/Pages/HomePage/Courier/pickupRequestPage.dart';
 
 class OrderConfirmation extends StatelessWidget {
@@ -30,10 +31,13 @@ class OrderConfirmation extends StatelessWidget {
 
 
 
+
   //const OrderConfirmation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    String formettedtime=DateFormat('MMM d, h:mm a').format(now);
     return Scaffold(
       appBar: AppBar(
         elevation: 0.5,
@@ -327,7 +331,8 @@ class OrderConfirmation extends StatelessWidget {
                                       "senderThana":"${SenderThana}",
                                       "senderDistrict":"${SendrDistrict}",
                                       "senderAddress":"${SenderfullAddress}",
-                                      "parcelStatus":0
+                                      "parcelStatus":0,
+                                      "time":formettedtime,
                                     }).then((value){
 
                                       //senderPostRef.key.toString()

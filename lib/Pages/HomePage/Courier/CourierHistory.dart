@@ -104,7 +104,7 @@ class _CourierHistoryPageState extends State<CourierHistoryPage> {
                     style: TextStyle(color: Colors.black)
                 ),
                 ),
-                subtitle: Text('${snapshot.child('Full_Address').value.toString()}'),
+                subtitle: Text('Address: ${snapshot.child('Full_Address').value.toString()}\n${snapshot.child('time').value.toString()}'),
               ),
 
             );

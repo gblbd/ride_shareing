@@ -1,4 +1,6 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:ride_sharing/Pages/HomePage/Courier/couriar_status.dart';
 
@@ -34,6 +36,10 @@ class _PickupRequestPageState extends State<PickupRequestPage> {
     String reason="I don't need to send courier right now";
   @override
   Widget build(BuildContext context) {
+
+    Query dbref=FirebaseDatabase.instance.ref("User_profile").child(widget.SenderPhoneNumber).child("user").child("Courier");
+
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.5,
@@ -442,7 +448,12 @@ class _PickupRequestPageState extends State<PickupRequestPage> {
 
                     );
                   })
-              );
+              ).then((value) {
+                dbref.onValue.listen((event) {
+                 // String key = snapshot.key.toString();
+                  triggerNotification(widget.ID.toString());
+                });
+              });
               // Navigator.push(
               //     context,
               //     MaterialPageRoute(builder: (context) {
@@ -456,4 +467,44 @@ class _PickupRequestPageState extends State<PickupRequestPage> {
       ),
     );
   }
+
+    triggerNotification(String key)
+    {
+      AwesomeNotifications().createNotification(
+          content: NotificationContent(
+            id: 10,
+            channelKey: 'basic_channel',
+            title: 'Thanks for your courier order $key',
+            body: 'We have received your courier order $key. In the next few hours, we will collect your package from your given address.',
+
+          )
+      );
+    }
+    @override
+    void initState() {
+
+
+      AwesomeNotifications().isNotificationAllowed().then((isAllowed){
+
+        if(!isAllowed)
+        {
+          AwesomeNotifications().requestPermissionToSendNotifications();
+        }
+
+      });
+      super.initState();
+
+      //
+      // rf.child("notification").onChildAdded.listen((event) {
+      //   showNotification(event.snapshot.value);
+      // });
+    }
+
+    Future<void>onSelectNotification(String payload)async{
+
+    }
+
+    Future<void>showNotification(String data)async{
+
+    }
 }
