@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/AvailablePromos.dart';
@@ -24,6 +25,58 @@ class CarPageView extends StatefulWidget {
 }
 
 class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin {
+
+
+  List<LatLng> polyCordinates=[];
+  ////////////////////////////////////////////////////////////
+
+
+  static const LatLng SourceLocation=LatLng(37.3305, -122.03272);
+
+  static const LatLng DestinationLocation=LatLng(37.3342, -122.06672);
+
+  final Set<Polyline> _polyline={};
+
+  Future<void> getpolyline() async {
+
+    PolylinePoints polylinePoints=PolylinePoints();
+
+    PolylineResult result=await polylinePoints.getRouteBetweenCoordinates(
+        "AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ",
+        PointLatLng(SourceLocation.latitude,SourceLocation.longitude),
+        PointLatLng(DestinationLocation.latitude, DestinationLocation.longitude));
+
+    result.points.forEach((location) {
+      polyCordinates.add(LatLng(location.latitude, location.longitude));
+    });
+
+    _polyline.add(
+        Polyline(
+            polylineId: PolylineId("1"),
+            points: [SourceLocation,DestinationLocation],//polyCordinates,
+            width: 6,
+            color: Colors.red
+        )
+    );
+
+    setState(() {
+
+    });
+
+
+
+  }
+
+
+
+  ///////////////////////////////////////////////////////
+
+
+
+
+
+
+
 
   late AnimationController _animationController;
   late Animation<Offset> _animation;
@@ -109,16 +162,53 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
             child: SafeArea(
               child: Stack(
                 children: [
+
+
                   GoogleMap(
-                    initialCameraPosition: _kGoogle,
-                    markers: Set<Marker>.of(_markers),
-                    mapType: MapType.hybrid,
-                    myLocationEnabled: true,
-                    compassEnabled: true,
-                    onMapCreated: (GoogleMapController controller){
-                      _controller.complete(controller);
+                    initialCameraPosition: CameraPosition(
+                        target: SourceLocation,//LatLng(currentLocation.latitude!,currentLocation.longitude!),
+                        zoom: 14.5),
+                    markers: {
+                      Marker(
+                          markerId: MarkerId("Source"),
+                          position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
+                      ),
+                      Marker(
+                          markerId: MarkerId("Destination"),
+                          position: DestinationLocation
+                      )
                     },
+
+                    polylines: _polyline,
+
+
+
+                    // polylines: {
+                    //   Polyline(
+                    //     polylineId: PolylineId("routs"),
+                    //     points: polyCordinates
+                    //   )
+                    // },
+                    // mapType: MapType.hybrid,
+                    // myLocationEnabled: true,
+                    // compassEnabled: true,
+                    // onMapCreated: (GoogleMapController controller){
+                    //   _controller.complete(controller);
+                    // },
                   ),
+
+
+
+                  // GoogleMap(
+                  //   initialCameraPosition: _kGoogle,
+                  //   markers: Set<Marker>.of(_markers),
+                  //   mapType: MapType.hybrid,
+                  //   myLocationEnabled: true,
+                  //   compassEnabled: true,
+                  //   onMapCreated: (GoogleMapController controller){
+                  //     _controller.complete(controller);
+                  //   },
+                  // ),
                   Positioned(
                       left: 10.0,
                       child: CircleAvatar(
