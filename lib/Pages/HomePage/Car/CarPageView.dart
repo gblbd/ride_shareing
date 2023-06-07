@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,12 +13,14 @@ import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:ride_sharing/Pages/HomePage/Car/search_place.dart';
 //import 'package:ride_sharing/Pages/HomePage/Car/searchAndPickupPoint.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:uuid/uuid.dart';
 
 import '../Bike/AddMissingPlace.dart';
 import '../Bike/SetOnMapPage.dart';
 import '../Bike/YourTripPage.dart';
 import 'SetOnMapPage2.dart';
 import 'SetOnMapPageForCar.dart';
+import 'package:http/http.dart' as http;
 
 
 class CarPageView extends StatefulWidget {
@@ -31,6 +34,72 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
 
 
   List<LatLng> polyCordinates=[];
+  TextEditingController Search_controller=TextEditingController();
+
+  var uuid=Uuid();
+
+  List<dynamic> _placelist=[];
+
+  String _sessionToken="122344";
+
+  ///////////////////////////////////////////////////////////////////
+
+
+  // @override
+  // void initState(){
+  //   super.initState();
+  //
+  //   Search_controller.addListener(() {
+  //
+  //     Onchange();
+  //   });
+  //
+  //
+  // }
+
+  void Onchange(){
+
+    if(_sessionToken==null){
+
+      setState(() {
+        _sessionToken=uuid.v4();
+      });
+
+    }
+
+    getSuggestion(Search_controller.text);
+
+  }
+
+
+  void getSuggestion(String input)async{
+
+    String KPLACE_API_KEY="AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ";
+    String baseUrl="https://maps.googleapis.com/maps/api/place/autocomplete/json";
+    String request='https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$input&types=establishment&key=AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ&sessiontoken=122344';
+
+    var response=await http.get(Uri.parse(request));
+
+    if(response.statusCode==200){
+
+      setState(() {
+        _placelist=jsonDecode(response.body)['predictions'];
+      });
+
+    }else{
+      throw Exception("Unable to load data");
+    }
+
+
+  }
+
+
+
+
+
+
+
+
   ////////////////////////////////////////////////////////////
 
 
@@ -133,6 +202,12 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
       // begin: 0.0,
       //end: 1.0
     ).animate(_animationController) ;
+
+    Search_controller.addListener(() {
+
+      Onchange();
+    });
+
 
 
 
@@ -713,7 +788,7 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                           backgroundColor: Colors.white,
                           child: Icon(Icons.arrow_forward, size: 10,color: Colors.green.shade900,)
                       ),
-                      Text('Fares are comparatively lower now for Bike',
+                      Text('Fares are comparatively lower now for car',
                         style: TextStyle(color: Colors.green.shade900,fontSize: 12),),Spacer(),
                       Icon(Icons.info_outline,color: Colors.green.shade900,size: 10,)
                     ],
@@ -734,7 +809,7 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                         color: Colors.white
                     ),
                     child: TextField(
-                      controller: _destination,
+                      controller: Search_controller,
                       cursorColor: Colors.red.shade900,
                       decoration: InputDecoration(
                           border: InputBorder.none,
@@ -763,7 +838,20 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                       ),
 
                     ),
+
+
+
+
                   ),
+
+
+
+
+
+
+
+
+
                   Container(
                     height: 50,width: 50,
                     margin: const EdgeInsets.all(7),
@@ -788,6 +876,22 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                 ],
               ),
             ),
+
+
+            Expanded(
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _placelist.length,
+                  itemBuilder: (context,index){
+
+                    return ListTile(
+
+                      title: Text(_placelist[index]['description']),
+                    );
+
+                  }),
+            ),
+
 
 
             Stack(
