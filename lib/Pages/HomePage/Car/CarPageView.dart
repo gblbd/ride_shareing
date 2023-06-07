@@ -1,15 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
 
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:google_places_flutter/model/prediction.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/AvailablePromos.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
+import 'package:ride_sharing/Pages/HomePage/Car/search_pickup_point.dart';
 import 'package:ride_sharing/Pages/HomePage/Car/search_place.dart';
 //import 'package:ride_sharing/Pages/HomePage/Car/searchAndPickupPoint.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -887,6 +890,24 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                     return ListTile(
 
                       title: Text(_placelist[index]['description']),
+
+                      onTap: ()async{
+
+                        List<Location> locations=await locationFromAddress(_placelist[index]["description"]);
+                        print(locations.last.latitude);
+                        print(locations.last.longitude);
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return SearchPickUpPoint();//SetOnMap2(SearchDestinations: "${locations.last.latitude}/${locations.last.longitude}");
+                            })
+                        );
+
+                      },
+
+
+
                     );
 
                   }),
