@@ -13,8 +13,16 @@ import '../Courier/SaveAddressPage.dart';
 import 'pickup_confirm_code2.dart';
 
 class SetOnMap2 extends StatefulWidget {
+
+  final double destinationLat;
+  final double destinationlong;
+  final double sourceLat;
+  final double sourceLong;
   final String SearchDestinations;
-  const SetOnMap2({Key? key, required this.SearchDestinations}) : super(key: key);
+
+  const SetOnMap2({super.key, required this.destinationLat, required this.destinationlong, required this.sourceLat, required this.sourceLong, required this.SearchDestinations});
+
+  //const SetOnMap2({Key? key, required this.SearchDestinations}) : super(key: key);
 
   @override
   State<SetOnMap2> createState() => _SetOnMap2State();
@@ -138,6 +146,12 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
 
      _panelHeightOpen = MediaQuery.of(context).size.height * .99;
 
+
+     LatLng SourceLocation=LatLng(widget.sourceLat, widget.sourceLong);
+     LatLng DestinationLocation=LatLng(widget.destinationLat, widget.destinationlong);
+
+
+
      return Scaffold(
        extendBody: true,
        backgroundColor: Colors.white,
@@ -147,19 +161,67 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
              child: SafeArea(
                child: Stack(
                  children: [
+
+                  ///////////////////////////////////////////////////////////////
+
+
                    GoogleMap(
-                     initialCameraPosition: _kGoogle,
-                     markers: Set<Marker>.of(_markers),
-                     mapType: MapType.hybrid,
-                     myLocationEnabled: true,
-                     compassEnabled: true,
-                     onMapCreated: (GoogleMapController controller){
-                       _controller.complete(controller);
+                     initialCameraPosition: CameraPosition(
+                         target: SourceLocation,//LatLng(currentLocation.latitude!,currentLocation.longitude!),
+                         zoom: 14.5),
+                     markers: {
+                       Marker(
+                           markerId: MarkerId("Source"),
+                           position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
+                       ),
+                       Marker(
+                           markerId: MarkerId("Destination"),
+                           position: DestinationLocation
+                       )
                      },
-                     onCameraIdle: (){
-                       getAddressFromLatLng();
-                     },
+
+                     //polylines: _polyline,
+
+
+
+                     // polylines: {
+                     //   Polyline(
+                     //     polylineId: PolylineId("routs"),
+                     //     points: polyCordinates
+                     //   )
+                     // },
+                     // mapType: MapType.hybrid,
+                     // myLocationEnabled: true,
+                     // compassEnabled: true,
+                     // onMapCreated: (GoogleMapController controller){
+                     //   _controller.complete(controller);
+                     // },
                    ),
+
+
+
+
+                   // GoogleMap(
+                   //   initialCameraPosition: _kGoogle,
+                   //   markers: Set<Marker>.of(_markers),
+                   //   mapType: MapType.hybrid,
+                   //   myLocationEnabled: true,
+                   //   compassEnabled: true,
+                   //   onMapCreated: (GoogleMapController controller){
+                   //     _controller.complete(controller);
+                   //   },
+                   //   onCameraIdle: (){
+                   //     getAddressFromLatLng();
+                   //   },
+                   // ),
+                   //
+
+
+
+                   /////////////////////////////////////////////////////////////////
+
+
+
                    Positioned(
                        left: 10.0,
                        child: CircleAvatar(

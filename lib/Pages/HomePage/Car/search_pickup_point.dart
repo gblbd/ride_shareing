@@ -21,8 +21,13 @@ import 'SetOnMapPageForCar.dart';
 
 class SearchPickUpPoint extends StatefulWidget {
 
+  final double destinationLatitude;
+  final double destinationLongitude;
 
-  const SearchPickUpPoint({Key? key}) : super(key: key);
+  const SearchPickUpPoint({super.key, required this.destinationLatitude, required this.destinationLongitude});
+
+
+  //const SearchPickUpPoint({Key? key}) : super(key: key);
 
   @override
   State<SearchPickUpPoint> createState() => _SearchPickUpPointState();
@@ -101,41 +106,41 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
   ////////////////////////////////////////////////////////////
 
 
-  static const LatLng SourceLocation=LatLng(37.3305, -122.03272);
+  //static const LatLng SourceLocation=LatLng(37.3305, -122.03272);
 
-  static const LatLng DestinationLocation=LatLng(37.3342, -122.06672);
+
 
   final Set<Polyline> _polyline={};
 
-  Future<void> getpolyline() async {
-
-    PolylinePoints polylinePoints=PolylinePoints();
-
-    PolylineResult result=await polylinePoints.getRouteBetweenCoordinates(
-        "AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ",
-        PointLatLng(SourceLocation.latitude,SourceLocation.longitude),
-        PointLatLng(DestinationLocation.latitude, DestinationLocation.longitude));
-
-    result.points.forEach((location) {
-      polyCordinates.add(LatLng(location.latitude, location.longitude));
-    });
-
-    _polyline.add(
-        Polyline(
-            polylineId: PolylineId("1"),
-            points: [SourceLocation,DestinationLocation],//polyCordinates,
-            width: 6,
-            color: Colors.red
-        )
-    );
-
-    setState(() {
-
-    });
-
-
-
-  }
+  // Future<void> getpolyline() async {
+  //
+  //   PolylinePoints polylinePoints=PolylinePoints();
+  //
+  //   PolylineResult result=await polylinePoints.getRouteBetweenCoordinates(
+  //       "AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ",
+  //       PointLatLng(SourceLocation.latitude,SourceLocation.longitude),
+  //       PointLatLng(DestinationLocation.latitude, DestinationLocation.longitude));
+  //
+  //   result.points.forEach((location) {
+  //     polyCordinates.add(LatLng(location.latitude, location.longitude));
+  //   });
+  //
+  //   _polyline.add(
+  //       Polyline(
+  //           polylineId: PolylineId("1"),
+  //           points: [SourceLocation,DestinationLocation],//polyCordinates,
+  //           width: 6,
+  //           color: Colors.red
+  //       )
+  //   );
+  //
+  //   setState(() {
+  //
+  //   });
+  //
+  //
+  //
+  // }
 
 
 
@@ -230,6 +235,8 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
   Widget build(BuildContext context) {
     _panelHeightOpen = MediaQuery.of(context).size.height * .99;
 
+    LatLng SourceLocation=LatLng(widget.destinationLatitude, widget.destinationLongitude);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -267,10 +274,10 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
                           markerId: MarkerId("Source"),
                           position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
                       ),
-                      Marker(
-                          markerId: MarkerId("Destination"),
-                          position: DestinationLocation
-                      )
+                      // Marker(
+                      //     markerId: MarkerId("Destination"),
+                      //     position: DestinationLocation
+                      // )
                     },
 
                     polylines: _polyline,
@@ -895,7 +902,13 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
                         Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) {
-                              return SetOnMap2(SearchDestinations: "${locations.last.latitude}/${locations.last.longitude}");
+                              return SetOnMap2(
+                                  SearchDestinations: "${locations.last.latitude}/${locations.last.longitude}",
+                                sourceLat: locations.last.latitude,
+                                sourceLong: locations.last.longitude,
+                                destinationLat: widget.destinationLatitude,
+                                destinationlong: widget.destinationLongitude,
+                              );
                             })
                         );
 
