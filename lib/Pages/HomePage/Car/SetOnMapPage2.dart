@@ -183,51 +183,60 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                        )
                      },
 
-                     //polylines: _polyline,
+                     polylines: {
+                       Polyline(
+                         polylineId: PolylineId("routs"),
+                         points: [SourceLocation,DestinationLocation],
+                         color: Colors.green,
+                         width: 6
+                       )
+
+                     }
+                       //[SourceLocation,DestinationLocation],
 
 
 
-                     // polylines: {
-                     //   Polyline(
-                     //     polylineId: PolylineId("routs"),
-                     //     points: polyCordinates
-                     //   )
-                     // },
-                     // mapType: MapType.hybrid,
-                     // myLocationEnabled: true,
-                     // compassEnabled: true,
-                     // onMapCreated: (GoogleMapController controller){
-                     //   _controller.complete(controller);
-                     // },
-                   ),
+             // polylines: {
+             //   Polyline(
+             //     polylineId: PolylineId("routs"),
+             //     points: polyCordinates
+             //   )
+             // },
+             // mapType: MapType.hybrid,
+             // myLocationEnabled: true,
+             // compassEnabled: true,
+             // onMapCreated: (GoogleMapController controller){
+             //   _controller.complete(controller);
+             // },
+             ),
 
 
 
 
-                   // GoogleMap(
-                   //   initialCameraPosition: _kGoogle,
-                   //   markers: Set<Marker>.of(_markers),
-                   //   mapType: MapType.hybrid,
-                   //   myLocationEnabled: true,
-                   //   compassEnabled: true,
-                   //   onMapCreated: (GoogleMapController controller){
-                   //     _controller.complete(controller);
-                   //   },
-                   //   onCameraIdle: (){
-                   //     getAddressFromLatLng();
-                   //   },
-                   // ),
-                   //
+             // GoogleMap(
+             //   initialCameraPosition: _kGoogle,
+             //   markers: Set<Marker>.of(_markers),
+             //   mapType: MapType.hybrid,
+             //   myLocationEnabled: true,
+             //   compassEnabled: true,
+             //   onMapCreated: (GoogleMapController controller){
+             //     _controller.complete(controller);
+             //   },
+             //   onCameraIdle: (){
+             //     getAddressFromLatLng();
+             //   },
+             // ),
+             //
 
 
 
-                   /////////////////////////////////////////////////////////////////
+             /////////////////////////////////////////////////////////////////
 
 
 
-                   Positioned(
-                       left: 10.0,
-                       child: CircleAvatar(
+             Positioned(
+             left: 10.0,
+             child: CircleAvatar(
                          backgroundColor: Colors.white,
                          child: TextButton(
                            onPressed: (){
@@ -328,16 +337,18 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                  ),
                  child: Padding(
                    padding: const EdgeInsets.all(8.0),
-                   child: Row(
-                     children: [
-                       Icon(Icons.location_on,size: 24,color: Colors.red,),
-                       SizedBox(width: 10,),
-                       Text(widget.SearchDestinations.isEmpty ?'Enter Destination':widget.SearchDestinations,
-                           style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w400)
+                   child: SingleChildScrollView(
+                     scrollDirection: Axis.horizontal,
+                     child: Row(
+                       children: [
+                         Icon(Icons.location_on,size: 24,color: Colors.red,),
+                         SizedBox(width: 10,),
+                         Text(widget.SearchDestinations.isEmpty ?'Enter Destination':widget.SearchDestinations,
+                             style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w400)
+                         ),
 
-                 ),
-
-                     ],
+                       ],
+                     ),
                    ),
                  ),
                  // TextField(
