@@ -268,7 +268,7 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                      children: [
                        Icon(Icons.location_on,size: 24,color: Colors.red,),
                        SizedBox(width: 10,),
-                       Text(widget.SearchDestinations.isEmpty ?'Enter Destination':widget.SearchDestinations,
+                       Text(widget.SearchDestinations.isEmpty ?'Enter Destination':widget.SearchDestinations.toString(),
                            style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w400)
 
                  ),
