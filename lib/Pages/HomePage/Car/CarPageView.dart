@@ -14,7 +14,7 @@ import 'package:ride_sharing/Pages/HomePage/Bike/AvailablePromos.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:ride_sharing/Pages/HomePage/Car/search_pickup_point.dart';
 import 'package:ride_sharing/Pages/HomePage/Car/search_place.dart';
-//import 'package:ride_sharing/Pages/HomePage/Car/searchAndPickupPoint.dart';
+
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:uuid/uuid.dart';
 
@@ -106,41 +106,41 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
   ////////////////////////////////////////////////////////////
 
 
-  static const LatLng SourceLocation=LatLng(37.3305, -122.03272);
-
-  static const LatLng DestinationLocation=LatLng(37.3342, -122.06672);
+   static const LatLng SourceLocation=LatLng(37.3305, -122.03272);
+  //
+  // static const LatLng DestinationLocation=LatLng(37.3342, -122.06672);
 
   final Set<Polyline> _polyline={};
 
-  Future<void> getpolyline() async {
-
-    PolylinePoints polylinePoints=PolylinePoints();
-
-    PolylineResult result=await polylinePoints.getRouteBetweenCoordinates(
-        "AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ",
-        PointLatLng(SourceLocation.latitude,SourceLocation.longitude),
-        PointLatLng(DestinationLocation.latitude, DestinationLocation.longitude));
-
-    result.points.forEach((location) {
-      polyCordinates.add(LatLng(location.latitude, location.longitude));
-    });
-
-    _polyline.add(
-        Polyline(
-            polylineId: PolylineId("1"),
-            points: [SourceLocation,DestinationLocation],//polyCordinates,
-            width: 6,
-            color: Colors.red
-        )
-    );
-
-    setState(() {
-
-    });
-
-
-
-  }
+  // Future<void> getpolyline() async {
+  //
+  //   PolylinePoints polylinePoints=PolylinePoints();
+  //
+  //   PolylineResult result=await polylinePoints.getRouteBetweenCoordinates(
+  //       "AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ",
+  //       PointLatLng(SourceLocation.latitude,SourceLocation.longitude),
+  //       PointLatLng(DestinationLocation.latitude, DestinationLocation.longitude));
+  //
+  //   result.points.forEach((location) {
+  //     polyCordinates.add(LatLng(location.latitude, location.longitude));
+  //   });
+  //
+  //   _polyline.add(
+  //       Polyline(
+  //           polylineId: PolylineId("1"),
+  //           points: [SourceLocation,DestinationLocation],//polyCordinates,
+  //           width: 6,
+  //           color: Colors.red
+  //       )
+  //   );
+  //
+  //   setState(() {
+  //
+  //   });
+  //
+  //
+  //
+  // }
 
 
 
@@ -268,14 +268,14 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                         target: SourceLocation,//LatLng(currentLocation.latitude!,currentLocation.longitude!),
                         zoom: 14.5),
                     markers: {
-                      Marker(
-                          markerId: MarkerId("Source"),
-                          position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
-                      ),
-                      Marker(
-                          markerId: MarkerId("Destination"),
-                          position: DestinationLocation
-                      )
+                      // Marker(
+                      //     markerId: MarkerId("Source"),
+                      //     position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
+                      // ),
+                      // Marker(
+                      //     markerId: MarkerId("Destination"),
+                      //     position: DestinationLocation
+                      // )
                     },
 
                     polylines: _polyline,
@@ -907,6 +907,7 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                               return SearchPickUpPoint(
                                 destinationLatitude: locations.last.latitude,
                                 destinationLongitude: locations.last.longitude,
+                                destinetionDetail: _placelist[index]['description'],
                               );//SetOnMap2(SearchDestinations: "${locations.last.latitude}/${locations.last.longitude}");
                             })
                         );
