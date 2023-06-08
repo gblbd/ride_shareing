@@ -19,8 +19,9 @@ class SetOnMap2 extends StatefulWidget {
   final double sourceLat;
   final double sourceLong;
   final String SearchDestinations;
+  final String SearchPickup;
 
-  const SetOnMap2({super.key, required this.destinationLat, required this.destinationlong, required this.sourceLat, required this.sourceLong, required this.SearchDestinations});
+  const SetOnMap2({super.key, required this.destinationLat, required this.destinationlong, required this.sourceLat, required this.sourceLong, required this.SearchDestinations, required this.SearchPickup});
 
   //const SetOnMap2({Key? key, required this.SearchDestinations}) : super(key: key);
 
@@ -1180,26 +1181,39 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                                              Text("Your Trip"),
                                              SizedBox(height: 20,),
 
-                                             Row(
-                                               children: [
-                                                 Icon(Icons.man,size: 30,color: Colors.grey.shade600,),
-                                                 Text(_address ?? " set your pickup destination"),
-                                               ],
-                                             ),
-                                             SizedBox(
-                                               height: 20.0,width: 30,
-                                               child: TimelineNode(
-                                                 startConnector: SolidLineConnector(color: Colors.grey.shade300,thickness: 1,),
-                                                 endConnector: SolidLineConnector(color: Colors.grey.shade300,thickness: 1,),
+                                             SingleChildScrollView(
+                                               scrollDirection: Axis.horizontal,
+                                               child: Column(
+                                                 children: [
+                                                   Row(
+                                                     children: [
+                                                       Icon(Icons.man,size: 30,color: Colors.grey.shade600,),
+                                                       Text("${widget.SearchPickup}" ?? " set your pickup destination"),
+                                                     ],
+                                                   ),
+
+
+                                                   SizedBox(
+                                                     height: 20.0,width: 30,
+                                                     child: TimelineNode(
+                                                       startConnector: SolidLineConnector(color: Colors.grey.shade300,thickness: 1,),
+                                                       endConnector: SolidLineConnector(color: Colors.grey.shade300,thickness: 1,),
+                                                     ),
+                                                   ),
+                                                   Row(
+                                                     children: [
+                                                       Icon(Icons.location_on,size: 28,color: Colors.red.shade600,),
+                                                       SizedBox(width: 5,),
+                                                       Text(widget.SearchDestinations ),
+                                                     ],
+                                                   ),
+
+
+
+                                                 ],
                                                ),
                                              ),
-                                             Row(
-                                               children: [
-                                                 Icon(Icons.location_on,size: 28,color: Colors.red.shade600,),
-                                                 SizedBox(width: 5,),
-                                                 Text(widget.SearchDestinations ),
-                                               ],
-                                             ),
+
 
                                              Divider(),
 
