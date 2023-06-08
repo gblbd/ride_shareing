@@ -1,5 +1,7 @@
 
 import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +9,12 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:ride_sharing/Pages/HomePage/Assistants/RequestAssistant.dart';
+
 import 'package:ride_sharing/Pages/HomePage/Bike/AvailablePromos.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:uuid/uuid.dart';
+import '../../../MapApi.dart';
 import 'AddMissingPlace.dart';
 import 'PointDeals.dart';
 import 'SetOnMapPage.dart';
@@ -115,6 +121,7 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
   bool _isExpand=false;
   bool _invisible = true;
   bool expand = true;
+  bool search=true;
 
 
   @override
@@ -129,6 +136,9 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
       // begin: 0.0,
       //end: 1.0
     ).animate(_animationController) ;
+    _destination.addListener(() {
+      Onchange();
+    });
 
 
 
@@ -149,8 +159,42 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
 
   PanelController panelController = PanelController();
 
+  List<dynamic> _placelist=[];
+  String _sessionToken="1234567890";
+
+  var uuid=Uuid();
+  void Onchange(){
+
+    if(_sessionToken==null){
+
+      setState(() {
+        _sessionToken=uuid.v4();
+      });
+
+    }
+getRequest(_destination.text.toString());
+
+  }
+  void getRequest(String place)async{
+    String request='https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$place&types=establishment&key=AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ&sessiontoken=1234567890&components=country:bd';
+
+   var response=await http.get(Uri.parse(request));
+
+   if(response.statusCode==200){
+     setState(() {
+       _placelist=jsonDecode(response.body)['predictions'];
+     });
+
+   }else{
+     throw Exception("Unable to load data");
+   }
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
+
     _panelHeightOpen = MediaQuery.of(context).size.height * .99;
 
     return Scaffold(
@@ -586,12 +630,15 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
   }
 
   Widget _panel(ScrollController sc) {
+
     return MediaQuery.removePadding(
         context: context,
         removeTop: true,
         child: ListView(
+          scrollDirection: Axis.vertical,
           controller: sc,
           children: <Widget>[
+
             Padding(
               padding: const EdgeInsets.only(top: 20,left: 20,right: 20),
               child: _isExpand ?
@@ -712,6 +759,10 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
                         color: Colors.white
                     ),
                     child: TextField(
+                      // onChanged: (val){
+                      //   findPlace(val);
+                      //
+                      // },
                       controller: _destination,
                       cursorColor: Colors.red.shade900,
                       decoration: InputDecoration(
@@ -731,7 +782,7 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) {
-                                    return SetOnMap(SearchDestinations: "SearchDestinations");
+                                    return SetOnMap(SearchDestinations: _destination.text.toString());
                                   })
                               );
 
@@ -742,33 +793,39 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
 
                     ),
                   ),
-                  Container(
-                    height: 50,width: 50,
-                    margin: const EdgeInsets.all(7),
-                    decoration: _invisible ? null : BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade700,width: 1),
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.white
-                    ),
-                    child: TextButton(
-                        style: TextButton.styleFrom(primary: Colors.white,),
-                        onPressed: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return const YourTripPage();
-                              })
-                          );
-                        },
-                        child: const Icon(Icons.add,color: Colors.red,size: 30,)),
-                  ),
+                  // search ?  Expanded(
+                  //   flex: 2,
+                  //   child: ListView.builder(
+                  //       shrinkWrap: true,
+                  //       itemCount: _placelist.length,
+                  //       itemBuilder: (context,index){
+                  //
+                  //         return ListTile(
+                  //
+                  //           title: Text(_placelist[index]['description']),
+                  //         );
+                  //
+                  //       }),
+                  // ):SizedBox(),
 
                 ],
               ),
             ),
 
 
-            Stack(
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: _placelist.length,
+                itemBuilder: (context,index){
+
+                  return ListTile(
+
+                    title: Text(_placelist[index]['description'].toString()),
+                  );
+
+                }),
+
+          Stack(
               children: [
                 expand ? Positioned(child: Column(
                   children: [
@@ -790,7 +847,7 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) {
-                                  return SetOnMap(SearchDestinations: '',);;
+                                  return SetOnMap(SearchDestinations: _destination.text.toString());;
                                 })
                             );
 
@@ -867,6 +924,22 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
 
           ],
         ));
+  }
+
+  Future<void> findPlace(String placeName) async
+  {
+    if(placeName.length>1)
+    {
+      String autoCompleteUrl="https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$placeName&types=establishment&key=AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ&sessiontoken=1234567890&components=country:bd";
+
+      var res=await RequestAssistant.getRequest(autoCompleteUrl);
+      if(res=="failed")
+      {
+        return;
+      }
+      print("places Predictions Response :: $res");
+      print(res);
+    }
   }
 
 }
