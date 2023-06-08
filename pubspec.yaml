@@ -52,7 +52,7 @@ dependencies:
   another_stepper: ^1.2.2
   sliding_up_panel: ^2.0.0+1
   google_maps_flutter: ^2.2.5
-  geolocator: ^9.0.2
+
   permission_handler: ^10.2.0
   fluttertoast: ^8.2.1
   dotted_border: ^2.0.0+3

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+//import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -31,45 +31,45 @@ class _SearchAndPickupDestinationPageState extends State<SearchAndPickupDestinat
     ),
   ];
 
-  Future<Position> getUserCurrentLocation() async {
-    await Geolocator.requestPermission().then((value){
-    }).onError((error, stackTrace) async {
-      await Geolocator.requestPermission();
-      print("ERROR"+error.toString());
-    });
-
-    // await ref.child("${widget.phoneNumber}").child("profile").set({
-    //   "full_name": "${fullnameContriller.text.toString()}",
-    //   //"last_name": "_lastName",
-    //   "Date_of_Birth": "${_dob.text.toString()}",
-    //   "gender": "$GenderType",
-    //   "email": "${emailAddressController.text.toString()}",
-    //   "mobile_no": "${widget.phoneNumber}",
-    //
-    //
-    //
-    //
-    //   // "address": {
-    //   //   "line1": "100 Mountain View"
-    //   // }
-    // }).then((value) {
-    //   Navigator.pop(context);
-    //   Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) {
-    //         return TermsAndConditions();
-    //       },
-    //     ),
-    //   );
-    // });
-
-
-
-
-
-    return await Geolocator.getCurrentPosition();
-  }
+  // Future<Position> getUserCurrentLocation() async {
+  //   await Geolocator.requestPermission().then((value){
+  //   }).onError((error, stackTrace) async {
+  //     await Geolocator.requestPermission();
+  //     print("ERROR"+error.toString());
+  //   });
+  //
+  //   // await ref.child("${widget.phoneNumber}").child("profile").set({
+  //   //   "full_name": "${fullnameContriller.text.toString()}",
+  //   //   //"last_name": "_lastName",
+  //   //   "Date_of_Birth": "${_dob.text.toString()}",
+  //   //   "gender": "$GenderType",
+  //   //   "email": "${emailAddressController.text.toString()}",
+  //   //   "mobile_no": "${widget.phoneNumber}",
+  //   //
+  //   //
+  //   //
+  //   //
+  //   //   // "address": {
+  //   //   //   "line1": "100 Mountain View"
+  //   //   // }
+  //   // }).then((value) {
+  //   //   Navigator.pop(context);
+  //   //   Navigator.push(
+  //   //     context,
+  //   //     MaterialPageRoute(
+  //   //       builder: (context) {
+  //   //         return TermsAndConditions();
+  //   //       },
+  //   //     ),
+  //   //   );
+  //   // });
+  //
+  //
+  //
+  //
+  //
+  //   return await Geolocator.getCurrentPosition();
+  // }
 
   static final _pickup =TextEditingController();
   static final _code =TextEditingController();
@@ -138,29 +138,36 @@ class _SearchAndPickupDestinationPageState extends State<SearchAndPickupDestinat
                       backgroundColor: Colors.white,
 
                       onPressed: () async{
-                        getUserCurrentLocation().then((value) async {
-                          print(value.latitude.toString() +" "+value.longitude.toString());
 
-                          _markers.add(
-                              Marker(
-                                markerId: MarkerId("1"),
-                                position: LatLng(value.latitude, value.longitude),
-                                infoWindow: InfoWindow(
-                                  title: 'My Current Location',
-                                ),
-                              )
-                          );
 
-                          CameraPosition cameraPosition = new CameraPosition(
-                            target: LatLng(value.latitude, value.longitude),
-                            zoom: 10,
-                          );
 
-                          final GoogleMapController controller = await _controller.future;
-                          controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-                          setState(() {
-                          });
-                        });
+                        // getUserCurrentLocation().then((value) async {
+                        //   print(value.latitude.toString() +" "+value.longitude.toString());
+                        //
+                        //   _markers.add(
+                        //       Marker(
+                        //         markerId: MarkerId("1"),
+                        //         position: LatLng(value.latitude, value.longitude),
+                        //         infoWindow: InfoWindow(
+                        //           title: 'My Current Location',
+                        //         ),
+                        //       )
+                        //   );
+                        //
+                        //   CameraPosition cameraPosition = new CameraPosition(
+                        //     target: LatLng(value.latitude, value.longitude),
+                        //     zoom: 10,
+                        //   );
+                        //
+                        //   final GoogleMapController controller = await _controller.future;
+                        //   controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+                        //   setState(() {
+                        //   });
+                        // });
+                        //
+                        //
+
+
                       },
                       child: Icon(Icons.local_activity,size: 16,color: Colors.green,),
                     ),

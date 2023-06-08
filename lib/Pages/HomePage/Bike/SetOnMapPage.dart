@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
+//import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/pickup_confirm_code.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -39,18 +39,20 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
     ),
   ];
 
-  Future<Position> getUserCurrentLocation() async {
-    await Geolocator.requestPermission().then((value){
-    }).onError((error, stackTrace) async {
-      await Geolocator.requestPermission();
-      print("ERROR"+error.toString());
-    });
-    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high,
-    forceAndroidLocationManager: true);
-  }
+  // Future<Position> getUserCurrentLocation() async {
+  //   await Geolocator.requestPermission().then((value){
+  //   }).onError((error, stackTrace) async {
+  //     await Geolocator.requestPermission();
+  //     print("ERROR"+error.toString());
+  //   });
+  //   return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high,
+  //   forceAndroidLocationManager: true);
+  // }
+  //
+
   LatLng? pickLocation;
   String? _address;
-  LocationPermission? _locationPermission;
+  //LocationPermission? _locationPermission;
 
   getAddressFromLatLng()async{
     try{
@@ -67,19 +69,19 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
     }
   }
 
-  checkIfLocationPermissionAllowed()async{
-    _locationPermission=await Geolocator.requestPermission();
-
-    if(_locationPermission==LocationPermission.denied){
-      _locationPermission=await Geolocator.requestPermission();
-    }
-  }
+  // checkIfLocationPermissionAllowed()async{
+  //   _locationPermission=await Geolocator.requestPermission();
+  //
+  //   if(_locationPermission==LocationPermission.denied){
+  //     _locationPermission=await Geolocator.requestPermission();
+  //   }
+  // }
 
 
   @override
   void initState(){
     super.initState();
-    checkIfLocationPermissionAllowed();
+    //checkIfLocationPermissionAllowed();
   }
 
   // late LatLng _center;
@@ -179,29 +181,37 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                        backgroundColor: Colors.white,
 
                        onPressed: () async{
-                         getUserCurrentLocation().then((value) async {
-                           print(value.latitude.toString() +" "+value.longitude.toString());
 
-                           _markers.add(
-                               Marker(
-                                 markerId: MarkerId("1"),
-                                 position: LatLng(value.latitude, value.longitude),
-                                 infoWindow: InfoWindow(
-                                   title: 'My Current Location',
-                                 ),
-                               )
-                           );
 
-                           CameraPosition cameraPosition = new CameraPosition(
-                             target: LatLng(value.latitude, value.longitude),
-                             zoom: 10,
-                           );
 
-                           final GoogleMapController controller = await _controller.future;
-                           controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-                           // setState(() {
-                           // });
-                         });
+                         // getUserCurrentLocation().then((value) async {
+                         //   print(value.latitude.toString() +" "+value.longitude.toString());
+                         //
+                         //   _markers.add(
+                         //       Marker(
+                         //         markerId: MarkerId("1"),
+                         //         position: LatLng(value.latitude, value.longitude),
+                         //         infoWindow: InfoWindow(
+                         //           title: 'My Current Location',
+                         //         ),
+                         //       )
+                         //   );
+                         //
+                         //   CameraPosition cameraPosition = new CameraPosition(
+                         //     target: LatLng(value.latitude, value.longitude),
+                         //     zoom: 10,
+                         //   );
+                         //
+                         //   final GoogleMapController controller = await _controller.future;
+                         //   controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+                         //   // setState(() {
+                         //   // });
+                         // });
+                         //
+                         //
+
+
+
                        },
                        child: Icon(Icons.local_activity,size: 16,color: Colors.green,),
                      ),

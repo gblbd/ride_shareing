@@ -106,7 +106,7 @@
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geolocator/geolocator.dart';
+//import 'package:geolocator/geolocator.dart';
 
 class MyMapWidget extends StatefulWidget {
   @override
@@ -121,7 +121,7 @@ class _MyMapWidgetState extends State<MyMapWidget> {
   @override
   void initState() {
     super.initState();
-    _getLocation();
+    //_getLocation();
   }
 
   // void _getLocation() async {
@@ -131,14 +131,18 @@ class _MyMapWidgetState extends State<MyMapWidget> {
   //     _center = LatLng(position.latitude, position.longitude);
   //   });
   // }
-  void _getLocation() async {
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    setState(() {
-      _center = LatLng(position.latitude, position.longitude);
-      _getAddressFromLatLng();
-    });
-  }
+
+
+
+
+  // void _getLocation() async {
+  //   Position position = await Geolocator.getCurrentPosition(
+  //       desiredAccuracy: LocationAccuracy.high);
+  //   setState(() {
+  //     _center = LatLng(position.latitude, position.longitude);
+  //     _getAddressFromLatLng();
+  //   });
+  // }
 
   void _getAddressFromLatLng() async {
     try {

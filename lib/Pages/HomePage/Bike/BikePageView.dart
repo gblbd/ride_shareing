@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:geolocator/geolocator.dart';
+//import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/AvailablePromos.dart';
@@ -96,14 +96,14 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
     ),
   ];
 
-  Future<Position> getUserCurrentLocation() async {
-    await Geolocator.requestPermission().then((value){
-    }).onError((error, stackTrace) async {
-      await Geolocator.requestPermission();
-      print("ERROR"+error.toString());
-    });
-    return await Geolocator.getCurrentPosition();
-  }
+  // Future<Position> getUserCurrentLocation() async {
+  //   await Geolocator.requestPermission().then((value){
+  //   }).onError((error, stackTrace) async {
+  //     await Geolocator.requestPermission();
+  //     print("ERROR"+error.toString());
+  //   });
+  //   return await Geolocator.getCurrentPosition();
+  // }
 
   static final _code=TextEditingController();
   static final _destination=TextEditingController();
@@ -228,29 +228,33 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
                       backgroundColor: Colors.white,
 
                       onPressed: () async{
-                        getUserCurrentLocation().then((value) async {
-                          print(value.latitude.toString() +" "+value.longitude.toString());
+                        // getUserCurrentLocation().then((value) async {
+                        //   print(value.latitude.toString() +" "+value.longitude.toString());
+                        //
+                        //   _markers.add(
+                        //       Marker(
+                        //         markerId: MarkerId("1"),
+                        //         position: LatLng(value.latitude, value.longitude),
+                        //         infoWindow: InfoWindow(
+                        //           title: 'My Current Location',
+                        //         ),
+                        //       )
+                        //   );
+                        //
+                        //   CameraPosition cameraPosition = new CameraPosition(
+                        //     target: LatLng(value.latitude, value.longitude),
+                        //     zoom: 10,
+                        //   );
+                        //
+                        //   final GoogleMapController controller = await _controller.future;
+                        //   controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+                        //   setState(() {
+                        //   });
+                        // });
+                        //
 
-                          _markers.add(
-                              Marker(
-                                markerId: MarkerId("1"),
-                                position: LatLng(value.latitude, value.longitude),
-                                infoWindow: InfoWindow(
-                                  title: 'My Current Location',
-                                ),
-                              )
-                          );
 
-                          CameraPosition cameraPosition = new CameraPosition(
-                            target: LatLng(value.latitude, value.longitude),
-                            zoom: 10,
-                          );
 
-                          final GoogleMapController controller = await _controller.future;
-                          controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-                          setState(() {
-                          });
-                        });
                       },
                       child: Icon(Icons.local_activity,size: 16,color: Colors.green,),
                     ),
