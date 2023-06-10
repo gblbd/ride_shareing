@@ -1196,6 +1196,7 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                                              SingleChildScrollView(
                                                scrollDirection: Axis.horizontal,
                                                child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                  children: [
                                                    Row(
                                                      children: [

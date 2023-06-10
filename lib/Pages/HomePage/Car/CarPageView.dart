@@ -837,20 +837,20 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
 
                             },
                           ),
-                        suffixIcon: InkWell(
-                            child: Icon(Icons.arrow_forward_ios),
-                          onTap: (){
-
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(builder: (context) {
-                            //       return SearchPage();//SetOnMap2(SearchDestinations: "SearchDestinations");
-                            //     })
-                            // );
-
-                          },
-
-                        )
+                        // suffixIcon: InkWell(
+                        //     child: Icon(Icons.arrow_forward_ios),
+                        //   onTap: (){
+                        //
+                        //     // Navigator.push(
+                        //     //     context,
+                        //     //     MaterialPageRoute(builder: (context) {
+                        //     //       return SearchPage();//SetOnMap2(SearchDestinations: "SearchDestinations");
+                        //     //     })
+                        //     // );
+                        //
+                        //   },
+                        //
+                        // )
                       ),
 
                     ),

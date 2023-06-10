@@ -302,7 +302,7 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
              Padding(
                padding: const EdgeInsets.only(top: 16,left: 16,right: 16),
                child: Container(
-                 height: 8.h,width: 80.w,
+                 height: 8.h,width: 60.w,
                  decoration: BoxDecoration(
                    border: Border.all(color: Colors.grey.shade900,width: 0.1),
                    borderRadius: BorderRadius.circular(6.0),
@@ -312,12 +312,15 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                    children: [
                      Icon(Icons.location_on,size: 24,color: Colors.red,),
                      SizedBox(width: 10,),
-                     SingleChildScrollView(
-                       scrollDirection: Axis.horizontal,
-                       child: Text(widget.SearchDestinations.isEmpty ?'Enter Destination':widget.SearchDestinations.toString(),
-                           style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w400),
-                         maxLines: 10,
+                     Container(
+                       width: 80.w,
+                       child: SingleChildScrollView(
+                         scrollDirection: Axis.horizontal,
+                         child: Text(widget.SearchDestinations.isEmpty ?'Enter Destination':widget.SearchDestinations.toString(),
+                             style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w400),
+                           maxLines: 10,
 
+                         ),
                        ),
                      ),
                    ],
