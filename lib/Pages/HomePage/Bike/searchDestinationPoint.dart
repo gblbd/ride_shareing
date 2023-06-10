@@ -111,7 +111,7 @@ class _SearchDestinationPointState extends State<SearchDestinationPoint> with Ti
 
 
 
-  final Set<Polyline> _polyline={};
+  Set<Polyline> PolylineSet={};
 
 
 
@@ -221,7 +221,7 @@ class _SearchDestinationPointState extends State<SearchDestinationPoint> with Ti
 
                     },
 
-                    polylines: _polyline,
+                    polylines: PolylineSet,
 
 
 

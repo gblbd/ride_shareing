@@ -42,7 +42,7 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
 
   static const LatLng DestinationLocation=LatLng(37.3342, -122.06672);
 
-  final Set<Polyline> _polyline={};
+  Set<Polyline> PolylineSet={};
 
   Future<void> getpolyline() async {
 
@@ -53,11 +53,14 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
         PointLatLng(SourceLocation.latitude,SourceLocation.longitude),
         PointLatLng(DestinationLocation.latitude, DestinationLocation.longitude));
 
-    result.points.forEach((location) {
-      polyCordinates.add(LatLng(location.latitude, location.longitude));
-    });
+    if (result.points.isNotEmpty) {
+      result.points.forEach((location) {
+        polyCordinates.add(LatLng(location.latitude, location.longitude));
+      });
+    }
 
-    _polyline.add(
+
+    PolylineSet.add(
         Polyline(
             polylineId: PolylineId("1"),
             points: [SourceLocation,DestinationLocation],//polyCordinates,
@@ -224,7 +227,7 @@ getRequest(_destination.text.toString());
                       )
                     },
 
-                    polylines: _polyline,
+                    polylines: PolylineSet,
 
 
 

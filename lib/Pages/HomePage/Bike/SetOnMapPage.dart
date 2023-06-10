@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geocoding/geocoding.dart';
 //import 'package:geolocator/geolocator.dart';
@@ -27,7 +28,6 @@ class SetOnMap extends StatefulWidget {
 
 class _SetOnMapState extends State<SetOnMap> {
 
-String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
 
   Completer<GoogleMapController> _controller = Completer();
   static final CameraPosition _kGoogle = const CameraPosition(
@@ -140,6 +140,59 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
  // bool _showBox = false;
 
 
+
+List<LatLng> pLineCoordinates=[];
+Set<Polyline> PolylineSet={};
+PolylinePoints polylinePoints=PolylinePoints();
+// _addPolyLine() {
+//   PolylineId id = PolylineId("poly");
+//   Polyline polyline = Polyline(
+//       polylineId: id, color: Colors.red, points: pLineCoordinates);
+//   polylines[id] = polyline;
+//   setState(() {});
+// }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getPolyline();
+  }
+
+  _getPolyline() async {
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+      'AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ',
+      PointLatLng(widget.sourceLat, widget.sourceLong),
+      PointLatLng(widget.destinationLat, widget.destinationlong),
+      //travelMode: TravelMode.driving,
+    );
+    if (result.points.isNotEmpty) {
+      result.points.forEach((PointLatLng point) {
+        pLineCoordinates.add(LatLng(point.latitude, point.longitude));
+        print("Points :::::${pLineCoordinates}");
+        print("SourcePoints :::::${widget.sourceLat} ${widget.sourceLong}");
+        print("DestinationPoints :::::${widget.destinationLat} ${widget.destinationlong}");
+      });
+    }
+
+    PolylineSet.clear();
+
+    setState(() {
+      Polyline polyline=Polyline(
+          polylineId: PolylineId("PolylineID"),
+          color: Colors.purple,
+          jointType: JointType.round,
+          points: pLineCoordinates,
+          width: 5,
+          startCap: Cap.roundCap,
+          endCap: Cap.roundCap,
+          geodesic: true
+      );
+      PolylineSet.add(polyline);
+      print("Polyline:::::::::::::::::::::::::::::::::::::::: $polyline");
+    });
+
+  }
+
    @override
   Widget build(BuildContext context) {
 
@@ -149,6 +202,7 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
 
      LatLng SourceLocation=LatLng(widget.sourceLat, widget.sourceLong);
      LatLng DestinationLocation=LatLng(widget.destinationLat, widget.destinationlong);
+
 
 
      return Scaffold(
@@ -162,6 +216,11 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                  children: [
 
                    GoogleMap(
+                     polylines: PolylineSet,
+                     myLocationEnabled: true,
+                     zoomGesturesEnabled: true,
+                     zoomControlsEnabled: true,
+                     myLocationButtonEnabled: true,
                      initialCameraPosition: CameraPosition(
                          target: SourceLocation,//LatLng(currentLocation.latitude!,currentLocation.longitude!),
                          zoom: 14.5),
@@ -177,14 +236,14 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                      },
 
 
-                     polylines: {
-                       Polyline(
-                           polylineId: PolylineId("routs"),
-                           points: [SourceLocation,DestinationLocation],
-                           width: 6,
-                           color: Colors.red.shade600
-                       )
-                     },
+                     // polylines: {
+                     //   Polyline(
+                     //       polylineId: PolylineId("routs"),
+                     //       points: [SourceLocation,DestinationLocation],
+                     //       width: 6,
+                     //       color: Colors.red.shade600
+                     //   )
+                     // },
 
                      //polylines: _polyline,
 
