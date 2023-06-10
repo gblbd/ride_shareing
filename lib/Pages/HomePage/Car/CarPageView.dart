@@ -894,41 +894,39 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
             ),
 
 
-            Expanded(
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: _placelist.length,
-                  itemBuilder: (context,index){
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: _placelist.length,
+                itemBuilder: (context,index){
 
-                    return ListTile(
+                  return ListTile(
 
-                      title: Text(_placelist[index]['description']),
+                    title: Text(_placelist[index]['description']),
 
-                      onTap: ()async{
+                    onTap: ()async{
 
-                        List<Location> locations=await locationFromAddress(_placelist[index]["description"]);
-                        print(locations.last.latitude);
-                        print(locations.last.longitude);
+                      List<Location> locations=await locationFromAddress(_placelist[index]["description"]);
+                      print(locations.last.latitude);
+                      print(locations.last.longitude);
 
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) {
-                              return SearchPickUpPoint(
-                                destinationLatitude: locations.last.latitude,
-                                destinationLongitude: locations.last.longitude,
-                                destinetionDetail: _placelist[index]['description'],
-                              );//SetOnMap2(SearchDestinations: "${locations.last.latitude}/${locations.last.longitude}");
-                            })
-                        );
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return SearchPickUpPoint(
+                              destinationLatitude: locations.last.latitude,
+                              destinationLongitude: locations.last.longitude,
+                              destinetionDetail: _placelist[index]['description'],
+                            );//SetOnMap2(SearchDestinations: "${locations.last.latitude}/${locations.last.longitude}");
+                          })
+                      );
 
-                      },
-
+                    },
 
 
-                    );
 
-                  }),
-            ),
+                  );
+
+                }),
 
 
 

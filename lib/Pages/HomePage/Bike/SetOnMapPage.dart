@@ -6,6 +6,7 @@ import 'package:geocoding/geocoding.dart';
 //import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/pickup_confirm_code.dart';
+import 'package:sizer/sizer.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:timelines/timelines.dart';
 
@@ -13,7 +14,12 @@ import '../Courier/SaveAddressPage.dart';
 
 class SetOnMap extends StatefulWidget {
   final String SearchDestinations;
-  const SetOnMap({Key? key, required this.SearchDestinations}) : super(key: key);
+  final double destinationLat;
+  final double destinationlong;
+  final double sourceLat;
+  final double sourceLong;
+  final String SearchPickup;
+  const SetOnMap({Key? key, required this.SearchDestinations, required this.destinationLat, required this.destinationlong, required this.sourceLat, required this.sourceLong, required this.SearchPickup}) : super(key: key);
 
   @override
   State<SetOnMap> createState() => _SetOnMapState();
@@ -50,24 +56,24 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
   // }
   //
 
-  LatLng? pickLocation;
-  String? _address;
-  //LocationPermission? _locationPermission;
-
-  getAddressFromLatLng()async{
-    try{
-      GeoData data =await Geocoder2.getDataFromCoordinates(
-        latitude: pickLocation!.latitude,
-        longitude: pickLocation!.longitude,
-        googleMapApiKey: mapKey
-      );
-      setState(() {
-        _address=data.address;
-      });
-    }catch(e){
-      print(e);
-    }
-  }
+  // LatLng? pickLocation;
+  // String? _address;
+  // //LocationPermission? _locationPermission;
+  //
+  // getAddressFromLatLng()async{
+  //   try{
+  //     GeoData data =await Geocoder2.getDataFromCoordinates(
+  //       latitude: pickLocation!.latitude,
+  //       longitude: pickLocation!.longitude,
+  //       googleMapApiKey: mapKey
+  //     );
+  //     setState(() {
+  //       _address=data.address;
+  //     });
+  //   }catch(e){
+  //     print(e);
+  //   }
+  // }
 
   // checkIfLocationPermissionAllowed()async{
   //   _locationPermission=await Geolocator.requestPermission();
@@ -78,11 +84,11 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
   // }
 
 
-  @override
-  void initState(){
-    super.initState();
-    //checkIfLocationPermissionAllowed();
-  }
+  // @override
+  // void initState(){
+  //   super.initState();
+  //   //checkIfLocationPermissionAllowed();
+  // }
 
   // late LatLng _center;
   // late String _currentAddress;
@@ -139,6 +145,12 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
 
      _panelHeightOpen = MediaQuery.of(context).size.height * .99;
 
+
+
+     LatLng SourceLocation=LatLng(widget.sourceLat, widget.sourceLong);
+     LatLng DestinationLocation=LatLng(widget.destinationLat, widget.destinationlong);
+
+
      return Scaffold(
        extendBody: true,
        backgroundColor: Colors.white,
@@ -148,19 +160,53 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
              child: SafeArea(
                child: Stack(
                  children: [
+
                    GoogleMap(
-                     initialCameraPosition: _kGoogle,
-                     markers: Set<Marker>.of(_markers),
-                     mapType: MapType.hybrid,
-                     myLocationEnabled: true,
-                     compassEnabled: true,
-                     onMapCreated: (GoogleMapController controller){
-                       _controller.complete(controller);
+                     initialCameraPosition: CameraPosition(
+                         target: SourceLocation,//LatLng(currentLocation.latitude!,currentLocation.longitude!),
+                         zoom: 14.5),
+                     markers: {
+                       Marker(
+                           markerId: MarkerId("Source"),
+                           position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
+                       ),
+                       Marker(
+                           markerId: MarkerId("Destination"),
+                           position: DestinationLocation
+                       )
                      },
-                     onCameraIdle: (){
-                       getAddressFromLatLng();
-                     },
+
+                     //polylines: _polyline,
+
+
+
+                     // polylines: {
+                     //   Polyline(
+                     //     polylineId: PolylineId("routs"),
+                     //     points: polyCordinates
+                     //   )
+                     // },
+                     // mapType: MapType.hybrid,
+                     // myLocationEnabled: true,
+                     // compassEnabled: true,
+                     // onMapCreated: (GoogleMapController controller){
+                     //   _controller.complete(controller);
+                     // },
                    ),
+
+                   // GoogleMap(
+                   //   initialCameraPosition: _kGoogle,
+                   //   markers: Set<Marker>.of(_markers),
+                   //   mapType: MapType.normal,
+                   //   myLocationEnabled: true,
+                   //   compassEnabled: true,
+                   //   onMapCreated: (GoogleMapController controller){
+                   //     _controller.complete(controller);
+                   //   },
+                   //   onCameraIdle: (){
+                   //     getAddressFromLatLng();
+                   //   },
+                   // ),
                    Positioned(
                        left: 10.0,
                        child: CircleAvatar(
@@ -173,50 +219,50 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                          ),
                        )
                    ),
-                   Positioned(
-                     right: 8,
-                     top: 400,
-                     child: FloatingActionButton(
-                       mini: true,
-                       backgroundColor: Colors.white,
-
-                       onPressed: () async{
-
-
-
-                         // getUserCurrentLocation().then((value) async {
-                         //   print(value.latitude.toString() +" "+value.longitude.toString());
-                         //
-                         //   _markers.add(
-                         //       Marker(
-                         //         markerId: MarkerId("1"),
-                         //         position: LatLng(value.latitude, value.longitude),
-                         //         infoWindow: InfoWindow(
-                         //           title: 'My Current Location',
-                         //         ),
-                         //       )
-                         //   );
-                         //
-                         //   CameraPosition cameraPosition = new CameraPosition(
-                         //     target: LatLng(value.latitude, value.longitude),
-                         //     zoom: 10,
-                         //   );
-                         //
-                         //   final GoogleMapController controller = await _controller.future;
-                         //   controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-                         //   // setState(() {
-                         //   // });
-                         // });
-                         //
-                         //
-
-
-
-                       },
-                       child: Icon(Icons.local_activity,size: 16,color: Colors.green,),
-                     ),
-
-                   ),
+                   // Positioned(
+                   //   right: 8,
+                   //   top: 400,
+                   //   child: FloatingActionButton(
+                   //     mini: true,
+                   //     backgroundColor: Colors.white,
+                   //
+                   //     onPressed: () async{
+                   //
+                   //
+                   //
+                   //       // getUserCurrentLocation().then((value) async {
+                   //       //   print(value.latitude.toString() +" "+value.longitude.toString());
+                   //       //
+                   //       //   _markers.add(
+                   //       //       Marker(
+                   //       //         markerId: MarkerId("1"),
+                   //       //         position: LatLng(value.latitude, value.longitude),
+                   //       //         infoWindow: InfoWindow(
+                   //       //           title: 'My Current Location',
+                   //       //         ),
+                   //       //       )
+                   //       //   );
+                   //       //
+                   //       //   CameraPosition cameraPosition = new CameraPosition(
+                   //       //     target: LatLng(value.latitude, value.longitude),
+                   //       //     zoom: 10,
+                   //       //   );
+                   //       //
+                   //       //   final GoogleMapController controller = await _controller.future;
+                   //       //   controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+                   //       //   // setState(() {
+                   //       //   // });
+                   //       // });
+                   //       //
+                   //       //
+                   //
+                   //
+                   //
+                   //     },
+                   //     child: Icon(Icons.local_activity,size: 16,color: Colors.green,),
+                   //   ),
+                   //
+                   // ),
 
                  ],
                ),
@@ -256,25 +302,25 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
              Padding(
                padding: const EdgeInsets.only(top: 16,left: 16,right: 16),
                child: Container(
-                 height: 50,width: 330,
+                 height: 8.h,width: 80.w,
                  decoration: BoxDecoration(
                    border: Border.all(color: Colors.grey.shade900,width: 0.1),
                    borderRadius: BorderRadius.circular(6.0),
                    color: Colors.white,
                  ),
-                 child: Padding(
-                   padding: const EdgeInsets.all(8.0),
-                   child: Row(
-                     children: [
-                       Icon(Icons.location_on,size: 24,color: Colors.red,),
-                       SizedBox(width: 10,),
-                       Text(widget.SearchDestinations.isEmpty ?'Enter Destination':widget.SearchDestinations.toString(),
-                           style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w400)
+                 child: Row(
+                   children: [
+                     Icon(Icons.location_on,size: 24,color: Colors.red,),
+                     SizedBox(width: 10,),
+                     SingleChildScrollView(
+                       scrollDirection: Axis.horizontal,
+                       child: Text(widget.SearchDestinations.isEmpty ?'Enter Destination':widget.SearchDestinations.toString(),
+                           style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w400),
+                         maxLines: 10,
 
-                 ),
-
-                     ],
-                   ),
+                       ),
+                     ),
+                   ],
                  ),
                  // TextField(
                  //   controller: _pickup,
@@ -1123,26 +1169,34 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                                              Text("Your Trip"),
                                              SizedBox(height: 20,),
 
-                                             Row(
-                                               children: [
-                                                 Icon(Icons.man,size: 30,color: Colors.grey.shade600,),
-                                                 Text(_address ?? " set your pickup destination"),
-                                               ],
-                                             ),
-                                             SizedBox(
-                                               height: 20.0,width: 30,
-                                               child: TimelineNode(
-                                                 startConnector: SolidLineConnector(color: Colors.grey.shade300,thickness: 1,),
-                                                 endConnector: SolidLineConnector(color: Colors.grey.shade300,thickness: 1,),
-                                               ),
-                                             ),
-                                             Row(
-                                               children: [
-                                                 Icon(Icons.location_on,size: 28,color: Colors.red.shade600,),
-                                                 SizedBox(width: 5,),
-                                                 Text(widget.SearchDestinations ),
-                                               ],
-                                             ),
+                                          SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.man,size: 30,color: Colors.grey.shade600,),
+                                                    Text(widget.SearchPickup),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 20.0,width: 30,
+                                                  child: TimelineNode(
+                                                    startConnector: SolidLineConnector(color: Colors.grey.shade300,thickness: 1,),
+                                                    endConnector: SolidLineConnector(color: Colors.grey.shade300,thickness: 1,),
+                                                  ),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.location_on,size: 28,color: Colors.red.shade600,),
+                                                    SizedBox(width: 5,),
+                                                    Text(widget.SearchDestinations ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
 
                                              Divider(),
 

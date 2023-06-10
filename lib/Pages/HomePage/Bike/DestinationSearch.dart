@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'AddMissingPlace.dart';
+import 'SetOnMapForBike.dart';
 import 'SetOnMapPage.dart';
 
 class DestinationSeachPage extends StatelessWidget {
@@ -92,7 +93,7 @@ class DestinationSeachPage extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) {
-                        return SetOnMap(SearchDestinations: '',);
+                        return SetOnMapForBike();
                       })
                   );
 

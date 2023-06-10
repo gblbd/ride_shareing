@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geocoding/geocoding.dart';
-//import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/pickup_confirm_code.dart';
+import 'package:sizer/sizer.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:timelines/timelines.dart';
 
@@ -21,7 +21,7 @@ class SetOnMap2 extends StatefulWidget {
   final String SearchDestinations;
   final String SearchPickup;
 
-  const SetOnMap2({super.key, required this.destinationLat, required this.destinationlong, required this.sourceLat, required this.sourceLong, required this.SearchDestinations, required this.SearchPickup});
+  const  SetOnMap2({super.key, required this.destinationLat, required this.destinationlong, required this.sourceLat, required this.sourceLong, required this.SearchDestinations, required this.SearchPickup});
 
   //const SetOnMap2({Key? key, required this.SearchDestinations}) : super(key: key);
 
@@ -58,27 +58,25 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
   //   return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high,
   //   forceAndroidLocationManager: true);
   // }
+  // LatLng? pickLocation;
+  // String? _address;
+  // LocationPermission? _locationPermission;
   //
-
-  LatLng? pickLocation;
-  String? _address;
-  //LocationPermission? _locationPermission;
-
-  getAddressFromLatLng()async{
-    try{
-      GeoData data =await Geocoder2.getDataFromCoordinates(
-        latitude: pickLocation!.latitude,
-        longitude: pickLocation!.longitude,
-        googleMapApiKey: mapKey
-      );
-      setState(() {
-        _address=data.address;
-      });
-    }catch(e){
-      print(e);
-    }
-  }
-
+  // getAddressFromLatLng()async{
+  //   try{
+  //     GeoData data =await Geocoder2.getDataFromCoordinates(
+  //       latitude: pickLocation!.latitude,
+  //       longitude: pickLocation!.longitude,
+  //       googleMapApiKey: mapKey
+  //     );
+  //     setState(() {
+  //       _address=data.address;
+  //     });
+  //   }catch(e){
+  //     print(e);
+  //   }
+  // }
+  //
   // checkIfLocationPermissionAllowed()async{
   //   _locationPermission=await Geolocator.requestPermission();
   //
@@ -86,13 +84,13 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
   //     _locationPermission=await Geolocator.requestPermission();
   //   }
   // }
-
-
-  @override
-  void initState(){
-    super.initState();
-    //checkIfLocationPermissionAllowed();
-  }
+  //
+  //
+  // @override
+  // void initState(){
+  //   super.initState();
+  //   checkIfLocationPermissionAllowed();
+  // }
 
   // late LatLng _center;
   // late String _currentAddress;
@@ -183,60 +181,51 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                        )
                      },
 
-                     polylines: {
-                       Polyline(
-                         polylineId: PolylineId("routs"),
-                         points: [SourceLocation,DestinationLocation],
-                         color: Colors.green,
-                         width: 6
-                       )
-
-                     }
-                       //[SourceLocation,DestinationLocation],
+                     //polylines: _polyline,
 
 
 
-             // polylines: {
-             //   Polyline(
-             //     polylineId: PolylineId("routs"),
-             //     points: polyCordinates
-             //   )
-             // },
-             // mapType: MapType.hybrid,
-             // myLocationEnabled: true,
-             // compassEnabled: true,
-             // onMapCreated: (GoogleMapController controller){
-             //   _controller.complete(controller);
-             // },
-             ),
+                     // polylines: {
+                     //   Polyline(
+                     //     polylineId: PolylineId("routs"),
+                     //     points: polyCordinates
+                     //   )
+                     // },
+                     // mapType: MapType.hybrid,
+                     // myLocationEnabled: true,
+                     // compassEnabled: true,
+                     // onMapCreated: (GoogleMapController controller){
+                     //   _controller.complete(controller);
+                     // },
+                   ),
 
 
 
 
-             // GoogleMap(
-             //   initialCameraPosition: _kGoogle,
-             //   markers: Set<Marker>.of(_markers),
-             //   mapType: MapType.hybrid,
-             //   myLocationEnabled: true,
-             //   compassEnabled: true,
-             //   onMapCreated: (GoogleMapController controller){
-             //     _controller.complete(controller);
-             //   },
-             //   onCameraIdle: (){
-             //     getAddressFromLatLng();
-             //   },
-             // ),
-             //
+                   // GoogleMap(
+                   //   initialCameraPosition: _kGoogle,
+                   //   markers: Set<Marker>.of(_markers),
+                   //   mapType: MapType.hybrid,
+                   //   myLocationEnabled: true,
+                   //   compassEnabled: true,
+                   //   onMapCreated: (GoogleMapController controller){
+                   //     _controller.complete(controller);
+                   //   },
+                   //   onCameraIdle: (){
+                   //     getAddressFromLatLng();
+                   //   },
+                   // ),
+                   //
 
 
 
-             /////////////////////////////////////////////////////////////////
+                   /////////////////////////////////////////////////////////////////
 
 
 
-             Positioned(
-             left: 10.0,
-             child: CircleAvatar(
+                   Positioned(
+                       left: 10.0,
+                       child: CircleAvatar(
                          backgroundColor: Colors.white,
                          child: TextButton(
                            onPressed: (){
@@ -246,50 +235,42 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                          ),
                        )
                    ),
-                   Positioned(
-                     right: 8,
-                     top: 400,
-                     child: FloatingActionButton(
-                       mini: true,
-                       backgroundColor: Colors.white,
-
-                       onPressed: () async{
-
-
-
-                         // getUserCurrentLocation().then((value) async {
-                         //   print(value.latitude.toString() +" "+value.longitude.toString());
-                         //
-                         //   _markers.add(
-                         //       Marker(
-                         //         markerId: MarkerId("1"),
-                         //         position: LatLng(value.latitude, value.longitude),
-                         //         infoWindow: InfoWindow(
-                         //           title: 'My Current Location',
-                         //         ),
-                         //       )
-                         //   );
-                         //
-                         //   CameraPosition cameraPosition = new CameraPosition(
-                         //     target: LatLng(value.latitude, value.longitude),
-                         //     zoom: 10,
-                         //   );
-                         //
-                         //   final GoogleMapController controller = await _controller.future;
-                         //   controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-                         //   // setState(() {
-                         //   // });
-                         // });
-                         //
-
-
-
-
-                       },
-                       child: Icon(Icons.local_activity,size: 16,color: Colors.green,),
-                     ),
-
-                   ),
+                   // Positioned(
+                   //   right: 8,
+                   //   top: 400,
+                   //   child: FloatingActionButton(
+                   //     mini: true,
+                   //     backgroundColor: Colors.white,
+                   //
+                   //     onPressed: () async{
+                   //       getUserCurrentLocation().then((value) async {
+                   //         print(value.latitude.toString() +" "+value.longitude.toString());
+                   //
+                   //         _markers.add(
+                   //             Marker(
+                   //               markerId: MarkerId("1"),
+                   //               position: LatLng(value.latitude, value.longitude),
+                   //               infoWindow: InfoWindow(
+                   //                 title: 'My Current Location',
+                   //               ),
+                   //             )
+                   //         );
+                   //
+                   //         CameraPosition cameraPosition = new CameraPosition(
+                   //           target: LatLng(value.latitude, value.longitude),
+                   //           zoom: 10,
+                   //         );
+                   //
+                   //         final GoogleMapController controller = await _controller.future;
+                   //         controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+                   //         // setState(() {
+                   //         // });
+                   //       });
+                   //     },
+                   //     child: Icon(Icons.local_activity,size: 16,color: Colors.green,),
+                   //   ),
+                   //
+                   // ),
 
                  ],
                ),
@@ -329,27 +310,26 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
              Padding(
                padding: const EdgeInsets.only(top: 16,left: 16,right: 16),
                child: Container(
-                 height: 50,width: 330,
+                 height: 50,width: 80.w,
                  decoration: BoxDecoration(
                    border: Border.all(color: Colors.grey.shade900,width: 0.1),
                    borderRadius: BorderRadius.circular(6.0),
                    color: Colors.white,
                  ),
-                 child: Padding(
-                   padding: const EdgeInsets.all(8.0),
-                   child: SingleChildScrollView(
-                     scrollDirection: Axis.horizontal,
-                     child: Row(
-                       children: [
-                         Icon(Icons.location_on,size: 24,color: Colors.red,),
-                         SizedBox(width: 10,),
-                         Text(widget.SearchDestinations.isEmpty ?'Enter Destination':widget.SearchDestinations,
-                             style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w400)
-                         ),
+                 child: Row(
+                   children: [
+                     Icon(Icons.location_on,size: 24,color: Colors.red,),
+                     SizedBox(width: 10,),
+                     SingleChildScrollView(
+                       scrollDirection: Axis.horizontal,
+                       child: Text(widget.SearchDestinations.isEmpty ?'Enter Destination':widget.SearchDestinations,
+                           style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w400),
+                         maxLines: 10,
 
-                       ],
+                       ),
                      ),
-                   ),
+
+                   ],
                  ),
                  // TextField(
                  //   controller: _pickup,

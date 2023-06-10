@@ -8,7 +8,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoding/geocoding.dart';
-//import 'package:geolocator/geolocator.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -16,25 +15,26 @@ import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
 
 import '../Bike/YourTripPage.dart';
-import 'SetOnMapPage2.dart';
-import 'SetOnMapPageForCar.dart';
+import '../Car/SetOnMapPage2.dart';
+import 'SetOnMapForBike.dart';
+import 'SetOnMapPage.dart';
 
-class SearchPickUpPoint extends StatefulWidget {
+class SearchDestinationPoint extends StatefulWidget {
 
   final double destinationLatitude;
   final double destinationLongitude;
   final String destinetionDetail;
 
-  const SearchPickUpPoint({super.key, required this.destinationLatitude, required this.destinationLongitude, required this.destinetionDetail});
+  const SearchDestinationPoint({super.key, required this.destinationLatitude, required this.destinationLongitude, required this.destinetionDetail});
 
 
   //const SearchPickUpPoint({Key? key}) : super(key: key);
 
   @override
-  State<SearchPickUpPoint> createState() => _SearchPickUpPointState();
+  State<SearchDestinationPoint> createState() => _SearchDestinationPointState();
 }
 
-class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProviderStateMixin {
+class _SearchDestinationPointState extends State<SearchDestinationPoint> with TickerProviderStateMixin {
 
 
   List<LatLng> polyCordinates=[];
@@ -112,45 +112,6 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
 
 
   final Set<Polyline> _polyline={};
-
-  // Future<void> getpolyline() async {
-  //
-  //   PolylinePoints polylinePoints=PolylinePoints();
-  //
-  //   PolylineResult result=await polylinePoints.getRouteBetweenCoordinates(
-  //       "AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ",
-  //       PointLatLng(SourceLocation.latitude,SourceLocation.longitude),
-  //       PointLatLng(DestinationLocation.latitude, DestinationLocation.longitude));
-  //
-  //   result.points.forEach((location) {
-  //     polyCordinates.add(LatLng(location.latitude, location.longitude));
-  //   });
-  //
-  //   _polyline.add(
-  //       Polyline(
-  //           polylineId: PolylineId("1"),
-  //           points: [SourceLocation,DestinationLocation],//polyCordinates,
-  //           width: 6,
-  //           color: Colors.red
-  //       )
-  //   );
-  //
-  //   setState(() {
-  //
-  //   });
-  //
-  //
-  //
-  // }
-
-
-
-  ///////////////////////////////////////////////////////
-
-
-
-
-
 
 
 
@@ -248,24 +209,6 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
                 children: [
 
 
-                  // GooglePlaceAutoCompleteTextField(
-                  //     textEditingController: _destination,
-                  //     googleAPIKey: "AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ",
-                  //     inputDecoration: InputDecoration(),
-                  //     //debounceTime: 800 // default 600 ms,
-                  //     //countries: ["in","bn"],// optional by default null is set
-                  //     isLatLngRequired:true,// if you required coordinates from place detail
-                  //     getPlaceDetailWithLatLng: (Prediction prediction) {
-                  //       // this method will return latlng with place detail
-                  //       print("placeDetails" + prediction.lng.toString());
-                  //     }, // this callback is called when isLatLngRequired is true
-                  //     itmClick: (Prediction prediction) {
-                  //       _destination.text=prediction.description!;
-                  //       _destination.selection = TextSelection.fromPosition(TextPosition(offset: prediction.description!.length));
-                  //     }
-                  // ),
-
-
                   GoogleMap(
                     initialCameraPosition: CameraPosition(
                         target: SourceLocation,//LatLng(currentLocation.latitude!,currentLocation.longitude!),
@@ -320,52 +263,42 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
                         ),
                       )
                   ),
-                  Positioned(
-                    right: 8,
-                    top: 400,
-                    child: FloatingActionButton(
-                      mini: true,
-                      backgroundColor: Colors.white,
-
-                      onPressed: () async{
-
-
-
-                        //
-                        // getUserCurrentLocation().then((value) async {
-                        //   print(value.latitude.toString() +" "+value.longitude.toString());
-                        //
-                        //   _markers.add(
-                        //       Marker(
-                        //         markerId: MarkerId("1"),
-                        //         position: LatLng(value.latitude, value.longitude),
-                        //         infoWindow: InfoWindow(
-                        //           title: 'My Current Location',
-                        //         ),
-                        //       )
-                        //   );
-                        //
-                        //   CameraPosition cameraPosition = new CameraPosition(
-                        //     target: LatLng(value.latitude, value.longitude),
-                        //     zoom: 10,
-                        //   );
-                        //
-                        //   final GoogleMapController controller = await _controller.future;
-                        //   controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-                        //   setState(() {
-                        //   });
-                        // });
-                        //
-
-
-
-
-
-                      },
-                      child: Icon(Icons.local_activity,size: 16,color: Colors.green,),
-                    ),
-
-                  ),
+                  // Positioned(
+                  //   right: 8,
+                  //   top: 400,
+                  //   child: FloatingActionButton(
+                  //     mini: true,
+                  //     backgroundColor: Colors.white,
+                  //
+                  //     onPressed: () async{
+                  //       getUserCurrentLocation().then((value) async {
+                  //         print(value.latitude.toString() +" "+value.longitude.toString());
+                  //
+                  //         _markers.add(
+                  //             Marker(
+                  //               markerId: MarkerId("1"),
+                  //               position: LatLng(value.latitude, value.longitude),
+                  //               infoWindow: InfoWindow(
+                  //                 title: 'My Current Location',
+                  //               ),
+                  //             )
+                  //         );
+                  //
+                  //         CameraPosition cameraPosition = new CameraPosition(
+                  //           target: LatLng(value.latitude, value.longitude),
+                  //           zoom: 10,
+                  //         );
+                  //
+                  //         final GoogleMapController controller = await _controller.future;
+                  //         controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+                  //         setState(() {
+                  //         });
+                  //       });
+                  //     },
+                  //     child: Icon(Icons.local_activity,size: 16,color: Colors.green,),
+                  //   ),
+                  //
+                  // ),
                   Positioned(
                       right: 10.0,
                       top: 300,
@@ -841,8 +774,10 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
                       cursorColor: Colors.red.shade900,
                       decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Search Your location',
-                          hintStyle: TextStyle(fontSize: 17,color: Colors.black87),
+                          labelText: 'Search Destination',
+                         labelStyle: TextStyle(fontSize: 17,color: Colors.black87),
+                         // hintText: 'Search Destination',
+                         // hintStyle: TextStyle(fontSize: 17,color: Colors.black87),
                           prefixIcon: InkWell(
                             child: Icon(Icons.location_on,color: Colors.red,),
                             onTap: (){
@@ -924,8 +859,8 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
                       Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) {
-                            return SetOnMap2(
-                                SearchDestinations: widget.destinetionDetail,
+                            return SetOnMap(
+                              SearchDestinations: widget.destinetionDetail,
                               sourceLat: locations.last.latitude,
                               sourceLong: locations.last.longitude,
                               destinationLat: widget.destinationLatitude,
@@ -967,7 +902,7 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) {
-                                  return const SetOnMapForCar();
+                                  return SetOnMapForBike();
                                 })
                             );
 
@@ -996,7 +931,7 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
                           Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return const SetOnMapForCar();
+                                return SetOnMapForBike();
                               })
                           );
 
