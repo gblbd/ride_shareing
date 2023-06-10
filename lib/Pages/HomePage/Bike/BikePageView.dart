@@ -64,7 +64,7 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
         Polyline(
             polylineId: PolylineId("1"),
             points: [SourceLocation,DestinationLocation],//polyCordinates,
-            width: 6,
+            width: 5,
             color: Colors.red
         )
     );
@@ -107,14 +107,6 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
     ),
   ];
 
-  // Future<Position> getUserCurrentLocation() async {
-  //   await Geolocator.requestPermission().then((value){
-  //   }).onError((error, stackTrace) async {
-  //     await Geolocator.requestPermission();
-  //     print("ERROR"+error.toString());
-  //   });
-  //   return await Geolocator.getCurrentPosition();
-  // }
 
   static final _code=TextEditingController();
   static final _destination=TextEditingController();
@@ -138,8 +130,6 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
     _animation = Tween<Offset>(
       begin: Offset(1.0, 0.0),
       end: Offset(0.0, 1.0),
-      // begin: 0.0,
-      //end: 1.0
     ).animate(_animationController) ;
     _destination.addListener(() {
       Onchange();

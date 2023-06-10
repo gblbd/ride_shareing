@@ -137,20 +137,13 @@ class _SetOnMapState extends State<SetOnMap> {
 
    PanelController panelController = PanelController();
 
- // bool _showBox = false;
 
 
 
 List<LatLng> pLineCoordinates=[];
 Set<Polyline> PolylineSet={};
 PolylinePoints polylinePoints=PolylinePoints();
-// _addPolyLine() {
-//   PolylineId id = PolylineId("poly");
-//   Polyline polyline = Polyline(
-//       polylineId: id, color: Colors.red, points: pLineCoordinates);
-//   polylines[id] = polyline;
-//   setState(() {});
-// }
+
   @override
   void initState() {
     // TODO: implement initState

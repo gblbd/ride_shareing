@@ -107,40 +107,41 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
 
 
    static const LatLng SourceLocation=LatLng(37.3305, -122.03272);
-  //
-  // static const LatLng DestinationLocation=LatLng(37.3342, -122.06672);
+   static const LatLng DestinationLocation=LatLng(37.3342, -122.06672);
 
-  final Set<Polyline> _polyline={};
+  Set<Polyline> PolylineSet={};
 
-  // Future<void> getpolyline() async {
-  //
-  //   PolylinePoints polylinePoints=PolylinePoints();
-  //
-  //   PolylineResult result=await polylinePoints.getRouteBetweenCoordinates(
-  //       "AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ",
-  //       PointLatLng(SourceLocation.latitude,SourceLocation.longitude),
-  //       PointLatLng(DestinationLocation.latitude, DestinationLocation.longitude));
-  //
-  //   result.points.forEach((location) {
-  //     polyCordinates.add(LatLng(location.latitude, location.longitude));
-  //   });
-  //
-  //   _polyline.add(
-  //       Polyline(
-  //           polylineId: PolylineId("1"),
-  //           points: [SourceLocation,DestinationLocation],//polyCordinates,
-  //           width: 6,
-  //           color: Colors.red
-  //       )
-  //   );
-  //
-  //   setState(() {
-  //
-  //   });
-  //
-  //
-  //
-  // }
+  Future<void> getpolyline() async {
+
+    PolylinePoints polylinePoints=PolylinePoints();
+
+    PolylineResult result=await polylinePoints.getRouteBetweenCoordinates(
+        "AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ",
+        PointLatLng(SourceLocation.latitude,SourceLocation.longitude),
+        PointLatLng(DestinationLocation.latitude, DestinationLocation.longitude));
+    if (result.points.isNotEmpty) {
+      result.points.forEach((location) {
+        polyCordinates.add(LatLng(location.latitude, location.longitude));
+      });
+    }
+
+
+    PolylineSet.add(
+        Polyline(
+            polylineId: PolylineId("1"),
+            points: [SourceLocation,DestinationLocation],//polyCordinates,
+            width: 6,
+            color: Colors.red
+        )
+    );
+
+    setState(() {
+
+    });
+
+
+
+  }
 
 
 
@@ -268,17 +269,17 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                         target: SourceLocation,//LatLng(currentLocation.latitude!,currentLocation.longitude!),
                         zoom: 14.5),
                     markers: {
-                      // Marker(
-                      //     markerId: MarkerId("Source"),
-                      //     position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
-                      // ),
-                      // Marker(
-                      //     markerId: MarkerId("Destination"),
-                      //     position: DestinationLocation
-                      // )
+                      Marker(
+                          markerId: MarkerId("Source"),
+                          position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
+                      ),
+                      Marker(
+                          markerId: MarkerId("Destination"),
+                          position: DestinationLocation
+                      )
                     },
 
-                    polylines: _polyline,
+                    polylines: PolylineSet,
 
 
 
