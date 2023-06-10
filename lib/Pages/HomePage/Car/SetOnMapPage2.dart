@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/pickup_confirm_code.dart';
 import 'package:sizer/sizer.dart';
@@ -48,6 +49,10 @@ class _SetOnMap2State extends State<SetOnMap2> {
         )
     ),
   ];
+
+
+
+
 
   // Future<Position> getUserCurrentLocation() async {
   //   await Geolocator.requestPermission().then((value){
@@ -136,8 +141,36 @@ class _SetOnMap2State extends State<SetOnMap2> {
    double _panelHeightOpen = 0;
    double _panelHeightClosed = 140;
 
-
    PanelController panelController = PanelController();
+   double dist=0.00;
+
+
+   //////////////////////////////////////////////////////////////////////////
+
+
+Future<double> getDistance() async {
+
+
+  double distanceInMetre=await Geolocator.distanceBetween(widget.sourceLat, widget.sourceLong, widget.destinationLat, widget.destinationlong);
+
+
+  dist=distanceInMetre;
+  return distanceInMetre;
+
+}
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 
  // bool _showBox = false;
 
@@ -197,6 +230,8 @@ _getPolyline() async {
 
      LatLng SourceLocation=LatLng(widget.sourceLat, widget.sourceLong);
      LatLng DestinationLocation=LatLng(widget.destinationLat, widget.destinationlong);
+
+     getDistance();
 
 
 
@@ -1276,6 +1311,10 @@ _getPolyline() async {
                                                  ],
                                                ),
                                              ),
+
+
+                                             Text("Total Distance : ${dist/1000} KM"),
+                                             Text("Total cost: ${(dist/1000)*30} BDT"),
 
 
                                              Divider(),
