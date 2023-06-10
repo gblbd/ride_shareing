@@ -176,6 +176,16 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                        )
                      },
 
+
+                     polylines: {
+                       Polyline(
+                           polylineId: PolylineId("routs"),
+                           points: [SourceLocation,DestinationLocation],
+                           width: 6,
+                           color: Colors.red.shade600
+                       )
+                     },
+
                      //polylines: _polyline,
 
 
