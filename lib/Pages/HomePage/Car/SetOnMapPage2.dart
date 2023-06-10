@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/pickup_confirm_code.dart';
 import 'package:sizer/sizer.dart';
@@ -48,6 +49,10 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
         )
     ),
   ];
+
+
+
+
 
   // Future<Position> getUserCurrentLocation() async {
   //   await Geolocator.requestPermission().then((value){
@@ -136,8 +141,36 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
    double _panelHeightOpen = 0;
    double _panelHeightClosed = 140;
 
-
    PanelController panelController = PanelController();
+   double dist=0.00;
+
+
+   //////////////////////////////////////////////////////////////////////////
+
+
+Future<double> getDistance() async {
+
+
+  double distanceInMetre=await Geolocator.distanceBetween(widget.sourceLat, widget.sourceLong, widget.destinationLat, widget.destinationlong);
+
+
+  dist=distanceInMetre;
+  return distanceInMetre;
+
+}
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 
  // bool _showBox = false;
 
@@ -150,6 +183,8 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
 
      LatLng SourceLocation=LatLng(widget.sourceLat, widget.sourceLong);
      LatLng DestinationLocation=LatLng(widget.destinationLat, widget.destinationlong);
+
+     getDistance();
 
 
 
@@ -1226,6 +1261,10 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                                                  ],
                                                ),
                                              ),
+
+
+                                             Text("Total Distance : ${dist/1000} KM"),
+                                             Text("Total cost: ${(dist/1000)*30} BDT"),
 
 
                                              Divider(),
