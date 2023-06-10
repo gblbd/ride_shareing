@@ -181,7 +181,14 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                        )
                      },
 
-                     //polylines: _polyline,
+                     polylines: {
+                   Polyline(
+                       polylineId: PolylineId("routs"),
+                       points: [SourceLocation,DestinationLocation],
+                     width: 6,
+                     color: Colors.green
+                     )
+                     },
 
 
 
@@ -308,9 +315,9 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
            controller: sc,
            children: [
              Padding(
-               padding: const EdgeInsets.only(top: 16,left: 16,right: 16),
+               padding: const EdgeInsets.only(top: 16,left: 10,right: 10),
                child: Container(
-                 height: 50,width: 80.w,
+                 height: 50,width: 60.w,
                  decoration: BoxDecoration(
                    border: Border.all(color: Colors.grey.shade900,width: 0.1),
                    borderRadius: BorderRadius.circular(6.0),
@@ -319,13 +326,17 @@ String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
                  child: Row(
                    children: [
                      Icon(Icons.location_on,size: 24,color: Colors.red,),
-                     SizedBox(width: 10,),
-                     SingleChildScrollView(
-                       scrollDirection: Axis.horizontal,
-                       child: Text(widget.SearchDestinations.isEmpty ?'Enter Destination':widget.SearchDestinations,
-                           style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w400),
-                         maxLines: 10,
+                     SizedBox(width: 5,),
+                     Container(
+                       width: 80.w,
+                       child: SingleChildScrollView(
+                         scrollDirection: Axis.horizontal,
+                         child: Text(widget.SearchDestinations.isEmpty ?'Enter Destination':widget.SearchDestinations,
+                             style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.w400),
+                           maxLines: 10,
 
+
+                         ),
                        ),
                      ),
 
