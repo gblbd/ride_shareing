@@ -12,10 +12,12 @@ static Future<dynamic>getRequest(String url)async{
   try{
     if(response.statusCode==200)
     {
+
       String jSonData=response.body;
       _placelist=jsonDecode(jSonData)['predictions'];
      // var decodeData=jsonDecode(jSonData)['predictions'];
       return _placelist;
+
     }
     else{
       return "Failed, No Response";
