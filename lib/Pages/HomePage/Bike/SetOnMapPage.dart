@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 //import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/pickup_confirm_code.dart';
@@ -195,6 +196,18 @@ PolylinePoints polylinePoints=PolylinePoints();
   }
 
 
+  double dist=0.00;
+
+  Future<double> getDistance() async {
+
+
+    double distanceInMetre=await Geolocator.distanceBetween(widget.sourceLat, widget.sourceLong, widget.destinationLat, widget.destinationlong);
+
+
+    dist=distanceInMetre;
+    return distanceInMetre;
+
+  }
 
 
 
@@ -211,6 +224,8 @@ PolylinePoints polylinePoints=PolylinePoints();
 
      LatLng SourceLocation=LatLng(widget.sourceLat, widget.sourceLong);
      LatLng DestinationLocation=LatLng(widget.destinationLat, widget.destinationlong);
+
+     getDistance();
 
 
 
@@ -1275,6 +1290,15 @@ PolylinePoints polylinePoints=PolylinePoints();
                                                     Text(widget.SearchDestinations ),
                                                   ],
                                                 ),
+
+
+                                                Text("Total distance :${dist/1000}"),
+
+                                                Text("Estimated Fare : ${(dist/1000)*20} BDT")
+
+
+
+
                                               ],
                                             ),
                                           ),
