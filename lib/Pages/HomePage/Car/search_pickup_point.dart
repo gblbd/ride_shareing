@@ -111,7 +111,7 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
 
 
 
-  final Set<Polyline> _polyline={};
+  Set<Polyline> PolylineSet={};
 
   // Future<void> getpolyline() async {
   //
@@ -278,7 +278,7 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
 
                     },
 
-                    polylines: _polyline,
+                    polylines: PolylineSet,
 
 
 

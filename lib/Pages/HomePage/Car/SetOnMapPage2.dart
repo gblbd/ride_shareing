@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -32,68 +31,6 @@ class SetOnMap2 extends StatefulWidget {
 }
 
 class _SetOnMap2State extends State<SetOnMap2> {
-
-  /////////////////////////////////////////////////////////////////////////////
-
-  List<LatLng> pLineCoordinates=[];
-
-  Set<Polyline> PolylineSet={};
-  PolylinePoints polylinePoints=PolylinePoints();
-
-
-
-
-
-
-
-  _getPolyline() async {
-    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      'AIzaSyBsPxSFf2or6oZnbq7urgrxlakTiVqTmjQ',
-      PointLatLng(widget.sourceLat, widget.sourceLong),
-      PointLatLng(widget.destinationLat, widget.destinationlong),
-      //travelMode: TravelMode.driving,
-    );
-    if (result.points.isNotEmpty) {
-      result.points.forEach((PointLatLng point) {
-        pLineCoordinates.add(LatLng(point.latitude, point.longitude));
-        print("Points :::::${pLineCoordinates}");
-        print("SourcePoints :::::${widget.sourceLat} ${widget.sourceLong}");
-        print("DestinationPoints :::::${widget.destinationLat} ${widget.destinationlong}");
-      });
-    }
-
-    PolylineSet.clear();
-
-    setState(() {
-      Polyline polyline=Polyline(
-          polylineId: PolylineId("PolylineID"),
-          color: Colors.green,
-          jointType: JointType.round,
-          points: pLineCoordinates,
-          width: 5,
-          startCap: Cap.roundCap,
-          endCap: Cap.roundCap,
-          geodesic: true
-      );
-      PolylineSet.add(polyline);
-      print("Polyline:::::::::::::::::::::::::::::::::::::::: $polyline");
-    });
-
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _getPolyline();
-  }
-
-
-  /////////////////////////////////////////////////////////////////////////
-
-
-
-
 
 String mapKey='AIzaSyB2BQLn81BnqRb6lcaFkZHhKGaAzXpjYc0';
 
@@ -251,7 +188,6 @@ Future<double> getDistance() async {
 
 
 
-
      return Scaffold(
        extendBody: true,
        backgroundColor: Colors.white,
@@ -280,7 +216,16 @@ Future<double> getDistance() async {
                        )
                      },
 
-                     polylines: PolylineSet
+                     polylines: {
+                   Polyline(
+                       polylineId: PolylineId("routs"),
+                       points: [SourceLocation,DestinationLocation],
+                     width: 6,
+                     color: Colors.green
+                     )
+                     },
+
+
 
                      // polylines: {
                      //   Polyline(
