@@ -269,17 +269,17 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                         target: SourceLocation,//LatLng(currentLocation.latitude!,currentLocation.longitude!),
                         zoom: 14.5),
                     markers: {
-                      Marker(
-                          markerId: MarkerId("Source"),
-                          position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
-                      ),
-                      Marker(
-                          markerId: MarkerId("Destination"),
-                          position: DestinationLocation
-                      )
+                      // Marker(
+                      //     markerId: MarkerId("Source"),
+                      //     position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
+                      // ),
+                      // Marker(
+                      //     markerId: MarkerId("Destination"),
+                      //     position: DestinationLocation
+                      // )
                     },
 
-                    polylines: PolylineSet,
+                   // polylines: PolylineSet,
 
 
 
