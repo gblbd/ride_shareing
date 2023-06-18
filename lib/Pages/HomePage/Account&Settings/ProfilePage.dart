@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'EditProfilePage.dart';
 
 class ProfilePage extends StatefulWidget {
+
+
   final String fullname;
   final String email;
   final String phoneNumber;

@@ -25,7 +25,11 @@ import 'package:buttons_tabbar/buttons_tabbar.dart';
 
 
 class BikePageView extends StatefulWidget {
-  const BikePageView({Key? key}) : super(key: key);
+
+
+  final String name;
+  final String phoneNum;
+  const BikePageView({Key? key, required this.name, required this.phoneNum}) : super(key: key);
 
   @override
   State<BikePageView> createState() => _BikePageViewState();
@@ -209,7 +213,9 @@ getRequest(_destination.text.toString());
                     markers: {
                       Marker(
                           markerId: MarkerId("Source"),
-                          position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
+                          position: SourceLocation,
+
+                        //LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
                       ),
                       Marker(
                           markerId: MarkerId("Destination"),
@@ -767,7 +773,7 @@ getRequest(_destination.text.toString());
                          // hintText: 'Pickup Point',
                          // hintStyle: TextStyle(fontSize: 17,color: Colors.black87),
                           prefixIcon: InkWell(
-                            child: Icon(Icons.location_on,color: Colors.red,),
+                            child: Icon(Icons.man,size: 28,color: Colors.grey.shade600,),
                             onTap: (){
 
                             },
@@ -839,6 +845,8 @@ getRequest(_destination.text.toString());
                               destinationLatitude: locations.last.latitude,
                               destinationLongitude: locations.last.longitude,
                               destinetionDetail: _placelist[index]['description'],
+                              name: widget.name.toString(),
+                              Phonenum: widget.phoneNum.toString(),
                             );//SetOnMap2(SearchDestinations: "${locations.last.latitude}/${locations.last.longitude}");
                           })
                       );

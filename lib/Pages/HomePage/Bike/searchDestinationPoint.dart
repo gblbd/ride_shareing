@@ -24,8 +24,10 @@ class SearchDestinationPoint extends StatefulWidget {
   final double destinationLatitude;
   final double destinationLongitude;
   final String destinetionDetail;
+  final String name;
+  final String Phonenum;
 
-  const SearchDestinationPoint({super.key, required this.destinationLatitude, required this.destinationLongitude, required this.destinetionDetail});
+  const SearchDestinationPoint({super.key, required this.destinationLatitude, required this.destinationLongitude, required this.destinetionDetail, required this.name, required this.Phonenum});
 
 
   //const SearchPickUpPoint({Key? key}) : super(key: key);
@@ -853,6 +855,8 @@ class _SearchDestinationPointState extends State<SearchDestinationPoint> with Ti
                               destinationLat: widget.destinationLatitude,
                               destinationlong: widget.destinationLongitude,
                               SearchPickup: _placelist[index]['description'],
+                              name: widget.name.toString(),
+                              phoneNum: widget.Phonenum.toString(),
                             );
                           })
                       );

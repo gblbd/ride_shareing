@@ -155,7 +155,7 @@ class _LoginWithPhoneNumState extends State<LoginWithPhoneNum> {
 
                       if(snapshot.exists){
 
-                        if(snapshot.value.toString()== passwordController.text.toString()){
+                        if(snapshot.value.toString() == passwordController.text.toString()){
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => MainScreen(
@@ -165,9 +165,7 @@ class _LoginWithPhoneNumState extends State<LoginWithPhoneNum> {
                               gender: snapshotgnm.value.toString(),
                               dateOfBirth: snapshotdnm.value.toString(),
                               pin: snapshot.value.toString(),)
-                              //   OTPsendPage(
-                              // phoneNumber: phoneNumbController.text,
-                              //   )
+
                             ),
                           );
 
