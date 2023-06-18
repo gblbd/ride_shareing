@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoder2/geocoder2.dart';
@@ -33,9 +34,27 @@ class SetOnMap2 extends StatefulWidget {
 
 class _SetOnMap2State extends State<SetOnMap2> {
 
+  DatabaseReference rf = FirebaseDatabase.instance.ref("carRequest");
 
 
 
+
+  void UploadRequest(){
+
+
+
+
+    DatabaseReference senderPostRef = rf.child("ride_request").push();
+    senderPostRef.set({
+      // ...
+      "transection_type":"Sent",
+      "opponent":"ellef",
+      "type":"Cash out",
+      "amount":"amount",
+      "time": "formettedtime",
+    });
+
+  }
 
 
 
@@ -481,6 +500,10 @@ Future<double> getDistance() async {
                          primary: Colors.red.shade600,
                        ),
                        onPressed: () async{
+
+                         UploadRequest();
+
+
                          if(widget.SearchDestinations.isEmpty){
                            showModalBottomSheet(
                                isScrollControlled: false,
@@ -1364,6 +1387,8 @@ Future<double> getDistance() async {
                                              Divider(),
                                              TextButton(onPressed: (){
 
+
+
                                                showModalBottomSheet(
                                                    isScrollControlled: false,
                                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
@@ -1510,12 +1535,24 @@ Future<double> getDistance() async {
                      child: TextButton(
                          onPressed: (){
 
+
+
+
+
                            Navigator.push(
                                context,
                                MaterialPageRoute(builder: (context) {
                                  return SaveAddressPage();
                                })
                            );
+
+
+
+
+
+
+
+
                          },
                          child: Center(child: Icon(Icons.star_rate_rounded,size: 30,color: Colors.grey.shade700,))
                      ),
