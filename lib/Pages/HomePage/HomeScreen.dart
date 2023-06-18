@@ -191,7 +191,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return CarPageView();
+                                      return CarPageView(
+                                        Name: widget.fullname,
+                                        phoneNumber: widget.phoneNumber,
+                                      );
                                     },
                                   ),
                                 );
@@ -315,7 +318,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return CarPageView();
+                                      return CarPageView(
+                                        Name: widget.fullname,
+                                        phoneNumber: widget.phoneNumber,
+                                      );
                                     },
                                   ),
                                 );

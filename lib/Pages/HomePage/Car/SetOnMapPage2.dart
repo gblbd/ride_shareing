@@ -23,8 +23,10 @@ class SetOnMap2 extends StatefulWidget {
   final double sourceLong;
   final String SearchDestinations;
   final String SearchPickup;
+  final String name;
+  final String phoneNumb;
 
-  const  SetOnMap2({super.key, required this.destinationLat, required this.destinationlong, required this.sourceLat, required this.sourceLong, required this.SearchDestinations, required this.SearchPickup});
+  const  SetOnMap2({super.key, required this.destinationLat, required this.destinationlong, required this.sourceLat, required this.sourceLong, required this.SearchDestinations, required this.SearchPickup, required this.name, required this.phoneNumb});
 
   //const SetOnMap2({Key? key, required this.SearchDestinations}) : super(key: key);
 
@@ -39,19 +41,22 @@ class _SetOnMap2State extends State<SetOnMap2> {
 
 
 
-  void UploadRequest(){
+  void UploadRequest(String destination,String name, String phoneNumber,
+      String PickUp,String destinationLat, String destinationLong,String sourceLat,String sourceLong){
 
 
 
 
     DatabaseReference senderPostRef = rf.child("ride_request").push();
     senderPostRef.set({
-      // ...
-      "transection_type":"Sent",
-      "opponent":"ellef",
-      "type":"Cash out",
-      "amount":"amount",
-      "time": "formettedtime",
+      "Destination":"${destination}",
+      "Name":"${name}",
+      "Phone_number": "${phoneNumber}",
+      "PickUp": "${PickUp}",
+      "destinationLat": "${destinationLat}",
+      "destinationLong": "${destinationLong}",
+      "sourceLat": "${sourceLat}",
+      "sourceLong": "${sourceLong}"
     });
 
   }
@@ -501,7 +506,11 @@ Future<double> getDistance() async {
                        ),
                        onPressed: () async{
 
-                         UploadRequest();
+                         UploadRequest(
+                           widget.SearchDestinations,widget.name,widget.phoneNumb,
+                           widget.SearchPickup,widget.destinationLat.toString(),widget.destinationlong.toString(),
+                             widget.sourceLat.toString(),widget.sourceLong.toString()
+                         );
 
 
                          if(widget.SearchDestinations.isEmpty){

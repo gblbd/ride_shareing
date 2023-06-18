@@ -24,8 +24,10 @@ class SearchPickUpPoint extends StatefulWidget {
   final double destinationLatitude;
   final double destinationLongitude;
   final String destinetionDetail;
+  final String name;
+  final String phone;
 
-  const SearchPickUpPoint({super.key, required this.destinationLatitude, required this.destinationLongitude, required this.destinetionDetail});
+  const SearchPickUpPoint({super.key, required this.destinationLatitude, required this.destinationLongitude, required this.destinetionDetail, required this.name, required this.phone});
 
 
   //const SearchPickUpPoint({Key? key}) : super(key: key);
@@ -931,6 +933,8 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
                               destinationLat: widget.destinationLatitude,
                               destinationlong: widget.destinationLongitude,
                               SearchPickup: _placelist[index]['description'],
+                              name: widget.name,
+                              phoneNumb: widget.phone,
                             );
                           })
                       );

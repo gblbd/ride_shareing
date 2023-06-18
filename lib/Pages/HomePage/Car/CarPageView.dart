@@ -27,7 +27,14 @@ import 'package:http/http.dart' as http;
 
 
 class CarPageView extends StatefulWidget {
-  const CarPageView({Key? key}) : super(key: key);
+
+  final String Name;
+  final String phoneNumber;
+
+
+  const CarPageView({Key? key, required this.Name, required this.phoneNumber}) : super(key: key);
+
+
 
   @override
   State<CarPageView> createState() => _CarPageViewState();
@@ -917,6 +924,8 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                               destinationLatitude: locations.last.latitude,
                               destinationLongitude: locations.last.longitude,
                               destinetionDetail: _placelist[index]['description'],
+                              name: widget.Name,
+                              phone: widget.phoneNumber,
                             );//SetOnMap2(SearchDestinations: "${locations.last.latitude}/${locations.last.longitude}");
                           })
                       );
