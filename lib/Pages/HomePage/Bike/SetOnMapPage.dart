@@ -365,6 +365,8 @@ PolylinePoints polylinePoints=PolylinePoints();
                            "sourceLong":"${widget.sourceLong.toString()}",
                            "destinationLat":"${widget.destinationLat.toString()}",
                            "destinationLong":"${widget.destinationlong.toString()}",
+                           "Fare":"${((dist/1000)*20).toStringAsFixed(2).toString()} BDT",
+                           "Distance":"${(dist/1000).toStringAsFixed(3).toString()} Km"
 
                          }).then((value) => showModalBottomSheet(
                              isScrollControlled: false,
@@ -537,7 +539,14 @@ PolylinePoints polylinePoints=PolylinePoints();
                                                        top: 10,
                                                        bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,),
                                                      child: Container(
-                                                       // height: ,
+                                                        height: 20.h,
+                                                       child: Padding(
+                                                         padding: EdgeInsets.all(8.0),
+                                                         child: Column(
+                                                           children: [
+                                                           ],
+                                                         ),
+                                                       ),
                                                      ),
                                                    );
                                                  }
