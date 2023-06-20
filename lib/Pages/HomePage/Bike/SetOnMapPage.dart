@@ -366,7 +366,7 @@ PolylinePoints polylinePoints=PolylinePoints();
                            "destinationLat":"${widget.destinationLat.toString()}",
                            "destinationLong":"${widget.destinationlong.toString()}",
                            "Fare":"${((dist/1000)*20).toStringAsFixed(2).toString()} BDT",
-                           "Distance":"${(dist/1000).toStringAsFixed(3).toString()} Km"
+                           "Distance":"${(dist/1000).toStringAsFixed(3).toString()} Km "
 
                          }).then((value) => showModalBottomSheet(
                              isScrollControlled: false,
@@ -544,6 +544,7 @@ PolylinePoints polylinePoints=PolylinePoints();
                                                          padding: EdgeInsets.all(8.0),
                                                          child: Column(
                                                            children: [
+                                                             RichText(text: TextSpan(text: 'Are you sure you want to cancel this ride?'))
                                                            ],
                                                          ),
                                                        ),
