@@ -26,6 +26,7 @@ class SetOnMap2 extends StatefulWidget {
   final String name;
   final String phoneNumb;
 
+
   const  SetOnMap2({super.key, required this.destinationLat, required this.destinationlong, required this.sourceLat, required this.sourceLong, required this.SearchDestinations, required this.SearchPickup, required this.name, required this.phoneNumb});
 
   //const SetOnMap2({Key? key, required this.SearchDestinations}) : super(key: key);
@@ -41,6 +42,9 @@ class _SetOnMap2State extends State<SetOnMap2> {
 
 
 
+
+
+
   void UploadRequest(String destination,String name, String phoneNumber,
       String PickUp,String destinationLat, String destinationLong,String sourceLat,String sourceLong){
 
@@ -51,12 +55,18 @@ class _SetOnMap2State extends State<SetOnMap2> {
     senderPostRef.set({
       "Destination":"${destination}",
       "Name":"${name}",
-      "Phone_number": "${phoneNumber}",
+      "Phone_number": "0${phoneNumber}",
       "PickUp": "${PickUp}",
       "destinationLat": "${destinationLat}",
       "destinationLong": "${destinationLong}",
       "sourceLat": "${sourceLat}",
-      "sourceLong": "${sourceLong}"
+      "sourceLong": "${sourceLong}",
+      "Distance":"${dist/1000}",
+      "Fare":"${(dist/1000)*30}",
+      "pickUpStat":false,
+      "picupBy":"",
+      "pickupCode":"123456",
+      "droppingCode":"123456"
     });
 
   }
