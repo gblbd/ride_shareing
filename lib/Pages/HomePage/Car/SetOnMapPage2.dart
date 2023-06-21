@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,22 @@ class _SetOnMap2State extends State<SetOnMap2> {
 
 
 
+  String RequestID="";
+
+
+
+
+
+
+  int randNumb(){
+
+    int i=Random().nextInt(999999);
+    if(i<100000){
+      i=i+100000;
+    }
+
+    return i;
+  }
 
 
 
@@ -65,8 +82,13 @@ class _SetOnMap2State extends State<SetOnMap2> {
       "Fare":"${(dist/1000)*30}",
       "pickUpStat":false,
       "picupBy":"",
-      "pickupCode":"123456",
-      "droppingCode":"123456"
+      "pickupCode":"${randNumb()}",
+      "droppingCode":"${randNumb()}"
+    }).then((value) {
+      RequestID=senderPostRef.key.toString();
+      setState(() {
+
+      });
     });
 
   }
@@ -306,6 +328,47 @@ Future<double> getDistance() async {
 
      getDistance();
 
+
+     /////////////////////////////////////////////////////////////////////////
+
+     rf.child("ride_request").child(RequestID).onValue.listen((event) {
+
+
+
+       String pickupStat= event.snapshot.child("pickUpStat").value.toString();
+       String pickUpCode= event.snapshot.child("pickupCode").value.toString();
+       String dropdownCode= event.snapshot.child("droppingCode").value.toString();
+       String PickupBy= event.snapshot.child("picupBy").value.toString();
+
+       if(pickupStat=="true"){
+
+         Navigator.pop(context);
+
+         Navigator.push(
+             context,
+             MaterialPageRoute(builder: (context) {
+               return PickupConfirmPage2(
+                 PickUpCode: pickUpCode,
+                 DroppingCode: dropdownCode,
+                 PickedBy: PickupBy,
+                 RequestID: RequestID,
+
+
+
+
+               );
+             })
+         );
+
+
+
+       }
+
+
+
+     });
+
+////////////////////////////////////////////////////////////////////////
 
 
      return Scaffold(
@@ -1279,6 +1342,11 @@ Future<double> getDistance() async {
                            );
                          }
                          else{
+
+
+
+
+
                            showModalBottomSheet(
                                isScrollControlled: false,
                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
@@ -1324,18 +1392,18 @@ Future<double> getDistance() async {
 
                                            ListTile(
                                              leading: Icon(Icons.account_circle,size: 50,color: Colors.grey,),
-                                             title: Text("Aslam Mia"),
-                                             subtitle: Text("⭐ 4.73 | 224 Trips"),
+                                             title: Text(""),
+                                             subtitle: Text(""),
 
                                              onTap: (){
 
 
-                                               Navigator.push(
-                                                   context,
-                                                   MaterialPageRoute(builder: (context) {
-                                                     return PickupConfirmPage2();
-                                                   })
-                                               );
+                                               // Navigator.push(
+                                               //     context,
+                                               //     MaterialPageRoute(builder: (context) {
+                                               //       return PickupConfirmPage2();
+                                               //     })
+                                               // );
 
 
                                              },
