@@ -33,6 +33,32 @@ class SetOnMap extends StatefulWidget {
 class _SetOnMapState extends State<SetOnMap> {
 
 
+  DatabaseReference rf = FirebaseDatabase.instance.ref("Bike_Request");
+
+
+
+
+  void UploadRequest(String destination,String name, String phoneNumber,
+      String PickUp,String destinationLat, String destinationLong,String sourceLat,String sourceLong){
+
+
+    DatabaseReference senderPostRef = rf.child("ride_request").push();
+    senderPostRef.set({
+      "Destination":"${destination}",
+      "Name":"${name}",
+      "Phone_number": "${phoneNumber}",
+      "PickUp": "${PickUp}",
+      "destinationLat": "${destinationLat}",
+      "destinationLong": "${destinationLong}",
+      "sourceLat": "${sourceLat}",
+      "sourceLong": "${sourceLong}"
+    });
+
+  }
+
+
+
+
   Completer<GoogleMapController> _controller = Completer();
   static final CameraPosition _kGoogle = const CameraPosition(
     target: LatLng(23.8103, 90.4125),
@@ -356,19 +382,13 @@ PolylinePoints polylinePoints=PolylinePoints();
                          primary: Colors.red.shade600,
                        ),
                        onPressed: () async{
-                         await ref.child("ride_request").push().set({
-                           "Name":"${widget.name.toString()}",
-                           "Phone_number":"${widget.phoneNum.toString()}",
-                           "PickUp":"${widget.SearchPickup.toString()}",
-                           "Destination":"${widget.SearchDestinations.toString()}",
-                           "sourceLat":"${widget.sourceLat.toString()}",
-                           "sourceLong":"${widget.sourceLong.toString()}",
-                           "destinationLat":"${widget.destinationLat.toString()}",
-                           "destinationLong":"${widget.destinationlong.toString()}",
-                           "Fare":"${((dist/1000)*20).toStringAsFixed(2).toString()} BDT",
-                           "Distance":"${(dist/1000).toStringAsFixed(3).toString()} Km "
 
-                         }).then((value) => showModalBottomSheet(
+                         UploadRequest(
+                             widget.SearchDestinations,widget.name,widget.phoneNum,
+                             widget.SearchPickup,widget.destinationLat.toString(),widget.destinationlong.toString(),
+                             widget.sourceLat.toString(),widget.sourceLong.toString()
+                         );
+                         showModalBottomSheet(
                              isScrollControlled: false,
                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
                              isDismissible: false,
@@ -464,9 +484,9 @@ PolylinePoints polylinePoints=PolylinePoints();
 
                                                  // Text("Total distance :${dist/1000}"),
 
-                                                // Text("Estimated Fare : ${(dist/1000)*20} BDT")
+                                                 // Text("Estimated Fare : ${(dist/1000)*20} BDT")
 
-                                                 
+
 
                                                ],
                                              ),
@@ -501,15 +521,15 @@ PolylinePoints polylinePoints=PolylinePoints();
                                              children: [
                                                Text('Pay via Cash',
                                                    style: TextStyle(
-                                                     color: Colors.black,fontSize: 16,
+                                                       color: Colors.black,fontSize: 16,
                                                        fontWeight: FontWeight.w600
 
                                                    )
                                                ),
                                                Text('${((dist/1000)*20).toStringAsFixed(2)} BDT',
                                                    style: TextStyle(
-                                                     color: Colors.black,fontSize: 18,
-                                                     fontWeight: FontWeight.w600
+                                                       color: Colors.black,fontSize: 18,
+                                                       fontWeight: FontWeight.w600
                                                    )
                                                ),
                                              ],
@@ -539,12 +559,30 @@ PolylinePoints polylinePoints=PolylinePoints();
                                                        top: 10,
                                                        bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,),
                                                      child: Container(
-                                                        height: 20.h,
+                                                       height: 20.h,
                                                        child: Padding(
                                                          padding: EdgeInsets.all(8.0),
                                                          child: Column(
                                                            children: [
-                                                             RichText(text: TextSpan(text: 'Are you sure you want to cancel this ride?'))
+                                                             RichText(text: TextSpan(text: 'Are you sure you want to cancel this ride?',
+                                                                 style: TextStyle(color: Colors.black,fontSize: 18))),
+                                                             RichText(text: TextSpan(text: 'Riders are waiting near you to take you to your destination.',
+                                                                 style: TextStyle(color: Colors.black,fontSize: 18))),
+                                                             Divider(thickness: 2,),
+                                                             Row(
+                                                               children: [
+                                                                 TextButton(
+                                                                     onPressed: (){
+
+                                                                     },
+                                                                     child: Text('Yes')),
+                                                                 TextButton(
+                                                                     onPressed: (){
+
+                                                                     },
+                                                                     child: Text('Yes')),
+                                                               ],
+                                                             )
                                                            ],
                                                          ),
                                                        ),
@@ -573,8 +611,229 @@ PolylinePoints polylinePoints=PolylinePoints();
                                );
                              }
 
-                         )
                          );
+                         // await ref.child("ride_request").push().set({
+                         //   "Name":"${widget.name.toString()}",
+                         //   "Phone_number":"${widget.phoneNum.toString()}",
+                         //   "PickUp":"${widget.SearchPickup.toString()}",
+                         //   "Destination":"${widget.SearchDestinations.toString()}",
+                         //   "sourceLat":"${widget.sourceLat.toString()}",
+                         //   "sourceLong":"${widget.sourceLong.toString()}",
+                         //   "destinationLat":"${widget.destinationLat.toString()}",
+                         //   "destinationLong":"${widget.destinationlong.toString()}",
+                         //   "Fare":"${((dist/1000)*20).toStringAsFixed(2).toString()} BDT",
+                         //   "Distance":"${(dist/1000).toStringAsFixed(3).toString()} Km "
+                         //
+                         // }).then((value) =>
+                         //     showModalBottomSheet(
+                         //     isScrollControlled: false,
+                         //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
+                         //     isDismissible: false,
+                         //     enableDrag: false,
+                         //     context: context,
+                         //     builder: (BuildContext context){
+                         //       return Padding(
+                         //         padding: EdgeInsets.only(
+                         //           left: 8,
+                         //           right: 8,
+                         //           top: 10,
+                         //           bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,
+                         //         ),
+                         //         child: SingleChildScrollView(
+                         //           child: Container(
+                         //             height: 460,
+                         //             child: Padding(
+                         //               padding: const EdgeInsets.all(8.0),
+                         //               child: Column(
+                         //                 crossAxisAlignment: CrossAxisAlignment.start,
+                         //                 children: [
+                         //                   SizedBox(height: 20,),
+                         //
+                         //                   Text('Finding nearby rides..',
+                         //                       style: TextStyle(
+                         //                         color: Colors.black,fontSize: 18,
+                         //                       )
+                         //                   ),
+                         //                   SizedBox(height: 10,),
+                         //
+                         //                   RichText(text: TextSpan(text: 'We have sent your ride request to the nearby riders',
+                         //                       style: TextStyle(
+                         //                         color: Colors.grey,fontSize: 12,
+                         //                       )),
+                         //
+                         //                   ),
+                         //                   SizedBox(height: 20,),
+                         //                   LinearProgressIndicator(color: Colors.red,
+                         //                     backgroundColor: Colors.red.shade50,
+                         //                   ),
+                         //
+                         //
+                         //
+                         //                   ListTile(
+                         //                     leading: Icon(Icons.account_circle,size: 50,color: Colors.grey,),
+                         //                     title: Text("Osman Goni"),
+                         //                     subtitle: Text("⭐ 4.73 | 224 Trips"),
+                         //
+                         //                     onTap: (){
+                         //                       Navigator.push(
+                         //                           context,
+                         //                           MaterialPageRoute(builder: (context) {
+                         //                             return PickupConfirmPage();
+                         //                           })
+                         //                       );
+                         //                     },
+                         //
+                         //                   ),
+                         //
+                         //
+                         //
+                         //
+                         //
+                         //                   Text("Your Trip"),
+                         //                   SizedBox(height: 20,),
+                         //
+                         //                   SingleChildScrollView(
+                         //                     scrollDirection: Axis.horizontal,
+                         //                     child: Column(
+                         //                       crossAxisAlignment: CrossAxisAlignment.start,
+                         //                       children: [
+                         //                         Row(
+                         //                           children: [
+                         //                             Icon(Icons.man,size: 30,color: Colors.grey.shade600,),
+                         //                             Text(widget.SearchPickup),
+                         //                           ],
+                         //                         ),
+                         //                         SizedBox(
+                         //                           height: 20.0,width: 30,
+                         //                           child: TimelineNode(
+                         //                             startConnector: SolidLineConnector(color: Colors.grey.shade300,thickness: 1,),
+                         //                             endConnector: SolidLineConnector(color: Colors.grey.shade300,thickness: 1,),
+                         //                           ),
+                         //                         ),
+                         //                         Row(
+                         //                           children: [
+                         //                             Icon(Icons.location_on,size: 28,color: Colors.red.shade600,),
+                         //                             SizedBox(width: 5,),
+                         //                             Text(widget.SearchDestinations ),
+                         //                           ],
+                         //                         ),
+                         //
+                         //
+                         //                         // Text("Total distance :${dist/1000}"),
+                         //
+                         //                        // Text("Estimated Fare : ${(dist/1000)*20} BDT")
+                         //
+                         //
+                         //
+                         //                       ],
+                         //                     ),
+                         //                   ),
+                         //
+                         //                   Divider(),
+                         //                   SizedBox(height: 10,),
+                         //
+                         //                   Row(
+                         //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         //                     children: [
+                         //                       Text("Total Distance",
+                         //                           style: TextStyle(
+                         //                               color: Colors.black,fontSize: 14,
+                         //                               fontWeight: FontWeight.w500
+                         //
+                         //                           )
+                         //                       ),
+                         //                       Text("${(dist/1000).toStringAsFixed(3)} Km",
+                         //                           style: TextStyle(
+                         //                               color: Colors.black,fontSize: 14,
+                         //                               fontWeight: FontWeight.w500
+                         //
+                         //                           )
+                         //                       ),
+                         //                     ],
+                         //                   ),
+                         //                   SizedBox(height: 10,),
+                         //
+                         //                   Row(
+                         //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         //                     children: [
+                         //                       Text('Pay via Cash',
+                         //                           style: TextStyle(
+                         //                             color: Colors.black,fontSize: 16,
+                         //                               fontWeight: FontWeight.w600
+                         //
+                         //                           )
+                         //                       ),
+                         //                       Text('${((dist/1000)*20).toStringAsFixed(2)} BDT',
+                         //                           style: TextStyle(
+                         //                             color: Colors.black,fontSize: 18,
+                         //                             fontWeight: FontWeight.w600
+                         //                           )
+                         //                       ),
+                         //                     ],
+                         //                   ),
+                         //                   SizedBox(height: 10,),
+                         //
+                         //                   RichText(text: TextSpan(text: 'This is the estimated fare. This may vary.',
+                         //                       style: TextStyle(
+                         //                         color: Colors.grey.shade400,fontSize: 14,
+                         //                       )),
+                         //
+                         //                   ),
+                         //                   Divider(),
+                         //                   TextButton(onPressed: (){
+                         //
+                         //                     showModalBottomSheet(
+                         //                         isScrollControlled: false,
+                         //                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
+                         //                         isDismissible: false,
+                         //                         enableDrag: false,
+                         //                         context: context,
+                         //                         builder: (BuildContext context){
+                         //                           return Padding(
+                         //                             padding: EdgeInsets.only(
+                         //                               left: 8,
+                         //                               right: 8,
+                         //                               top: 10,
+                         //                               bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,),
+                         //                             child: Container(
+                         //                                height: 20.h,
+                         //                               child: Padding(
+                         //                                 padding: EdgeInsets.all(8.0),
+                         //                                 child: Column(
+                         //                                   children: [
+                         //                                     RichText(text: TextSpan(text: 'Are you sure you want to cancel this ride?',
+                         //                                         style: TextStyle(color: Colors.black,fontSize: 18))),
+                         //
+                         //                                   ],
+                         //                                 ),
+                         //                               ),
+                         //                             ),
+                         //                           );
+                         //                         }
+                         //                     );
+                         //
+                         //                   },
+                         //
+                         //
+                         //                     child: Row(
+                         //                       children: [
+                         //                         Text('Cancel this Ride?'),
+                         //                         Spacer(),
+                         //                         Text('Cancel now ×')
+                         //                       ],
+                         //                     ),
+                         //                   )
+                         //
+                         //                 ],
+                         //               ),
+                         //             ),
+                         //           ),
+                         //         ),
+                         //       );
+                         //     }
+                         //
+                         // )
+                         // );
 
 
 
