@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoding/geocoding.dart';
-//import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:google_places_flutter/model/prediction.dart';
@@ -201,8 +200,12 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
   bool _isExpand=false;
   bool _invisible = true;
   bool expand = true;
+
+
   Future<void>requestPermission()async{
     await Permission.location.request();
+    await Permission.storage.request();
+    await Permission.accessMediaLocation.request();
   }
 
   @override
@@ -283,17 +286,17 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                         target: SourceLocation,//LatLng(currentLocation.latitude!,currentLocation.longitude!),
                         zoom: 14.5),
                     markers: {
-                      // Marker(
-                      //     markerId: MarkerId("Source"),
-                      //     position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
-                      // ),
-                      // Marker(
-                      //     markerId: MarkerId("Destination"),
-                      //     position: DestinationLocation
-                      // )
+                      Marker(
+                          markerId: MarkerId("Source"),
+                          position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
+                      ),
+                      Marker(
+                          markerId: MarkerId("Destination"),
+                          position: DestinationLocation
+                      )
                     },
 
-                   // polylines: PolylineSet,
+                    polylines: PolylineSet,
 
 
 
