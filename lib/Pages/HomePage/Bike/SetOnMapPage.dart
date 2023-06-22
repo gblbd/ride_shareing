@@ -464,7 +464,7 @@ PolylinePoints polylinePoints=PolylinePoints();
 
                                                    )
                                                ),
-                                               Text('${((dist/1000)*20).toStringAsFixed(2)} BDT',
+                                               Text('${((dist/1000)*30).toStringAsFixed(2)} BDT',
                                                    style: TextStyle(
                                                        color: Colors.black,fontSize: 18,
                                                        fontWeight: FontWeight.w600

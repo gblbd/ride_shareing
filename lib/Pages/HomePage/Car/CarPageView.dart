@@ -204,8 +204,8 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
 
   Future<void>requestPermission()async{
     await Permission.location.request();
-    await Permission.storage.request();
-    await Permission.accessMediaLocation.request();
+    // await Permission.storage.request();
+    // await Permission.accessMediaLocation.request();
   }
 
   @override
