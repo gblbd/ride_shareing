@@ -3,25 +3,74 @@
 
 import 'dart:math';
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PickupConfirmPage extends StatelessWidget{
+class PickupConfirmPage extends StatefulWidget{
 
-  int randNumb(){
 
-    int i=Random().nextInt(999999);
-    if(i<100000){
-      i=i+100000;
-    }
+  final String PickUpCode;
+  final String DroppingCode;
+  final String PickedBy;
+  final String RequestID;
 
-    return i;
+   PickupConfirmPage({super.key, required this.PickUpCode, required this.DroppingCode, required this.PickedBy, required this.RequestID});
+
+  @override
+  State<PickupConfirmPage> createState() => _PickupConfirmPageState();
+}
+
+class _PickupConfirmPageState extends State<PickupConfirmPage> {
+  FirebaseDatabase database = FirebaseDatabase.instance;
+
+  DatabaseReference ref = FirebaseDatabase.instance.ref("Driver_profile");
+
+
+
+  String Drivername="";
+
+  String Vehicle_Registration_Number="";
+
+  String DrivingLicenceNo="";
+
+  Future<void> getDriverdt() async {
+
+     Drivername="${await ref.child(widget.PickedBy).child("Dprofile").child("Dfull_Name").get()}";
+     Vehicle_Registration_Number="${await ref.child(widget.PickedBy).child("Dprofile").child("Vehicle_Registration_Number").get()}";
+     DrivingLicenceNo="${await ref.child(widget.PickedBy).child("Dprofile").child("Driving_licence_Number").get()}";
+
+
+     setState(() {
+
+     });
+
   }
+
+
+
+  @override
+  void initState() {
+
+    getDriverdt();
+    // TODO: implement initState
+    super.initState();
+  }
+
+
+
+
 
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
+
+
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
@@ -32,23 +81,101 @@ class PickupConfirmPage extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+
+
+            Text("Driver : ${Drivername}",
+
+              style: GoogleFonts.openSans(
+                  fontSize: 21,
+                  fontWeight: FontWeight.bold
+              ),
+
+
+            ),
+
+            Text("Driver Phone Number : ${widget.PickedBy}",
+
+              style: GoogleFonts.openSans(
+                  fontSize: 21,
+                  fontWeight: FontWeight.bold
+              ),
+
+
+            ),
+
+            Text("Registration Number : ${Vehicle_Registration_Number}",
+
+              style: GoogleFonts.openSans(
+                  fontSize: 21,
+                  fontWeight: FontWeight.bold
+              ),
+
+
+            ),
+
+            Text("Registration Number : ${Vehicle_Registration_Number}",
+
+              style: GoogleFonts.openSans(
+                  fontSize: 21,
+                  fontWeight: FontWeight.bold
+              ),
+
+
+            ),
+
+            Text("Driving License  No : ${DrivingLicenceNo}",
+
+              style: GoogleFonts.openSans(
+                  fontSize: 21,
+                  fontWeight: FontWeight.bold
+              ),
+
+
+            ),
+
+
+
             Text("Your Pickup code is :",
 
               style: GoogleFonts.openSans(
-                fontSize: 21,
-                fontWeight: FontWeight.bold
+                  fontSize: 21,
+                  fontWeight: FontWeight.bold
               ),
 
 
             ),
-            Text("${randNumb()}",
+            Text("${widget.PickUpCode}",
 
               style: GoogleFonts.openSans(
-                fontSize: 30,
-                fontWeight: FontWeight.bold
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold
               ),
 
             ),
+
+
+
+
+
+            Text("Your Dropping code is :",
+
+              style: GoogleFonts.openSans(
+                  fontSize: 21,
+                  fontWeight: FontWeight.bold
+              ),
+
+
+            ),
+            Text("${widget.DroppingCode}",
+
+              style: GoogleFonts.openSans(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold
+              ),
+
+            ),
+
+
 
 
 
@@ -59,5 +186,4 @@ class PickupConfirmPage extends StatelessWidget{
       ),
     );
   }
-
 }

@@ -82,6 +82,9 @@ class _SetOnMap2State extends State<SetOnMap2> {
       "Fare":"${(dist/1000)*30}",
       "pickUpStat":false,
       "picupBy":"",
+      "DriverName":"",
+      "Driving_licese":"",
+      "vehicle_reg":"",
       "pickupCode":"${randNumb()}",
       "droppingCode":"${randNumb()}"
     }).then((value) {
@@ -245,6 +248,10 @@ Future<double> getDistance() async {
        String pickUpCode= event.snapshot.child("pickupCode").value.toString();
        String dropdownCode= event.snapshot.child("droppingCode").value.toString();
        String PickupBy= event.snapshot.child("picupBy").value.toString();
+       String DriversName=event.snapshot.child("DriverName").value.toString();
+       String DrivingLicence=event.snapshot.child("Driving_licese").value.toString();
+       String VehicleReg=event.snapshot.child("vehicle_reg").value.toString();
+
 
        if(pickupStat=="true"){
 
@@ -258,6 +265,9 @@ Future<double> getDistance() async {
                  DroppingCode: dropdownCode,
                  PickedBy: PickupBy,
                  RequestID: RequestID,
+                 Drivername: '${DriversName}',
+                 DrivingLicenseNumb: '${DrivingLicence}',
+                 VehicleReg: '${VehicleReg}',
 
 
 

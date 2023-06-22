@@ -8,40 +8,38 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PickupConfirmPage2 extends StatelessWidget{
+class PickupConfirmPage2 extends StatefulWidget{
 
 
-  final PickUpCode;
-  final DroppingCode;
-  final PickedBy;
-  final RequestID;
+  final String PickUpCode;
+  final String DroppingCode;
+  final String PickedBy;
+  final String RequestID;
+  final String Drivername;
+  final String DrivingLicenseNumb;
+  final String VehicleReg;
 
-   PickupConfirmPage2({super.key, required this.PickUpCode,required this.DroppingCode,required this.PickedBy,required this.RequestID});
 
+   PickupConfirmPage2({super.key, required this.PickUpCode,required this.DroppingCode,required this.PickedBy,required this.RequestID, required this.Drivername, required this.DrivingLicenseNumb, required this.VehicleReg});
 
+  @override
+  State<PickupConfirmPage2> createState() => _PickupConfirmPage2State();
+}
+
+class _PickupConfirmPage2State extends State<PickupConfirmPage2> {
   FirebaseDatabase database = FirebaseDatabase.instance;
+
   DatabaseReference ref = FirebaseDatabase.instance.ref("Driver_profile");
 
 
+
+
   // int randNumb(){
-  //
-  //   int i=Random().nextInt(999999);
-  //   if(i<100000){
-  //     i=i+100000;
-  //   }
-  //
-  //   return i;
-  // }
-
-
   @override
   Widget build(BuildContext context) {
 
 
 
-    String Drivername="${ref.child(PickedBy).child("Dprofile").child("Dfull_Name").get()}";
-    String Vehicle_Registration_Number="${ref.child(PickedBy).child("Dprofile").child("Vehicle_Registration_Number").get()}";
-    String DrivingLicenceNo="${ref.child(PickedBy).child("Dprofile").child("Driving_licence_Number").get()}";
 
 
 
@@ -58,7 +56,7 @@ class PickupConfirmPage2 extends StatelessWidget{
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
 
-            Text("Driver : ${Drivername}",
+            Text("Driver : ${widget.Drivername}",
 
               style: GoogleFonts.openSans(
                   fontSize: 21,
@@ -68,7 +66,7 @@ class PickupConfirmPage2 extends StatelessWidget{
 
             ),
 
-            Text("Driver Phone Number : ${PickedBy}",
+            Text("Driver Phone Number : ${widget.PickedBy}",
 
               style: GoogleFonts.openSans(
                   fontSize: 21,
@@ -78,7 +76,7 @@ class PickupConfirmPage2 extends StatelessWidget{
 
             ),
 
-            Text("Registration Number : ${Vehicle_Registration_Number}",
+            Text("Registration Number : ${widget.VehicleReg}",
 
               style: GoogleFonts.openSans(
                   fontSize: 21,
@@ -88,17 +86,9 @@ class PickupConfirmPage2 extends StatelessWidget{
 
             ),
 
-            Text("Registration Number : ${Vehicle_Registration_Number}",
-
-              style: GoogleFonts.openSans(
-                  fontSize: 21,
-                  fontWeight: FontWeight.bold
-              ),
 
 
-            ),
-
-            Text("Driving License  No : ${DrivingLicenceNo}",
+            Text("Driving License  No : ${widget.DrivingLicenseNumb}",
 
               style: GoogleFonts.openSans(
                   fontSize: 21,
@@ -119,7 +109,7 @@ class PickupConfirmPage2 extends StatelessWidget{
 
 
             ),
-            Text("${PickUpCode}",
+            Text("${widget.PickUpCode}",
 
               style: GoogleFonts.openSans(
                 fontSize: 30,
@@ -141,7 +131,7 @@ class PickupConfirmPage2 extends StatelessWidget{
 
 
             ),
-            Text("${DroppingCode}",
+            Text("${widget.DroppingCode}",
 
               style: GoogleFonts.openSans(
                   fontSize: 30,
@@ -159,5 +149,4 @@ class PickupConfirmPage2 extends StatelessWidget{
       ),
     );
   }
-
 }
