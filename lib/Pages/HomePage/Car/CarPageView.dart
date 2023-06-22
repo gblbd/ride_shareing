@@ -6,10 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoding/geocoding.dart';
-//import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:google_places_flutter/model/prediction.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/AvailablePromos.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:ride_sharing/Pages/HomePage/Car/search_pickup_point.dart';
@@ -202,8 +202,15 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
   bool expand = true;
 
 
+  Future<void>requestPermission()async{
+    await Permission.location.request();
+    // await Permission.storage.request();
+    // await Permission.accessMediaLocation.request();
+  }
+
   @override
   void initState(){
+    requestPermission();
     _promoController=TabController(length: 2, vsync: this);
     super.initState();
     _animationController =
@@ -273,21 +280,23 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
 
 
                   GoogleMap(
+                    myLocationEnabled: true,
+                    myLocationButtonEnabled: true,
                     initialCameraPosition: CameraPosition(
                         target: SourceLocation,//LatLng(currentLocation.latitude!,currentLocation.longitude!),
                         zoom: 14.5),
                     markers: {
-                      // Marker(
-                      //     markerId: MarkerId("Source"),
-                      //     position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
-                      // ),
-                      // Marker(
-                      //     markerId: MarkerId("Destination"),
-                      //     position: DestinationLocation
-                      // )
+                      Marker(
+                          markerId: MarkerId("Source"),
+                          position: SourceLocation//LatLng(currentLocation!.latitude!,currentLocation!.longitude!)
+                      ),
+                      Marker(
+                          markerId: MarkerId("Destination"),
+                          position: DestinationLocation
+                      )
                     },
 
-                   // polylines: PolylineSet,
+                    polylines: PolylineSet,
 
 
 

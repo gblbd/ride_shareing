@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 // import 'package:location/location.dart';
 import 'package:ride_sharing/Pages/HomePage/Assistants/RequestAssistant.dart';
 
@@ -124,9 +125,13 @@ class _BikePageViewState extends State<BikePageView> with TickerProviderStateMix
   bool expand = true;
   bool search=true;
 
+  Future<void>requestPermission()async{
+    await Permission.location.request();
+  }
 
   @override
   void initState(){
+    requestPermission();
     _promoController=TabController(length: 2, vsync: this);
     super.initState();
     _animationController =
@@ -207,6 +212,8 @@ getRequest(_destination.text.toString());
 
 
                   GoogleMap(
+                    myLocationButtonEnabled: true,
+                    myLocationEnabled: true,
                     initialCameraPosition: CameraPosition(
                         target: SourceLocation,//LatLng(currentLocation.latitude!,currentLocation.longitude!),
                         zoom: 14.5),

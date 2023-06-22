@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,6 @@ import 'package:sizer/sizer.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:timelines/timelines.dart';
 
-import '../Car/pickup_confirm_code2.dart';
 import '../Courier/SaveAddressPage.dart';
 
 class SetOnMap extends StatefulWidget {
@@ -34,23 +32,6 @@ class SetOnMap extends StatefulWidget {
 
 class _SetOnMapState extends State<SetOnMap> {
 
-  String RequestID="";
-
-
-  int randNumb(){
-
-    int i=Random().nextInt(999999);
-    if(i<100000){
-      i=i+100000;
-    }
-
-    return i;
-  }
-
-  double dist=0.00;
-
-  double fare=0.00;
-
 
   DatabaseReference rf = FirebaseDatabase.instance.ref("Bike_Request");
 
@@ -65,26 +46,12 @@ class _SetOnMapState extends State<SetOnMap> {
     senderPostRef.set({
       "Destination":"${destination}",
       "Name":"${name}",
-      "Phone_number": "0${phoneNumber}",
+      "Phone_number": "${phoneNumber}",
       "PickUp": "${PickUp}",
       "destinationLat": "${destinationLat}",
       "destinationLong": "${destinationLong}",
       "sourceLat": "${sourceLat}",
-      "sourceLong": "${sourceLong}",
-      "Distance":"${dist/1000}",
-      "Fare":"${fare}",
-      "pickUpStat":false,
-      "picupBy":"",
-      "DriverName":"",
-      "Driving_licese":"",
-      "vehicle_reg":"",
-      "pickupCode":"${randNumb()}",
-      "droppingCode":"${randNumb()}"
-    }).then((value) {
-      RequestID=senderPostRef.key.toString();
-      setState(() {
-
-      });
+      "sourceLong": "${sourceLong}"
     });
 
   }
@@ -258,7 +225,7 @@ PolylinePoints polylinePoints=PolylinePoints();
   }
 
 
-
+  double dist=0.00;
 
   Future<double> getDistance() async {
 
@@ -267,7 +234,7 @@ PolylinePoints polylinePoints=PolylinePoints();
 
 
     dist=distanceInMetre;
-     fare=(dist/1000)*20;
+    double fare=(dist/1000)*20;
 
     return distanceInMetre;
 
@@ -290,68 +257,6 @@ PolylinePoints polylinePoints=PolylinePoints();
      LatLng DestinationLocation=LatLng(widget.destinationLat, widget.destinationlong);
 
      getDistance();
-
-////////////////////////////////////////////////////////////
-
-
-
-     rf.child("ride_request").child(RequestID).onValue.listen((event) {
-
-
-
-       String pickupStat= event.snapshot.child("pickUpStat").value.toString();
-       String pickUpCode= event.snapshot.child("pickupCode").value.toString();
-       String dropdownCode= event.snapshot.child("droppingCode").value.toString();
-       String PickupBy= event.snapshot.child("picupBy").value.toString();
-       String DriversName=event.snapshot.child("DriverName").value.toString();
-       String DrivingLicence=event.snapshot.child("Driving_licese").value.toString();
-       String VehicleReg=event.snapshot.child("vehicle_reg").value.toString();
-
-       if(pickupStat=="true"){
-
-         Navigator.pop(context);
-
-
-         Navigator.push(
-             context,
-             MaterialPageRoute(builder: (context) {
-               return PickupConfirmPage2(
-                 PickUpCode: '${pickUpCode}',
-                 DroppingCode: '${dropdownCode}',
-                 PickedBy: '${PickupBy}',
-                 RequestID: '${RequestID}',
-                 Drivername: '${DriversName}',
-                 DrivingLicenseNumb: '${DrivingLicence}',
-                 VehicleReg: '${VehicleReg}',);
-
-             })
-         );
-
-         // Navigator.push(
-         //     context,
-         //     MaterialPageRoute(builder: (context) {
-         //       return PickupConfirmPage2(
-         //         PickUpCode: pickUpCode,
-         //         DroppingCode: dropdownCode,
-         //         PickedBy: PickupBy,
-         //         RequestID: RequestID,
-         //
-         //
-         //
-         //
-         //       );
-         //     })
-         // );
-
-
-
-       }
-
-
-
-     });
-
-     ////////////////////////////////////////////////
 
 
 
@@ -478,20 +383,11 @@ PolylinePoints polylinePoints=PolylinePoints();
                        ),
                        onPressed: () async{
 
-
-
-
                          UploadRequest(
                              widget.SearchDestinations,widget.name,widget.phoneNum,
                              widget.SearchPickup,widget.destinationLat.toString(),widget.destinationlong.toString(),
                              widget.sourceLat.toString(),widget.sourceLong.toString()
                          );
-
-
-
-
-
-
                          showModalBottomSheet(
                              isScrollControlled: false,
                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
@@ -542,12 +438,13 @@ PolylinePoints polylinePoints=PolylinePoints();
                                              subtitle: Text("⭐ 4.73 | 224 Trips"),
 
                                              onTap: (){
-
-
-
+                                               Navigator.push(
+                                                   context,
+                                                   MaterialPageRoute(builder: (context) {
+                                                     return PickupConfirmPage();
+                                                   })
+                                               );
                                              },
-
-
 
                                            ),
 
@@ -947,7 +844,6 @@ PolylinePoints polylinePoints=PolylinePoints();
                        child: Text('Confirm Destination',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
                      ),
                    ),
-
                    Spacer(),
                    Container(
                      height: 46,width: 50,
