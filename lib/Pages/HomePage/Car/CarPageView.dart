@@ -10,6 +10,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:google_places_flutter/model/prediction.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:ride_sharing/Pages/HomePage/Bike/AvailablePromos.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:ride_sharing/Pages/HomePage/Car/search_pickup_point.dart';
@@ -200,10 +201,13 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
   bool _isExpand=false;
   bool _invisible = true;
   bool expand = true;
-
+  Future<void>requestPermission()async{
+    await Permission.location.request();
+  }
 
   @override
   void initState(){
+    requestPermission();
     _promoController=TabController(length: 2, vsync: this);
     super.initState();
     _animationController =
@@ -273,6 +277,8 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
 
 
                   GoogleMap(
+                    myLocationEnabled: true,
+                    myLocationButtonEnabled: true,
                     initialCameraPosition: CameraPosition(
                         target: SourceLocation,//LatLng(currentLocation.latitude!,currentLocation.longitude!),
                         zoom: 14.5),
