@@ -764,7 +764,7 @@ class _SearchDestinationPointState extends State<SearchDestinationPoint> with Ti
               child: Row(
                 children: [
                   Container(
-                    height: 50,width: 260,
+                    height: 50,width: 320,
                     margin: const EdgeInsets.all(10),
                     decoration:  BoxDecoration(
                         border: Border.all(color: Colors.grey.shade700,width: 1),
@@ -804,26 +804,26 @@ class _SearchDestinationPointState extends State<SearchDestinationPoint> with Ti
 
 
 
-                  Container(
-                    height: 50,width: 50,
-                    margin: const EdgeInsets.all(7),
-                    decoration: _invisible ? null : BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade700,width: 1),
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.white
-                    ),
-                    child: TextButton(
-                        style: TextButton.styleFrom(primary: Colors.white,),
-                        onPressed: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return const YourTripPage();
-                              })
-                          );
-                        },
-                        child: const Icon(Icons.add,color: Colors.red,size: 30,)),
-                  ),
+                  // Container(
+                  //   height: 50,width: 50,
+                  //   margin: const EdgeInsets.all(7),
+                  //   decoration: _invisible ? null : BoxDecoration(
+                  //       border: Border.all(color: Colors.grey.shade700,width: 1),
+                  //       borderRadius: BorderRadius.circular(10.0),
+                  //       color: Colors.white
+                  //   ),
+                  //   child: TextButton(
+                  //       style: TextButton.styleFrom(primary: Colors.white,),
+                  //       onPressed: (){
+                  //         Navigator.push(
+                  //             context,
+                  //             MaterialPageRoute(builder: (context) {
+                  //               return const YourTripPage();
+                  //             })
+                  //         );
+                  //       },
+                  //       child: const Icon(Icons.add,color: Colors.red,size: 30,)),
+                  // ),
 
                 ],
               ),
