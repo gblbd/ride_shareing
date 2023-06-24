@@ -11,6 +11,7 @@ import 'package:sizer/sizer.dart';
 
 
 import 'MainScreen.dart';
+import 'Others/LoginWithPhoneNum.dart';
 
 void main() async{
 
@@ -91,7 +92,7 @@ class MyApp extends StatelessWidget {
             splash: 'assets/images/My_Road_Logo.png',
             splashIconSize: 190,
             //nextScreen: const MainScreen(),
-            nextScreen: const SelectLanguage(),
+            nextScreen: const LoginWithPhoneNum(),
             duration: 5000,
             backgroundColor: Colors.white,
             splashTransition: SplashTransition.sizeTransition,
