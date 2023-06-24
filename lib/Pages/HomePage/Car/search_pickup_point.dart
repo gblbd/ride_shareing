@@ -882,26 +882,26 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
 
 
 
-                  Container(
-                    height: 50,width: 50,
-                    margin: const EdgeInsets.all(7),
-                    decoration: _invisible ? null : BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade700,width: 1),
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.white
-                    ),
-                    child: TextButton(
-                        style: TextButton.styleFrom(primary: Colors.white,),
-                        onPressed: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return const YourTripPage();
-                              })
-                          );
-                        },
-                        child: const Icon(Icons.add,color: Colors.red,size: 30,)),
-                  ),
+                  // Container(
+                  //   height: 50,width: 50,
+                  //   margin: const EdgeInsets.all(7),
+                  //   decoration: _invisible ? null : BoxDecoration(
+                  //       border: Border.all(color: Colors.grey.shade700,width: 1),
+                  //       borderRadius: BorderRadius.circular(10.0),
+                  //       color: Colors.white
+                  //   ),
+                  //   child: TextButton(
+                  //       style: TextButton.styleFrom(primary: Colors.white,),
+                  //       onPressed: (){
+                  //         Navigator.push(
+                  //             context,
+                  //             MaterialPageRoute(builder: (context) {
+                  //               return const YourTripPage();
+                  //             })
+                  //         );
+                  //       },
+                  //       child: const Icon(Icons.add,color: Colors.red,size: 30,)),
+                  // ),
 
                 ],
               ),
@@ -949,101 +949,106 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
 
 
 
-            Stack(
-              children: [
-                expand ? Positioned(child: Column(
-                  children: [
-                    Divider(thickness: 8,color: Colors.blueGrey.shade50,),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 6,right: 8),
-                      child: Container(
-                        height: 60,
-                        child: ListTile(
-                          leading:   CircleAvatar(
-                              radius: 17,
-                              backgroundColor: Colors.grey.shade200,
-                              child: Icon(Icons.search, size: 16,color: Colors.grey.shade600,)
-                          ),
-                          title: Text('Set On Map',style: TextStyle(fontSize: 17,color: Colors.black,fontWeight: FontWeight.normal),),
-                          onTap: (){
+            // Stack(
+            //   children: [
+            //     expand ? Positioned(child: Column(
+            //       children: [
+            //         Divider(thickness: 8,color: Colors.blueGrey.shade50,),
+            //         Padding(
+            //           padding: const EdgeInsets.only(left: 6,right: 8),
+            //           child: Container(
+            //             height: 60,
+            //             child: ListTile(
+            //               leading:   CircleAvatar(
+            //                   radius: 17,
+            //                   backgroundColor: Colors.grey.shade200,
+            //                   child: Icon(Icons.search, size: 16,color: Colors.grey.shade600,)
+            //               ),
+            //               title: Text('Set On Map',style: TextStyle(fontSize: 17,color: Colors.black,fontWeight: FontWeight.normal),),
+            //               onTap: (){
+            //
+            //
+            //                 Navigator.push(
+            //                     context,
+            //                     MaterialPageRoute(builder: (context) {
+            //                       return const SetOnMapForCar();
+            //                     })
+            //                 );
+            //
+            //               },
+            //             ),
+            //
+            //           ),
+            //         ),
+            //       ],
+            //     ))
+            //         : Positioned(
+            //       child: Padding(
+            //         padding: const EdgeInsets.only(left: 6,right: 8),
+            //         child: Container(
+            //           height: 60,
+            //           child: ListTile(
+            //             leading:   CircleAvatar(
+            //                 radius: 17,
+            //                 backgroundColor: Colors.grey.shade200,
+            //                 child: Icon(Icons.search, size: 16,color: Colors.grey.shade600,)
+            //             ),
+            //             title: Text('Set On Map',style: TextStyle(fontSize: 17,color: Colors.black,fontWeight: FontWeight.normal),),
+            //             onTap: (){
+            //
+            //
+            //               Navigator.push(
+            //                   context,
+            //                   MaterialPageRoute(builder: (context) {
+            //                     return const SetOnMapForCar();
+            //                   })
+            //               );
+            //
+            //             },
+            //           ),
+            //         ),
+            //       ),
+            //     )
+            //   ],
+            // ),
 
 
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) {
-                                  return const SetOnMapForCar();
-                                })
-                            );
-
-                          },
-                        ),
-
-                      ),
-                    ),
-                  ],
-                ))
-                    : Positioned(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 6,right: 8),
-                    child: Container(
-                      height: 60,
-                      child: ListTile(
-                        leading:   CircleAvatar(
-                            radius: 17,
-                            backgroundColor: Colors.grey.shade200,
-                            child: Icon(Icons.search, size: 16,color: Colors.grey.shade600,)
-                        ),
-                        title: Text('Set On Map',style: TextStyle(fontSize: 17,color: Colors.black,fontWeight: FontWeight.normal),),
-                        onTap: (){
 
 
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return const SetOnMapForCar();
-                              })
-                          );
 
-                        },
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
             Divider(thickness: 8,color: Colors.blueGrey.shade50,),
-            Container(
-              height: 60,
-              child: ListTile(
-                leading:  CircleAvatar(
-                    radius: 19,
-                    backgroundColor: Colors.red.shade50,
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment.center,
-                          child: Icon(Icons.map,size: 18,color: Colors.red,),
-                        ),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Icon(Icons.add_location,size: 17,color: Colors.red,),
-                        ),
-                      ],
-                    )
-                ),
-                title: Text('Add missing place to the My Road Map',style: TextStyle(fontSize: 13,color: Colors.black,fontWeight: FontWeight.w400)),
-                trailing: Icon(Icons.arrow_forward_ios_sharp,size: 16,),
-                onTap: (){
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(builder: (context) {
-                  //       return const AddMissingPlacePage();
-                  //     })
-                  // );
-                },
-
-              ),
-            ),
+            // Container(
+            //   height: 60,
+            //   child: ListTile(
+            //     leading:  CircleAvatar(
+            //         radius: 19,
+            //         backgroundColor: Colors.red.shade50,
+            //         child: Stack(
+            //           children: [
+            //             Align(
+            //               alignment: Alignment.center,
+            //               child: Icon(Icons.map,size: 18,color: Colors.red,),
+            //             ),
+            //             Align(
+            //               alignment: Alignment.topRight,
+            //               child: Icon(Icons.add_location,size: 17,color: Colors.red,),
+            //             ),
+            //           ],
+            //         )
+            //     ),
+            //     title: Text('Add missing place to the My Road Map',style: TextStyle(fontSize: 13,color: Colors.black,fontWeight: FontWeight.w400)),
+            //     trailing: Icon(Icons.arrow_forward_ios_sharp,size: 16,),
+            //     onTap: (){
+            //       // Navigator.push(
+            //       //     context,
+            //       //     MaterialPageRoute(builder: (context) {
+            //       //       return const AddMissingPlacePage();
+            //       //     })
+            //       // );
+            //     },
+            //
+            //   ),
+            // ),
             Divider(thickness: 8,color: Colors.blueGrey.shade50,),
 
           ],
