@@ -198,6 +198,19 @@ PolylinePoints polylinePoints=PolylinePoints();
   FirebaseDatabase database = FirebaseDatabase.instance;
   DatabaseReference ref = FirebaseDatabase.instance.ref("Bike_Request");
 
+  final List<String>cancellationReasons=[
+    'Rider refused to pick me up from my pickup location',
+    'My pickup/destination location was incorrect',
+    'Rider refused to go to my destination',
+    'I waited too long',
+    'Rider is far away from me',
+    'Rider refused to take digital payment',
+    "I don't need a ride right now",
+    'Rider was rude',
+    'Vehicle/person was not the same',
+    'Rider unreasonable',
+    'Other'
+  ];
 
    @override
   Widget build(BuildContext context) {
@@ -567,33 +580,113 @@ PolylinePoints polylinePoints=PolylinePoints();
                                                        top: 10,
                                                        bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,),
                                                      child: Container(
-                                                       height: 20.h,
+                                                       height: 30.h,
                                                        child: Padding(
                                                          padding: EdgeInsets.all(8.0),
                                                          child: Column(
                                                            children: [
                                                              RichText(text: TextSpan(text: 'Are you sure you want to cancel this ride?',
-                                                                 style: TextStyle(color: Colors.black,fontSize: 18))),
+                                                                 style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w600))),
+                                                             SizedBox(height: 10,),
                                                              RichText(text: TextSpan(text: 'Riders are waiting near you to take you to your destination.',
-                                                                 style: TextStyle(color: Colors.black,fontSize: 18))),
+                                                                 style: TextStyle(color: Colors.black,fontSize: 16))),
+                                                             SizedBox(height: 10,),
                                                              Divider(thickness: 2,),
                                                              Row(
+                                                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                                children: [
-                                                                 TextButton(
-                                                                     onPressed: (){
+                                                                 Container(
+                                                                   child: TextButton(
+                                                                       onPressed: () async{
+                                                                         await showModalBottomSheet(
+                                                                           isScrollControlled: false,
+                                                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
+                                                                           isDismissible: false,
+                                                                           enableDrag: false,
+                                                                           context: context,
+                                                                           builder: (BuildContext context) {
+                                                                             return Padding(
+                                                                               padding: EdgeInsets.only(
+                                                                                 left: 8,
+                                                                                 right: 8,
+                                                                                 top: 10,
+                                                                                 bottom: MediaQuery.of(context).viewInsets.bottom + 0.5,
+                                                                               ),
+                                                                               child: Container(
+                                                                                 height: 60.h,
+                                                                                 child: Padding(
+                                                                                   padding: const EdgeInsets.all(8.0),
+                                                                                   child: Column(
+                                                                                     crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                     children: [
+                                                                                       Text("Cancellation reason",
+                                                                                         style: TextStyle(
+                                                                                             color: Colors.black87,fontSize: 18,fontWeight: FontWeight.w600
+                                                                                         ),
+                                                                                       ),
+                                                                                       Divider(),
+                                                                                       Container(
+                                                                                         height: 47.h,
+                                                                                         child: ListView.builder(
+                                                                                             itemExtent: 40,
+                                                                                             itemCount: cancellationReasons.length,
+                                                                                             itemBuilder: (BuildContext context, int index){
+                                                                                               return ListTile(
+                                                                                                 title: Text(cancellationReasons[index]),
+                                                                                                 onTap: (){
+                                                                                                   String selectedReason=cancellationReasons[index];
+                                                                                                   Navigator.pop(context);
+                                                                                                   Navigator.pop(context);
+                                                                                                   // setState(() {
+                                                                                                   //
+                                                                                                   // });
+                                                                                                 },
+                                                                                               );
+                                                                                             }
+                                                                                         ),
+                                                                                       ),
+                                                                                     ],
+                                                                                   ),
+                                                                                 ),
+                                                                               ),
+                                                                             );
+                                                                           },
+                                                                         );
 
-                                                                     },
-                                                                     child: Text('Yes')),
-                                                                 TextButton(
-                                                                     onPressed: (){
 
-                                                                     },
-                                                                     child: Text('Yes')),
+
+                                                                       },
+                                                                       child: Text('Yes',style: TextStyle(
+                                                                           color: Colors.white,fontSize: 16
+                                                                       ),)),
+                                                                   height: 60,width: 150,
+                                                                   decoration: BoxDecoration(
+                                                                       borderRadius: BorderRadius.circular(6),
+                                                                       color: Colors.red.shade500
+                                                                   ),
+                                                                 ),
+                                                                 Container(
+                                                                   child: TextButton(
+                                                                       onPressed: (){
+                                                                         Navigator.pop(context);
+                                                                         //Navigator.pop(context);
+                                                                       },
+                                                                       child: Text('No',style: TextStyle(
+                                                                           color: Colors.black87,fontSize: 16
+                                                                       ),)),
+                                                                   height: 60,width: 150,
+                                                                   decoration: BoxDecoration(
+                                                                       borderRadius: BorderRadius.circular(6),
+                                                                       color: Colors.grey.shade300
+                                                                   ),
+
+                                                                 ),
                                                                ],
                                                              )
                                                            ],
                                                          ),
                                                        ),
+
                                                      ),
                                                    );
                                                  }

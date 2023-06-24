@@ -222,7 +222,8 @@ Future<double> getDistance() async {
 
 
 
-  final List<String>cancellationReasons=['Rider refused to pick me up from my pickup location',
+  final List<String>cancellationReasons=[
+    'Rider refused to pick me up from my pickup location',
     'My pickup/destination location was incorrect',
     'Rider refused to go to my destination',
     'I waited too long',
