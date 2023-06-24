@@ -264,131 +264,131 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-
-
-                    SizedBox(height: 8,),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Row(
-                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.all(3),
-                            height: 100,width: 104,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey.shade200,width: 1),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return BikePageView(
-                                        name: widget.fullname.toString(),
-                                        phoneNum: widget.phoneNumber.toString(),);
-                                    },
-                                  ),
-                                );
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.airplane_ticket,color: Colors.red.shade900,
-
-                                    size: 60,
-
-                                  ),
-                                 // Image.asset('assets/images/motor_bike.png',height: 58,),
-                                  const Text('Air Ticket',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black),)
-                                ],
-                              ),
-
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(3),
-                            height: 100,width: 104,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey.shade200,width: 1),
-                              borderRadius: BorderRadius.circular(10.0),),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return CarPageView(
-                                        Name: widget.fullname,
-                                        phoneNumber: widget.phoneNumber,
-                                      );
-                                    },
-                                  ),
-                                );
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.hotel,color: Colors.red.shade900,
-                                    size: 60,
-                                  ),
-                                  //Image.asset('assets/images/Carr.png',height: 58,),
-                                  const Text('Hotel Booking',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black))
-                                ],
-                              ),
-
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(3),
-                            height: 100,width: 104,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey.shade200,width: 1),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return PathaoCourierPage(
-                                        phoneNumbers: widget.phoneNumber,
-                                        pin: widget.pin,
-                                        fullname: widget.fullname,
-
-                                      );
-                                    },
-                                  ),
-                                );
-
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.fastfood,color: Colors.red.shade900,
-                                    size: 60,
-                                  ),
-                                  //Image.asset('assets/images/CourierIcon.png',height: 58,),
-                                  Text('Food',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black),)
-                                ],
-                              ),
-
-                            ),
-                          ),
-
-
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // Container(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Column(
+              //     children: [
+              //
+              //
+              //       SizedBox(height: 8,),
+              //       SingleChildScrollView(
+              //         scrollDirection: Axis.vertical,
+              //         child: Row(
+              //           //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //           children: <Widget>[
+              //             Container(
+              //               margin: EdgeInsets.all(3),
+              //               height: 100,width: 104,
+              //               decoration: BoxDecoration(
+              //                 border: Border.all(color: Colors.grey.shade200,width: 1),
+              //                 borderRadius: BorderRadius.circular(10.0),
+              //               ),
+              //               child: TextButton(
+              //                 onPressed: (){
+              //                   Navigator.push(
+              //                     context,
+              //                     MaterialPageRoute(
+              //                       builder: (context) {
+              //                         return BikePageView(
+              //                           name: widget.fullname.toString(),
+              //                           phoneNum: widget.phoneNumber.toString(),);
+              //                       },
+              //                     ),
+              //                   );
+              //                 },
+              //                 child: Column(
+              //                   mainAxisAlignment: MainAxisAlignment.center,
+              //                   children: [
+              //                     Icon(Icons.airplane_ticket,color: Colors.red.shade900,
+              //
+              //                       size: 60,
+              //
+              //                     ),
+              //                    // Image.asset('assets/images/motor_bike.png',height: 58,),
+              //                     const Text('Air Ticket',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black),)
+              //                   ],
+              //                 ),
+              //
+              //               ),
+              //             ),
+              //             Container(
+              //               margin: EdgeInsets.all(3),
+              //               height: 100,width: 104,
+              //               decoration: BoxDecoration(
+              //                 border: Border.all(color: Colors.grey.shade200,width: 1),
+              //                 borderRadius: BorderRadius.circular(10.0),),
+              //               child: TextButton(
+              //                 onPressed: (){
+              //                   Navigator.push(
+              //                     context,
+              //                     MaterialPageRoute(
+              //                       builder: (context) {
+              //                         return CarPageView(
+              //                           Name: widget.fullname,
+              //                           phoneNumber: widget.phoneNumber,
+              //                         );
+              //                       },
+              //                     ),
+              //                   );
+              //                 },
+              //                 child: Column(
+              //                   mainAxisAlignment: MainAxisAlignment.center,
+              //                   children: [
+              //                     Icon(Icons.hotel,color: Colors.red.shade900,
+              //                       size: 60,
+              //                     ),
+              //                     //Image.asset('assets/images/Carr.png',height: 58,),
+              //                     const Text('Hotel Booking',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black))
+              //                   ],
+              //                 ),
+              //
+              //               ),
+              //             ),
+              //             Container(
+              //               margin: EdgeInsets.all(3),
+              //               height: 100,width: 104,
+              //               decoration: BoxDecoration(
+              //                 border: Border.all(color: Colors.grey.shade200,width: 1),
+              //                 borderRadius: BorderRadius.circular(10.0),
+              //               ),
+              //               child: TextButton(
+              //                 onPressed: (){
+              //                   Navigator.push(
+              //                     context,
+              //                     MaterialPageRoute(
+              //                       builder: (context) {
+              //                         return PathaoCourierPage(
+              //                           phoneNumbers: widget.phoneNumber,
+              //                           pin: widget.pin,
+              //                           fullname: widget.fullname,
+              //
+              //                         );
+              //                       },
+              //                     ),
+              //                   );
+              //
+              //                 },
+              //                 child: Column(
+              //                   mainAxisAlignment: MainAxisAlignment.center,
+              //                   children: [
+              //                     Icon(Icons.fastfood,color: Colors.red.shade900,
+              //                       size: 60,
+              //                     ),
+              //                     //Image.asset('assets/images/CourierIcon.png',height: 58,),
+              //                     Text('Food',style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: Colors.black),)
+              //                   ],
+              //                 ),
+              //
+              //               ),
+              //             ),
+              //
+              //
+              //           ],
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
 
               Divider(thickness: 8,color: Colors.blueGrey.shade50,),
 
