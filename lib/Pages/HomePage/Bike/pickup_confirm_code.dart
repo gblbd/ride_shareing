@@ -83,55 +83,78 @@ class _PickupConfirmPageState extends State<PickupConfirmPage> {
           children: [
 
 
-            Text("Driver : ${Drivername}",
+            Container(
 
-              style: GoogleFonts.openSans(
-                  fontSize: 21,
-                  fontWeight: FontWeight.bold
+
+              decoration: BoxDecoration(
+                color: Colors.red.shade100,
+                borderRadius: BorderRadius.circular(10)
               ),
 
 
-            ),
+              child: Column(
+                children: [
+                  Text("Driver : ${Drivername}",
 
-            Text("Driver Phone Number : ${widget.PickedBy}",
+                    style: GoogleFonts.openSans(
+                        fontSize: 21,
+                        fontWeight: FontWeight.bold
+                    ),
 
-              style: GoogleFonts.openSans(
-                  fontSize: 21,
-                  fontWeight: FontWeight.bold
+
+                  ),
+
+                  Text("Driver Phone Number : ${widget.PickedBy}",
+
+                    style: GoogleFonts.openSans(
+                        fontSize: 21,
+                        fontWeight: FontWeight.bold
+                    ),
+
+
+                  ),
+
+                  Text("Registration Number : ${Vehicle_Registration_Number}",
+
+                    style: GoogleFonts.openSans(
+                        fontSize: 21,
+                        fontWeight: FontWeight.bold
+                    ),
+
+
+                  ),
+
+                  Text("Driving License  No : ${DrivingLicenceNo}",
+
+                    style: GoogleFonts.openSans(
+                        fontSize: 21,
+                        fontWeight: FontWeight.bold
+                    ),
+
+
+                  ),
+
+
+
+                ],
               ),
-
-
             ),
 
-            Text("Registration Number : ${Vehicle_Registration_Number}",
-
-              style: GoogleFonts.openSans(
-                  fontSize: 21,
-                  fontWeight: FontWeight.bold
-              ),
 
 
-            ),
-
-            Text("Registration Number : ${Vehicle_Registration_Number}",
-
-              style: GoogleFonts.openSans(
-                  fontSize: 21,
-                  fontWeight: FontWeight.bold
-              ),
 
 
-            ),
+            // Text("Registration Number : ${Vehicle_Registration_Number}",
+            //
+            //   style: GoogleFonts.openSans(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.bold
+            //   ),
+            //
+            //
+            // ),
 
-            Text("Driving License  No : ${DrivingLicenceNo}",
 
-              style: GoogleFonts.openSans(
-                  fontSize: 21,
-                  fontWeight: FontWeight.bold
-              ),
-
-
-            ),
 
 
 
@@ -166,6 +189,12 @@ class _PickupConfirmPageState extends State<PickupConfirmPage> {
 
 
             ),
+
+
+
+
+
+
             Text("${widget.DroppingCode}",
 
               style: GoogleFonts.openSans(
