@@ -847,7 +847,7 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                       cursorColor: Colors.red.shade900,
                       decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Search Pickup',
+                          hintText: 'Search destination',
                           hintStyle: TextStyle(fontSize: 17,color: Colors.black87),
                           prefixIcon: InkWell(
                             child: Icon(Icons.location_on,color: Colors.red,),

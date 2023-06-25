@@ -843,7 +843,7 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
                       cursorColor: Colors.red.shade900,
                       decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Search Destination',
+                          hintText: 'Search pickup Point',
                           hintStyle: TextStyle(fontSize: 17,color: Colors.black87),
                           prefixIcon: InkWell(
                             child: Icon(Icons.location_on,color: Colors.red,),
