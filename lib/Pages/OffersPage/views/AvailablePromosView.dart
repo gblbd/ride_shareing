@@ -49,7 +49,7 @@ class _AvailablePromosViewState extends State<AvailablePromosView> {
               Container(
                 height: 600,
                 child: ListView.builder(
-                    itemCount: 10,
+                    itemCount: 1,
                     itemBuilder: (BuildContext context, int index){
                       return Card(
                         elevation: 0.0,

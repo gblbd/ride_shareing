@@ -57,7 +57,7 @@ class _PointDealsViewState extends State<PointDealsView> {
                 Container(
                   height: 700,
                   child: ListView.builder(
-                    itemCount: 10,
+                    itemCount: 1,
                       itemBuilder: (BuildContext context, int index){
                         return Card(
                           elevation: 0.0,

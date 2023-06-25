@@ -25,21 +25,29 @@ Padding(
     ),textAlign: TextAlign.center,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 30,width: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7.0),
-                color: Colors.red
-              ),
-              child: TextButton(
-                  onPressed: (){
-                   // Navigator.pop(context);
-                  },
-                  child: Text('Order Now',style: TextStyle(color: Colors.white),)),
-            ),
-          )
+
+
+
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Container(
+          //     height: 30,width: 100,
+          //     decoration: BoxDecoration(
+          //       borderRadius: BorderRadius.circular(7.0),
+          //       color: Colors.red
+          //     ),
+          //     child: TextButton(
+          //         onPressed: (){
+          //          // Navigator.pop(context);
+          //         },
+          //         child: Text('Order Now',style: TextStyle(color: Colors.white),)),
+          //   ),
+          // )
+
+
+
+
+
         ],
       ),
     );

@@ -48,7 +48,7 @@ class _BikeOrderPageState extends State<BikeOrderPage> {
                 child: 
                   ListView.builder(
                    // scrollDirection: Axis.vertical,
-                    itemCount: 10,
+                    itemCount: 0,
                       itemBuilder: (BuildContext context, int index){
                       return GestureDetector(
                         child: Container(
@@ -176,21 +176,24 @@ class _BikeOrderPageState extends State<BikeOrderPage> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 30,width: 130,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7.0),
-                          color: Colors.red
-                      ),
-                      child: TextButton(
-                          onPressed: (){
-                            // Navigator.pop(context);
-                          },
-                          child: Text('REQUEST A BIKE',style: TextStyle(color: Colors.white),)),
-                    ),
-                  )
+
+
+
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: Container(
+                  //     height: 30,width: 130,
+                  //     decoration: BoxDecoration(
+                  //         borderRadius: BorderRadius.circular(7.0),
+                  //         color: Colors.red
+                  //     ),
+                  //     child: TextButton(
+                  //         onPressed: (){
+                  //           // Navigator.pop(context);
+                  //         },
+                  //         child: Text('REQUEST A BIKE',style: TextStyle(color: Colors.white),)),
+                  //   ),
+                  // )
 
                 ],
               ),
