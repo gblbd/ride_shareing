@@ -453,21 +453,21 @@ PolylinePoints polylinePoints=PolylinePoints();
 
 
 
-                                           ListTile(
-                                             leading: Icon(Icons.account_circle,size: 50,color: Colors.grey,),
-                                             title: Text("Osman Goni"),
-                                             subtitle: Text("⭐ 4.73 | 224 Trips"),
-
-                                             onTap: (){
-                                               // Navigator.push(
-                                               //     context,
-                                               //     MaterialPageRoute(builder: (context) {
-                                               //       return PickupConfirmPage();
-                                               //     })
-                                               // );
-                                             },
-
-                                           ),
+                                           // ListTile(
+                                           //   leading: Icon(Icons.account_circle,size: 50,color: Colors.grey,),
+                                           //   title: Text("Osman Goni"),
+                                           //   subtitle: Text("⭐ 4.73 | 224 Trips"),
+                                           //
+                                           //   onTap: (){
+                                           //     // Navigator.push(
+                                           //     //     context,
+                                           //     //     MaterialPageRoute(builder: (context) {
+                                           //     //       return PickupConfirmPage();
+                                           //     //     })
+                                           //     // );
+                                           //   },
+                                           //
+                                           // ),
 
 
 
@@ -946,25 +946,33 @@ PolylinePoints polylinePoints=PolylinePoints();
                      ),
                    ),
                    Spacer(),
-                   Container(
-                     height: 46,width: 50,
-                     decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(10.0),
-                         color: Colors.grey.shade200
-                     ),
-                     child: TextButton(
-                         onPressed: (){
 
-                           Navigator.push(
-                               context,
-                               MaterialPageRoute(builder: (context) {
-                                 return SaveAddressPage();
-                               })
-                           );
-                         },
-                         child: Center(child: Icon(Icons.star_rate_rounded,size: 30,color: Colors.grey.shade700,))
-                     ),
-                   )
+
+
+                   // Container(
+                   //   height: 46,width: 50,
+                   //   decoration: BoxDecoration(
+                   //       borderRadius: BorderRadius.circular(10.0),
+                   //       color: Colors.grey.shade200
+                   //   ),
+                   //   child: TextButton(
+                   //       onPressed: (){
+                   //
+                   //         Navigator.push(
+                   //             context,
+                   //             MaterialPageRoute(builder: (context) {
+                   //               return SaveAddressPage();
+                   //             })
+                   //         );
+                   //       },
+                   //       child: Center(child: Icon(Icons.star_rate_rounded,size: 30,color: Colors.grey.shade700,))
+                   //   ),
+                   // )
+
+
+
+
+
                  ],
                ),
              )

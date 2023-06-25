@@ -557,25 +557,25 @@ Future<double> getDistance() async {
 
 
 
-                                           ListTile(
-                                             leading: Icon(Icons.account_circle,size: 50,color: Colors.grey,),
-                                             title: Text(""),
-                                             subtitle: Text(""),
-
-                                             onTap: (){
-
-
-                                               // Navigator.push(
-                                               //     context,
-                                               //     MaterialPageRoute(builder: (context) {
-                                               //       return PickupConfirmPage2();
-                                               //     })
-                                               // );
-
-
-                                             },
-
-                                           ),
+                                           // ListTile(
+                                           //   leading: Icon(Icons.account_circle,size: 50,color: Colors.grey,),
+                                           //   title: Text(""),
+                                           //   subtitle: Text(""),
+                                           //
+                                           //   onTap: (){
+                                           //
+                                           //
+                                           //     // Navigator.push(
+                                           //     //     context,
+                                           //     //     MaterialPageRoute(builder: (context) {
+                                           //     //       return PickupConfirmPage2();
+                                           //     //     })
+                                           //     // );
+                                           //
+                                           //
+                                           //   },
+                                           //
+                                           // ),
 
 
 
@@ -836,37 +836,39 @@ Future<double> getDistance() async {
                      ),
                    ),
                    Spacer(),
-                   Container(
-                     height: 46,width: 50,
-                     decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(10.0),
-                         color: Colors.grey.shade200
-                     ),
-                     child: TextButton(
-                         onPressed: (){
 
 
-
-
-
-                           Navigator.push(
-                               context,
-                               MaterialPageRoute(builder: (context) {
-                                 return SaveAddressPage();
-                               })
-                           );
-
-
-
-
-
-
-
-
-                         },
-                         child: Center(child: Icon(Icons.star_rate_rounded,size: 30,color: Colors.grey.shade700,))
-                     ),
-                   )
+                   // Container(
+                   //   height: 46,width: 50,
+                   //   decoration: BoxDecoration(
+                   //       borderRadius: BorderRadius.circular(10.0),
+                   //       color: Colors.grey.shade200
+                   //   ),
+                   //   child: TextButton(
+                   //       onPressed: (){
+                   //
+                   //
+                   //
+                   //
+                   //
+                   //         Navigator.push(
+                   //             context,
+                   //             MaterialPageRoute(builder: (context) {
+                   //               return SaveAddressPage();
+                   //             })
+                   //         );
+                   //
+                   //
+                   //
+                   //
+                   //
+                   //
+                   //
+                   //
+                   //       },
+                   //       child: Center(child: Icon(Icons.star_rate_rounded,size: 30,color: Colors.grey.shade700,))
+                   //   ),
+                   // )
                  ],
                ),
              )

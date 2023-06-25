@@ -447,14 +447,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       onPressed: (){
 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return SearchAndPickupDestinationPage();
-                            },
-                          ),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) {
+                        //       return SearchAndPickupDestinationPage();
+                        //     },
+                        //   ),
+                        // );
 
                       },
                       child: Row(
@@ -653,269 +653,269 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     SizedBox(width: 10,),
-                    Container(
-                      margin: EdgeInsets.all(8),
-                      height: 170,width: 210,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade200,width: 1),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset('assets/images/invite ride.png'),SizedBox(height: 12,),
-                          const Text(' Invite on Ride',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),SizedBox(height: 12,),
-                          const Text('Share this code with two of your friends & family members.They can...',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
-                          const Text('Share this code ',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
-                          Container(
-                            margin: EdgeInsets.only(left: 30),
-                            height: 30,width: 150,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey.shade200,width: 1),
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.grey.shade300
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('  LPGV1',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),Spacer(),
-                                Icon(Icons.copy_sharp,size: 14,),
-                                SizedBox(width: 5,),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 70,width: 230,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(width: 30,),
-                                TextButton(
-                                    style: ButtonStyle(
-                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10.0),
-                                                side: BorderSide(color: Colors.red)
-                                            )
-                                        )
-                                    ),
-                                    onPressed: (){}, child: Text('Invite',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),Spacer(),
-                                TextButton(
-                                    style: ButtonStyle(
-                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10.0),
-                                                side: BorderSide(color: Colors.red)
-                                            )
-                                        )
-                                    ),
-                                    onPressed: (){}, child: Text('Details',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),
-                                SizedBox(width: 30,),
-
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    Container(
-                      margin: EdgeInsets.all(8),
-                      height: 170,width: 210,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade200,width: 1),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset('assets/images/invite ride.png'),SizedBox(height: 12,),
-                          const Text(' Invite on Ride',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),SizedBox(height: 12,),
-                          const Text('Share this code with two of your friends & family members.They can...',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
-                          const Text('Share this code ',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
-                          Container(
-                            margin: EdgeInsets.only(left: 30),
-                            height: 30,width: 150,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey.shade200,width: 1),
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.grey.shade300
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('  LPGV1',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),Spacer(),
-                                Icon(Icons.copy_sharp,size: 14,),
-                                SizedBox(width: 5,),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 70,width: 230,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(width: 30,),
-                                TextButton(
-                                    style: ButtonStyle(
-                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10.0),
-                                                side: BorderSide(color: Colors.red)
-                                            )
-                                        )
-                                    ),
-                                    onPressed: (){}, child: Text('Invite',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),Spacer(),
-                                TextButton(
-                                    style: ButtonStyle(
-                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10.0),
-                                                side: BorderSide(color: Colors.red)
-                                            )
-                                        )
-                                    ),
-                                    onPressed: (){}, child: Text('Details',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),
-                                SizedBox(width: 30,),
-
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    Container(
-                      margin: EdgeInsets.all(8),
-                      height: 170,width: 210,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade200,width: 1),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset('assets/images/invite ride.png'),SizedBox(height: 12,),
-                          const Text(' Invite on Ride',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),SizedBox(height: 12,),
-                          const Text('Share this code with two of your friends & family members.They can...',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
-                          const Text('Share this code ',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
-                          Container(
-                            margin: EdgeInsets.only(left: 30),
-                            height: 30,width: 150,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey.shade200,width: 1),
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.grey.shade300
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('  LPGV1',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),Spacer(),
-                                Icon(Icons.copy_sharp,size: 14,),
-                                SizedBox(width: 5,),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 70,width: 230,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(width: 30,),
-                                TextButton(
-                                    style: ButtonStyle(
-                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10.0),
-                                                side: BorderSide(color: Colors.red)
-                                            )
-                                        )
-                                    ),
-                                    onPressed: (){}, child: Text('Invite',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),Spacer(),
-                                TextButton(
-                                    style: ButtonStyle(
-                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10.0),
-                                                side: BorderSide(color: Colors.red)
-                                            )
-                                        )
-                                    ),
-                                    onPressed: (){}, child: Text('Details',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),
-                                SizedBox(width: 30,),
-
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    Container(
-                      margin: EdgeInsets.all(8),
-                      height: 170,width: 210,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade200,width: 1),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset('assets/images/invite ride.png'),SizedBox(height: 12,),
-                          const Text(' Invite on Ride',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),SizedBox(height: 12,),
-                          const Text('Share this code with two of your friends & family members.They can...',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
-                          const Text('Share this code ',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
-                          Container(
-                            margin: EdgeInsets.only(left: 30),
-                            height: 30,width: 150,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey.shade200,width: 1),
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.grey.shade300
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('  LPGV1',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),Spacer(),
-                                Icon(Icons.copy_sharp,size: 14,),
-                                SizedBox(width: 5,),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 70,width: 230,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(width: 30,),
-                                TextButton(
-                                    style: ButtonStyle(
-                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10.0),
-                                                side: BorderSide(color: Colors.red)
-                                            )
-                                        )
-                                    ),
-                                    onPressed: (){}, child: Text('Invite',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),Spacer(),
-                                TextButton(
-                                    style: ButtonStyle(
-                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10.0),
-                                                side: BorderSide(color: Colors.red)
-                                            )
-                                        )
-                                    ),
-                                    onPressed: (){}, child: Text('Details',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),
-                                SizedBox(width: 30,),
-
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   margin: EdgeInsets.all(8),
+                    //   height: 170,width: 210,
+                    //   decoration: BoxDecoration(
+                    //     border: Border.all(color: Colors.grey.shade200,width: 1),
+                    //     borderRadius: BorderRadius.circular(10.0),
+                    //   ),
+                    //   child: Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       Image.asset('assets/images/invite ride.png'),SizedBox(height: 12,),
+                    //       const Text(' Invite on Ride',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),SizedBox(height: 12,),
+                    //       const Text('Share this code with two of your friends & family members.They can...',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
+                    //       const Text('Share this code ',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
+                    //       Container(
+                    //         margin: EdgeInsets.only(left: 30),
+                    //         height: 30,width: 150,
+                    //         decoration: BoxDecoration(
+                    //             border: Border.all(color: Colors.grey.shade200,width: 1),
+                    //             borderRadius: BorderRadius.circular(10.0),
+                    //             color: Colors.grey.shade300
+                    //         ),
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.center,
+                    //           children: [
+                    //             Text('  LPGV1',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),Spacer(),
+                    //             Icon(Icons.copy_sharp,size: 14,),
+                    //             SizedBox(width: 5,),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //       SizedBox(
+                    //         height: 70,width: 230,
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.center,
+                    //           children: [
+                    //             SizedBox(width: 30,),
+                    //             TextButton(
+                    //                 style: ButtonStyle(
+                    //                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    //                         RoundedRectangleBorder(
+                    //                             borderRadius: BorderRadius.circular(10.0),
+                    //                             side: BorderSide(color: Colors.red)
+                    //                         )
+                    //                     )
+                    //                 ),
+                    //                 onPressed: (){}, child: Text('Invite',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),Spacer(),
+                    //             TextButton(
+                    //                 style: ButtonStyle(
+                    //                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    //                         RoundedRectangleBorder(
+                    //                             borderRadius: BorderRadius.circular(10.0),
+                    //                             side: BorderSide(color: Colors.red)
+                    //                         )
+                    //                     )
+                    //                 ),
+                    //                 onPressed: (){}, child: Text('Details',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),
+                    //             SizedBox(width: 30,),
+                    //
+                    //           ],
+                    //         ),
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
+                    // SizedBox(width: 10,),
+                    // Container(
+                    //   margin: EdgeInsets.all(8),
+                    //   height: 170,width: 210,
+                    //   decoration: BoxDecoration(
+                    //     border: Border.all(color: Colors.grey.shade200,width: 1),
+                    //     borderRadius: BorderRadius.circular(10.0),
+                    //   ),
+                    //   child: Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       Image.asset('assets/images/invite ride.png'),SizedBox(height: 12,),
+                    //       const Text(' Invite on Ride',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),SizedBox(height: 12,),
+                    //       const Text('Share this code with two of your friends & family members.They can...',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
+                    //       const Text('Share this code ',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
+                    //       Container(
+                    //         margin: EdgeInsets.only(left: 30),
+                    //         height: 30,width: 150,
+                    //         decoration: BoxDecoration(
+                    //             border: Border.all(color: Colors.grey.shade200,width: 1),
+                    //             borderRadius: BorderRadius.circular(10.0),
+                    //             color: Colors.grey.shade300
+                    //         ),
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.center,
+                    //           children: [
+                    //             Text('  LPGV1',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),Spacer(),
+                    //             Icon(Icons.copy_sharp,size: 14,),
+                    //             SizedBox(width: 5,),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //       SizedBox(
+                    //         height: 70,width: 230,
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.center,
+                    //           children: [
+                    //             SizedBox(width: 30,),
+                    //             TextButton(
+                    //                 style: ButtonStyle(
+                    //                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    //                         RoundedRectangleBorder(
+                    //                             borderRadius: BorderRadius.circular(10.0),
+                    //                             side: BorderSide(color: Colors.red)
+                    //                         )
+                    //                     )
+                    //                 ),
+                    //                 onPressed: (){}, child: Text('Invite',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),Spacer(),
+                    //             TextButton(
+                    //                 style: ButtonStyle(
+                    //                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    //                         RoundedRectangleBorder(
+                    //                             borderRadius: BorderRadius.circular(10.0),
+                    //                             side: BorderSide(color: Colors.red)
+                    //                         )
+                    //                     )
+                    //                 ),
+                    //                 onPressed: (){}, child: Text('Details',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),
+                    //             SizedBox(width: 30,),
+                    //
+                    //           ],
+                    //         ),
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
+                    // SizedBox(width: 10,),
+                    // Container(
+                    //   margin: EdgeInsets.all(8),
+                    //   height: 170,width: 210,
+                    //   decoration: BoxDecoration(
+                    //     border: Border.all(color: Colors.grey.shade200,width: 1),
+                    //     borderRadius: BorderRadius.circular(10.0),
+                    //   ),
+                    //   child: Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       Image.asset('assets/images/invite ride.png'),SizedBox(height: 12,),
+                    //       const Text(' Invite on Ride',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),SizedBox(height: 12,),
+                    //       const Text('Share this code with two of your friends & family members.They can...',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
+                    //       const Text('Share this code ',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
+                    //       Container(
+                    //         margin: EdgeInsets.only(left: 30),
+                    //         height: 30,width: 150,
+                    //         decoration: BoxDecoration(
+                    //             border: Border.all(color: Colors.grey.shade200,width: 1),
+                    //             borderRadius: BorderRadius.circular(10.0),
+                    //             color: Colors.grey.shade300
+                    //         ),
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.center,
+                    //           children: [
+                    //             Text('  LPGV1',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),Spacer(),
+                    //             Icon(Icons.copy_sharp,size: 14,),
+                    //             SizedBox(width: 5,),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //       SizedBox(
+                    //         height: 70,width: 230,
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.center,
+                    //           children: [
+                    //             SizedBox(width: 30,),
+                    //             TextButton(
+                    //                 style: ButtonStyle(
+                    //                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    //                         RoundedRectangleBorder(
+                    //                             borderRadius: BorderRadius.circular(10.0),
+                    //                             side: BorderSide(color: Colors.red)
+                    //                         )
+                    //                     )
+                    //                 ),
+                    //                 onPressed: (){}, child: Text('Invite',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),Spacer(),
+                    //             TextButton(
+                    //                 style: ButtonStyle(
+                    //                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    //                         RoundedRectangleBorder(
+                    //                             borderRadius: BorderRadius.circular(10.0),
+                    //                             side: BorderSide(color: Colors.red)
+                    //                         )
+                    //                     )
+                    //                 ),
+                    //                 onPressed: (){}, child: Text('Details',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),
+                    //             SizedBox(width: 30,),
+                    //
+                    //           ],
+                    //         ),
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
+                    // SizedBox(width: 10,),
+                    // Container(
+                    //   margin: EdgeInsets.all(8),
+                    //   height: 170,width: 210,
+                    //   decoration: BoxDecoration(
+                    //     border: Border.all(color: Colors.grey.shade200,width: 1),
+                    //     borderRadius: BorderRadius.circular(10.0),
+                    //   ),
+                    //   child: Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       Image.asset('assets/images/invite ride.png'),SizedBox(height: 12,),
+                    //       const Text(' Invite on Ride',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),SizedBox(height: 12,),
+                    //       const Text('Share this code with two of your friends & family members.They can...',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
+                    //       const Text('Share this code ',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey)),SizedBox(height: 12,),
+                    //       Container(
+                    //         margin: EdgeInsets.only(left: 30),
+                    //         height: 30,width: 150,
+                    //         decoration: BoxDecoration(
+                    //             border: Border.all(color: Colors.grey.shade200,width: 1),
+                    //             borderRadius: BorderRadius.circular(10.0),
+                    //             color: Colors.grey.shade300
+                    //         ),
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.center,
+                    //           children: [
+                    //             Text('  LPGV1',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.black)),Spacer(),
+                    //             Icon(Icons.copy_sharp,size: 14,),
+                    //             SizedBox(width: 5,),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //       SizedBox(
+                    //         height: 70,width: 230,
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.center,
+                    //           children: [
+                    //             SizedBox(width: 30,),
+                    //             TextButton(
+                    //                 style: ButtonStyle(
+                    //                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    //                         RoundedRectangleBorder(
+                    //                             borderRadius: BorderRadius.circular(10.0),
+                    //                             side: BorderSide(color: Colors.red)
+                    //                         )
+                    //                     )
+                    //                 ),
+                    //                 onPressed: (){}, child: Text('Invite',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),Spacer(),
+                    //             TextButton(
+                    //                 style: ButtonStyle(
+                    //                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    //                         RoundedRectangleBorder(
+                    //                             borderRadius: BorderRadius.circular(10.0),
+                    //                             side: BorderSide(color: Colors.red)
+                    //                         )
+                    //                     )
+                    //                 ),
+                    //                 onPressed: (){}, child: Text('Details',style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.redAccent))),
+                    //             SizedBox(width: 30,),
+                    //
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
