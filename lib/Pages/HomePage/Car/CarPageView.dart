@@ -835,7 +835,7 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
               child: Row(
                 children: [
                   Container(
-                    height: 50,width: 260,
+                    height: 50,width: 320,
                     margin: const EdgeInsets.all(10),
                     decoration:  BoxDecoration(
                         border: Border.all(color: Colors.grey.shade700,width: 1),
@@ -847,7 +847,7 @@ class _CarPageViewState extends State<CarPageView> with TickerProviderStateMixin
                       cursorColor: Colors.red.shade900,
                       decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Search Destination',
+                          hintText: 'Search Pickup',
                           hintStyle: TextStyle(fontSize: 17,color: Colors.black87),
                           prefixIcon: InkWell(
                             child: Icon(Icons.location_on,color: Colors.red,),

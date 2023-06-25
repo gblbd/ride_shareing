@@ -831,7 +831,7 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
               child: Row(
                 children: [
                   Container(
-                    height: 50,width: 260,
+                    height: 50,width: 320,
                     margin: const EdgeInsets.all(10),
                     decoration:  BoxDecoration(
                         border: Border.all(color: Colors.grey.shade700,width: 1),
@@ -843,7 +843,7 @@ class _SearchPickUpPointState extends State<SearchPickUpPoint> with TickerProvid
                       cursorColor: Colors.red.shade900,
                       decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Search Your location',
+                          hintText: 'Search Destination',
                           hintStyle: TextStyle(fontSize: 17,color: Colors.black87),
                           prefixIcon: InkWell(
                             child: Icon(Icons.location_on,color: Colors.red,),
