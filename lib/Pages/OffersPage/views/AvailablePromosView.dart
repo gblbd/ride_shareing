@@ -3,6 +3,7 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'Available page.dart';
 
@@ -85,7 +86,19 @@ class _AvailablePromosViewState extends State<AvailablePromosView> {
                                         Text('Valid till ${snapshot.child("validity").value.toString()}'),
                                         TextButton(
                                             onPressed: () async {
-                                              await Clipboard.setData(ClipboardData(text: "${snapshot.child("coupon_code").value.toString()}"));
+                                              await Clipboard.setData(ClipboardData(text: "${snapshot.child("coupon_code").value.toString()}")).then((value) {
+                                                Fluttertoast.showToast(
+                                                    msg: "Promo code is Copied to the clip board",
+                                                    toastLength: Toast.LENGTH_LONG,
+                                                    gravity: ToastGravity.TOP,
+                                                    timeInSecForIosWeb: 1,
+                                                    backgroundColor: Colors.grey,
+                                                    textColor: Colors.green,
+                                                    fontSize: 20.0
+                                                );
+                                              });
+
+
                                             },
                                             child: Text('Promo Code : ${snapshot.child("coupon_code").value.toString()}'))
                                       ],
