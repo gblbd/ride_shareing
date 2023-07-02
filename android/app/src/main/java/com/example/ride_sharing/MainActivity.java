@@ -1,4 +1,4 @@
-package com.nalamgroup.myroad;
+package com.myroad.app;
 
 import io.flutter.embedding.android.FlutterActivity;
 

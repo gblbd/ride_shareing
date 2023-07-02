@@ -35,6 +35,7 @@ class SetOnMap extends StatefulWidget {
 class _SetOnMapState extends State<SetOnMap> {
 
 
+
   int randNumb(){
 
     int i=Random().nextInt(999999);
@@ -127,11 +128,16 @@ List<LatLng> pLineCoordinates=[];
 Set<Polyline> PolylineSet={};
 PolylinePoints polylinePoints=PolylinePoints();
 
+
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
     _getPolyline();
+
+    priceBike();
   }
 
 
@@ -212,10 +218,28 @@ PolylinePoints polylinePoints=PolylinePoints();
     'Other'
   ];
 
+
+  Future<void> priceBike() async {
+
+
+
+     //price = (await ) as double;
+
+     setState(() {
+
+     });
+
+
+
+  }
+
    @override
   Widget build(BuildContext context) {
 
      _panelHeightOpen = MediaQuery.of(context).size.height * .99;
+
+
+
 
 
 
@@ -404,6 +428,8 @@ PolylinePoints polylinePoints=PolylinePoints();
                        ),
                        onPressed: () async{
 
+                         //price = (await refRate.child('bike').get()) as double;
+
                          UploadRequest(
                              widget.SearchDestinations,widget.name,widget.phoneNum,
                              widget.SearchPickup,widget.destinationLat.toString(),widget.destinationlong.toString(),
@@ -547,7 +573,7 @@ PolylinePoints polylinePoints=PolylinePoints();
 
                                                    )
                                                ),
-                                               Text('${((dist/1000)*20).toStringAsFixed(2)} BDT',
+                                               Text('${((dist/1000)*30).toStringAsFixed(2)} BDT',
                                                    style: TextStyle(
                                                        color: Colors.black,fontSize: 18,
                                                        fontWeight: FontWeight.w600

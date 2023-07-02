@@ -8,6 +8,7 @@ import 'Account&Settings/Account&SettingsPage.dart';
 import 'Bike/BikePageView.dart';
 import 'Bike/searchAndPickupDestinationPage.dart';
 import 'Courier/PathaoCourierPage.dart';
+import 'ride_choosing_page.dart';
 
 class HomeScreen extends StatefulWidget {
   final String phoneNumber;
@@ -447,14 +448,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       onPressed: (){
 
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) {
-                        //       return SearchAndPickupDestinationPage();
-                        //     },
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return RideChoosingpage(
+                                fullname: widget.fullname,
+                                PhoneNumber: widget.phoneNumber,
+                              );
+                            },
+                          ),
+                        );
 
                       },
                       child: Row(
