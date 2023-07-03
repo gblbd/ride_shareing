@@ -30,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
 
       HomeScreen(phoneNumber: widget.phoneNumber, fullname: widget.fullName, pin: widget.pin, email: widget.email, gender: widget.gender, dateOfBirth: widget.dateOfBirth,),
       OffersScreen(),
-      OrdersScreen(),
+      OrdersScreen(phoneNumber: widget.phoneNumber,),
     ];
     return Scaffold(
 

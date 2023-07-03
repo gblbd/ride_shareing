@@ -93,8 +93,8 @@ class _OffersScreenState extends State<OffersScreen> {
         body: const TabBarView(
           children: <Widget>[
             AvailablePromosView(),
-            PointDealsView(),
-            OngoingOffersView()
+            // PointDealsView(),
+            // OngoingOffersView()
           ],
         ),
      ),

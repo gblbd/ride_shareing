@@ -1,5 +1,9 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ride_sharing/Pages/HomePage/Car/CarPageView.dart';
 import '../OffersPage/views/MyRoadPoints.dart';
 import '../OffersPage/views/PaymentAllView.dart';
@@ -923,7 +927,68 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 50,)
+              SizedBox(height: 50,),
+
+              // Container(
+              //   child: FirebaseAnimatedList(
+              //     physics: ScrollPhysics(),
+              //     shrinkWrap: true,
+              //     query: FirebaseDatabase.instance.ref("offer").child('bike'),
+              //     // reverse: true,
+              //     scrollDirection: Axis.horizontal,
+              //     itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
+              //
+              //       return Card(
+              //         elevation: 0.0,
+              //         color: Colors.white,
+              //         child: Padding(
+              //           padding: const EdgeInsets.all(8.0),
+              //           child: ListTile(
+              //             title: Row(
+              //               children: [
+              //                 Text('${snapshot.child("title").value.toString()}',style: TextStyle(fontSize: 18),),
+              //                 Spacer(),
+              //                 //Text('Bike',style: TextStyle(fontSize: 14,color: Colors.red))
+              //               ],
+              //             ),
+              //             subtitle: Column(
+              //               crossAxisAlignment: CrossAxisAlignment.start,
+              //               children: [
+              //                 SizedBox(height: 10,),
+              //                 Text('${snapshot.child("detail").value.toString()}',),
+              //                 SizedBox(height: 20,),
+              //                 Text('Valid till ${snapshot.child("validity").value.toString()}'),
+              //                 TextButton(
+              //                     onPressed: () async {
+              //                       await Clipboard.setData(ClipboardData(text: "${snapshot.child("coupon_code").value.toString()}")).then((value) {
+              //                         Fluttertoast.showToast(
+              //                             msg: "Promo code is Copied to the clip board",
+              //                             toastLength: Toast.LENGTH_LONG,
+              //                             gravity: ToastGravity.TOP,
+              //                             timeInSecForIosWeb: 1,
+              //                             backgroundColor: Colors.grey,
+              //                             textColor: Colors.green,
+              //                             fontSize: 20.0
+              //                         );
+              //                       });
+              //
+              //
+              //                     },
+              //                     child: Text('Promo Code : ${snapshot.child("coupon_code").value.toString()}'))
+              //               ],
+              //             ),
+              //           ),
+              //         ),
+              //
+              //       );
+              //
+              //     },
+              //
+              //   ),
+              // )
+
+
+
             ],
           ),
         ),
