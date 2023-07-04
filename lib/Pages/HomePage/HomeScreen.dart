@@ -1,3 +1,7 @@
+import 'dart:core';
+import 'dart:core';
+
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,7 +38,16 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
 
- static List offers=[
+  Query dbref=FirebaseDatabase.instance.ref("offer");
+
+  // List<Map<String, dynamic>> carouselData = [];
+
+  Future<DataSnapshot> fetchList() async {
+ //   const path = 'SET YOUR PATH HERE';
+    return await FirebaseDatabase.instance.ref().child('offer').child('bike').get();
+  }
+
+  static List offers=[
    Image.asset('assets/images/offer.PNG'),
    Image.asset('assets/images/offers.PNG'),
    Image.asset('assets/images/offers.PNG'),
@@ -401,19 +414,45 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  height: 80,
-                  //width: 350,
-                  //color: Colors.pinkAccent.shade100,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: offers.length,
-                      itemBuilder: (BuildContext context,int index){
-                        return Container(
-                          child: offers[index],
-                        );
-                      }
+                  height: 100,
 
+                  child: Container(
+                    child: FutureBuilder<DataSnapshot>(
+                      future: fetchList(),
+                      builder: (context, snapshot){
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        }
+                        List<String> itemList = [];
+                        if(snapshot.hasData && snapshot.data!=null){
+                          final itemList=List<String>.from(snapshot.data?.value as List);
+                        }
+                        return Container(
+                          child: CarouselSlider(
+                            options: CarouselOptions(
+                              autoPlay: true,
+                              aspectRatio: 2.0,
+                              enlargeCenterPage: true,
+                              enlargeStrategy: CenterPageEnlargeStrategy.height,
+                            ),
+                            items: itemSlider(itemList),
+                          ),
+                        );
+                      },
+                    ),
                   ),
+
+
+                  // ListView.builder(
+                  //     scrollDirection: Axis.horizontal,
+                  //     itemCount: offers.length,
+                  //     itemBuilder: (BuildContext context,int index){
+                  //       return Container(
+                  //         child: offers[index],
+                  //       );
+                  //     }
+                  //
+                  // ),
                 ),
               ),
               Divider(thickness: 8,color: Colors.blueGrey.shade50,),
@@ -995,4 +1034,12 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+
+   List<Widget>itemSlider(List<String>itemList)=>itemList.map((item) => Container(
+
+     child: Card(
+       child: Text(item),
+     ),
+  )).toList();
 }

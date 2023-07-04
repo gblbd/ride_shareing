@@ -259,35 +259,47 @@ class _PathaoCourierPageState extends State<PathaoCourierPage> {
 
 
             Container(
-              height: 50,
+             // height: 50,
+              margin: EdgeInsets.only(left: 8,right: 8,bottom: 8),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                  style: ButtonStyle(
-                    shadowColor: MaterialStateProperty.all(Colors.transparent),
-                    overlayColor: MaterialStateProperty.all(Colors.transparent),
-                  ),
+                child: Card(
+                  child: TextButton(
+                    style: ButtonStyle(
+                      shadowColor: MaterialStateProperty.all(Colors.transparent),
+                      overlayColor: MaterialStateProperty.all(Colors.transparent),
+                    ),
 
-                  onPressed: (){
+                    onPressed: (){
 
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return FAQPage();//const AddPickUpPage();
-                        },
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return FAQPage();//const AddPickUpPage();
+                          },
+                        ),
+                      );
+
+
+
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 12,right: 8),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Color(0xFFF3F5FD),
+                            radius: 23,
+                            child: Icon(Icons.question_answer_rounded,color: Colors.blueGrey,size: 25,),
+                          ),
+                          SizedBox(width: 16,),
+                          Text('Frequently Asked Questions',style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w400),),Spacer(),
+                          Icon(Icons.arrow_forward_ios_sharp,size: 16,color: Colors.black54,)
+                        ],
                       ),
-                    );
-
-
-
-                  },
-                  child: Row(
-                    children: [
-                      Text('Frequently Asked Questions',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,fontSize: 16),),Spacer(),
-                      Icon(Icons.arrow_forward_ios_sharp,size: 16,color: Colors.black54,)
-                    ],
+                    ),
                   ),
                 ),
               ),
