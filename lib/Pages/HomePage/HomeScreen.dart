@@ -18,6 +18,7 @@ import 'Bike/searchAndPickupDestinationPage.dart';
 import 'Courier/PathaoCourierPage.dart';
 import 'ride_choosing_page.dart';
 
+
 class HomeScreen extends StatefulWidget {
   final String phoneNumber;
   final String fullname;
@@ -41,11 +42,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Query dbref=FirebaseDatabase.instance.ref("offer");
 
   // List<Map<String, dynamic>> carouselData = [];
+ //
+ //  Future<DataSnapshot> fetchList() async {
+ // //   const path = 'SET YOUR PATH HERE';
+ //    return await FirebaseDatabase.instance.ref().child('offer').child('bike').get();
+ //  }
 
-  Future<DataSnapshot> fetchList() async {
- //   const path = 'SET YOUR PATH HERE';
-    return await FirebaseDatabase.instance.ref().child('offer').child('bike').get();
-  }
 
   static List offers=[
    Image.asset('assets/images/offer.PNG'),
@@ -417,42 +419,43 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 100,
 
                   child: Container(
-                    child: FutureBuilder<DataSnapshot>(
-                      future: fetchList(),
-                      builder: (context, snapshot){
-                        if (snapshot.connectionState == ConnectionState.waiting) {
-                          return const CircularProgressIndicator();
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: offers.length,
+                        itemBuilder: (BuildContext context,int index){
+                          return Container(
+                            child: offers[index],
+                          );
                         }
-                        List<String> itemList = [];
-                        if(snapshot.hasData && snapshot.data!=null){
-                          final itemList=List<String>.from(snapshot.data?.value as List);
-                        }
-                        return Container(
-                          child: CarouselSlider(
-                            options: CarouselOptions(
-                              autoPlay: true,
-                              aspectRatio: 2.0,
-                              enlargeCenterPage: true,
-                              enlargeStrategy: CenterPageEnlargeStrategy.height,
-                            ),
-                            items: itemSlider(itemList),
-                          ),
-                        );
-                      },
+
                     ),
+
+                    // FutureBuilder<DataSnapshot>(
+                    //   future: fetchList(),
+                    //   builder: (context, snapshot){
+                    //     if (snapshot.connectionState == ConnectionState.waiting) {
+                    //       return const CircularProgressIndicator();
+                    //     }
+                    //     List<String> itemList = [];
+                    //     if(snapshot.hasData && snapshot.data!=null){
+                    //       final itemList=List<String>.from(snapshot.data?.value as List);
+                    //     }
+                    //     return Container(
+                    //       child: CarouselSlider(
+                    //         options: CarouselOptions(
+                    //           autoPlay: true,
+                    //           aspectRatio: 2.0,
+                    //           enlargeCenterPage: true,
+                    //           enlargeStrategy: CenterPageEnlargeStrategy.height,
+                    //         ),
+                    //         items: itemSlider(itemList),
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
                   ),
 
 
-                  // ListView.builder(
-                  //     scrollDirection: Axis.horizontal,
-                  //     itemCount: offers.length,
-                  //     itemBuilder: (BuildContext context,int index){
-                  //       return Container(
-                  //         child: offers[index],
-                  //       );
-                  //     }
-                  //
-                  // ),
                 ),
               ),
               Divider(thickness: 8,color: Colors.blueGrey.shade50,),
@@ -1036,10 +1039,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
 
-   List<Widget>itemSlider(List<String>itemList)=>itemList.map((item) => Container(
-
-     child: Card(
-       child: Text(item),
-     ),
-  )).toList();
+  //  List<Widget>itemSlider(List<String>itemList)=>itemList.map((item) => Container(
+  //
+  //    child: Card(
+  //      child: Text(item),
+  //    ),
+  // )).toList();
 }
