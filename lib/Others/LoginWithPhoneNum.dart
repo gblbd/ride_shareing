@@ -39,6 +39,24 @@ class _LoginWithPhoneNumState extends State<LoginWithPhoneNum> {
 
   @override
   Widget build(BuildContext context) {
+
+    // Fluttertoast.showToast(
+    //     msg: "This app will collect User name, location data and email for functionality\n if you want to continue please login",
+    //     toastLength: Toast.LENGTH_LONG,
+    //     gravity: ToastGravity.CENTER,
+    //     timeInSecForIosWeb: 1,
+    //     backgroundColor: Colors.red,
+    //     textColor: Colors.white,
+    //     fontSize: 16.0
+    // );
+
+    
+
+
+
+
+
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -269,4 +287,13 @@ class _LoginWithPhoneNumState extends State<LoginWithPhoneNum> {
       ),
     );
   }
+
+
+
+
+
+
+
+
+
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'BusinessProfile.dart';
 import 'NotificationScreen.dart';
@@ -301,11 +302,19 @@ class _AccountAndSettingsPageState extends State<AccountAndSettingsPage> {
                         )),
                     Divider(indent: 10,endIndent: 16,),
                     TextButton(
-                        onPressed: (){},
+                        onPressed: () async {
+
+
+                          //if (await canLaunchUrl(Uri.parse('https://flutter.dev'))) {
+                          await launchUrl(Uri.parse('https://gorgeousbangladeshltd.netlify.app/privacyPolicy'));
+
+
+
+                        },
                         child: Row(
                           children: [
                             Icon(Icons.payment,color: Colors.grey.shade700,size: 25,),SizedBox(width: 15,),
-                            Text('Policies',style: TextStyle(color: Colors.black,fontSize: 17,fontWeight: FontWeight.normal)),
+                            Text('Privacy Policies',style: TextStyle(color: Colors.black,fontSize: 17,fontWeight: FontWeight.normal)),
                           ],
                         )),
                   ],
