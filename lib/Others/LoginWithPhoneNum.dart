@@ -1,6 +1,8 @@
+//import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../MainScreen.dart';
@@ -37,6 +39,97 @@ class _LoginWithPhoneNumState extends State<LoginWithPhoneNum> {
     });
   }
 
+  ///////////////////////////////////////////////////
+
+
+
+
+
+
+
+  ////////////////////////////////////////
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      showDialog(context: context, builder: (context)=>AlertDialog(
+        content: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Location : ",
+
+                  style: GoogleFonts.openSans(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),
+
+
+                ),
+                Text("\nThis app will use your location data for app functionality and for best user experience."
+                    " this location data will be collected only when you use the app."
+                    " The location data collection doesn't run or work in the background. "
+                    "It doesnt collect or share data when the app will remain idle. "
+                    "This location data is used for the feature of finding your pickup point. "
+                    " location, destinetion and calculating the distance and estimating fare of ride\n"
+                    "this loction data is used in : \n # ride sharing with car feature\n # Ride sharing with bike feature"
+                    "this app never provide any ads/support or advertising/support ads.",
+
+                  style: GoogleFonts.openSans(
+                    fontSize: 16,
+                    //fontWeight: FontWeight.bold
+                  ),
+
+                ),
+
+
+                Text("User Data Safty :",
+
+                  style: GoogleFonts.openSans(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),
+
+                ),
+
+                Text("\nMy road never use, analyze or share user data. "
+                    "The data transfered through a encrypted channel with firebase security \n\n\n\n If you are agree with us please press the agree button and enjoy the best experience",
+
+                  style: GoogleFonts.openSans(
+                    fontSize: 16,
+                    //fontWeight: FontWeight.bold
+                  ),
+
+                ),
+
+                SizedBox(height: 25,),
+
+
+
+
+
+              ],
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: ()=>Navigator.pop(context), child: Text("Agree"))
+        ],
+      ));
+    });
+
+
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -50,7 +143,24 @@ class _LoginWithPhoneNumState extends State<LoginWithPhoneNum> {
     //     fontSize: 16.0
     // );
 
-    
+
+    // AwesomeDialog(
+    //     context: context,
+    //     dialogType: DialogType.info,
+    //     animType: AnimType.rightSlide,
+    //     title: 'Dialog Title',
+    //     desc: 'Dialog description here.............',
+    //     btnCancelOnPress: () {},
+    // btnOkOnPress: () {},
+    // )..show();
+
+
+    //_showMyDialog();
+
+
+
+
+
 
 
 
@@ -287,7 +397,6 @@ class _LoginWithPhoneNumState extends State<LoginWithPhoneNum> {
       ),
     );
   }
-
 
 
 

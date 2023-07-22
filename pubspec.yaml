@@ -36,6 +36,7 @@ dependencies:
   url_launcher: ^6.1.11
   flutter_polyline_points: ^1.0.0
   sizer: ^2.0.15
+  get:
   geolocator: ^9.0.2
   flutter:
     sdk: flutter

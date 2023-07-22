@@ -1,14 +1,17 @@
 
 
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 import 'package:timelines/timelines.dart';
 
-class CourierStatus extends StatelessWidget
-{
+
+class CourierStatus extends StatefulWidget {
+
 
   final String senderName;
   final String SenderPhoneNumber;
@@ -23,19 +26,47 @@ class CourierStatus extends StatelessWidget
 
 
 
+
+  CourierStatus({super.key, required this.senderName, required this.SenderPhoneNumber, required this.senderAddress, required this.Receivername, required this.ReceiverPhoneNumber, required this.ReceiverAddress, required this.ParcelWaight, required this.ID, required this.CourierStat});
+
+  @override
+  State<CourierStatus> createState() => _CourierStatusState();
+}
+
+class _CourierStatusState extends State<CourierStatus> {
   List<String> _processes=['Send Request','Package received','Sorting','Depart from sender area','Arrived in receivers area','sorting','Ready to collect'];
 
   int complete=0;
-
-   CourierStatus({super.key, required this.senderName, required this.SenderPhoneNumber, required this.senderAddress, required this.Receivername, required this.ReceiverPhoneNumber, required this.ReceiverAddress, required this.ParcelWaight, required this.ID, required this.CourierStat});
 
    bool Parcel=true;
 
   @override
   Widget build(BuildContext context) {
-    complete=CourierStat;
+
+    DatabaseReference dbref=FirebaseDatabase.instance.ref("User_profile").child(widget.SenderPhoneNumber).child("user").child("Courier").child(widget.ID);
+
+
+    dbref.onValue.listen((event) {
+
+      complete= int.parse(event.snapshot.child("parcelStatus").value.toString()!);
+
+      //balancechange.value=balan.toStringAsFixed(2);
+
+
+      setState(() {
+
+      });
+
+
+
+
+
+    });
+
+
+    //complete=CourierStat;
     // TODO: implement build
-    return Scaffold(
+    return  Scaffold(
       appBar: AppBar(
         elevation: 1.0,
         backgroundColor: Colors.white,
@@ -56,7 +87,7 @@ class CourierStatus extends StatelessWidget
                 padding: const EdgeInsets.only(left: 14.0),
                 child: ListTile(
                   title: Text("Order ID :"),
-                  subtitle: Text("${ID}",
+                  subtitle: Text("${widget.ID}",
                     style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400,color: Colors.black),
 
                   ),
@@ -65,7 +96,7 @@ class CourierStatus extends StatelessWidget
 
               Divider(thickness: 4.0,),
               Container(
-                padding: EdgeInsets.all(14),
+                  padding: EdgeInsets.all(14),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -76,8 +107,8 @@ class CourierStatus extends StatelessWidget
                         ),
                       ),
                       ListTile(
-                        title: Text("Name: ${senderName}"),
-                        subtitle: Text("Address : ${senderAddress}\nPhone No : 0${SenderPhoneNumber}"),
+                        title: Text("Name: ${widget.senderName}"),
+                        subtitle: Text("Address : ${widget.senderAddress}\nPhone No : 0${widget.SenderPhoneNumber}"),
                       ),
 
 
@@ -95,12 +126,12 @@ class CourierStatus extends StatelessWidget
                     Padding(
                       padding: const EdgeInsets.only(left: 14.0),
                       child: Text("Receiver Details:",
-                      style: TextStyle(fontSize: 18,color: Colors.red.shade900,fontWeight: FontWeight.w400),
+                        style: TextStyle(fontSize: 18,color: Colors.red.shade900,fontWeight: FontWeight.w400),
                       ),
                     ),
                     ListTile(
-                      title: Text("Name : ${Receivername}"),
-                      subtitle: Text("Address : ${ReceiverAddress}\nPhone No : ${ReceiverPhoneNumber}"),
+                      title: Text("Name : ${widget.Receivername}"),
+                      subtitle: Text("Address : ${widget.ReceiverAddress}\nPhone No : ${widget.ReceiverPhoneNumber}"),
                     ),
 
 
@@ -120,7 +151,7 @@ class CourierStatus extends StatelessWidget
                     radius: 14,
                   ),
                   title: Text("Parcel"),
-                  subtitle: Text("${ParcelWaight} Kg"),
+                  subtitle: Text("${widget.ParcelWaight} Kg"),
                 ):ListTile(
                   minLeadingWidth: 0.0,
                   minVerticalPadding: 0.0,
@@ -130,7 +161,7 @@ class CourierStatus extends StatelessWidget
                     radius: 14,
                   ),
                   title: Text("Document"),
-                  subtitle: Text("${ParcelWaight} Kg"),
+                  subtitle: Text("${widget.ParcelWaight} Kg"),
                 ) ,
               ),
               Divider(thickness: 4.0,),
@@ -165,7 +196,7 @@ class CourierStatus extends StatelessWidget
                 //height: 120,
                 //alignment: Alignment.topCenter,
                 padding: EdgeInsets.all(20),
-                child: Timeline.tileBuilder(
+                child:  Timeline.tileBuilder(
                   physics: ScrollPhysics(),
                   shrinkWrap: true,
                   padding: EdgeInsets.all(5),
@@ -197,6 +228,8 @@ class CourierStatus extends StatelessWidget
                     },
                     indicatorBuilder: (_, index) {
 
+
+
                       if (index <= complete) {
                         return DotIndicator(
                           size: 20.0,
@@ -208,6 +241,8 @@ class CourierStatus extends StatelessWidget
                           color: Colors.green,
                         );
                       }
+
+
                     },
                     connectorBuilder: (_, index, type) {
                       if (index > 0) {
@@ -229,7 +264,7 @@ class CourierStatus extends StatelessWidget
           ),
         ),
       ),
-    ) ;
+    )
+       ;
   }
-
 }

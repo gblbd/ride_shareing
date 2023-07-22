@@ -90,11 +90,6 @@ class PermissionDetail extends StatelessWidget{
                             );
 
 
-
-
-
-
-
                       },
                       child: Text('Agree',
                         style: TextStyle(
@@ -106,8 +101,6 @@ class PermissionDetail extends StatelessWidget{
                   ),
                 ),
               ),
-
-
 
 
             ],

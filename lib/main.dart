@@ -3,6 +3,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:ride_sharing/Others/SelectLanguage.dart';
@@ -81,7 +82,7 @@ class MyApp extends StatelessWidget {
 
     return Sizer(
       builder:(context, orientation, deviceType){
-       return MaterialApp(
+       return GetMaterialApp(
 
          theme: ThemeData(
            primarySwatch: Colors.red
