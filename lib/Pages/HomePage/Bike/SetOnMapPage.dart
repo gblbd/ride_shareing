@@ -427,9 +427,11 @@ PolylinePoints polylinePoints=PolylinePoints();
                          primary: Colors.red.shade600,
                        ),
                        onPressed: () async{
-
-                         //price = (await refRate.child('bike').get()) as double;
-
+                         /////////////////////////////////////////////
+                         DatabaseReference ref=FirebaseDatabase.instance.ref('price');
+                         final DataSnapshot snapshot=await ref.child('bike').get();
+                        final double price = snapshot.value !=null ? double.parse(snapshot.value.toString()):0.0;
+//////////////////////////////////////////////////
                          UploadRequest(
                              widget.SearchDestinations,widget.name,widget.phoneNum,
                              widget.SearchPickup,widget.destinationLat.toString(),widget.destinationlong.toString(),
@@ -563,6 +565,7 @@ PolylinePoints polylinePoints=PolylinePoints();
                                            ),
                                            SizedBox(height: 10,),
 
+                                           
                                            Row(
                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                              children: [
@@ -573,7 +576,8 @@ PolylinePoints polylinePoints=PolylinePoints();
 
                                                    )
                                                ),
-                                               Text('${((dist/1000)*30).toStringAsFixed(2)} BDT',
+                                               //Text('${((dist/1000)*30).toStringAsFixed(2)} BDT',
+                                               Text('${((dist/1000)*price).toStringAsFixed(2)} BDT',
                                                    style: TextStyle(
                                                        color: Colors.black,fontSize: 18,
                                                        fontWeight: FontWeight.w600

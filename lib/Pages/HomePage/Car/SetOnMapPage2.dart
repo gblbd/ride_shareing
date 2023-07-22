@@ -434,6 +434,10 @@ Future<double> getDistance() async {
                        ),
                        onPressed: () async{
 
+                         DatabaseReference ref=FirebaseDatabase.instance.ref('price');
+                         final DataSnapshot snapshot=await ref.child('car').get();
+                         final double price = snapshot.value !=null ? double.parse(snapshot.value.toString()):0.0;
+
                          UploadRequest(
                            widget.SearchDestinations,widget.name,widget.phoneNumb,
                            widget.SearchPickup,widget.destinationLat.toString(),widget.destinationlong.toString(),
@@ -657,7 +661,7 @@ Future<double> getDistance() async {
 
                                                      )
                                                  ),
-                                                 Text('${((dist/1000)*30).toStringAsFixed(2)} BDT',
+                                                 Text('${((dist/1000)*price).toStringAsFixed(2)} BDT',
                                                      style: TextStyle(
                                                          color: Colors.black,fontSize: 18,
                                                          fontWeight: FontWeight.w600
