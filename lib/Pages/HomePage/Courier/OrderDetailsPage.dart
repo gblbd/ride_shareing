@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ride_sharing/Pages/HomePage/Courier/pickup_point_manual.dart';
+import 'package:ride_sharing/Pages/HomePage/Courier/data_list.dart';
 import 'package:sizer/sizer.dart';
 
 import 'AddPickUpPage.dart';
@@ -588,7 +589,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
     'Zajira',
     'Zakiganj',
     'Zianagar',];
-  String dropdownValue_Thana = 'Select Thana/locality';
+  String dropdownValue_Thana = DataList().Thana1[0][0];//'Select Thana/locality';
   List<String> list_Area = <String>['Select Country','Bangladesh', 'India','Pakistan','Iran','Egypt',
     'Singapore','Myanmar','Philipine','Thailand','China','Japan','South Korea','North Korea','Uganda',
     'Russia',"Italy",'Germany','Canada','Peru','Bolivia','Mexico',
@@ -670,6 +671,27 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
   ];
 
 
+  ///////////////////////////////////////////////////////////
+
+
+
+
+  int DistrictValue = 0;
+
+
+  //////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -740,6 +762,39 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
+
+
+
+
+                  DropdownButton<int>(
+                    items: DataList.District1
+                        .map((description, value) {
+                      return MapEntry(
+                          description,
+                          DropdownMenuItem<int>(
+                            value: value,
+                            child: Text(description+"${value}"),
+                          ));
+                    })
+                        .values
+                        .toList(),
+                    value: DistrictValue,
+                    onChanged: (int? newValue) {
+                      if (newValue != null) {
+                        setState(() {
+                          DistrictValue = newValue;
+                        });
+                      }
+                    },
+                  ),
+
+
+
+
+
+
+
+
                   Container(
                     height: 58,width: 90.w,
                     //margin: const EdgeInsets.all(16),
@@ -779,65 +834,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                           ),
                         ),
                       ),
-                      // TextField(
-                      //   controller: _city,
-                      //   cursorColor: Colors.red.shade900,
-                      //   decoration: InputDecoration(
-                      //       border: InputBorder.none,
-                      //       hintText: 'Enter District*',
-                      //       hintStyle: TextStyle(fontSize: 17,color: Colors.grey)
-                      //   ),
-                      //   onTap: () async{
-                      //
-                      //     DropdownButtonHideUnderline(
-                      //       child: ButtonTheme(
-                      //         alignedDropdown: true,
-                      //         child: DropdownButton<String>(
-                      //           value: dropdownValue_District,
-                      //           icon: const Icon(Icons.arrow_drop_down,size: 20,),
-                      //           //elevation: 16,
-                      //           style: const TextStyle(color: Colors.black),
-                      //           onChanged: (String? value) {
-                      //             setState(() {
-                      //               dropdownValue_District = value!;
-                      //             });
-                      //           },
-                      //           items: list_District.map<DropdownMenuItem<String>>((String value) {
-                      //             return DropdownMenuItem<String>(
-                      //               value: value,
-                      //               child: Text(value,
-                      //                 style: TextStyle(
-                      //                     fontSize: 16,
-                      //                     fontWeight: FontWeight.w400
-                      //                 ),
-                      //               ),
-                      //             );
-                      //           }).toList(),
-                      //         ),
-                      //       ),
-                      //     );
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //     // Navigator.push(
-                      //     //     context,
-                      //     //     MaterialPageRoute(builder: (context) {
-                      //     //       return const SelectCityListPage();
-                      //     //     })
-                      //     // );
-                      //   },
-                      //   readOnly: true,
-                      // ),
+
                     ),
 
                   ),
@@ -875,7 +872,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                   dropdownValue_Thana = value!;
                                 });
                               },
-                              items: list_Thana.map<DropdownMenuItem<String>>((String value) {
+                              items: DataList().Thana1[DistrictValue].map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
                                   child: Text(value,
@@ -893,6 +890,15 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     ),
 
                   ),
+
+
+
+
+
+
+
+
+
                 ],
               ),
             ),
