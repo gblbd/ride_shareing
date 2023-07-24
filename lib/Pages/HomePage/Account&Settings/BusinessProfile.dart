@@ -1,281 +1,159 @@
+// import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:firebase_database/firebase_database.dart';
 // import 'package:flutter/material.dart';
-// import 'package:geocoding/geocoding.dart';
-// import 'package:geolocator/geolocator.dart';
 //
-// class LocationPage extends StatefulWidget {
-//   const LocationPage({Key? key}) : super(key: key);
+// class OfferListCarousel extends StatefulWidget {
+//   const OfferListCarousel({super.key});
 //
 //   @override
-//   State<LocationPage> createState() => _LocationPageState();
+//   State<OfferListCarousel> createState() => _OfferListCarouselState();
 // }
 //
-// class _LocationPageState extends State<LocationPage> {
-//   String? _currentAddress;
-//   Position? _currentPosition;
+// class _OfferListCarouselState extends State<OfferListCarousel> {
 //
-//   Future<bool> _handleLocationPermission() async {
-//     bool serviceEnabled;
-//     LocationPermission permission;
 //
-//     serviceEnabled = await Geolocator.isLocationServiceEnabled();
-//     if (!serviceEnabled) {
-//       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-//           content: Text(
-//               'Location services are disabled. Please enable the services')));
-//       return false;
-//     }
-//     permission = await Geolocator.checkPermission();
-//     if (permission == LocationPermission.denied) {
-//       permission = await Geolocator.requestPermission();
-//       if (permission == LocationPermission.denied) {
-//         ScaffoldMessenger.of(context).showSnackBar(
-//             const SnackBar(content: Text('Location permissions are denied')));
-//         return false;
-//       }
-//     }
-//     if (permission == LocationPermission.deniedForever) {
-//       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-//           content: Text(
-//               'Location permissions are permanently denied, we cannot request permissions.')));
-//       return false;
-//     }
-//     return true;
-//   }
+//   // Future<DataSnapshot>fetchOfferList()async{
+//   //   return await FirebaseDatabase.instance.ref().child('offer').child('bike').get();
+//   // }
 //
-//   Future<void> _getCurrentPosition() async {
-//     final hasPermission = await _handleLocationPermission();
+//   List<Offer>offers=[];
 //
-//     if (!hasPermission) return;
-//     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
-//         .then((Position position) {
-//       setState(() => _currentPosition = position);
-//       _getAddressFromLatLng(_currentPosition!);
-//     }).catchError((e) {
-//       debugPrint(e);
-//     });
-//   }
-//
-//   Future<void> _getAddressFromLatLng(Position position) async {
-//     await placemarkFromCoordinates(
-//         _currentPosition!.latitude, _currentPosition!.longitude)
-//         .then((List<Placemark> placemarks) {
-//       Placemark place = placemarks[0];
+//   @override
+//   void initState(){
+//     super.initState();
+//     FirebaseDatabase.instance.ref().child('offer').child('bike').onChildAdded.listen((event) {
 //       setState(() {
-//         _currentAddress =
-//         '${place.street},, ${place.subAdministrativeArea}, ${place.postalCode}';
+//         offers.add(Offer.fromJson(event.snapshot.value));
 //       });
-//     }).catchError((e) {
-//       debugPrint(e);
-//     });
-//   }
+//     }) ;
 //
+//   }
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       appBar: AppBar(title: const Text("Location Page")),
-//       body: SafeArea(
-//         child: Center(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               Text('LAT: ${_currentPosition?.latitude ?? ""}'),
-//               Text('LNG: ${_currentPosition?.longitude ?? ""}'),
-//               Text('ADDRESS: ${_currentAddress ?? ""}'),
-//               const SizedBox(height: 32),
-//               ElevatedButton(
-//                 onPressed: _getCurrentPosition,
-//                 child: const Text("Get Current Location"),
-//               )
-//             ],
-//           ),
-//         ),
+//       appBar: AppBar(
+//         title: Text('Offers'),
 //       ),
+//       body: CarouselSlider(
+//         options: CarouselOptions(
+//           autoPlay: true,
+//         ),
+//         items: offers.map((offer) =>OfferCard(offer)).toList(),
+//         ),
+//     );
+//
+//   }
+// }
+// class Offer{
+//   final String title;
+//   final String coupon_code;
+//   final String discountAmount;
+//   Offer({required this.title,required this.coupon_code,required this.discountAmount});
+//   factory Offer.fromJson(Map<String, dynamic>json){
+//     return Offer(
+//         title: json['title'],
+//         coupon_code: json['coupon_code'],
+//         discountAmount: json['discountAmount']
 //     );
 //   }
 // }
-
-
-
-
-
-
-
-
-
-
-import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-//import 'package:geolocator/geolocator.dart';
-
-class MyMapWidget extends StatefulWidget {
-  @override
-  _MyMapWidgetState createState() => _MyMapWidgetState();
-}
-
-class _MyMapWidgetState extends State<MyMapWidget> {
-  late GoogleMapController mapController;
-  late LatLng _center=LatLng(23.8103, 90.4125) ;
-  late String _currentAddress;
-
-  @override
-  void initState() {
-    super.initState();
-    //_getLocation();
-  }
-
-  // void _getLocation() async {
-  //   Position position = await Geolocator.getCurrentPosition(
-  //       desiredAccuracy: LocationAccuracy.high);
-  //   setState(() {
-  //     _center = LatLng(position.latitude, position.longitude);
-  //   });
-  // }
-
-
-
-
-  // void _getLocation() async {
-  //   Position position = await Geolocator.getCurrentPosition(
-  //       desiredAccuracy: LocationAccuracy.high);
-  //   setState(() {
-  //     _center = LatLng(position.latitude, position.longitude);
-  //     _getAddressFromLatLng();
-  //   });
-  // }
-
-  void _getAddressFromLatLng() async {
-    try {
-      List<Placemark> placemarks =
-      await placemarkFromCoordinates(_center.latitude, _center.longitude);
-
-      Placemark place = placemarks[0];
-
-      setState(() {
-        _currentAddress =
-        "${place.name}, ${place.locality}, ${place.postalCode}, ${place.country}";
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('My Map Widget'),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                _currentAddress ?? 'Loading...',
-                style: TextStyle(fontSize: 16.0),
-              ),
-            ),
-            Expanded(
-              child: GoogleMap(
-                onMapCreated: (GoogleMapController controller) {
-                  mapController = controller;
-                },
-                initialCameraPosition: CameraPosition(
-                  target: _center,
-                  zoom: 14.0,
-                ),
-                markers: Set<Marker>.of([
-                  Marker(
-                    markerId: MarkerId('current_location'),
-                    position: _center,
-                    infoWindow: InfoWindow(
-                      title: 'Current Location',
-                    ),
-                  ),
-                ]),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-
-// import 'package:flutter/material.dart';
-// import 'package:google_maps_flutter/google_maps_flutter.dart';
-// import 'package:geocoding/geocoding.dart';
-//
-// class MapScreen extends StatefulWidget {
-//   @override
-//   _MapScreenState createState() => _MapScreenState();
-// }
-//
-// class _MapScreenState extends State<MapScreen> {
-//   late GoogleMapController mapController;
-//   LatLng currentLocation = LatLng(23.8103, 90.4125);
-//   String currentAddress = '';
-//
-//   void _onMapCreated(GoogleMapController controller) {
-//     mapController = controller;
-//   }
-//
-//   void _onCameraMove(CameraPosition position) {
-//     currentLocation = position.target;
-//   }
-//
-//   void _onCameraIdle() async {
-//     List<Placemark> placemarks = await placemarkFromCoordinates(currentLocation.latitude, currentLocation.longitude);
-//     if (placemarks != null && placemarks.isNotEmpty) {
-//       Placemark placemark = placemarks.first;
-//       setState(() {
-//         //currentAddress = '${placemark.street},${placemark.name},${placemark.subLocality}, ${placemark.locality}, ${placemark.administrativeArea}';
-//         currentAddress = placemark.street.toString();
-//       });
-//     }
-//   }
+// class OfferCard extends StatelessWidget {
+//   final Offer offer;
+//    OfferCard(this.offer);
 //
 //   @override
 //   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Stack(
+//     return Card(
+//       child: Column(
 //         children: [
-//           GoogleMap(
-//             onMapCreated: _onMapCreated,
-//             onCameraMove: _onCameraMove,
-//             onCameraIdle: _onCameraIdle,
-//             initialCameraPosition: CameraPosition(
-//               target: LatLng(23.8759, 90.3838),
-//               zoom: 12,
-//             ),
-//           ),
-//           Positioned(
-//             bottom: 16,
-//             left: 16,
-//             right: 16,
-//             child: Container(
-//               padding: EdgeInsets.all(16),
-//               decoration: BoxDecoration(
-//                 color: Colors.white,
-//                 borderRadius: BorderRadius.circular(16),
-//                 boxShadow: [
-//                   BoxShadow(
-//                     color: Colors.grey.withOpacity(0.3),
-//                     blurRadius: 6,
-//                     offset: Offset(0, 3),
-//                   ),
-//                 ],
-//               ),
-//               child: Text(
-//                 currentAddress,
-//                 style: TextStyle(fontSize: 16),
-//               ),
-//             ),
-//           ),
+//           Text(offer.title),
+//           Text(offer.coupon_code),
+//           Text(offer.discountAmount),
+//
 //         ],
 //       ),
 //     );
 //   }
 // }
+//
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+// void main() {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   runApp(MyApp());
+// }
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flutter Demo',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//         visualDensity: VisualDensity.adaptivePlatformDensity,
+//       ),
+//       home: MyHomePage(title: 'Flutter Demo Home Page'),
+//     );
+//   }
+// }
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final database = FirebaseDatabase.instance.reference();
+  List<dynamic> items = [];
+  @override
+  void initState() {
+    super.initState();
+    database.child("offer").child("bike").onChildAdded.listen((event) {
+      setState(() {
+        items.add(event.snapshot.value);
+      });
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('offers'),
+      ),
+      body: Center(
+        child: Container(
+          child: CarouselSlider(
+            options: CarouselOptions(
+                autoPlay: true,
+                enlargeCenterPage: true,
+                viewportFraction: 1.0,
+                aspectRatio: 2.0),
+            items: items.map((item) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Text(item['title'].toString()),
+                            Text(item['coupon_code'].toString()),
+                            Text(item['discountAmount'].toString()),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              );
+            }).toList(),
+          ),
+        ),
+      ),
+    );
+  }
+}
