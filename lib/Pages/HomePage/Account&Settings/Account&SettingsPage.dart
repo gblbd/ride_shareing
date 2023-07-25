@@ -178,7 +178,7 @@ class _AccountAndSettingsPageState extends State<AccountAndSettingsPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return MyMapWidget();
+                              return MyHomePage();
                             },
                           ),
                         );

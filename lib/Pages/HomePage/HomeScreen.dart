@@ -41,6 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Query dbref=FirebaseDatabase.instance.ref("offer");
 
+  final DatabaseReference _databaseReference = FirebaseDatabase.instance.reference();
+
+
   // List<Map<String, dynamic>> carouselData = [];
  //
  //  Future<DataSnapshot> fetchList() async {
@@ -49,15 +52,23 @@ class _HomeScreenState extends State<HomeScreen> {
  //  }
 
 
-  static List offers=[
-   Image.asset('assets/images/offer.PNG'),
-   Image.asset('assets/images/offers.PNG'),
-   Image.asset('assets/images/offers.PNG'),
-   Image.asset('assets/images/offers.PNG'),
-   Image.asset('assets/images/offers.PNG'),
- ];
-  
-  
+
+
+
+  final database = FirebaseDatabase.instance.reference();
+  List<dynamic> items = [];
+  @override
+  void initState() {
+    super.initState();
+    database.child("offer").child("bike").onChildAdded.listen((event) {
+      setState(() {
+        items.add(event.snapshot.value);
+      });
+    });
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -416,46 +427,41 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  height: 100,
-
-                  child: Container(
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: offers.length,
-                        itemBuilder: (BuildContext context,int index){
+                  height: 150,width: 350,
+                  child: CarouselSlider(
+                    options: CarouselOptions(
+                        autoPlay: true,
+                        enlargeCenterPage: true,
+                        viewportFraction: 1.0,
+                        aspectRatio: 2.0),
+                    items: items.map((item) {
+                      return Builder(
+                        builder: (BuildContext context) {
                           return Container(
-                            child: offers[index],
+                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                            child: Center(
+                              child: Card(
+                                color: Colors.red.shade200,
+                               // color: Color(0XFFDC94E8),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      Text(item['title'].toString()),
+                                      Text(item['coupon_code'].toString()),
+                                      Text(item['discountAmount'].toString()),
+                                      Text(item['detail'].toString()),
+                                      Text(item['validity'].toString()),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
                           );
-                        }
-
-                    ),
-
-                    // FutureBuilder<DataSnapshot>(
-                    //   future: fetchList(),
-                    //   builder: (context, snapshot){
-                    //     if (snapshot.connectionState == ConnectionState.waiting) {
-                    //       return const CircularProgressIndicator();
-                    //     }
-                    //     List<String> itemList = [];
-                    //     if(snapshot.hasData && snapshot.data!=null){
-                    //       final itemList=List<String>.from(snapshot.data?.value as List);
-                    //     }
-                    //     return Container(
-                    //       child: CarouselSlider(
-                    //         options: CarouselOptions(
-                    //           autoPlay: true,
-                    //           aspectRatio: 2.0,
-                    //           enlargeCenterPage: true,
-                    //           enlargeStrategy: CenterPageEnlargeStrategy.height,
-                    //         ),
-                    //         items: itemSlider(itemList),
-                    //       ),
-                    //     );
-                    //   },
-                    // ),
+                        },
+                      );
+                    }).toList(),
                   ),
-
-
                 ),
               ),
               Divider(thickness: 8,color: Colors.blueGrey.shade50,),
