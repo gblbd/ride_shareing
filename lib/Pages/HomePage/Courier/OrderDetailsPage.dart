@@ -766,41 +766,11 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
 
 
 
-                  DropdownButton<int>(
-                    items: DataList.District1
-                        .map((description, value) {
-                      return MapEntry(
-                          description,
-                          DropdownMenuItem<int>(
-                            value: value,
-                            child: Text(description+"${value}"),
-                          ));
-                    })
-                        .values
-                        .toList(),
-                    value: DistrictValue,
-                    onChanged: (int? newValue) {
-                      if (newValue != null) {
-                        setState(() {
-                          DistrictValue = newValue;
-                        });
-                      }
-                    },
-                  ),
-
-
-
-
-
-
-
-
                   Container(
                     height: 58,width: 90.w,
-                    //margin: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey,width: 1),
-                        borderRadius: BorderRadius.circular(5.0),
+                      border: Border.all(color: Colors.grey,width: 1),
+                      borderRadius: BorderRadius.circular(5.0),
                         color: Colors.white
                     ),
                     child: Padding(
@@ -808,36 +778,83 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                       child: Container(
                         child: DropdownButtonHideUnderline(
                           child: ButtonTheme(
-                            //alignedDropdown: true,
-                            child: DropdownButton<String>(
-                              value: dropdownValue_District,
-                              icon: const Icon(Icons.arrow_drop_down,size: 20,),
-                              //elevation: 16,
-                              style: const TextStyle(color: Colors.black),
-                              onChanged: (String? value) {
-                                setState(() {
-                                  dropdownValue_District = value!;
-                                });
+                            child: DropdownButton<int>(
+                              items: DataList.District1
+                                  .map((description, value) {
+                                return MapEntry(
+                                    description,
+                                    DropdownMenuItem<int>(
+                                      value: value,
+                                      child: Text(description+"${value}"),
+                                    ));
+                              })
+                                  .values
+                                  .toList(),
+                              value: DistrictValue,
+                              onChanged: (int? newValue) {
+                                if (newValue != null) {
+                                  setState(() {
+                                    DistrictValue = newValue;
+                                  });
+                                }
                               },
-                              items: list_District.map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400
-                                    ),
-                                  ),
-                                );
-                              }).toList(),
                             ),
                           ),
                         ),
                       ),
-
                     ),
-
                   ),
+
+
+
+
+
+
+
+
+                  // Container(
+                  //   height: 58,width: 90.w,
+                  //   //margin: const EdgeInsets.all(16),
+                  //   decoration: BoxDecoration(
+                  //       border: Border.all(color: Colors.grey,width: 1),
+                  //       borderRadius: BorderRadius.circular(5.0),
+                  //       color: Colors.white
+                  //   ),
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.all(10.0),
+                  //     child: Container(
+                  //       child: DropdownButtonHideUnderline(
+                  //         child: ButtonTheme(
+                  //           //alignedDropdown: true,
+                  //           child: DropdownButton<String>(
+                  //             value: dropdownValue_District,
+                  //             icon: const Icon(Icons.arrow_drop_down,size: 20,),
+                  //             //elevation: 16,
+                  //             style: const TextStyle(color: Colors.black),
+                  //             onChanged: (String? value) {
+                  //               setState(() {
+                  //                 dropdownValue_District = value!;
+                  //               });
+                  //             },
+                  //             items: list_District.map<DropdownMenuItem<String>>((String value) {
+                  //               return DropdownMenuItem<String>(
+                  //                 value: value,
+                  //                 child: Text(value,
+                  //                   style: TextStyle(
+                  //                       fontSize: 16,
+                  //                       fontWeight: FontWeight.w400
+                  //                   ),
+                  //                 ),
+                  //               );
+                  //             }).toList(),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //
+                  //   ),
+                  //
+                  // ),
 
 
 
@@ -971,28 +988,37 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             Divider(color: Colors.blueGrey.shade50,thickness: 4,),
             const SizedBox(height: 5,),
             const Text('    Courier Weight*',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,),),
-            Container(
-              //width: 350,
-              child: Slider(
-                value: _value,
-                autofocus: false,
-                min: min,
-                max: max,
-                divisions: 9,
-                activeColor: Colors.red,
-                inactiveColor: Colors.red.shade300,
-                thumbColor: Colors.red,
-               label: _value.toStringAsFixed(1),
-                // label: _value.round().toString(),
-                onChanged: (  value){
-                  setState(() {
-                    _value = value.toDouble();
-                  });
-                },
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text('${_value.toString()} kg'),
+                  Container(
+                    //width: 350,
+                    child: Slider(
+                      value: _value,
+                      autofocus: false,
+                      min: min,
+                      max: max,
+                      divisions: 9,
+                      activeColor: Colors.red,
+                      inactiveColor: Colors.red.shade300,
+                      thumbColor: Colors.red,
+                     label: _value.toStringAsFixed(1),
+                      // label: _value.round().toString(),
+                      onChanged: (  value){
+                        setState(() {
+                          _value = value.toDouble();
+                        });
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
             Row(
-              children: const [
+              children:  [
                 SizedBox(width: 15,),
                 Text('0.5 kg'),Spacer(),
                 Text('5 kg'), SizedBox(width: 15,),
