@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ride_sharing/Pages/HomePage/Car/CarPageView.dart';
+import 'package:ride_sharing/Pages/HomePage/Haritage/Haritage_Home.dart';
 import '../OffersPage/views/MyRoadPoints.dart';
 import '../OffersPage/views/PaymentAllView.dart';
 import '../OffersPage/views/PointDealsView.dart';
@@ -466,8 +467,28 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Divider(thickness: 8,color: Colors.blueGrey.shade50,),
 
+              ListTile(
+                leading: Image.asset('assets/images/travel-and-tourism.png',),
+                title: const Text('Tour to Bengal',
+                    style: TextStyle(color: Colors.black,fontSize: 16,)),
+                subtitle: const Text('Send anything you want',
+                    style: TextStyle(color: Colors.grey,fontSize: 13,)),
+                trailing: const Icon(Icons.arrow_forward_ios_sharp,size: 14,),
+
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return HariTageHome();
+                      },
+                    ),
+                  );
+                },
+              ),
 
 
+              Divider(thickness: 8,color: Colors.blueGrey.shade50,),
 
 
               Padding(
