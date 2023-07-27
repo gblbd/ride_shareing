@@ -428,34 +428,47 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  height: 150,width: 350,
+                  height: 185,width: 350,
                   child: CarouselSlider(
                     options: CarouselOptions(
                         autoPlay: true,
                         enlargeCenterPage: true,
                         viewportFraction: 1.0,
-                        aspectRatio: 2.0),
+                        //aspectRatio: 2.0
+                    ),
                     items: items.map((item) {
                       return Builder(
                         builder: (BuildContext context) {
-                          return Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                            child: Center(
-                              child: Card(
-                                color: Colors.red.shade200,
-                               // color: Color(0XFFDC94E8),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Text(item['title'].toString()),
-                                      Text(item['coupon_code'].toString()),
-                                      Text(item['discountAmount'].toString()),
-                                      Text(item['detail'].toString()),
-                                      Text(item['validity'].toString()),
-                                    ],
+                          return Card(
+                           //color: Colors.red.shade200,
+                            color: Color(0XFFF1CDF8),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8),
+                                    child: Row(
+                                      children: [
+                                        Text(item['title'].toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                                        Text("Promo Code: ${item['coupon_code'].toString()}",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400),),
+
+                                      ],
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    ),
                                   ),
-                                ),
+                                  Container(
+                                    height: 50,width: 130,
+                                      child: Image.network(item['ImgURL'],fit: BoxFit.fitWidth,)),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(item['detail'].toString(),style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500),),
+                                  ),
+                                  SizedBox(height: 5,),
+                                  Text("Discount Amount: ${item['discountAmount'].toString()}",),
+                                  SizedBox(height: 5,),
+                                  Text("Valid till ${item['validity'].toString()}")
+
+                                ],
                               ),
                             ),
                           );
