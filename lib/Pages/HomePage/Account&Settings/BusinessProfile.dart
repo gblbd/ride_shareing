@@ -140,6 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: [
+                            Image.network(item['ImgURL']),
                             Text(item['title'].toString()),
                             Text(item['coupon_code'].toString()),
                             Text(item['discountAmount'].toString()),

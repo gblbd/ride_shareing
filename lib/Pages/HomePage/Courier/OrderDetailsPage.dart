@@ -1025,7 +1025,6 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
               ],
             ),
             const Divider(thickness: 1,indent: 6,endIndent: 10,),
-
         Container(
           width: 380,
           child: Padding(
