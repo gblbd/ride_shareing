@@ -25,7 +25,7 @@ class ConfirmLocation extends StatelessWidget{
   Widget build(BuildContext context) {
 
 
-
+    LatLng SourceLocation=LatLng(selectedItem[0]['lat'],selectedItem[0]["long"]);
 
 
     for(int i=0;i<selectedItem.length;i++){
