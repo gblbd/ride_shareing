@@ -58,9 +58,7 @@ class HeritageList extends StatelessWidget{
                     ),
                   ),
                 );
-
               },
-
             )
 
           ],
