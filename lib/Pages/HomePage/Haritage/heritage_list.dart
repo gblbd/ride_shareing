@@ -8,14 +8,10 @@ import 'package:google_fonts/google_fonts.dart';
 class HeritageList extends StatelessWidget{
 
 
-
-
   @override
   Widget build(BuildContext context) {
 
     Query dbref=FirebaseDatabase.instance.ref("Heritage");
-
-
 
     // TODO: implement build
     return Scaffold(
