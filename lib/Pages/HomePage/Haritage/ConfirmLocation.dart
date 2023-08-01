@@ -3,7 +3,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ride_sharing/Pages/HomePage/Haritage/estimation_page.dart';
 
 class ConfirmLocation extends StatelessWidget{
 
@@ -104,6 +106,32 @@ class ConfirmLocation extends StatelessWidget{
 
         ],
       ),
+
+
+      floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
+      floatingActionButton: Container(
+        margin: EdgeInsets.fromLTRB(0, 0, 0, 21),
+        child: FloatingActionButton.extended(
+
+          onPressed: (){
+
+            Get.to(EstimationPage(),
+                duration: Duration(milliseconds: 500), //duration of transitions, default 1 sec
+                transition: Transition.rightToLeft );
+
+
+          },
+          label: Text("Proceed To estimation"),
+          hoverElevation: 100,
+          icon: Icon(Icons.event_note),
+          splashColor: Colors.purple,
+
+          backgroundColor: Colors.pink.shade500,
+        ),
+      ),
+
+
+
     );
   }
   
