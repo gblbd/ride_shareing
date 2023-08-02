@@ -7,6 +7,17 @@ import 'package:get/get.dart';
 import 'package:ride_sharing/Pages/HomePage/Haritage/alldone_Page.dart';
 
 class ConformEstimation extends StatelessWidget{
+
+  final String Starting_Date;
+  final String returningDate;
+
+  final String Cost;
+  final String TotalDistance;
+  final List<dynamic>selectedItem;
+
+  const ConformEstimation({super.key, required this.Starting_Date, required this.returningDate, required this.Cost, required this.TotalDistance, required this.selectedItem});
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

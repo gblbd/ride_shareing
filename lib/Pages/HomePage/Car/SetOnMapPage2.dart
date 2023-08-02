@@ -205,6 +205,7 @@ Future<double> getDistance() async {
   double distanceInMetre=await Geolocator.distanceBetween(widget.sourceLat, widget.sourceLong, widget.destinationLat, widget.destinationlong);
 
 
+
   dist=distanceInMetre;
   return distanceInMetre;
 
