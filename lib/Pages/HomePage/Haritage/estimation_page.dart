@@ -22,6 +22,10 @@ import 'package:http/http.dart' as http;
 
 class EstimationPage extends StatefulWidget{
 
+  final List<dynamic>selectedItem;
+
+  const EstimationPage({super.key, required this.selectedItem});
+
   @override
   State<EstimationPage> createState() => _EstimationPageState();
 }
@@ -63,9 +67,18 @@ class _EstimationPageState extends State<EstimationPage> with TickerProviderStat
           children: [
 
 
+
             /////////////////////////////////////////////////
 
 
+            ListTile(
+              title: Text("Select Pickup Point : ",
+                style: GoogleFonts.openSans(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+            ),
 
 
             Padding(
@@ -85,7 +98,7 @@ class _EstimationPageState extends State<EstimationPage> with TickerProviderStat
                       cursorColor: Colors.red.shade900,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Search destination',
+                        hintText: 'Search Pickup Point',
                         hintStyle: TextStyle(fontSize: 17,color: Colors.black87),
                         prefixIcon: InkWell(
                           child: Icon(Icons.location_on,color: Colors.red,),
@@ -206,17 +219,12 @@ class _EstimationPageState extends State<EstimationPage> with TickerProviderStat
 
 
             ListTile(
-              title: Text("Starting Date : "),
-
-              onTap: (){
-                CupertinoDatePicker(
-                  mode: CupertinoDatePickerMode.date,
-                  initialDateTime: DateTime(1969, 1, 1),
-                  onDateTimeChanged: (DateTime newDateTime) {
-                    // Do something
-                  },
-                );
-              },
+              title: Text("Starting Date : ",
+                style: GoogleFonts.openSans(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
             ),
 
             SizedBox(
@@ -230,66 +238,43 @@ class _EstimationPageState extends State<EstimationPage> with TickerProviderStat
               ),
             ),
 
-
-
-            Text("Returning date"),
-
-
-            SizedBox(
-              height: 200,
-              child: CupertinoDatePicker(
-                mode: CupertinoDatePickerMode.date,
-                initialDateTime: DateTime.now(),
-                onDateTimeChanged: (DateTime newDateTime) {
-                  // Do something
-                },
-              ),
-            ),
 
             ListTile(
-              title: Text("Total Cost : "),
+              title: Text("Returning date : ",
+                style: GoogleFonts.openSans(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold
+              ),
+              ),
+            )
 
+            ,
+
+
+            SizedBox(
+              height: 200,
+              child: CupertinoDatePicker(
+                mode: CupertinoDatePickerMode.date,
+                initialDateTime: DateTime.now(),
+                onDateTimeChanged: (DateTime newDateTime) {
+                  // Do something
+                },
+              ),
             ),
 
 
 
-            Text("Available Driver :"),
 
 
 
-            FirebaseAnimatedList(
-              physics: ScrollPhysics(),
-              shrinkWrap: true,
-              query: dbref,
-              reverse: false,
-              itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
+            ElevatedButton(onPressed: (){
 
-                return Container(
-                  margin: EdgeInsets.all(8),
-                  child: ListTile(
-
-                    onTap: (){
-                      Get.to(ConformEstimation(),
-                          duration: Duration(milliseconds: 500), //duration of transitions, default 1 sec
-                          transition: Transition.rightToLeft );
-
-                    },
-
-                      title: Text("Driver's Name : ${snapshot.child("Driver_Name").value.toString()}"),
-                    subtitle: Column(
-                      children: [
-                        Text("Car Model : ${snapshot.child("carModel").value.toString()} ${snapshot.child("Car_Seat").value.toString()} Seater"),
-                        Text("Phone : ${snapshot.child("phone").value.toString()}")
-                      ],
-                    ),
-                  ),
-
-                );
-              },
-            )
+              Get.to(ConformEstimation(Starting_Date: "123", returningDate: "456", Cost: "425", TotalDistance: "789", selectedItem: widget.selectedItem),
+                  duration: Duration(milliseconds: 100), //duration of transitions, default 1 sec
+                  transition: Transition.rightToLeft );
 
 
-
+            }, child: Text("Proceed"))
 
 
 

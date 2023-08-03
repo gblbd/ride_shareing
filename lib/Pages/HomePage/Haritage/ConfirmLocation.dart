@@ -115,7 +115,7 @@ class ConfirmLocation extends StatelessWidget{
 
           onPressed: (){
 
-            Get.to(EstimationPage(),
+            Get.to(EstimationPage(selectedItem: selectedItem,),
                 duration: Duration(milliseconds: 500), //duration of transitions, default 1 sec
                 transition: Transition.rightToLeft );
 
