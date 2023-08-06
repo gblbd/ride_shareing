@@ -135,6 +135,34 @@ class ConformEstimation extends StatelessWidget{
 
 
 
+            DatabaseReference senderPostRef = rf.child("ride_request").push();
+            senderPostRef.set({
+              "Destination":"${destination}",
+              "Name":"${name}",
+              "Phone_number": "0${phoneNumber}",
+              "PickUp": "${PickUp}",
+              "destinationLat": "${destinationLat}",
+              "destinationLong": "${destinationLong}",
+              "sourceLat": "${sourceLat}",
+              "sourceLong": "${sourceLong}",
+              "Distance":"${dist/1000}",
+              "Fare":"${(dist/1000)*30}",
+              "pickUpStat":false,
+              "picupBy":"",
+              "DriverName":"",
+              "Driving_licese":"",
+              "vehicle_reg":"",
+              "pickupCode":"${randNumb()}",
+              "droppingCode":"${randNumb()}"
+            }).then((value) {
+              RequestID=senderPostRef.key.toString();
+              setState(() {
+
+              });
+            });
+
+
+
 
             // Get.to(AllDone(),
             //     duration: Duration(milliseconds: 500), //duration of transitions, default 1 sec
