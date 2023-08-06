@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ride_sharing/Pages/HomePage/Haritage/heritage_list.dart';
+import 'package:ride_sharing/Pages/HomePage/Haritage/tour_history.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../Others/support_page.dart';
@@ -137,6 +138,39 @@ class HariTageHome extends StatelessWidget{
               ),
             ),
 
+            Container(
+              margin: const EdgeInsets.only(left: 8,right: 8,top: 8),
+
+              child: Card(
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: ListTile(
+                    leading: Image.asset('assets/images/history.png',),
+                    title: const Text('Travel History',
+                        style: TextStyle(color: Colors.black,fontSize: 16,)),
+                    subtitle: const Text('always active for safe and hassle free travel',
+                        style: TextStyle(color: Colors.grey,fontSize: 13,)),
+                    trailing: const Icon(Icons.arrow_forward_ios_sharp,size: 14,),
+
+                    onTap: (){
+                      //Support
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return tourList();
+                          },
+                        ),
+                      );
+
+                    },
+
+
+                  ),
+                ),
+              ),
+            ),
 
 
 
