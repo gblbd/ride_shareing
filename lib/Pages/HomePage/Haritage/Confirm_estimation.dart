@@ -1,6 +1,7 @@
 
 
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,9 +16,12 @@ class ConformEstimation extends StatelessWidget{
   final String Cost;
   final String TotalDistance;
   final List<dynamic>selectedItem;
+  String RequestID="";
 
-  const ConformEstimation({super.key, required this.Starting_Date, required this.returningDate, required this.Cost, required this.TotalDistance, required this.selectedItem});
+   ConformEstimation({super.key, required this.Starting_Date, required this.returningDate, required this.Cost, required this.TotalDistance, required this.selectedItem});
 
+
+  DatabaseReference rf = FirebaseDatabase.instance.ref("Haritage_Tour_Request");
 
   @override
   Widget build(BuildContext context) {
@@ -137,28 +141,28 @@ class ConformEstimation extends StatelessWidget{
 
             DatabaseReference senderPostRef = rf.child("ride_request").push();
             senderPostRef.set({
-              "Destination":"${destination}",
-              "Name":"${name}",
-              "Phone_number": "0${phoneNumber}",
-              "PickUp": "${PickUp}",
-              "destinationLat": "${destinationLat}",
-              "destinationLong": "${destinationLong}",
-              "sourceLat": "${sourceLat}",
-              "sourceLong": "${sourceLong}",
-              "Distance":"${dist/1000}",
-              "Fare":"${(dist/1000)*30}",
+              "Destination":"ljedj",
+              "Name":"ledmmd",
+              "Phone_number": "01797609439",
+              "PickUp": "e3ioje",
+              "destinationLat": "dlwlmd3",
+              "destinationLong": "flwelflf",
+              "sourceLat": "lemdewdm",
+              "sourceLong": "ehiweiewi",
+              "Distance":"ehhwekh",
+              "Fare":"edjoe3",
               "pickUpStat":false,
-              "picupBy":"",
+              "picupBy":"enknwkn",
               "DriverName":"",
               "Driving_licese":"",
               "vehicle_reg":"",
-              "pickupCode":"${randNumb()}",
-              "droppingCode":"${randNumb()}"
+              "pickupCode":"ljdk3kdn",
+              "droppingCode":"jndk3dk"
             }).then((value) {
               RequestID=senderPostRef.key.toString();
-              setState(() {
-
-              });
+              // setState(() {
+              //
+              // });
             });
 
 
