@@ -142,18 +142,20 @@ class ConformEstimation extends StatelessWidget{
             DatabaseReference senderPostRef = rf.child("ride_request").push();
             senderPostRef.set({
               "Destination":"ljedj",
-              "Name":"ledmmd",
-              "Phone_number": "01797609439",
+              "Traveller_Name":"ledmmd",
+              "Traveller_Phone_number": "01797609439",
               "PickUp": "e3ioje",
+              "Cost":"${Cost}",
+              "Starting_date":"${Starting_Date}",
               "destinationLat": "dlwlmd3",
               "destinationLong": "flwelflf",
-              "sourceLat": "lemdewdm",
-              "sourceLong": "ehiweiewi",
-              "Distance":"ehhwekh",
+              "PickupLat": "lemdewdm",
+              "PicupLong": "ehiweiewi",
+              "Distance":"${TotalDistance}",
               "Fare":"edjoe3",
               "pickUpStat":false,
-              "picupBy":"enknwkn",
-              "DriverName":"",
+              "driver_name":"enknwkn",
+              "Driver_Phone_Numb":"",
               "Driving_licese":"",
               "vehicle_reg":"",
               "pickupCode":"ljdk3kdn",
@@ -175,7 +177,6 @@ class ConformEstimation extends StatelessWidget{
 
 
           }, child: Text("Send a booking request")),
-
 
 
 
