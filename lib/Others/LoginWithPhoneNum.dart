@@ -168,17 +168,19 @@ class _LoginWithPhoneNumState extends State<LoginWithPhoneNum> {
 
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
-        elevation: 0.0,
-      ),
+      // appBar: AppBar(
+      //  // title: Image.asset('assets/images/My_Road_Logo.png',height: 50,width: 100,),
+      //   backgroundColor: Colors.white,
+      //   iconTheme: IconThemeData(color: Colors.black),
+      //   elevation: 0.0,
+      // ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 80,),
+            Image.asset('assets/images/My_Road_Logo.png',height: 140,width: 360,),
+            //SizedBox(height: 80,),
             Padding(
               padding: const EdgeInsets.only(left: 16,right: 16),
               child: Text('Enter validate mobile Number and Password for Login',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey.shade600),textAlign: TextAlign.center,),

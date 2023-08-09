@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
@@ -173,9 +174,41 @@ _getPolyline() async {
 
 }
 
+
+  triggerNotification(String key)
+  {
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+          id: 10,
+          channelKey: 'basic_channel',
+          title: 'Rider on Search',
+          body: 'When the nearby rider will accept your ride request, they will contact with you via SMS or direct call. Thank You!',
+
+        )
+    );
+  }
+
+
+  Future<void>onSelectNotification(String payload)async{
+
+  }
+
+  Future<void>showNotification(String data)async{
+
+  }
+
 @override
   void initState() {
-    // TODO: implement initState
+  AwesomeNotifications().isNotificationAllowed().then((isAllowed){
+
+    if(!isAllowed)
+    {
+      AwesomeNotifications().requestPermissionToSendNotifications();
+    }
+
+  });
+
+  // TODO: implement initState
     super.initState();
     _getPolyline();
   }

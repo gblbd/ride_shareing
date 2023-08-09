@@ -264,7 +264,6 @@ class _CourierStatusState extends State<CourierStatus> {
           ),
         ),
       ),
-    )
-       ;
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
@@ -129,9 +130,55 @@ Set<Polyline> PolylineSet={};
 PolylinePoints polylinePoints=PolylinePoints();
 
 
+  triggerNotification()
+  {
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+          id: 10,
+          channelKey: 'basic_channel',
+          title: 'Rider on Search',
+          body: 'When the nearby rider will accept your ride request, they will contact with you via SMS or direct call. Thank You!',
 
+        )
+    );
+  }
+  // @override
+  // void initState() {
+  //
+  //
+  //   AwesomeNotifications().isNotificationAllowed().then((isAllowed){
+  //
+  //     if(!isAllowed)
+  //     {
+  //       AwesomeNotifications().requestPermissionToSendNotifications();
+  //     }
+  //
+  //   });
+  //   super.initState();
+  //
+  //   //
+  //   // rf.child("notification").onChildAdded.listen((event) {
+  //   //   showNotification(event.snapshot.value);
+  //   // });
+  // }
+
+  Future<void>onSelectNotification(String payload)async{
+
+  }
+
+  Future<void>showNotification(String data)async{
+
+  }
   @override
   void initState() {
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed){
+
+      if(!isAllowed)
+      {
+        AwesomeNotifications().requestPermissionToSendNotifications();
+      }
+
+    });
     // TODO: implement initState
     super.initState();
 
@@ -437,6 +484,8 @@ PolylinePoints polylinePoints=PolylinePoints();
                              widget.SearchPickup,widget.destinationLat.toString(),widget.destinationlong.toString(),
                              widget.sourceLat.toString(),widget.sourceLong.toString()
                          );
+                         triggerNotification();
+                             //.then((value) =>
                          showModalBottomSheet(
                              isScrollControlled: false,
                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
@@ -662,11 +711,14 @@ PolylinePoints polylinePoints=PolylinePoints();
                                                                                              itemCount: cancellationReasons.length,
                                                                                              itemBuilder: (BuildContext context, int index){
                                                                                                return ListTile(
-                                                                                                 title: Text(cancellationReasons[index]),
-                                                                                                 onTap: (){
-                                                                                                   String selectedReason=cancellationReasons[index];
-                                                                                                   Navigator.pop(context);
-                                                                                                   Navigator.pop(context);
+                                                                                                 title: Text(cancellationReasons[index].toString()),
+                                                                                                   onTap: (){
+                                                                                                     print('reason:::::${cancellationReasons[index]}');
+                                                                                                     String selectedReason=cancellationReasons[index];
+                                                                                                   Navigator.pop(context);Navigator.pop(context);
+
+
+
                                                                                                    // setState(() {
                                                                                                    //
                                                                                                    // });
@@ -674,14 +726,16 @@ PolylinePoints polylinePoints=PolylinePoints();
                                                                                                );
                                                                                              }
                                                                                          ),
+
                                                                                        ),
+
                                                                                      ],
                                                                                    ),
                                                                                  ),
                                                                                ),
                                                                              );
                                                                            },
-                                                                         );
+                                                                         ).then((value) =>  Navigator.pop(context));
 
 
 
@@ -699,6 +753,7 @@ PolylinePoints polylinePoints=PolylinePoints();
                                                                    child: TextButton(
                                                                        onPressed: (){
                                                                          Navigator.pop(context);
+
                                                                          //Navigator.pop(context);
                                                                        },
                                                                        child: Text('No',style: TextStyle(
@@ -741,8 +796,7 @@ PolylinePoints polylinePoints=PolylinePoints();
                                  ),
                                );
                              }
-
-                         );
+                             );
                          // await ref.child("ride_request").push().set({
                          //   "Name":"${widget.name.toString()}",
                          //   "Phone_number":"${widget.phoneNum.toString()}",
@@ -1011,8 +1065,6 @@ PolylinePoints polylinePoints=PolylinePoints();
          )
      );
    }
-
-
 
 }
 

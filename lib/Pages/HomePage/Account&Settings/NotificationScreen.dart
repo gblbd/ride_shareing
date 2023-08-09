@@ -35,44 +35,46 @@ class _NotificationScreenState extends State<NotificationScreen> {
         iconTheme: IconThemeData(color: Colors.black),
       ),
       backgroundColor: Colors.blueGrey.shade50,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FirebaseAnimatedList(
-              physics: ScrollPhysics(),
-              shrinkWrap: true,
-              query: dbref,
-              reverse: true,
-              itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index){
-                // dbref.onValue.listen((event) {
-                //   String key = snapshot.key.toString();
-                //   triggerNotification(key);
-                // });
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FirebaseAnimatedList(
+                physics: ScrollPhysics(),
+                shrinkWrap: true,
+                query: dbref,
+                reverse: true,
+                itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index){
+                  // dbref.onValue.listen((event) {
+                  //   String key = snapshot.key.toString();
+                  //   triggerNotification(key);
+                  // });
 
 
-                return Card(
-                  child: ListTile(
-                    onTap: (){
+                  return Card(
+                    child: ListTile(
+                      onTap: (){
 
-                    },
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.green.shade50,
-                        child: Icon(Icons.check,color: Colors.green,size: 20,)),
-                    title: RichText(text: TextSpan(
-                      text: 'We have received your courier order ${snapshot.key.toString()}. In the next few hours, we will collect your package from your given address.',
-                      style: TextStyle(color: Colors.black)
+                      },
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.green.shade50,
+                          child: Icon(Icons.check,color: Colors.green,size: 20,)),
+                      title: RichText(text: TextSpan(
+                        text: 'We have received your courier order ${snapshot.key.toString()}. In the next few hours, we will collect your package from your given address.',
+                        style: TextStyle(color: Colors.black)
+                      ),
+                      ),
+                      subtitle: Text('${snapshot.child('time').value.toString()}'),
                     ),
-                    ),
-                    subtitle: Text('${snapshot.child('time').value.toString()}'),
-                  ),
 
-                );
-              },
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

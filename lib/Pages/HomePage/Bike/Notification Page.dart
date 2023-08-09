@@ -11,6 +11,8 @@ class NotificationPageB extends StatefulWidget {
 class _NotificationPageBState extends State<NotificationPageB> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+     // body: ,
+    );
   }
 }

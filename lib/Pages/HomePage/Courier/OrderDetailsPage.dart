@@ -919,50 +919,50 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 ],
               ),
             ),
-            Container(
-              height: 58,
-              width: 90.w,
-              margin: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey,width: 1),
-                  borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.white
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  child: DropdownButtonHideUnderline(
-                    child: ButtonTheme(
-                      //alignedDropdown: true,
-                      child: DropdownButton<String>(
-                        value: dropdownValue_Area,
-                        icon: const Icon(Icons.arrow_drop_down,size: 20,),
-                        //elevation: 16,
-                        style: const TextStyle(color: Colors.black),
-                        onChanged: (String? value) {
-                          setState(() {
-                            dropdownValue_Area = value!;
-                          });
-                        },
-                        items: list_Area.map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value,
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
-
-            ),
+            // Container(
+            //   height: 58,
+            //   width: 90.w,
+            //   margin: const EdgeInsets.all(16),
+            //   decoration: BoxDecoration(
+            //       border: Border.all(color: Colors.grey,width: 1),
+            //       borderRadius: BorderRadius.circular(5.0),
+            //       color: Colors.white
+            //   ),
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(10.0),
+            //     child: Container(
+            //       child: DropdownButtonHideUnderline(
+            //         child: ButtonTheme(
+            //           //alignedDropdown: true,
+            //           child: DropdownButton<String>(
+            //             value: dropdownValue_Area,
+            //             icon: const Icon(Icons.arrow_drop_down,size: 20,),
+            //             //elevation: 16,
+            //             style: const TextStyle(color: Colors.black),
+            //             onChanged: (String? value) {
+            //               setState(() {
+            //                 dropdownValue_Area = value!;
+            //               });
+            //             },
+            //             items: list_Area.map<DropdownMenuItem<String>>((String value) {
+            //               return DropdownMenuItem<String>(
+            //                 value: value,
+            //                 child: Text(value,
+            //                   style: TextStyle(
+            //                       fontSize: 16,
+            //                       fontWeight: FontWeight.w400
+            //                   ),
+            //                 ),
+            //               );
+            //             }).toList(),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            //
+            //
+            // ),
 
             Padding(
               padding: const EdgeInsets.all(16.0),
