@@ -51,7 +51,7 @@ class HeritageList extends StatelessWidget{
                             child: Image.network("${snapshot.child("ImgURL").value.toString()}")),
                         Container(
                           padding: EdgeInsets.all(16),
-                            child: Text("${snapshot.child("Description").value.toString()}")
+                            child: Text("${snapshot.child("Description").value.toString()}",textAlign: TextAlign.justify,)
                         ),
 
                       ],
