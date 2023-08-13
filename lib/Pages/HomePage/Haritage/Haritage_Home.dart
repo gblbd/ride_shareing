@@ -10,6 +10,9 @@ import '../../../Others/support_page.dart';
 import 'select_destination.dart';
 
 class HariTageHome extends StatelessWidget{
+
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -55,7 +58,9 @@ class HariTageHome extends StatelessWidget{
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return SelectDestinetion();
+                            return SelectDestinetion(
+                              Rate: 30,
+                            );
                           },
                         ),
                       );
