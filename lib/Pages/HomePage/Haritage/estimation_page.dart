@@ -11,6 +11,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 //import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:ride_sharing/Pages/HomePage/Haritage/Confirm_estimation.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
@@ -43,12 +44,62 @@ class _EstimationPageState extends State<EstimationPage> with TickerProviderStat
   double lat=0;
   double long=0;
 
+ // DateTime? Starting_DateTime,Returning_DateandTime;
+
 
 
   List<dynamic> _placelist=[];
 
   String _sessionToken="122344";
   var uuid=Uuid();
+
+
+
+
+  /////////////////////////////////////////////////////
+
+
+  String _selectedDate = '';
+  String _dateCount = '';
+  String _range = '';
+  String _rangeCount = '';
+
+  String? Startdate,Enddate;
+
+  void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
+    /// The argument value will return the changed date as [DateTime] when the
+    /// widget [SfDateRangeSelectionMode] set as single.
+    ///
+    /// The argument value will return the changed dates as [List<DateTime>]
+    /// when the widget [SfDateRangeSelectionMode] set as multiple.
+    ///
+    /// The argument value will return the changed range as [PickerDateRange]
+    /// when the widget [SfDateRangeSelectionMode] set as range.
+    ///
+    /// The argument value will return the changed ranges as
+    /// [List<PickerDateRange] when the widget [SfDateRangeSelectionMode] set as
+    /// multi range.
+    setState(() {
+      if (args.value is PickerDateRange) {
+        Startdate= '${DateFormat('dd/MM/yyyy').format(args.value.startDate)}';
+        Enddate= ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
+        _range = '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
+        // ignore: lines_longer_than_80_chars
+            ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
+      } else if (args.value is DateTime) {
+        _selectedDate = args.value.toString();
+      } else if (args.value is List<DateTime>) {
+        _dateCount = args.value.length.toString();
+      } else {
+        _rangeCount = args.value.length.toString();
+      }
+    });
+  }
+
+
+
+
+  ///////////////////////////////////////////////////
 
 
 
@@ -218,49 +269,71 @@ class _EstimationPageState extends State<EstimationPage> with TickerProviderStat
 
 
 
+            // ListTile(
+            //   title: Text("Starting Date : ",
+            //     style: GoogleFonts.openSans(
+            //       fontSize: 18,
+            //       fontWeight: FontWeight.bold
+            //     ),
+            //   ),
+            // ),
+            //
+            // SizedBox(
+            //   height: 200,
+            //   child: CupertinoDatePicker(
+            //     mode: CupertinoDatePickerMode.date,
+            //     initialDateTime: DateTime.now(),
+            //     onDateTimeChanged: (DateTime StartDateTime) {
+            //       // Do something
+            //       setState(() {
+            //         Starting_DateTime=StartDateTime;
+            //       });
+            //
+            //     },
+            //   ),
+            // ),
+
+
             ListTile(
-              title: Text("Starting Date : ",
+              title: Text("Travelling date range : ",
                 style: GoogleFonts.openSans(
                   fontSize: 18,
                   fontWeight: FontWeight.bold
-                ),
               ),
-            ),
-
-            SizedBox(
-              height: 200,
-              child: CupertinoDatePicker(
-                mode: CupertinoDatePickerMode.date,
-                initialDateTime: DateTime.now(),
-                onDateTimeChanged: (DateTime newDateTime) {
-                  // Do something
-                },
               ),
             ),
 
 
-            ListTile(
-              title: Text("Returning date : ",
-                style: GoogleFonts.openSans(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold
-              ),
-              ),
-            )
+            Container(
 
-            ,
+              margin: EdgeInsets.symmetric(horizontal: 20),
 
-
-            SizedBox(
-              height: 200,
-              child: CupertinoDatePicker(
-                mode: CupertinoDatePickerMode.date,
-                initialDateTime: DateTime.now(),
-                onDateTimeChanged: (DateTime newDateTime) {
-                  // Do something
-                },
+              child: SfDateRangePicker(
+                onSelectionChanged: _onSelectionChanged,
+                selectionMode: DateRangePickerSelectionMode.range,
+                initialSelectedRange: PickerDateRange(
+                    DateTime.now().subtract(const Duration(days: 4)),
+                    DateTime.now().add(const Duration(days: 3))),
               ),
             ),
+
+
+
+
+
+            // SizedBox(
+            //   height: 200,
+            //   child: CupertinoDatePicker(
+            //     mode: CupertinoDatePickerMode.date,
+            //     initialDateTime: DateTime.now(),
+            //     onDateTimeChanged: (DateTime ReturnDateTime) {
+            //       setState(() {
+            //         Returning_DateandTime=Returning_DateandTime;
+            //       });
+            //
+            //     },
+            //   ),
+            // ),
 
 
 
@@ -269,7 +342,17 @@ class _EstimationPageState extends State<EstimationPage> with TickerProviderStat
 
             ElevatedButton(onPressed: (){
 
-              Get.to(ConformEstimation(Starting_Date: "123", returningDate: "456", Cost: "425", TotalDistance: "789", selectedItem: widget.selectedItem),
+              Get.to(
+                  ConformEstimation(
+                  Starting_Date: "${Startdate}",
+                  returningDate: "${Enddate}",
+                  Cost: "425", TotalDistance: "789",
+                  selectedItem: widget.selectedItem,
+                    pickupLat: lat,
+                    pickupLong: long,
+                    pickupPoint: "${Search_controller.text}",
+                  ),
+
                   duration: Duration(milliseconds: 100), //duration of transitions, default 1 sec
                   transition: Transition.rightToLeft );
 
