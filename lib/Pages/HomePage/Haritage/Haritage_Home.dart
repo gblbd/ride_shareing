@@ -1,5 +1,6 @@
 
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ride_sharing/Pages/HomePage/Haritage/heritage_list.dart';
@@ -11,11 +12,25 @@ import 'select_destination.dart';
 
 class HariTageHome extends StatelessWidget{
 
+  FirebaseDatabase database = FirebaseDatabase.instance;
+  DatabaseReference ref = FirebaseDatabase.instance.ref("price");
+
+  double rate=00.00;
+
 
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+
+
+    ref.child("tour").onValue.listen((event){
+
+      rate=double.parse("${event.snapshot.value.toString()}");
+
+    });
+
+
+        // TODO: implement build
     return Scaffold(
 
       body: SingleChildScrollView(
@@ -59,7 +74,7 @@ class HariTageHome extends StatelessWidget{
                         MaterialPageRoute(
                           builder: (context) {
                             return SelectDestinetion(
-                              Rate: 30,
+                              Rate: rate,
                             );
                           },
                         ),
