@@ -12,6 +12,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ride_sharing/Pages/HomePage/Haritage/ConfirmLocation.dart';
 
 class SelectDestinetion extends StatefulWidget{
+  final double Rate;
+
+  const SelectDestinetion({super.key, required this.Rate});
   @override
   State<SelectDestinetion> createState() => _SelectDestinetionState();
 }
@@ -112,12 +115,25 @@ class _SelectDestinetionState extends State<SelectDestinetion> {
 
           onPressed: (){
 
-            Get.to(ConfirmLocation(selectedItem: selectedItem),
-                duration: Duration(milliseconds: 500), //duration of transitions, default 1 sec
-                transition: Transition.rightToLeft );
+            if(selectedItem.length>0)
+              {
+                Get.to(ConfirmLocation(
+                  selectedItem: selectedItem,
+                  Rate: widget.Rate,
+                ),
+                    duration: Duration(milliseconds: 500), //duration of transitions, default 1 sec
+                    transition: Transition.rightToLeft );
+              }
+            else{
+
+            }
+
+
 
 
           },
+
+
           label: Text("Submit"),
           hoverElevation: 100,
           icon: Icon(Icons.done_all),

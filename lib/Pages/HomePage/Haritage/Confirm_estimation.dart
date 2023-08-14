@@ -19,12 +19,13 @@ class ConformEstimation extends StatefulWidget{
   final String pickupPoint;
   final double pickupLat;
   final double pickupLong;
+  final double Rate;
 
   final String Cost;
   final String TotalDistance;
   final List<dynamic>selectedItem;
 
-   ConformEstimation({super.key, required this.Starting_Date, required this.returningDate, required this.Cost, required this.TotalDistance, required this.selectedItem, required this.pickupPoint, required this.pickupLat, required this.pickupLong});
+   ConformEstimation({super.key, required this.Starting_Date, required this.returningDate, required this.Cost, required this.TotalDistance, required this.selectedItem, required this.pickupPoint, required this.pickupLat, required this.pickupLong, required this.Rate});
 
   @override
   State<ConformEstimation> createState() => _ConformEstimationState();
@@ -57,7 +58,7 @@ class _ConformEstimationState extends State<ConformEstimation> {
                     fontWeight: FontWeight.bold
                 ),
               ),
-              subtitle: Text("${dist}",
+              subtitle: Text("${dist/1000} KM.",
                 style: GoogleFonts.openSans(
                   fontSize: 20,
                   fontWeight: FontWeight.bold
@@ -72,7 +73,7 @@ class _ConformEstimationState extends State<ConformEstimation> {
                     fontWeight: FontWeight.bold
                 ),
               ),
-              subtitle: Text("19500",
+              subtitle: Text("${(dist/1000)*widget.Rate} BDT",
                 style: GoogleFonts.openSans(
                     fontSize: 20,
                     fontWeight: FontWeight.bold
@@ -334,18 +335,34 @@ class _ConformEstimationState extends State<ConformEstimation> {
   Future<double> getDistance() async {
 
 
+
+
     double distanceInMetre=await Geolocator.distanceBetween(widget.pickupLat, widget.pickupLong,widget.selectedItem[0]['lat'],widget.selectedItem[0]["long"]);
 
-    for(int i=1;i<widget.selectedItem.length;i++){
 
-      distanceInMetre=distanceInMetre+await Geolocator.distanceBetween(widget.selectedItem[i-1]['lat'],widget.selectedItem[i-1]["long"],widget.selectedItem[i]['lat'],widget.selectedItem[i]["long"]);
+
+    if(widget.selectedItem.length<2){
+
+      setState(() {
+        dist=distanceInMetre;
+      });
+
+    }else{
+
+      for(int i=1;i<widget.selectedItem.length;i++){
+
+        distanceInMetre=distanceInMetre+await Geolocator.distanceBetween(widget.selectedItem[i-1]['lat'],widget.selectedItem[i-1]["long"],widget.selectedItem[i]['lat'],widget.selectedItem[i]["long"]);
+
+      }
+
+      setState(() {
+        dist=distanceInMetre;
+      });
+
 
     }
 
 
-    setState(() {
-      dist=distanceInMetre;
-    });
 
 
     return distanceInMetre;

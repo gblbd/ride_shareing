@@ -23,9 +23,11 @@ import 'package:http/http.dart' as http;
 
 class EstimationPage extends StatefulWidget{
 
+  final double rate;
+
   final List<dynamic>selectedItem;
 
-  const EstimationPage({super.key, required this.selectedItem});
+  const EstimationPage({super.key, required this.selectedItem, required this.rate});
 
   @override
   State<EstimationPage> createState() => _EstimationPageState();
@@ -116,6 +118,8 @@ class _EstimationPageState extends State<EstimationPage> with TickerProviderStat
       body: SingleChildScrollView(
         child: Column(
           children: [
+
+
 
 
 
@@ -340,24 +344,33 @@ class _EstimationPageState extends State<EstimationPage> with TickerProviderStat
 
 
 
-            ElevatedButton(onPressed: (){
+            ElevatedButton(
+                onPressed: (){
 
-              Get.to(
-                  ConformEstimation(
-                  Starting_Date: "${Startdate}",
-                  returningDate: "${Enddate}",
-                  Cost: "425", TotalDistance: "789",
-                  selectedItem: widget.selectedItem,
-                    pickupLat: lat,
-                    pickupLong: long,
-                    pickupPoint: "${Search_controller.text}",
-                  ),
+                  if(lat==0||long==0||Startdate==null||Enddate==null){
 
-                  duration: Duration(milliseconds: 100), //duration of transitions, default 1 sec
-                  transition: Transition.rightToLeft );
+                  }else{
+                    Get.to(
+                        ConformEstimation(
+                          Starting_Date: "${Startdate}",
+                          returningDate: "${Enddate}",
+                          Cost: "425", TotalDistance: "789",
+                          selectedItem: widget.selectedItem,
+                          pickupLat: lat,
+                          pickupLong: long,
+                          pickupPoint: "${Search_controller.text}",
+                          Rate: widget.rate,
+                        ),
+
+                        duration: Duration(milliseconds: 100), //duration of transitions, default 1 sec
+                        transition: Transition.rightToLeft );
+                  }
 
 
-            }, child: Text("Proceed"))
+
+
+            },
+                child: Text("Proceed"))
 
 
 

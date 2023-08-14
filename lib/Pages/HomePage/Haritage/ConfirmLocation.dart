@@ -11,7 +11,8 @@ class ConfirmLocation extends StatelessWidget{
 
 
   final List<dynamic>selectedItem;
-   ConfirmLocation({super.key, required this.selectedItem});
+  final double Rate;
+   ConfirmLocation({super.key, required this.selectedItem, required this.Rate});
 
   final Set<Marker> markers = new Set();
 
@@ -115,7 +116,11 @@ class ConfirmLocation extends StatelessWidget{
 
           onPressed: (){
 
-            Get.to(EstimationPage(selectedItem: selectedItem,),
+            Get.to(EstimationPage(
+              selectedItem: selectedItem,
+              rate: Rate,
+
+            ),
                 duration: Duration(milliseconds: 500), //duration of transitions, default 1 sec
                 transition: Transition.rightToLeft );
 
