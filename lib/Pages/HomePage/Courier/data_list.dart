@@ -152,6 +152,18 @@ class DataList {
 
 
 
+  List<String> VehicleList=[
+    "Toyota Premio",
+    "Mitsubishi Pajero",
+  "Renault Kwid",
+  "Maruti Baleno",
+  "Hyundai i20",
+  "Honda Amaze",
+  "Skoda Slavia",
+  "Maruti Ciaz",
+  "Skoda Octavia",
+  "Honda City"
+  ];
 
 
 
