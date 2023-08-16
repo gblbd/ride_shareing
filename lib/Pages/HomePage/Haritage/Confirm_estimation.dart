@@ -167,8 +167,6 @@ class _ConformEstimationState extends State<ConformEstimation> {
 
 
 
-
-
             // FirebaseAnimatedList(
             //   physics: ScrollPhysics(),
             //   shrinkWrap: true,
@@ -199,6 +197,7 @@ class _ConformEstimationState extends State<ConformEstimation> {
             //     );
             //   },
             // ),
+
 
 
 
