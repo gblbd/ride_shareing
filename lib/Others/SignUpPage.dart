@@ -60,6 +60,9 @@ class _SignUpPageState extends State<SignUpPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(child: Icon(Icons.account_circle,size: 90,color: Colors.grey,)),
+
+
+
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Container(
@@ -90,6 +93,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
             ),
+
+
+
+
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Container(

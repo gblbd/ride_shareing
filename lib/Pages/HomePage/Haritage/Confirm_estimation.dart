@@ -20,12 +20,13 @@ class ConformEstimation extends StatefulWidget{
   final double pickupLat;
   final double pickupLong;
   final double Rate;
+  final String carModel;
 
   final String Cost;
   final String TotalDistance;
   final List<dynamic>selectedItem;
 
-   ConformEstimation({super.key, required this.Starting_Date, required this.returningDate, required this.Cost, required this.TotalDistance, required this.selectedItem, required this.pickupPoint, required this.pickupLat, required this.pickupLong, required this.Rate});
+   ConformEstimation({super.key, required this.Starting_Date, required this.returningDate, required this.Cost, required this.TotalDistance, required this.selectedItem, required this.pickupPoint, required this.pickupLat, required this.pickupLong, required this.Rate, required this.carModel});
 
   @override
   State<ConformEstimation> createState() => _ConformEstimationState();
@@ -166,8 +167,6 @@ class _ConformEstimationState extends State<ConformEstimation> {
 
 
 
-
-
             // FirebaseAnimatedList(
             //   physics: ScrollPhysics(),
             //   shrinkWrap: true,
@@ -198,6 +197,7 @@ class _ConformEstimationState extends State<ConformEstimation> {
             //     );
             //   },
             // ),
+
 
 
 
@@ -295,7 +295,8 @@ class _ConformEstimationState extends State<ConformEstimation> {
               "vehicle_reg":"",
               "pickupCode":"ljdk3kdn",
               "Traveller_Name":"nafim",
-              "droppingCode":"jndk3dk"
+              "droppingCode":"jndk3dk",
+              "carModel":"${widget.carModel}"
             }).then((value) {
               RequestID=senderPostRef.key.toString();
 

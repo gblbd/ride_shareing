@@ -14,9 +14,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:ride_sharing/Pages/HomePage/Haritage/Confirm_estimation.dart';
+import 'package:sizer/sizer.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
+
+import '../Courier/data_list.dart';
 
 
 
@@ -24,6 +27,7 @@ import 'package:http/http.dart' as http;
 class EstimationPage extends StatefulWidget{
 
   final double rate;
+
 
   final List<dynamic>selectedItem;
 
@@ -45,6 +49,8 @@ class _EstimationPageState extends State<EstimationPage> with TickerProviderStat
 
   double lat=0;
   double long=0;
+
+  String vehicle = DataList().VehicleList[0];
 
  // DateTime? Starting_DateTime,Returning_DateandTime;
 
@@ -341,6 +347,56 @@ class _EstimationPageState extends State<EstimationPage> with TickerProviderStat
 
 
 
+            Container(
+              height: 58,width: 80.w,
+              //margin: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey,width: 1),
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.white
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child:   Container(
+                  child: DropdownButtonHideUnderline(
+                    child: ButtonTheme(
+                      //alignedDropdown: true,
+                      child: DropdownButton<String>(
+                        value: vehicle,
+                        icon: const Icon(Icons.arrow_drop_down,size: 20,),
+                        //elevation: 16,
+                        style: const TextStyle(color: Colors.black),
+                        onChanged: (String? value) {
+                          setState(() {
+                            vehicle = value!;
+                          });
+                        },
+                         items: DataList().VehicleList.map<DropdownMenuItem<String>>((String value) {
+                           return DropdownMenuItem<String>(
+                             value: value,
+                             child: Text(value),
+                           );
+                         }).toList(),
+                        //DataList().VehicleList()
+                        // Thana1[DistrictValue].map<DropdownMenuItem<String>>((String value) {
+                        //   return DropdownMenuItem<String>(
+                        //     value: value,
+                        //     child: Text(value,
+                        //       style: TextStyle(
+                        //           fontSize: 16,
+                        //           fontWeight: FontWeight.w400
+                        //       ),
+                        //     ),
+                        //   );
+                        // }).toList(),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+            ),
+
 
 
 
@@ -360,6 +416,7 @@ class _EstimationPageState extends State<EstimationPage> with TickerProviderStat
                           pickupLong: long,
                           pickupPoint: "${Search_controller.text}",
                           Rate: widget.rate,
+                          carModel: vehicle,
                         ),
 
                         duration: Duration(milliseconds: 100), //duration of transitions, default 1 sec
