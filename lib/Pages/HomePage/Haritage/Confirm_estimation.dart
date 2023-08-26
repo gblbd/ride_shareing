@@ -42,9 +42,12 @@ class _ConformEstimationState extends State<ConformEstimation> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+
       body: SingleChildScrollView(
-        child: Column(
-          children: [
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
 
 
 
@@ -52,214 +55,215 @@ class _ConformEstimationState extends State<ConformEstimation> {
 
 
 
-            ListTile(
-              title: Text("Total Distance : ",
-                style: GoogleFonts.openSans(
-                    fontSize: 18,
+              ListTile(
+                title: Text("Total Distance : ",
+                  style: GoogleFonts.openSans(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                subtitle: Text("${dist/1000} KM.",
+                  style: GoogleFonts.openSans(
+                    fontSize: 20,
                     fontWeight: FontWeight.bold
+                  ),
                 ),
               ),
-              subtitle: Text("${dist/1000} KM.",
-                style: GoogleFonts.openSans(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
 
-            ListTile(
-              title: Text("total cost : ",
-                style: GoogleFonts.openSans(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold
+              ListTile(
+                title: Text("total cost : ",
+                  style: GoogleFonts.openSans(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                subtitle: Text("${(dist/1000)*widget.Rate} BDT",
+                  style: GoogleFonts.openSans(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),
                 ),
               ),
-              subtitle: Text("${(dist/1000)*widget.Rate} BDT",
+
+
+              ListTile(
+                title: Text("Starting date : ",
+                  style: GoogleFonts.openSans(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                subtitle: Text("${widget.Starting_Date}",
+                  style: GoogleFonts.openSans(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
+              ListTile(
+                title: Text("Returning Date : ",
+                  style: GoogleFonts.openSans(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                subtitle: Text("${widget.returningDate}",
+                  style: GoogleFonts.openSans(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
+
+              ListTile(
+                title: Text("Pickup Point : ",
+                  style: GoogleFonts.openSans(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                subtitle: Text("${widget.pickupPoint}",
+                  style: GoogleFonts.openSans(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
+
+
+
+
+
+
+              Text("your selected place : ",
                 style: GoogleFonts.openSans(
                     fontSize: 20,
                     fontWeight: FontWeight.bold
                 ),
               ),
-            ),
 
-
-            ListTile(
-              title: Text("Starting date : ",
-                style: GoogleFonts.openSans(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-              subtitle: Text("${widget.Starting_Date}",
-                style: GoogleFonts.openSans(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text("Returning Date : ",
-                style: GoogleFonts.openSans(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-              subtitle: Text("${widget.returningDate}",
-                style: GoogleFonts.openSans(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-
-            ListTile(
-              title: Text("Pickup Point : ",
-                style: GoogleFonts.openSans(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-              subtitle: Text("${widget.pickupPoint}",
-                style: GoogleFonts.openSans(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-
-
-
-
-
-
-            Text("your selected place : ",
-              style: GoogleFonts.openSans(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold
-              ),
-            ),
-
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: widget.selectedItem.length,
-                physics: ScrollPhysics(),
-                itemBuilder: (context,index){
-                  return ListTile(
-                    title: Text("${widget.selectedItem[index]["Name"]}",
-                      style: GoogleFonts.openSans(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold
+              ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: widget.selectedItem.length,
+                  physics: ScrollPhysics(),
+                  itemBuilder: (context,index){
+                    return ListTile(
+                      title: Text("${widget.selectedItem[index]["Name"]}",
+                        style: GoogleFonts.openSans(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold
+                        ),
                       ),
-                    ),
 
-                    subtitle: Text("${widget.selectedItem[index]["address"]}",
-                      style: GoogleFonts.openSans(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold
+                      subtitle: Text("${widget.selectedItem[index]["address"]}",
+                        style: GoogleFonts.openSans(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold
+                        ),
                       ),
-                    ),
 
-                  );
-                }
-            ),
-
-
-
-
-
-            // FirebaseAnimatedList(
-            //   physics: ScrollPhysics(),
-            //   shrinkWrap: true,
-            //   query: dbref,
-            //   reverse: false,
-            //   itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
-            //
-            //     return Container(
-            //       margin: EdgeInsets.all(8),
-            //       child: ListTile(
-            //
-            //         onTap: (){
-            //           Get.to(ConformEstimation(),
-            //               duration: Duration(milliseconds: 500), //duration of transitions, default 1 sec
-            //               transition: Transition.rightToLeft );
-            //
-            //         },
-            //
-            //         title: Text("Driver's Name : ${snapshot.child("Driver_Name").value.toString()}"),
-            //         subtitle: Column(
-            //           children: [
-            //             Text("Car Model : ${snapshot.child("carModel").value.toString()} ${snapshot.child("Car_Seat").value.toString()} Seater"),
-            //             Text("Phone : ${snapshot.child("phone").value.toString()}")
-            //           ],
-            //         ),
-            //       ),
-            //
-            //     );
-            //   },
-            // ),
+                    );
+                  }
+              ),
 
 
 
 
 
-
-            // ElevatedButton(
-            //     onPressed: (){
-            //
-            //
-            //
-            //   DatabaseReference senderPostRef = rf.child("ride_request").push();
-            //   senderPostRef.set({
-            //     "Destination":"ljedj",
-            //     "Traveller_Name":"ledmmd",
-            //     "Traveller_Phone_number": "01797609439",
-            //     "PickUp": "e3ioje",
-            //     "Cost":"${Cost}",
-            //     "traveller_Phone":"01797609439",
-            //     "Starting_date":"${Starting_Date}",
-            //     "destinationLat": "dlwlmd3",
-            //     "destinationLong": "flwelflf",
-            //     "PickupLat": "lemdewdm",
-            //     "PicupLong": "ehiweiewi",
-            //     "Distance":"${TotalDistance}",
-            //     "Fare":"edjoe3",
-            //     "pickUpStat":false,
-            //     "driver_name":"enknwkn",
-            //     "Driver_Phone_Numb":"",
-            //     "Driving_licese":"",
-            //     "vehicle_reg":"",
-            //     "pickupCode":"ljdk3kdn",
-            //     "Traveller_Name":"nafim",
-            //     "droppingCode":"jndk3dk"
-            //   }).then((value) {
-            //     RequestID=senderPostRef.key.toString();
-            //
-            //     Get.to(AllDone(),
-            //         duration: Duration(milliseconds: 100), //duration of transitions, default 1 sec
-            //         transition: Transition.rightToLeft );
-            //
-            //
-            //     // setState(() {
-            //     //
-            //     // });
-            //   });
-            //
-            //
-            //
-            //
-            //   // Get.to(AllDone(),
-            //   //     duration: Duration(milliseconds: 500), //duration of transitions, default 1 sec
-            //   //     transition: Transition.rightToLeft );
-            //   //
-            //
-            //
-            // },
-            //     child: Text("Send a booking request")),
-            //
+              // FirebaseAnimatedList(
+              //   physics: ScrollPhysics(),
+              //   shrinkWrap: true,
+              //   query: dbref,
+              //   reverse: false,
+              //   itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
+              //
+              //     return Container(
+              //       margin: EdgeInsets.all(8),
+              //       child: ListTile(
+              //
+              //         onTap: (){
+              //           Get.to(ConformEstimation(),
+              //               duration: Duration(milliseconds: 500), //duration of transitions, default 1 sec
+              //               transition: Transition.rightToLeft );
+              //
+              //         },
+              //
+              //         title: Text("Driver's Name : ${snapshot.child("Driver_Name").value.toString()}"),
+              //         subtitle: Column(
+              //           children: [
+              //             Text("Car Model : ${snapshot.child("carModel").value.toString()} ${snapshot.child("Car_Seat").value.toString()} Seater"),
+              //             Text("Phone : ${snapshot.child("phone").value.toString()}")
+              //           ],
+              //         ),
+              //       ),
+              //
+              //     );
+              //   },
+              // ),
 
 
 
-          ],
+
+
+
+              // ElevatedButton(
+              //     onPressed: (){
+              //
+              //
+              //
+              //   DatabaseReference senderPostRef = rf.child("ride_request").push();
+              //   senderPostRef.set({
+              //     "Destination":"ljedj",
+              //     "Traveller_Name":"ledmmd",
+              //     "Traveller_Phone_number": "01797609439",
+              //     "PickUp": "e3ioje",
+              //     "Cost":"${Cost}",
+              //     "traveller_Phone":"01797609439",
+              //     "Starting_date":"${Starting_Date}",
+              //     "destinationLat": "dlwlmd3",
+              //     "destinationLong": "flwelflf",
+              //     "PickupLat": "lemdewdm",
+              //     "PicupLong": "ehiweiewi",
+              //     "Distance":"${TotalDistance}",
+              //     "Fare":"edjoe3",
+              //     "pickUpStat":false,
+              //     "driver_name":"enknwkn",
+              //     "Driver_Phone_Numb":"",
+              //     "Driving_licese":"",
+              //     "vehicle_reg":"",
+              //     "pickupCode":"ljdk3kdn",
+              //     "Traveller_Name":"nafim",
+              //     "droppingCode":"jndk3dk"
+              //   }).then((value) {
+              //     RequestID=senderPostRef.key.toString();
+              //
+              //     Get.to(AllDone(),
+              //         duration: Duration(milliseconds: 100), //duration of transitions, default 1 sec
+              //         transition: Transition.rightToLeft );
+              //
+              //
+              //     // setState(() {
+              //     //
+              //     // });
+              //   });
+              //
+              //
+              //
+              //
+              //   // Get.to(AllDone(),
+              //   //     duration: Duration(milliseconds: 500), //duration of transitions, default 1 sec
+              //   //     transition: Transition.rightToLeft );
+              //   //
+              //
+              //
+              // },
+              //     child: Text("Send a booking request")),
+              //
+
+
+
+            ],
+          ),
         ),
       ),
 
